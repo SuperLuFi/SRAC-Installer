@@ -1,0 +1,217 @@
+CMWRD --125***CITATION*** LINE RELAXATION ON ROWS 3-D HEX/ CF-KNSD
+C
+      SUBROUTINE MWRD(SCATE,P2E,DCONBE,DCONRE,DCONBK,PTSAE,TSOUR, NRGNE,
+     &  E1,LVX, IVX,JVX,KBVX,KVX,IVXP1,JVXP1,KBVXP1, JIVX,JIP1VX,JP1IXZ,
+     &  IOVX,IOVZ)
+C
+CDEL  INTEGER RGX , MSX , ZNEX , ZDX , WZX
+CDEL  PARAMETER ( RGX=100, MSX=211, ZDX=200, ZNEX=1000, WZX=100 )
+      INCLUDE  'CITPMINC'
+C
+      COMMON/ALSUB/BLSUB(30),TITL1(18),TITL2(18),IMAX,JMAX,KBMAX,KMAX,
+     & LMAX,MMAX, NMAX,IMXP1,JMXP1,KBMXP1,NSETMX,NTO,MM1VX,KM1VX,IOIN,
+     & IOUT,IOSIG,IOFLX,IO1,IO2,IO3,IO4,IO7,NER(100), IX(200),INNO(100),
+     &  NGC(24),IEDG(24),ITMX(24),TIMX(6), GLIM(6),NDPL(24),IEDP1(24),
+     & IEDP2(24),IEDP3(24), DPLH(6),NUAC(24),EPI(6),XMIS(6),NSRH(24),
+     & XSRH1(6), XTR1(WZX),XTR2(WZX),NXTR1(WZX),NXTR2(WZX),SPARE(200),
+     & IXPUT(200),XPUT(200)
+      COMMON/AFLUX/BFLUX(30),KXMN8,NIT,NIIT,NIIIT,JXP1,KSCT1,KSCT2,
+     & ISTART,IEP, VRGP1,VRGP2,VRGP3,VRG1,VRG2,VRGK1,VRGK2,XABS,PROD,
+     & XLEK,RMX,RMN,XKEF1,XKEF2,XKEF3,EXFC1,EXFC2,EXFC3, NI3,IEXTR,
+     & IRECV,VRGABS,LO3,LO4,XLAMDA,EPI1,EPI2, BETTA,SUMXI,IX25,IX28,I,J,
+     &  KB,K,ITMAX,ITIME, BET(MSX),DEL(MSX)
+C
+      DIMENSION SCATE(JVX,IVX,KBVX),P2E(JIVX,KBVX,KVX), DCONBE(JIP1VX,
+     & KBVX,IOVX),DCONRE(JP1IXZ,KBVX,IOVZ), DCONBK(JIVX,KBVXP1,IOVX),
+     & PTSAE(JIVX,KBVX,IOVX)
+      DIMENSION E1(LVX,KVX),NRGNE(JVX,IVX,KBVX)
+      DIMENSION TSOUR(MSX)
+C
+CCCCC ********* SUBSCRIPT DEFINITIONS (MWRD E-090) ********* CCCCC
+C    NEW         OLD            NEW         OLD
+C     N1         J,I             N14        M,L
+C     N2         J,I-1           N15        I,J
+C     N3         J,I+1           N16      J-1,2
+C     N4         J,1             N17        2,I-1
+C     N5         J,2             N18      J+1,I-1
+C     N6         J,IVX           N19      J-1,I+1
+C     N7         1,1             N20 *      2,I
+C     N8         1,2             N21 *    J+1,1
+C     N9         1,IVX           N22 *      J,2
+C     N10        1,I             N23 *      2,IVX
+C     N11        1,I-1           N24 *    J+1,IVX
+C     N12        1,I+1           N25 *    J+1,I
+C     N13      JVX,I             N26 *      J,I+1
+C
+      N = IX(20)
+      N7= 1
+      N8= JVX + 1
+      NN4= (IVX-1)*JVX
+      NN6= (IVX-1)*JVXP1
+      N9= NN4 + 1
+      N23= NN6 + 2
+      KKK = N + IOVX
+      DO 144 KB=1,KBVX
+      KBM1 = KB - 1
+      KBP1 = KB + 1
+      DO 143I=1,IVX
+  100 IP1=I-1
+      NN1= IP1*JVX
+      DO 103 J=1,JVX
+      N1 = NN1 + J
+      CKSS = SCATE(J,I,KB)
+      IF (KB.LE.1) GO TO 101
+      CKSS = CKSS + P2E(N1,KBM1,K)*DCONBK(N1,KB,N)
+  101 IF (KB.GE.KBVX) GO TO 102
+      CKSS = CKSS + P2E(N1,KBP1,K)*DCONBK(N1,KBP1,N)
+  102 TSOUR(J) = CKSS
+  103 CONTINUE
+      NN2= NN1 - JVX
+      NN3= NN1 + JVX
+      NN5= IP1*JVXP1
+      NN7= NN5 + JVXP1
+      N11= NN2 + 1
+      N17= NN2 + 2
+      N13= NN1 + JVX
+      N20= NN5 + 2
+      N10= NN1 + 1
+      N12= NN3 + 1
+      DEL(1)=0.0
+      D1=DCONBE(N10,KB,N)
+      D2=DCONBE(N12 ,KB,N)
+      D4=DCONRE(N20,KB,N)
+  104 IF (I-1) 105,105,111
+  105 IF (P2E(N7,KB,K)) 106,107,106
+  106 BET(1)=(P2E(N8 ,KB,K)*D2+TSOUR(1) )/D4
+      L = NRGNE(1,1,KB)
+      DEL(1) = D4/(PTSAE(N7,KB,N) + E1(L,K))
+  107 CONTINUE
+      N4= 1
+      N21= 2
+      N5= JVX + 1
+      N16= JVX
+      N22= JVXP1 + 1
+      DO 110 J=2,JVX
+      N4= N4 + 1
+      N21= N21 + 1
+      N5= N5 + 1
+      N16= N16 + 1
+      N22= N22 + 1
+      IF (P2E(N4,KB,K)) 109,108,109
+  108 DEL(J)=0.0
+      GO TO 110
+  109 T=D4*DEL(J-1)
+      L = NRGNE(J,1,KB)
+      D4=DCONRE(N21 ,KB,N)
+      BET(J)=(P2E(N5 ,KB,K)*DCONBE(N5 ,KB,N)+TSOUR(J) +P2E(N16 ,KB,K)*
+     & DCONRE(N22,KB,KKK)+BET(J-1)*T)/D4
+      DEL(J) = D4/(PTSAE(N4,KB,N) - T + E1(L,K))
+  110 CONTINUE
+      GO TO 124
+  111 IF (I-IVX) 118,112,112
+  112 IF (P2E(N9,KB,K)) 113,114,113
+  113 BET(1)=(P2E(N11 ,KB,K)*D1+TSOUR(1) +P2E(N17 ,KB,K)*DCONRE(N23 ,KB,
+     &  KKK))/D4
+      L = NRGNE(1,IVX,KB)
+      DEL(1) = D4/(PTSAE(N9,KB,N) + E1(L,K))
+  114 CONTINUE
+      N6= NN4 + 1
+      N24= NN6 + 2
+      N2= NN2 + 1
+      N18= NN2 + 2
+      DO 117 J=2,JVX
+      N6= N6 + 1
+      N24= N24 + 1
+      N2= N2 + 1
+      N18= N18 + 1
+      IF (P2E(N6,KB,K)) 116,115,116
+  115 DEL(J)=0.0
+      GO TO 117
+  116 T=D4*DEL(J-1)
+      L = NRGNE(J,IVX,KB)
+      D4=DCONRE(N24 ,KB,N)
+      BET(J)=(P2E(N2 ,KB,K)*DCONBE(N6 ,KB,N)+TSOUR(J) +P2E(N18 ,KB,K)*
+     & DCONRE(N24 ,KB,KKK)+BET(J-1)*T)/D4
+      DEL(J) = D4/(PTSAE(N6,KB,N) - T + E1(L,K))
+  117 CONTINUE
+      GO TO 124
+  118 IF (P2E(N10,KB,K)) 119,120,119
+  119 CONTINUE
+      L = NRGNE(1,I,KB)
+      BET(1)=(P2E(N11 ,KB,K)*D1+TSOUR(1) +P2E(N17 ,KB,K)*DCONRE( N20,KB,
+     & KKK)+P2E(N12,KB,K)*D2)/D4
+      DEL(1) = D4/(PTSAE(N10,KB,N) + E1(L,K))
+  120 CONTINUE
+      N1= NN1 + 1
+      N25= NN5 + 2
+      N2= NN2 + 1
+      N3= NN3 + 1
+      N18= NN2 + 2
+      N19= NN3
+      N26= NN7 + 1
+      DO 123 J=2,JVX
+      N1= N1 + 1
+      N25= N25 + 1
+      N2= N2 + 1
+      N3= N3 + 1
+      N18= N18 + 1
+      N19= N19 + 1
+      N26= N26 + 1
+      IF (P2E(N1,KB,K)) 122,121,122
+  121 DEL(J)=0.0
+      GO TO 123
+  122 T=D4*DEL(J-1)
+      L = NRGNE(J,I,KB)
+      D4=DCONRE(N25 ,KB,N)
+      BET(J)=(P2E(N2 ,KB,K)*DCONBE(N1 ,KB,N)+P2E(N3 ,KB,K)*DCONBE( N3 ,
+     & KB,N)+P2E(N18 ,KB,K)*DCONRE(N25 ,KB,KKK)+P2E(N19 ,KB,K)*
+     & DCONRE(N26 ,KB,KKK)+TSOUR(J) +BET(J-1)*T)/D4
+      DEL(J) = D4/(PTSAE(N1,KB,N) - T + E1(L,K))
+  123 CONTINUE
+  124 CONTINUE
+  125 TEMP=BET(JVX)*DEL(JVX)
+      T=P2E(N13 ,KB,K)
+      TMF=T+BETTA*(TEMP-T)
+      IF (IEP) 126,130,127
+  126 P2E(N13 ,KB,K)=TEMP
+      GO TO 131
+  127 IF (TMF-TEMP) 129,130,128
+  128 TMF=AMIN1(TMF,(TEMP+T))
+      GO TO 130
+  129 TMF=AMAX1(TMF,0.5*TEMP)
+  130 CONTINUE
+      P2E(N13 ,KB,K)=TMF
+  131 DO 138JJ=2,JVX
+      J=JVXP1-JJ
+      N1= NN1 + J
+      T=P2E(N1 ,KB,K)
+      TEMP=DEL(J)*(TEMP+BET(J))
+      TMF=T+BETTA*(TEMP-T)
+      IF (IEP) 132,136,133
+  132 P2E(N1 ,KB,K)=TEMP
+      GO TO 138
+  133 IF (TMF-TEMP) 135,136,134
+  134 TMF=AMIN1(TMF,(TEMP+T))
+      GO TO 136
+  135 TMF=AMAX1(TMF,0.5*TEMP)
+  136 CONTINUE
+  137 P2E(N1 ,KB,K)=TMF
+  138 CONTINUE
+      IF (NUAC(8)) 139,143,141
+  139 L=IVXP1-I
+      DO 140J=1,JVX
+      M=JVXP1-J
+      N1= NN1 + J
+      N14= (L-1)*JVX + M
+      P2E(N14,KB,K)=P2E(N1 ,KB,K)
+  140 CONTINUE
+      GO TO 143
+  141 DO 142J=1,JVX
+      N1= NN1 + J
+      N15= (J-1)*JVX + I
+      P2E(N15,KB,K)=P2E(N1 ,KB,K)
+  142 CONTINUE
+  143 CONTINUE
+  144 CONTINUE
+      RETURN
+      END

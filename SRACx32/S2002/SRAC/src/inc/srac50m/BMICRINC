@@ -1,0 +1,17 @@
+C     PARAMETER DEFINISION FOR SRAC FINE-GROUP EFFECITIV MICRO X-SECTION
+C     THIS DEFINISION FILE NAME IS <<BMICRINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXNISO    MAXIMUM NUCLIDE IN A MATERIAL               120
+C               FOR BURNUP CAL. SET MXNISO > (NON-DEPLETING
+C               NUCLEI+DEPLETING NUCLEI IN THE BURNUP CHAIN)
+C               MXNISO MUST BE THE SAME VALUE TO THE MXNUC 
+C               IN <<BURNPINC>>  (MXNISO = MXNUC) 
+C     MAXNG     MAXIMUM ENERGY GROUPS                       107
+C     MAXMT3    MAXIMUM REACTIONS OF WHICH CROSS SECTION      6
+C               ARE STORE IN COMMOM /BY INPUT DATA
+C     ------------------------------------------------------------------
+      PARAMETER ( MXNISO = 150 , MAXNG = 107  , MAXMT3 = 6 )

@@ -1,0 +1,100 @@
+ XXX Installation of TXTtoPDS and PDStoTXT started.
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/main000.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/pdsin.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/pdsnm.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/pdsrd.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/pdssr.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/pdswt.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/cnvint.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/setda1.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/setda2.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/setda3.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/setdat.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/setmem.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/txtchk.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/util/pdscnvt/src/txttopds/txtlin.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/src/extnl/uioset.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/src/extnl/uioint.f
+cd /home/lab/SRAC/util/pdscnvt/src/txttopds; g77 -c  /home/lab/SRAC/src/extnl/ugtenv.f
+g77 -o /home/lab/SRAC/util/pdscnvt/bin/txttopds.out  /home/lab/SRAC/util/pdscnvt/src/txttopds/main000.o /home/lab/SRAC/util/pdscnvt/src/txttopds/pdsin.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/pdsnm.o   /home/lab/SRAC/util/pdscnvt/src/txttopds/pdsrd.o   /home/lab/SRAC/util/pdscnvt/src/txttopds/pdssr.o /home/lab/SRAC/util/pdscnvt/src/txttopds/pdswt.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/cnvint.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/setda1.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/setda2.o /home/lab/SRAC/util/pdscnvt/src/txttopds/setda3.o /home/lab/SRAC/util/pdscnvt/src/txttopds/setdat.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/setmem.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/txtchk.o /home/lab/SRAC/util/pdscnvt/src/txttopds/txtlin.o /home/lab/SRAC/util/pdscnvt/src/txttopds/uioset.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/uioint.o  /home/lab/SRAC/util/pdscnvt/src/txttopds/ugtenv.o
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/main000.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdsin.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdsnm.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdsrd.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdssr.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdswt.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/numchk.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setli1.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setli2.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setli3.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setlin.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/memlst.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/txtlin.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/src/extnl/uioset.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/src/extnl/uioint.f
+cd /home/lab/SRAC/util/pdscnvt/src/pdstotxt; g77 -c  /home/lab/SRAC/src/extnl/ugtenv.f
+g77 -o /home/lab/SRAC/util/pdscnvt/bin/pdstotxt.out  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/main000.o /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdsin.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdsnm.o   /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdsrd.o   /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdssr.o /home/lab/SRAC/util/pdscnvt/src/pdstotxt/pdswt.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/numchk.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setli1.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setli2.o /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setli3.o /home/lab/SRAC/util/pdscnvt/src/pdstotxt/setlin.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/memlst.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/txtlin.o /home/lab/SRAC/util/pdscnvt/src/pdstotxt/uioset.o /home/lab/SRAC/util/pdscnvt/src/pdstotxt/uioint.o  /home/lab/SRAC/util/pdscnvt/src/pdstotxt/ugtenv.o
+ XXX Utilitie (TXTtoPDS and PDStoTXT) were installed.
+ XXX Installation of Bickley function table generator started.
+g77 -c  kintab.f
+g77 -c  /home/lab/SRAC/src/extnl/uioset.f
+g77 -c  /home/lab/SRAC/src/extnl/uioint.f
+g77 -c  /home/lab/SRAC/src/extnl/ugtenv.f
+g77 -o kintab.out  kintab.o uioset.o uioint.o ugtenv.o
+ XXX Installation of Bickley function table generator completed.
+ XXX Installation of PDS utility programs (PDSMDL) started.
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/main/BnupEdit/BnupEdit.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/engedt.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/bnpedt.f
+/home/lab/SRAC/util/pdsmdl/modl/bnpedt.f: In subroutine `bnpedt':
+/home/lab/SRAC/util/pdsmdl/modl/bnpedt.f:147: warning:
+         NTNUC  = IWORK(2)
+                        ^
+Array element value at (^) out of defined range
+/home/lab/SRAC/util/pdsmdl/modl/bnpedt.f:148: warning:
+         NZON   = IWORK(3)
+                        ^
+Array element value at (^) out of defined range
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/dntedt.f
+/home/lab/SRAC/util/pdsmdl/modl/dntedt.f: In subroutine `dntedt':
+/home/lab/SRAC/util/pdsmdl/modl/dntedt.f:99: warning:
+         NTNUC  = IWORK(2)
+                        ^
+Array element value at (^) out of defined range
+/home/lab/SRAC/util/pdsmdl/modl/dntedt.f:100: warning:
+         NGC    = IWORK(3)
+                        ^
+Array element value at (^) out of defined range
+/home/lab/SRAC/util/pdsmdl/modl/dntedt.f:101: warning:
+         NGT    = IWORK(4)
+                        ^
+Array element value at (^) out of defined range
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/pdsin.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/pdsnm.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/pdsrd.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/pdssr.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/pdswt.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/src/extnl/uioset.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/src/extnl/uioint.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/src/extnl/ugtenv.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -o /home/lab/SRAC/util/pdsmdl/bin/BnupEdit.out  /home/lab/SRAC/util/pdsmdl/obj/BnupEdit.o /home/lab/SRAC/util/pdsmdl/obj/engedt.o  /home/lab/SRAC/util/pdsmdl/obj/bnpedt.o  /home/lab/SRAC/util/pdsmdl/obj/dntedt.o /home/lab/SRAC/util/pdsmdl/obj/pdsin.o  /home/lab/SRAC/util/pdsmdl/obj/pdsnm.o  /home/lab/SRAC/util/pdsmdl/obj/pdsrd.o  /home/lab/SRAC/util/pdsmdl/obj/pdssr.o /home/lab/SRAC/util/pdsmdl/obj/pdswt.o  /home/lab/SRAC/util/pdsmdl/obj/uioset.o /home/lab/SRAC/util/pdsmdl/obj/uioint.o /home/lab/SRAC/util/pdsmdl/obj/ugtenv.o
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/main/FluxEdit/FluxEdit.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/flxedt.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -o /home/lab/SRAC/util/pdsmdl/bin/FluxEdit.out  /home/lab/SRAC/util/pdsmdl/obj/FluxEdit.o /home/lab/SRAC/util/pdsmdl/obj/engedt.o  /home/lab/SRAC/util/pdsmdl/obj/flxedt.o /home/lab/SRAC/util/pdsmdl/obj/pdsin.o  /home/lab/SRAC/util/pdsmdl/obj/pdsnm.o  /home/lab/SRAC/util/pdsmdl/obj/pdsrd.o  /home/lab/SRAC/util/pdsmdl/obj/pdssr.o /home/lab/SRAC/util/pdsmdl/obj/pdswt.o  /home/lab/SRAC/util/pdsmdl/obj/uioset.o  /home/lab/SRAC/util/pdsmdl/obj/uioint.o  /home/lab/SRAC/util/pdsmdl/obj/ugtenv.o
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/main/FluxPlot/FluxPlot.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -o /home/lab/SRAC/util/pdsmdl/bin/FluxPlot.out  /home/lab/SRAC/util/pdsmdl/obj/FluxPlot.o /home/lab/SRAC/util/pdsmdl/obj/engedt.o  /home/lab/SRAC/util/pdsmdl/obj/flxedt.o /home/lab/SRAC/util/pdsmdl/obj/pdsin.o  /home/lab/SRAC/util/pdsmdl/obj/pdsnm.o  /home/lab/SRAC/util/pdsmdl/obj/pdsrd.o  /home/lab/SRAC/util/pdsmdl/obj/pdssr.o /home/lab/SRAC/util/pdsmdl/obj/pdswt.o  /home/lab/SRAC/util/pdsmdl/obj/uioset.o  /home/lab/SRAC/util/pdsmdl/obj/uioint.o /home/lab/SRAC/util/pdsmdl/obj/ugtenv.o
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/main/MacroEdit/MacroEdit.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/macedt.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -o /home/lab/SRAC/util/pdsmdl/bin/MacroEdit.out  /home/lab/SRAC/util/pdsmdl/obj/MacroEdit.o /home/lab/SRAC/util/pdsmdl/obj/engedt.o  /home/lab/SRAC/util/pdsmdl/obj/macedt.o /home/lab/SRAC/util/pdsmdl/obj/pdsin.o  /home/lab/SRAC/util/pdsmdl/obj/pdsnm.o  /home/lab/SRAC/util/pdsmdl/obj/pdsrd.o  /home/lab/SRAC/util/pdsmdl/obj/pdssr.o /home/lab/SRAC/util/pdsmdl/obj/pdswt.o  /home/lab/SRAC/util/pdsmdl/obj/uioset.o  /home/lab/SRAC/util/pdsmdl/obj/uioint.o  /home/lab/SRAC/util/pdsmdl/obj/ugtenv.o
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/main/MicroEdit/MicroEdit.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/modl/micedt.f
+/home/lab/SRAC/util/pdsmdl/modl/micedt.f: In subroutine `micedt':
+/home/lab/SRAC/util/pdsmdl/modl/micedt.f:127: warning:
+         IFIS = IWORK(2)
+                      ^
+Array element value at (^) out of defined range
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -o /home/lab/SRAC/util/pdsmdl/bin/MicroEdit.out  /home/lab/SRAC/util/pdsmdl/obj/MicroEdit.o /home/lab/SRAC/util/pdsmdl/obj/micedt.o /home/lab/SRAC/util/pdsmdl/obj/pdsin.o  /home/lab/SRAC/util/pdsmdl/obj/pdsnm.o  /home/lab/SRAC/util/pdsmdl/obj/pdsrd.o  /home/lab/SRAC/util/pdsmdl/obj/pdssr.o /home/lab/SRAC/util/pdsmdl/obj/pdswt.o  /home/lab/SRAC/util/pdsmdl/obj/uioset.o  /home/lab/SRAC/util/pdsmdl/obj/uioint.o  /home/lab/SRAC/util/pdsmdl/obj/ugtenv.o
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -c  /home/lab/SRAC/util/pdsmdl/main/AnisnXS/AnisnXS.f
+cd /home/lab/SRAC/util/pdsmdl/obj; g77 -o /home/lab/SRAC/util/pdsmdl/bin/AnisnXS.out  /home/lab/SRAC/util/pdsmdl/obj/AnisnXS.o /home/lab/SRAC/util/pdsmdl/obj/engedt.o  /home/lab/SRAC/util/pdsmdl/obj/macedt.o /home/lab/SRAC/util/pdsmdl/obj/pdsin.o  /home/lab/SRAC/util/pdsmdl/obj/pdsnm.o  /home/lab/SRAC/util/pdsmdl/obj/pdsrd.o  /home/lab/SRAC/util/pdsmdl/obj/pdssr.o /home/lab/SRAC/util/pdsmdl/obj/pdswt.o  /home/lab/SRAC/util/pdsmdl/obj/uioset.o  /home/lab/SRAC/util/pdsmdl/obj/uioint.o  /home/lab/SRAC/util/pdsmdl/obj/ugtenv.o
+ XXX Installation of PDS utility programs (PDSMDL) completed.
+ XXX All processes completed.

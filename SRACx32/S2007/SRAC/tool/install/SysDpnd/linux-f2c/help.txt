@@ -1,0 +1,51 @@
+START HELP====================================================================
+
+<<< about the fort77 script >>>
+
+    In the Linux or FreeBSD, the fort77 or f77 script (written by perl) is
+  equipped. The script invokes the f2c (free Fortran-to-C translator in GNU) 
+  and gcc (free C compiler in GNU) successively. Therefore, it can be used 
+  as real Fortran compiler (e.g. fort77 -o sample.out *.f).
+    This installer will work assuming you have the Fortran compiler whose
+  driver is "fort77".
+
+    For the persons who don't have the fort77 script now, I prepared the 
+  alternative fort77 script written by c-shell. This may not be so excelent
+  as compared with real FORTRAN comppilers, however, it will work successfully
+  at least for the installation of this code (I hope).
+    You can use my hand-made fort77 script (ksk77) freely at your own risk.
+  If you want to see the contents of my hand-made one, type the file :
+  SRAC/cmnd/ksk77.
+
+
+<<< about the menu : What shall we do ? >>>
+
+    This menu will appear only when the fort77 compiler was not available.
+
+(1) about menu #1 (Help)
+    Show this help information
+
+(2) about menu #2 (install my hand-made fort77)
+    As mentioned first, my hand-made fort77 script is equipped in this system.
+  You can install the SRAC with it. The original file is 
+  SRAC/cmnd/ksk77. (My first name is KeiSuKe)
+  If you select #2, the ksk77 command will be copyed in the directry you hope
+  as the file "fort77". 
+    The installer will ask you the directory where the fort77 command will be
+  made. Then, You should enter the directory name (by full path name)
+  in which your other private commands are stored. (e.g. $HOME/bin).
+    After that, you must quit @PunchMe to reset command-search-path so that
+  the fort77 can be executed in any directory. And execute @PunchMe and 
+  pre-processor again. Then, the pre-processor will be successfully executed 
+  instead of this menu.
+                     ************************************************
+                       Try anyway !  This installer will guide you.
+                     ************************************************
+
+(3) about menu #q (bye-bye)
+    Functions of my hand-made fort77 script are ristricted. If you don't 
+  like my fort77 script, you should get the original one by yourself.
+  If you select #q, you will return to the previous main menu. Then, quit
+  @PunchMe and come again after you get a better fort77.
+
+======================================================================END HELP

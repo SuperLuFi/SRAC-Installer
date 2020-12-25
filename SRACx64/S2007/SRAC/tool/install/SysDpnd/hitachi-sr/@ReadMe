@@ -1,0 +1,41 @@
+###################### About options for Makefile #################
+#
+#   F77    = xf90              ! cross compiler
+#   FFLAGS = -Oss -pvfunc=2 -noparallel
+#   LIB    =
+#
+# Other alternatives
+#
+#   F77    = f90               ! own compiler
+#   FFLAGS = -O                ! Optimization level-2
+#   FFLAGS = +O2               ! level-2
+#   FFLAGS = +O3               ! level-3
+#   FFLAGS = +O4               ! level-4
+#
+#-- Sample for SR-2201 -------------------------------------------
+#
+#  FFLAGS = -W0,'OPT(O(SS)),PVEC(DIAG(1),LOOP(100000))'
+#  FFLAGS = -W0,'PVEC(DIAG(1),LOOP(100000))'
+#  FFLAGS = -W0,'PVEC(LOOP(100000))'
+#
+#  OPT(O(?)) : Optimization level (?: 0/3/4/S/SS)
+#  DIAG(0/1) : 0:No message(default), 1:Print information on vectorization
+#  LOOP(N) N : upper limit of DO repeatation (DO 100 I=1,n), default=?
+#  N is depending on problem, change it if necessary.
+#
+#  S-3000 series are vector machines.
+#  SR-2201/SR-8000 is scalar machine but pseudo vectorization is abailable.
+#
+#  If you want scalar compilation, set as followings.
+#  FFLAGS =
+#  or
+#  FFLAGS = -W0,'NOPVEC'
+#
+#-- Sample for SR-8000 (in JAERI) --------------------------------
+#
+#  F77    = xf77   (cross-compiler)
+#  F77    = xf90   (cross-compiler)
+#  FFLAGS = -Oss -pvfunc=2 -noparallel
+#  FFLAGS = -Oss -pvfunc=2 -procnum=8 (use 8 shared PE)
+#
+###################################################################

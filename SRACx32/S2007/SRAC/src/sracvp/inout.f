@@ -1,0 +1,36 @@
+      SUBROUTINE  INOUT(KK,KM,XL,II,MX)
+C
+C****     APU013    **   INITIAL VALUES SETTING INTEAD OF DO-VARIABLES
+C
+      COMMON /TW1C/ DD(1),LIM1,IA(210)
+      EQUIVALENCE  (IA(64),IT),(IA(77),ITP),(IA( 81),NN)
+      DIMENSION     KK(MX),KM(MX),XL(MX),II(IT)
+C
+C
+C
+      M=1
+      DO 15 K=1,NN
+      DO 10 L=1,K
+      KK(M)=K
+      KM(M)=K*(K+1)/2+1-L
+      XL(M)=1.0
+      IF(L.EQ.1)XL(M)=0.0
+      M=M+1
+   10 CONTINUE
+   15 CONTINUE
+      DO 20 I=1,IT
+   20 II(I)=ITP-I
+CM
+C     WRITE(6,1)
+C   1 FORMAT(//'   $$$ DATA CHECK IN INOUT $$$',//)
+C     DO 30 M=1,MX
+C  30 WRITE(6,2) M,KK(M),KM(M),XL(M)
+C   2 FORMAT(3I10,F10.1)
+CM
+      DO 40 I=1,IT
+   40 WRITE(6,3) I,II(I)
+C
+    3 FORMAT(2I10)
+C
+      RETURN
+      END

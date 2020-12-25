@@ -1,0 +1,106 @@
+========= CONTENTS OF SRAC2003 INCLUDE =================================
+ INFORMATION OF <<MAINSINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR SRAC MAIN ROUTINE
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXSIZE    MAXIMUM SIZE OF VARIABLE DIMENSION         120 0000
+C     MXTW1C    PARAMETER FOR LENGTH-2 OF COMMON /TW1C/        9998
+C     MXSN1C    PARAMETER FOR LENGTH-2 OF COMMON /SN1C/        4998
+C     MXCITC    PARAMETER FOR LENGTH-19 OF COMMON /CIT1C/      9981
+C 
+ INFORMATION OF <<BMICRINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR SRAC FINE-GROUP EFFECITIV MICRO X-SECTION
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXNISO    MAXIMUM NUCLIDE IN MATERIAL                 150
+C     MAXNG     MAXIMUM ENERGY GROUPS                       107
+C     MAXMT3    MAXIMUM REACTIONS OF WHICH CROSS SECTION      6
+C               ARE STORE IN COMMOM /BY INPUT DATA
+========================================================================
+ INFORMATION OF <<BURNDINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR SRAC BURNUP ROUTINE
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXDIR     MAXIMUM NO OF DATA WHICH IS STORED            30
+C               IN LOCAL 1-D STORE ARRAY AT SUB(BURNRW)
+C     MAXDIM    LENGHT OF 1-D ARRAY ==> STORE(MAXDIM)    30 0000
+C     ------------------------------------------------------------------
+========================================================================
+ INFORMATION OF <<BUNRPINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR SRAC BURNUP ROUTINE
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXSTEP    MAXIMUM BURNUP STEP (<=61)                   61
+C     MXNUC     MAXIMUM NUCLIDE IN CHAIN                    150
+C     MXZONE    MAXIMUM MATERIALS IN PRESENT GROMETRY        20
+C     MXFISS    MAXIMUM FISSIONABLE NUCLIDE                  35
+C     MXDEPL    MAXIMUM DEPLETING ZONES IN BURNUP CAL.       15
+C     NGMAX     MAXIMUM ENERGY GROUPS                       107
+C     MXREPL    MAXIMUM DEPLETING ZONES OF WHICH NUMBER      10
+C               DENSITY ARE REPLACED BY INPUT DATA
+C     ------------------------------------------------------------------
+========================================================================
+ INFORMATION OF <<CITPMINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR SRAC CITATION ROUTINE
+C     ------------------------------------------------------------------
+C   PARAMETER FOR SRAC-CITATION, < >:ORIGINAL VALUE
+C   RGX  : MAX OF REGIONS IN ANY DIRECTION <100>
+C   MSX  : MAX OF MESH BOUNDARIES IN ANY DIRECTION <211>
+C   ZDX  : MAX OF ZONES <200>
+C   ZNEX : MAX OF EXPANDED-ZONE AREA <1000> : USUALLY ENOUGH
+C   WZX  : MAX OF ZONE WORKING AREA <100> : SET OVER RGX
+C     ------------------------------------------------------------------
+      INTEGER RGX , MSX , ZNEX , ZDX , WZX
+========================================================================
+ INFORMATION OF <<PIJPMINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR PIJ ROUTINE
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MEMPIJ    MAXIMUM MEMORY OF AA ARRAY IN /PIJ2C/        10000
+C     MXMESH    MAXIMUM T-REGIONS                              100
+C     MXNTAB    MAXIMUM LENGTH OF PATH TABEL FOR A UNIT CELL  2000
+C     ------------------------------------------------------------------
+========================================================================
+ INFORMATION OF <<READPINC>
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR SRAC PDS I/O ROUTINE FOR 50M
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MAXMEM    MAXIMUM NUMBER OF MEMBERS IN IN-CORE          3 0000
+C     MXWORK    MAXIMUM MEMORY FOR PDS DATA STORAGE         700 0000 
+C     LENWRK    MAXIMUM LENGTH FOR ONE MEMBER DATA           16 0000
+C     ------------------------------------------------------------------
+========================================================================
+ INFORMATION OF <<DBHETINC>                                             
+C     ------------------------------------------------------------------
+C     PARAMETER DEFINISION FOR DOUBLE HETEROGENEOUS CALCULATION BY PIJ  
+C     THIS DEFINISION FILE NAME IS <<DBHETINC>>                         
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED    
+C     NAME      MEANING                                  DEFAULT VALUE  
+C     ------------------------------------------------------------------
+C     MXDBHT    MAXIMUM LENGTH OF WORK AREA IN /DOUBLE/        450      
+C               FOR DOUBLE HETEROGENEOUS CELL CALCULATION               
+C               DEPENDING ON NUMBERS OF T-REGION, R-REGION,..           
+C               NOTE: SET VALUE LARGER THAN MXMESH(MAXIMUM T-REGIONS)
+C               IN INCLUDE PIJPMINC
+C     ------------------------------------------------------------------
+========================================================================

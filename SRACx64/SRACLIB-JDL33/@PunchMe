@@ -1,0 +1,86 @@
+#!/bin/csh
+#
+##################################################################
+#
+#  I am SRAC-Library Installation Conductor. (by K.OKUMURA)
+#
+   setenv SRAC_LIB_JDL33 `pwd`
+#
+##################################################################
+#
+alias echo echo
+alias cp   cp
+alias cd   cd
+set LIB_DIR = $SRAC_LIB_JDL33
+#
+echo " "
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "Welcome to SRAC-Library (JENDL-3.3) installation conductor."
+set menu = " "
+while ($menu != "q")
+  echo " "
+  echo "++++++++++++++++++< Main Menu (JENDL-3.3)>++++++++++++++++++++++"
+  echo "+                                                              +"
+  echo "+  1 : Help                                                    +"
+  echo "+  2 : Menu for SRAC-Library Installation                      +"
+  echo "+  3 : Menu for SRAC-Libarary un-installation                  +"
+  echo "+  4 : Menu to change SRAC-Library access mode to other users  +"
+  echo "+  q : bye-bye                                                 +"
+  echo "+                                                              +"
+  echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+  echo -n "Set number ==> "
+  set number = $<
+  switch ($number)
+    case 1: 
+          $LIB_DIR/tool/Help.sh
+          breaksw
+    case 2:
+#---------- Set path of the SRAC code
+      $LIB_DIR/tool/SracDir.sh
+      if ( ! -e $LIB_DIR/tool/sracdir.txt) then
+      echo " "
+      echo "** Terminated before setting path of the SRAC code. Try again. **" 
+      echo " "
+      else
+      echo " "
+#--------------------------------------------
+          echo -n "Do you want to install library at once by background job (y/n)? ==> "
+          set conf = $<
+          if ($conf == "y") then
+            echo -n "Library instalation will start. Ready (y/n)? ==> "
+            set conf2 = $<
+            if ($conf2 == "y") then
+              set OUTP = $LIB_DIR/tmp/LibInst.outlist
+              $LIB_DIR/tool/LibInst.sh >& $OUTP &
+              echo " "
+              echo "Wait until the background job will finish."
+              echo "Results will be written in $OUTP"
+              echo " "
+            else
+              echo " "
+            endif
+          else if ($conf == "n") then
+            echo " "
+            echo "If you want to execute the installer as a remote batch job or "
+            echo "If you want to customize the installer, copy and change the "
+            echo "shell-script:$LIB_DIR/tool/LibInst.sh"
+            echo "and execute the customized installer."
+            echo " "
+          else
+            echo " "
+          endif
+      endif
+          breaksw
+    case 3:
+          $LIB_DIR/tool/LibRset.sh
+          breaksw 
+    case 4:
+          $LIB_DIR/tool/Permit.sh
+          breaksw
+    case q:
+          set menu = "q"
+          breaksw
+    default:
+          echo "$number is invalid number."
+  endsw
+end

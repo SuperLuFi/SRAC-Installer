@@ -1,0 +1,17 @@
+#!/bin/csh
+#::::::::::::::
+#incconv include statment conversion 96/01/05
+# Usage :
+# 1) UNIX ==> MSP
+#         include 'filename'==> *INCLUDE filename
+#   incconv -sv file > ofile
+# 2) MSP  ==> UNIX
+#    *INCLUDE filename      ==>      include 'filename'
+#   incconv -vs file > ofile
+#
+#::::::::::::::
+if ( $1 == '-sv' )then
+   awk -f incsv.awk $2
+else if ( $1 == '-vs' ) then
+   awk -f incvs.awk $2
+endif

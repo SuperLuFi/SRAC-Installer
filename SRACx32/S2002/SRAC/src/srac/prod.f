@@ -1,0 +1,60 @@
+C             PROD                LEVEL=2        DATE=82.03.12
+      SUBROUTINE PROD (NRMAX , NNMAX , NNMAX1 , NNMAXR, NK , RN , TAU ,
+     & RRN, PHI , EX , D , SIGR , ALP , BET , GAM , DEL , GAML , OMEG )
+C * *  DIFFERENCE EQUATION
+      DIMENSION NK(9) , RN(9) , TAU(NNMAX1,8) , RRN(9) , PHI(9) , D(9),
+     & SIGR(9)
+      DIMENSION ALP(9),BET(9),GAM(9),DEL(9),GAML(9),OMEG(9)
+C
+C     WRITE(6,6000) (RN(I),I=1,NNMAX1)
+C     WRITE(6,6010) (TAU(NN1,I),I=1,9)
+ 6000 FORMAT(10X,'RN(I)=',(9E12.5))
+ 6010 FORMAT(10X,'TAU(NN1,I)=',(9E12.5))
+      NN1=1
+      NNR=0
+      DO 100 K=1,NRMAX
+      K1=K
+      NNR=NNR+1
+      NC=NK(K)
+      DO 100 NN=1,NC
+      NN1=NN1+1
+      NNR=NNR+1
+      NNK=NNR
+      IF(NN.EQ.NC)NNK=NNK+1
+      IF(NN.EQ.NC) K1=K+1
+C     WRITE(6,6030) K,K1,D(K),D(K1),SIGR(K),SIGR(K1)
+ 6030 FORMAT(10X,'K=',I5,' K1=',I5,' D(K)=',E12.5,' D(K1)=',E12.5
+     &       ,' SIGR(K)=',E12.5,' SIGR(K1)=',E12.5)
+C     WRITE(6,6040) NN1,TAU(NN1,1),TAU(NN1,2),TAU(NN1,5),TAU(NN1,6)
+C    1             ,TAU(NN1,7),TAU(NN1,8)
+ 6040 FORMAT(10X,'NN1=',I5,' TAU1=',E12.5,' TAU2=',E12.5,' TAU5=',
+     &      E12.5,' TAU6=',E12.5,' TAU7=',E12.5,' TAU8=',E12.5)
+      ALP(NN1)=D(K1)*TAU(NN1,2)
+      GAM(NN1)=D(K) *TAU(NN1,1)
+      BET(NN1)=ALP(NN1)*TAU(NN1,8) + GAM(NN1)*TAU(NN1,7)
+     &        +SIGR(K1)*TAU(NN1,6) + SIGR(K) *TAU(NN1,5)
+      DEL(NN1)=RRN(NNK)*TAU(NN1,6) + RRN(NNR)*TAU(NN1,5)
+  100 CONTINUE
+C
+      ALP(1)= TAU(1,2)* D(1)
+      BET(1)= ALP(1) + TAU(1,6)*SIGR(1)
+      DEL(1)= TAU(1,6)*RRN(1)
+      ALP(NNMAX1)=0.
+      DEL(NNMAX1)=0.
+      BET(NNMAX1) = D(NRMAX)/(RN(NNMAX1)-RN(NNMAX1-1)) + EX
+C
+      GAML(1)=BET(1)
+      OMEG(1)=DEL(1)/GAML(1)
+      DO 200 NN=2,NNMAX1
+C     WRITE(6,6020) NN,BET(NN),GAM(NN),ALP(NN-1),GAML(NN-1)
+ 6020 FORMAT(10X,'NN=',I5,' BET=',E12.5,' GAM=',E12.5,' ALP=',
+     &       E12.5,' GAML=',E12.5)
+      GAML(NN)=BET(NN)-GAM(NN)*ALP(NN-1)/GAML(NN-1)
+  200 OMEG(NN)=(DEL(NN)+GAM(NN)*OMEG(NN-1))/GAML(NN)
+      PHI(NNMAX1)=OMEG(NNMAX1)
+      IF(EX.LT.0.)   PHI(NNMAX1)=0.
+      DO 300 NN=2,NNMAX1
+      NC=NNMAX1-NN+1
+  300 PHI(NC)=OMEG(NC)+ALP(NC)*PHI(NC+1)/GAML(NC)
+      RETURN
+      END

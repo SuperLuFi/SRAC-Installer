@@ -1,0 +1,111 @@
+C=======================================================================
+      SUBROUTINE PONCLA( SUBNAM, IPRN, IOUT )
+C=======================================================================
+C  CLEAR ALL VPDS :
+C  OVER-WRITE ALL MEMBERS IN ALL VPDS, AND CLEAR ALL INFORMATION
+C  OF THE MEMBERS FROM MEMORY
+C  IF THERE ARE VPDS WITH MOSTY(J)='STAY', DUMPING MEMBERS IN THE J-TH 
+C  VPDS WILL BE SKIPPED. IN THIS CASE, DUMP(EXCEPT J-TH VPDS) AND 
+C  COMPRESS WILL BE DONE.
+C  
+C                                      BY K.OKUMURA(JAERI),OCT/1999
+C
+C  I   SUBNAM : NAME OF SUBROUTINE WHICH CALLS THIS SYSTEM
+C  I   IPRN   : PRINT CONTROL FOR MEMBER ACCESS INFORMATION
+C  I   IOUT   : OUTPUT DEVICE NUMBER FOR ERROR OR CAUTION MESSAGES
+C 
+C--------1---------2---------3---------4---------5---------6---------7--
+C
+      INCLUDE 'INCPDS'
+      COMMON  /USPDSC/ PDSDIR(MXPDS), MOACS(MXPDS), MOSTY(MXPDS)
+      COMMON  /VPDSI1/ LMEMBR, NMEMBR, LASTAD, LOCUPY, ISTATS, NFAIL
+      COMMON  /VPDSI2/ MLENG(MXMBR), MATTR(MXMBR), MADRS(MXMBR)
+      COMMON  /VPDSC1/ MNAME(MXMBR), MDACS(MXPDS)
+      COMMON  /VPDSR1/ VRF(MXVRF)
+C
+      CHARACTER*4    MOACS, MOSTY, MDACS
+      CHARACTER*8    SUBNAM
+      CHARACTER*8    MEMBER, MNAME
+      CHARACTER*120  PDSDIR, DIRNAM
+C
+C=======================================================================
+C
+      IF ( LMEMBR.LE.0) GOTO 1000
+      IF ( IPRN.GE.3 ) THEN
+        IPR = 1
+      ELSE
+        IPR = 0
+      ENDIF
+C
+C---- CHECK THERE ARE VPDS WITH MOSTY='STAY' OR NOT
+C
+      NSTAY = 0
+      DO 100 I=1, MXPDS
+        IF(MOSTY(I).EQ.'STAY') NSTAY=NSTAY+1
+  100 CONTINUE
+      IF (NSTAY.GT.0) GOTO 2000
+C
+C---- DUMP(OVER-WRITE) ALL MEMBERS IN CORE TO PDS
+C
+      DO 200 I = 1,LMEMBR
+        IF ( MNAME(I).NE.'        ' ) THEN
+          DIRNAM = PDSDIR(MATTR(I))
+          MEMBER = MNAME(I)
+          LENG   = MLENG(I)
+          IMD    = 1
+          CALL PDSOT(DIRNAM,MEMBER,VRF(MADRS(I)),LENG,IMD,IOUT,IPR,IRC)
+          CALL PDSER(SUBNAM,DIRNAM,MEMBER,IRC,IOUT)
+          MNAME(I) = '        '
+        ENDIF
+  200 CONTINUE
+C
+      IF ( IPRN.GT.0 ) THEN
+        WRITE(IOUT,6000)
+      ENDIF
+C
+C---- INITIALIZATION OF VPDS
+ 1000 DO 300 I = 1,MXMBR
+        MLENG(I) = 0
+        MATTR(I) = 0
+        MADRS(I) = 0
+  300 CONTINUE
+C
+      LMEMBR = 0
+      NMEMBR = 0
+      LASTAD = 0
+      LOCUPY = 0
+      NFAIL  = 0
+      ISTATS = 1
+C
+C     SET ORIGINAL ACCESS MODE
+      DO 400 I=1,MXPDS
+        MDACS(I) = MOACS(I)
+  400 CONTINUE
+      GOTO 9999
+C
+C---- DUMP & COMP (THERE ARE VPDS WITH MOSTY='STAY')
+C
+ 2000 CONTINUE
+      DO 500 IPDS = 1,MXPDS
+        IF(MOACS(IPDS).EQ.'CORE') THEN
+          CALL PONDMP( SUBNAM, IPDS, IPRN, IOUT )
+        ENDIF
+  500 CONTINUE
+      CALL PONCMP( SUBNAM, IPRN, IOUT )
+C
+C     SET ORIGINAL ACCESS MODE
+      NFAIL  = 0
+      ISTATS = 1
+      DO 600 I=1,MXPDS
+        MDACS(I) = MOACS(I)
+  600 CONTINUE
+C
+      IF(IPRN.GT.0) THEN
+        WRITE(IOUT,6000)
+      ENDIF
+C
+C--------1---------2---------3---------4---------5---------6---------7--
+ 6000 FORMAT(5X,'MEMBERS SUCCESSFULLY DUMPED TO EACH PDS FILE ',
+     &       'USING CORE')
+ 9999 RETURN
+      END

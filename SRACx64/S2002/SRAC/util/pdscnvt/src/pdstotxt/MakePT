@@ -1,0 +1,80 @@
+#
+#  Makefile to produce load module for pdstotxt(pds convert program)
+#
+SRAC_DIR = $(SRAC_CODE)
+#
+#  Note : If this is not executed by @PunchMe, set the full path name         
+#         of the SRAC code file in the following statement, and use it instead
+#         of the above statement.                                             
+#
+#SRAC_DIR = $(HOME)/SRAC
+#------------------------------------------------------------------------------
+F77   = g77
+OPT   = -lm
+DIR   = $(SRAC_DIR)/util/pdscnvt
+SRC   = $(DIR)/src/pdstotxt
+LMD   = $(DIR)/bin
+
+EXT   = $(SRAC_DIR)/src/extnl
+
+#------------------------------------------------------------------------------
+ 
+LM    = $(LMD)/pdstotxt.out
+OBJ   = $(SRC)/main000.o  \
+$(SRC)/pdsin.o  $(SRC)/pdsnm.o   $(SRC)/pdsrd.o   $(SRC)/pdssr.o     \
+$(SRC)/pdswt.o  $(SRC)/numchk.o  $(SRC)/setli1.o  $(SRC)/setli2.o    \
+$(SRC)/setli3.o $(SRC)/setlin.o  $(SRC)/memlst.o  $(SRC)/txtlin.o    \
+$(SRC)/uioset.o $(SRC)/uioint.o  $(SRC)/ugtenv.o
+
+$(LM):			$(OBJ)
+			$(F77) -o $(LM) $(OPT) $(OBJ)
+
+#---------------------- source ------------------------------------------------
+
+$(SRC)/main000.o:	$(SRC)/main000.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/main000.f
+
+$(SRC)/numchk.o:	$(SRC)/numchk.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/numchk.f
+
+$(SRC)/setli1.o:	$(SRC)/setli1.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setli1.f
+
+$(SRC)/setli2.o:	$(SRC)/setli2.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setli2.f
+
+$(SRC)/setli3.o:	$(SRC)/setli3.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setli3.f
+
+$(SRC)/setlin.o:	$(SRC)/setlin.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setlin.f
+
+$(SRC)/memlst.o:	$(SRC)/memlst.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/memlst.f
+
+$(SRC)/txtlin.o:	$(SRC)/txtlin.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/txtlin.f
+
+$(SRC)/pdsin.o:		$(SRC)/pdsin.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdsin.f
+
+$(SRC)/pdsnm.o:		$(SRC)/pdsnm.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdsnm.f
+
+$(SRC)/pdsrd.o:		$(SRC)/pdsrd.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdsrd.f
+
+$(SRC)/pdssr.o:		$(SRC)/pdssr.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdssr.f
+
+$(SRC)/pdswt.o:		$(SRC)/pdswt.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdswt.f
+
+$(SRC)/uioset.o:	$(EXT)/uioset.f
+			cd $(SRC); $(F77) -c $(OPT) $(EXT)/uioset.f
+
+$(SRC)/uioint.o:	$(EXT)/uioint.f
+			cd $(SRC); $(F77) -c $(OPT) $(EXT)/uioint.f
+
+$(SRC)/ugtenv.o:	$(EXT)/ugtenv.f
+			cd $(SRC); $(F77) -c $(OPT) $(EXT)/ugtenv.f

@@ -1,0 +1,7 @@
+      FUNCTION ATANH(X)
+      IF(X.LT.0 .OR. X .GT.1.) GO TO 100
+      ATANH=0.5*ALOG((1.+X)/(1.-X))
+      RETURN
+  100 WRITE(6,*) ' *** VARIABLE RANGE OVERFLOW FOR ATANH X=',X
+      STOP
+      END

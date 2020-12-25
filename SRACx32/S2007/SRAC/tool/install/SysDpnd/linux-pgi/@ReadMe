@@ -1,0 +1,16 @@
+###################### About options for Makefile #################
+#
+#   F77    = pgf77
+#   FFLAGS = -O2
+#   CC     = pgcc
+#   CFLAGS = -DPOSIX_C
+#   LDFLAGS  =
+#
+#  Other alternatives
+#
+#   F77 = pgf90  (FORTRAN 90)
+#
+# Machines structures on which operation check has been completed
+#  no machines (from users information)
+#
+###################################################################

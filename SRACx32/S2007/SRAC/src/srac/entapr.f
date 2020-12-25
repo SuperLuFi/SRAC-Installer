@@ -1,0 +1,32 @@
+      SUBROUTINE  ENTAPR (TITLE1,TITLE2,NG,ENERGY)
+C77   CHARACTER*8  TITLE1,TITLE2
+      DOUBLE PRECISION  TITLE1,TITLE2
+      DIMENSION ENERGY(108)
+C
+      I = 1
+      K = 60
+      EN1 = ENERGY(1)
+      AL1 = -ALOG(EN1/1.0E7)
+      VE1 = SQRT(1.913161E12 * EN1)
+      DO  10  J = 1,NG
+         EN2 = ENERGY(I+1)
+         AL2 = -ALOG(EN2/1.0E7)
+         VE2 = SQRT(1.91316E12 *  EN2)
+         IF ( K .LE. 54 )  GO TO 9
+            WRITE (99,6000)  TITLE1,TITLE2
+            WRITE (99,6100)
+            K = 1
+    9    CONTINUE
+         WRITE (99,6300)  I,EN1,EN2,VE1,VE2,AL1,AL2
+         EN1 = EN2
+         AL1 = AL2
+         VE1 = VE2
+         I = I+1
+   10    K = K+1
+      RETURN
+ 6000 FORMAT (1H0,16X,A6,1X,A7,' ENERGY GROUP STRUCTURE',
+     &  ' (M=1.67482E-24 GRAM,  EV=1.60210E-12 ERG)')
+ 6100 FORMAT (1H0,'   GROUP',8X,'  ENERGY RANGE (EV)',15X,'VELOCITY',
+     &             ' RANGE (CM/SEC)',11X,'LETHARGY RANGE')
+ 6300 FORMAT (1H ,I7,2(4X,2E15.5),4X,2(4X,F7.4))
+      END

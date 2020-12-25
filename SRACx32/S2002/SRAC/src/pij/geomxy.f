@@ -1,0 +1,159 @@
+      SUBROUTINE GEOMXY(RX,RPP,RDP,THETA,TY,IM,IP,D,DX,DY)
+C *IGT=13     X-Y TWO DIMENSIONAL LATTICE CELL *** PERIODIC BOUNDARY
+C *** PIN RODS ON GRID POINTS
+C *** CALLING ROUTINES  PATHXY PREXY MAKETX GEOMXY IGT=13 IDIVP=1
+C *** RELATED ROUTINES  PATHXY PREXR MAKETX GEOMXR IGT=16 IDIVP=1
+C *** RELATED ROUTINES  PATHXY PREXZ MAKETX GEOMXZ IGT=16 IDIVP=2
+C *** RELATED ROUTINES  PATHXY PREXZ MAKETX GEOMXQ IGT=13 IDIVP=2
+C *** RELATED ROUTINES  PATHHH PREHH MAKETX GEOMHH IGT=14
+      DIMENSION RX(1),TY(1),D(1),IM(1),IP(1),DX(1),DY(1)
+     *         ,RPP(NTPIN),THETA(NTPIN),RDP(NDPIN1,NTPIN)
+      COMMON /PIJ1C/ NX,NY,NTPIN,IDUM4(5),NDPIN,IDIVP,BETM,NX1,NY1
+     1             ,IDUM14( 3),IXP,IYP,IZP,NDPIN1,IDUM21(2),LL,IDUM24(6)
+     *             ,RO,ANG,IDUM32(2),SINB,COSB,IBASE
+      COMMON /PIJ2C/ IDUM1(10),NTTAB
+      EQUIVALENCE (IDUM1(9),IEDPIJ)
+      COMMON /MAINC/ DUMY1(63),NOUT1,NOUT2,DUMMY2(435)
+C     IBASE=NX*NY BUT IF(IDIVP.EQ.0 .AND. NTPIN.NE.0) IBASE=1
+      IDY=1
+      IF(SINB.LT.0.)IDY=-1
+      IDX=1
+      IF(COSB.LT.0.)IDX=-1
+C * * CROSS WITH X=RX(I)  NX+1 POINTS IN DESCENDING ORDER INTO DX ARRAY
+      DXZ=RO*SINB/COSB
+      DYZ=-RO*COSB/SINB
+      DO 10 I=1,NX1
+      I1=I
+      IF(IDX.EQ.-1) I1=NX1+1-I
+      DX(I)=DXZ-RX(I1)/COSB
+   10 CONTINUE
+C * * CROSS WITH Y=TY(I) NY1 POINTS  IN DESCENDING ORDER INTO DY ARRAY
+   11 DO 20 I=1,NY1
+      I1=I
+      IF(IDY.EQ.-1) I1=NY1+1-I
+      DY(I)=-TY(I1)/SINB + DYZ
+   20 CONTINUE
+C
+C * * ARRANGE DX DY IN DESCENDING ORDER INTO D ARRAY WITH S-REG NUMBER
+   21 IX=1
+      IY=1
+      L=1
+      IXB=0
+      IF(IDX.EQ.-1) IXB=NX1
+      IYB=0
+      IF(IDY.EQ.-1) IYB=NY1
+      IXC=IXB
+      IYC=IYB
+   35 IJK=1
+      IF(DX(IX).LT.DY(IY)) IJK=2
+      GO TO (40,50),IJK
+   40 D(L)=DX(IX)
+      IXB=IXB+IDX
+      IM(L)=(IYB-1)*NX+IXB
+      IP(L)=IM(L-1)
+      IX=IX+1
+      IF(IX.GT.NX1) GO TO 60
+      IF(IYB.EQ.IYC)GOTO 35
+      L=L+1
+      GO TO 35
+   50 D(L)=DY(IY)
+      IYB=IYB+IDY
+      IM(L)=(IYB-1)*NX+IXB
+      IP(L)=IM(L-1)
+      IY=IY+1
+      IF(IY.GT.NY1) GO TO 60
+      IF(IXB.EQ.IXC) GO TO 35
+      L=L+1
+      GO TO 35
+   60 LL=L
+      IF(NTPIN.EQ.0) GO TO 90
+      IF(L.EQ.1) GO TO 90
+      IF(IDIVP.NE.0) GO TO 80
+      D(2)=D(L)
+      IM(1)=1
+      IP(2)=1
+      LL=2
+C
+C   SCAN NTPIN RODS IF THE RAY TRACES
+   80 DO  86 NT=1,NTPIN
+      PA=RPP(NT)
+      PB=THETA(NT)
+      DAB=ABS(PB*COSB-PA*SINB+RO)
+CXZ
+         DXX=DXZ-PA/COSB
+         DYY=DYZ-PB/SINB
+      DMID=-PA*COSB-PB*SINB
+      NDP=NDPIN1
+   85 RR=RDP(NDP,NT)
+      IF(RR.LE.DAB) GO TO  86
+      DET=SQRT(RR**2-DAB**2)
+      DPA=DMID+DET
+      DPB=DMID-DET
+CXZ
+      IF(DXX.GT.DYY)         THEN
+        IF(DXX.GT.DPA)     THEN
+          IF(DPB.GT.DYY) THEN
+CXZ    PATTERN 2 TO 2
+                         ELSE
+CXZ    PATTERN 2 TO 4
+                         ENDIF
+                           ELSE
+          IF(DPB.GT.DYY) THEN
+CXZ    PATTERN 1 TO 2
+                         ELSE
+CXZ    PATTERN 1 TO 2 TO 4
+C           IZN=NDP-1+NSRPIN(LOCP)
+      IZN=IBASE+NDP-1+NDPIN*(NT-1)
+            CALL INSERT(DXX,IZN,IZN,DYY,D,IM,IP)
+                         ENDIF
+                           ENDIF
+                               ELSE
+        IF(DYY.GT.DPA)     THEN
+          IF(DPB.GT.DXX) THEN
+CXZ    PATTERN 3 TO 3
+                         ELSE
+CXZ    PATTERN 3 TO 4
+                     ENDIF
+                           ELSE
+          IF(DPB.GT.DXX) THEN
+CXZ    PATTERN 1 TO 3
+                         ELSE
+CXZ    PATTERN 1 TO 3 TO 4
+      IZN=IBASE+NDP-1+NDPIN*(NT-1)
+C           IZN=NDP-1+NSRPIN(LOCP)
+            CALL INSERT(DYY,IZN,IZN,DXX,D,IM,IP)
+                         ENDIF
+                           ENDIF
+                             ENDIF
+      IZN=IBASE+NDP-1+NDPIN*(NT-1)
+      CALL INSERT(DPA,IZN,IZN,DPB,D,IM,IP)
+      NDP=NDP-1
+      IF(NDP.GE.2) GO TO  85
+   86 CONTINUE
+   90 LL=LL-1
+      IF(LL.EQ.0) RETURN
+      DO 100 L=1,LL
+      D(L)=D(L)-D(L+1)
+  100 CONTINUE
+      IF(IEDPIJ.GE.3) THEN
+      WRITE(6,'(A,I2,A,10I12/(11X,10I12))')
+     & '   LL=',LL,'IM=',(IM(L),L=1,LL)
+      WRITE(6,'(A,I2,A,10I12/(11X,10I12))')
+     & '  IJK=',IJK,'IP=',(IP(L),L=2,LL+1)
+      WRITE(6,'(A,10F12.5/(11X,10F12.5))')
+     &'      D(L)=',(D(L),L=1,LL)
+                      ENDIF
+      IF(LL.GT.NTTAB) GO TO 300
+      GO TO (110,120),IJK
+  110 IXP=IXP+1
+      RO=RO-SIGN(2.*SINB,SINB*COSB)*RX(NX1)
+C     RO=RO-SIGN(   SINB,SINB*COSB)*RX(NX1)
+      RETURN
+  120 IYP=IYP+1
+      RO=RO+SIGN(2.*COSB,SINB*COSB)*TY(NY1)
+C     RO=RO+SIGN(   COSB,SINB*COSB)*TY(NY1)
+      RETURN
+  300 WRITE(NOUT1,301) LL,NTTAB
+      STOP
+  301 FORMAT(1H0,9X,15HTABLE OVERFLOW   ,2I10)
+      END

@@ -1,0 +1,12 @@
+      SUBROUTINE COMPAR(DP,DM,D1,D2,D,IM,IP)
+      DIMENSION D(1),IM(1),IP(1)
+      X=AMAX1(D1,D2)
+      Y=AMIN1(D1,D2)
+      IF(DP.EQ.0.) GO TO 2
+      IF ( Y.GE.DP .OR. DM.GE.X ) GO TO  2
+      IF ( X.GE.DP ) CALL DIVIDE(X,DP,1,D,IM,IP)
+      IF ( DM .GE.Y) CALL DIVIDE(DM,Y,1,D,IM,IP)
+      RETURN
+    2 CALL DIVIDE(X,Y,1,D,IM,IP)
+      RETURN
+      END

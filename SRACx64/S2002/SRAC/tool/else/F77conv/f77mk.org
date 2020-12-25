@@ -1,0 +1,7 @@
+#This is the template file of the command (sed) to change 
+#Fortran complie driver and its options. (By Keisuke OKUMURA)
+# for Makefile    
+ {
+  s/Fortran-Driver/tmp1/
+  s/Scalar_Option/tmp2/
+ }

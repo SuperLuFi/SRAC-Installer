@@ -1,0 +1,95 @@
+C=======================================================================
+      SUBROUTINE PONDMP( SUBNAM, IPDS, IPRN, IOUT )
+C=======================================================================
+C  DUMP MEMBERS IN IPDS-TH VPDS :
+C  OVER-WRITE ALL MEMBERS IN A SPECIFIED VPDS, AND CLEAR INFORMATION
+C  OF THE MEMBERS FROM MEMORY LIST (SET AS GHOST MEMBERS)
+C                                      BY K.OKUMURA(JAERI),OCT/1999
+C
+C  I   SUBNAM : NAME OF SUBROUTINE WHICH CALLS THIS SYSTEM
+C  I   IPDS   : DIRECTORY NUMBER
+C  I   IPRN   : PRINT CONTROL FOR MEMBER ACCESS INFORMATION
+C  I   IOUT   : OUTPUT DEVICE NUMBER FOR ERROR OR CAUTION MESSAGES
+C 
+C  NOTE : ATTRIBUTION(MATTR) OF A GHOST MEMBER IS ZERO(0), BUT
+C         THE GHOST MEMBER HAS NON-ZERO MLENG & MADRS
+C
+C--------1---------2---------3---------4---------5---------6---------7--
+C
+      INCLUDE 'INCPDS'
+      COMMON  /USPDSC/ PDSDIR(MXPDS), MOACS(MXPDS), MOSTY(MXPDS)
+      COMMON  /VPDSI1/ LMEMBR, NMEMBR, LASTAD, LOCUPY, ISTATS, NFAIL
+      COMMON  /VPDSI2/ MLENG(MXMBR), MATTR(MXMBR), MADRS(MXMBR)
+      COMMON  /VPDSC1/ MNAME(MXMBR), MDACS(MXPDS)
+      COMMON  /VPDSR1/ VRF(MXVRF)
+C
+      CHARACTER*4    MOACS, MOSTY, MDACS
+      CHARACTER*8    SUBNAM
+      CHARACTER*8    MEMBER, MNAME
+      CHARACTER*120  PDSDIR, DIRNAM
+C
+C=======================================================================
+C
+      IF ( LMEMBR.LE.0) GOTO 9999
+C
+      DIRNAM = PDSDIR(IPDS)
+      IF(DIRNAM.EQ.' ') GOTO 9999
+      IF ( MOSTY(IPDS).EQ.'STAY') THEN
+        IF ( IPRN.GT.0 ) THEN
+          WRITE(IOUT,7000) DIRNAM
+        ENDIF
+        GOTO 9999
+      ENDIF
+      IF ( IPRN.GE.3 ) THEN
+        IPR = 1
+      ELSE
+        IPR = 0
+      ENDIF
+      IF ( IPRN.GT.0 ) THEN
+        WRITE(IOUT,6000) '     MEMBERS IN CORE WILL BE DUMPED ',
+     &                   '(OVER-WRITTEN) TO ',
+     &                   DIRNAM
+      ENDIF
+C
+      DO 100 I = 1,LMEMBR
+        IF ( MATTR(I).EQ.IPDS ) THEN
+          MEMBER = MNAME(I)
+          LENG   = MLENG(I)
+          IMD    = 1
+          CALL PDSOT(DIRNAM,MEMBER,VRF(MADRS(I)),LENG,IMD,IOUT,IPR,IRC)
+          CALL PDSER(SUBNAM,DIRNAM,MEMBER,IRC,IOUT)
+C
+          MNAME(I) = '        '
+          MATTR(I) = 0
+          NMEMBR = NMEMBR - 1
+          LOCUPY = LOCUPY - MLENG(I)
+        ENDIF
+  100 CONTINUE
+      IF ( IPRN.GT.0 ) THEN
+        WRITE(IOUT,6100) '     MEMBERS SUCCESSFULLY DUMPED TO ',
+     &                   DIRNAM
+      ENDIF
+C
+C---- FREE LAST BLOCK OF GHOST MEMBERS
+C
+      IF( MNAME(LMEMBR).NE.'        ') GOTO 9999
+      IFIND = 0
+      DO 200 I = 1,LMEMBR
+        IF( MNAME(I).EQ.'        ') THEN
+          IF( IFIND .LE.0 ) IFIND = I
+        ELSE
+          IFIND = 0
+        ENDIF
+  200 CONTINUE
+C
+      IF( IFIND.LE.0 ) GOTO 9999
+      LASTAD = MADRS(IFIND) - 1
+      LMEMBR = IFIND - 1
+C
+ 6000 FORMAT(A,A,/,5X,A)
+ 6100 FORMAT(A,/,5X,A)
+ 7000 FORMAT(//1H ,'<<<  CAUTION    (PONDMP)  >>>',/,1X,
+     &'DUMP OF MEMBERS FROM VIRTUAL PDS FILE TO PDS WAS SKIPPED ',/,1X,
+     &'BECAUSE STAY-MODE IS SPECIFIED IN PROGRAM FOR ',/,1X,A)
+ 9999 RETURN
+      END

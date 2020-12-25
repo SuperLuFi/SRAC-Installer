@@ -1,0 +1,3482 @@
+ XXX Production of SRAC load module started.
+--- end compile process for C-programs ---
+anisn1.f: In subroutine `anisn1':
+anisn1.f:21: warning:
+         CALL CLEAR(0.0,D(3),LIM1-2)
+                          ^
+Array element value at (^) out of defined range
+anisn1.f:289: warning:
+         WRITE(NOU,40)  IDIQ(63),IDIQ(64),(D(I),I=65,78)
+                             ^
+Array element value at (^) out of defined range
+anisn1.f:289: warning:
+         WRITE(NOU,40)  IDIQ(63),IDIQ(64),(D(I),I=65,78)
+                                      ^
+Array element value at (^) out of defined range
+anisn2.f: In subroutine `anisn2':
+anisn2.f:315: warning:
+         CALL CLEAR(0.0,Z(3),LIM2-2)
+                          ^
+Array element value at (^) out of defined range
+burnct.f: In subroutine `burnct':
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:308: (continued):
+         CALL BURNRW( MEMBER , RAMDA , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:312: (continued):
+         CALL BURNRW( MEMBER , FACT2N, NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:316: (continued):
+         CALL BURNRW( MEMBER , GAM   , NTFISS, NTNUC ,1,NTFISS,NTNUC,1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:328: (continued):
+         CALL BURNRW( MEMBER , PBIC  , NPAR  , NTNUC ,1,NPAR  ,NTNUC,1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:405: (continued):
+                        CALL BURNRW( MEMBER , RAMDA , NTNUC , 1 , 1 ,
+                             2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:409: (continued):
+                        CALL BURNRW( MEMBER , GAM   , NTFISS, NTNUC , 1 ,
+                             2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnct.f:300: warning:
+         CALL BURNRW( MEMBER , NUCL  , NTNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnct.f:413: (continued):
+                  CALL  BURNRW( MEMBER , DNREST , NEP1  , NTNUC  ,
+                        2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f: In subroutine `burnip':
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:245: (continued):
+                         CALL REAM( STDNUC , IDUM , IDUM , 1 , 0 , 0 )
+                              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:245: (continued):
+                         CALL REAM( STDNUC , IDUM , IDUM , 1 , 0 , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:245: (continued):
+                         CALL REAM( STDNUC , IDUM , IDUM , 1 , 0 , 0 )
+                              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:254: (continued):
+                         CALL REAM( CASBRN , IDUM , IDUM , 1 , 0 , 0 )
+                              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:254: (continued):
+                         CALL REAM( CASBRN , IDUM , IDUM , 1 , 0 , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:254: (continued):
+                         CALL REAM( CASBRN , IDUM , IDUM , 1 , 0 , 0 )
+                              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:267: (continued):
+                         CALL REAM( CASINT , IDUM , DUM , 1 , 1 , 0 )
+                              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:267: (continued):
+                         CALL REAM( CASINT , IDUM , DUM , 1 , 1 , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:282: (continued):
+                         CALL REAM( DUM  , IDUM , DUM , 0 , 2 , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:286: (continued):
+                         CALL REAM( NAMFIS(M),IFISDN(M),FISFCT(M),1,1,1)
+                              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:286: (continued):
+                         CALL REAM( NAMFIS(M),IFISDN(M),FISFCT(M),1,1,1)
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:289: (continued):
+                         CALL REAM( NAMFER(M),IFRTDN(M),FRTFCT(M),1,1,1)
+                              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:289: (continued):
+                         CALL REAM( NAMFER(M),IFRTDN(M),FRTFCT(M),1,1,1)
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:296: (continued):
+                         CALL REAM( DUM , NMICR , DUM , 0 , 1 , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:297: (continued):
+                         CALL REAM( NAMMIC , IDUM , DUM , NMICR , 0 , 0 )
+                              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:297: (continued):
+                         CALL REAM( NAMMIC , IDUM , DUM , NMICR , 0 , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:305: (continued):
+                         CALL REAM( DUM , IBTYPE , DUM , 0 , NMAT , 0 )
+                              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:1389: (continued):
+         CALL  REAM( NMREPL(LOP) , DUM , DUM , 1 , 0 , 0 )
+               2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:230: warning:
+         CALL REAM(DUM,DUM,POWERL,0,0,NEP)
+              1
+burnip.f:1392: (continued):
+         CALL  REAM( DUM      , MTREPL , DUM , 0 , 1 , 0 )
+               2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:1607: warning:
+         CALL BURNRW( MEMBER , NUCL  , MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnip.f:1613: (continued):
+         CALL BURNRW( MEMBER , RAMDA , MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:1607: warning:
+         CALL BURNRW( MEMBER , NUCL  , MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnip.f:1616: (continued):
+         CALL BURNRW( MEMBER , FACT2N, MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:1607: warning:
+         CALL BURNRW( MEMBER , NUCL  , MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnip.f:1619: (continued):
+         CALL BURNRW( MEMBER , GAM   , NTFIS0, NTNUC0,1,NTFISS,NTNUC,1,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:1607: warning:
+         CALL BURNRW( MEMBER , NUCL  , MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnip.f:1628: (continued):
+         CALL BURNRW( MEMBER , PBIC  , NPAR0 , NTNUC0,1,NPAR,NTNUC,1 ,
+              2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+burnip.f:1607: warning:
+         CALL BURNRW( MEMBER , NUCL  , MXNUC , 1 , 1 , NTNUC , 1 , 1 ,
+              1
+burnip.f:1633: (continued):
+                   CALL  BURNRW( MEMBER , DNREST , MXSTEP , MXNUC ,
+                         2
+Argument #2 of `burnrw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f: In subroutine `concat':
+concat.f:57: warning:
+         CALL READ(NODE,II(1001),LTH)
+                           ^
+Array element value at (^) out of defined range
+concat.f:59: warning:
+         II(2001) = NEF+NET
+            ^
+Array element value at (^) out of defined range
+concat.f:63: warning:
+         LOC4     = 2001+II(2001)
+                            ^
+Array element value at (^) out of defined range
+concat.f:75: warning:
+         LOC4     = 2001 + II(2001) + NEF
+                              ^
+Array element value at (^) out of defined range
+concat.f:87: warning:
+         LTH      = II(2001)*2 + 2
+                       ^
+Array element value at (^) out of defined range
+concat.f:90: warning:
+         CALL WRITE(NODE,II(2001),LTH)
+                            ^
+Array element value at (^) out of defined range
+concat.f:95: warning:
+                       CALL WRITE(NODE,II(2001),LTH)
+                                          ^
+Array element value at (^) out of defined range
+concat.f:127: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+concat.f:127: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+concat.f:53: warning:
+         CALL READ(NODE,II      ,LTH)
+              1
+concat.f:140: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:53: warning:
+         CALL READ(NODE,II      ,LTH)
+              1
+concat.f:155: (continued):
+                      CALL READ(NODE,AA(LTH1+1),LTH)
+                           2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:90: warning:
+         CALL WRITE(NODE,II(2001),LTH)
+              1
+concat.f:176: (continued):
+         IF(ISW.EQ.1) CALL WRITE(NODE,AA,LTH)
+                           2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:53: warning:
+         CALL READ(NODE,II      ,LTH)
+              1
+concat.f:190: (continued):
+                       CALL READ  (NODE ,CC,LTHN)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:90: warning:
+         CALL WRITE(NODE,II(2001),LTH)
+              1
+concat.f:191: (continued):
+                       CALL WRITE (NODE2,CC,LTHN)
+                            2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:53: warning:
+         CALL READ(NODE,II      ,LTH)
+              1
+concat.f:202: (continued):
+         CALL READ(NODE,AA,LTHD)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:53: warning:
+         CALL READ(NODE,II      ,LTH)
+              1
+concat.f:206: (continued):
+         IF (ISWD.EQ.0) CALL READ(NODE,AA(LTHD+1),LTHD1)
+                             2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+concat.f:90: warning:
+         CALL WRITE(NODE,II(2001),LTH)
+              1
+concat.f:232: (continued):
+         IF (ISW.EQ.1) CALL WRITE(NODE,BB,LENG)
+                            2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f: In subroutine `conden':
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                                         ^
+Array element value at (^) out of defined range
+conden.f:78: warning:
+                           CALL READ(NODE,II(1001),LTH)
+                                             ^
+Array element value at (^) out of defined range
+conden.f:81: warning:
+         II(2001) = NEFT
+            ^
+Array element value at (^) out of defined range
+conden.f:85: warning:
+         LOC4     = 2001+II(2001)
+                            ^
+Array element value at (^) out of defined range
+conden.f:106: warning:
+         LOC4     = 2001+II(2001) + NEF
+                            ^
+Array element value at (^) out of defined range
+conden.f:125: warning:
+                       CALL WRITE(NODE,II(2001),LTH)
+                                          ^
+Array element value at (^) out of defined range
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:222: (continued):
+                       CALL READ(NODE,WT,NEFT)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:238: (continued):
+                                     CALL READ(NODE,WT1,NEFT)
+                                          2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:258: (continued):
+                       CALL READ(NODE,WT,NEF)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:267: (continued):
+                       CALL READ(NODE,WT(NEF+1),NET)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:282: (continued):
+                                     CALL READ(NODE,WT1,NEFT)
+                                          2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:294: (continued):
+                                     CALL READ(NODE,WT1(NEF+1),NET)
+                                          2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:313: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+conden.f:313: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:319: (continued):
+                       CALL READ(NODE,WT,NEFT)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:338: (continued):
+                       CALL READ(NODE,WT1,NEFT)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:352: (continued):
+                      CALL READ(NODE,WT,NEF)
+                           2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:361: (continued):
+                      CALL READ(NODE,WT(NEF+1),NET)
+                           2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:382: (continued):
+                       CALL READ(NODE,WT1,NEF)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+conden.f:65: warning:
+                       CALL READ(NODE,II(2001),LTH)
+                            1
+conden.f:393: (continued):
+                       CALL READ(NODE,WT1(NEF+1),NET)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+csprep.f: In subroutine `csprep':
+csprep.f:46: warning:
+         CALL REAM(IDCARD,IDCARD,IDCARD,18,0,0)
+              1
+csprep.f:58: (continued):
+     100 CALL REAM(C(1,1,N),C(1,1,N),C(1,1,N),0,0,IHM*IGM)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+csprep.f:46: warning:
+         CALL REAM(IDCARD,IDCARD,IDCARD,18,0,0)
+              1
+csprep.f:58: (continued):
+     100 CALL REAM(C(1,1,N),C(1,1,N),C(1,1,N),0,0,IHM*IGM)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+csprep.f:46: warning:
+         CALL REAM(IDCARD,IDCARD,IDCARD,18,0,0)
+              1
+csprep.f:58: (continued):
+     100 CALL REAM(C(1,1,N),C(1,1,N),C(1,1,N),0,0,IHM*IGM)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+cvmasn.f: In subroutine `cvmasn':
+cvmasn.f:39: warning:
+         CALL PACK (IDENT(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+cvmasw.f: In subroutine `cvmasw':
+cvmasw.f:38: warning:
+         CALL GETLEN(IDENT,  LENGTH)
+              1
+cvmasw.f:166: (continued):
+         CALL GETLEN(IB(I01+(I-1)*2),  LENGTH)
+              2
+Argument #1 of `getlen' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+cvmasw.f:39: warning:
+         CALL READ  (IDENT,B,LENGTH)
+              1
+cvmasw.f:167: (continued):
+         CALL READ  (IB(I01+(I-1)*2),B,LENGTH)
+              2
+Argument #1 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+cvmasw.f:249: warning:
+                            CALL PACK(IB(I01+I*2-1),4,'0001')
+                                 ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+cvmasw.f:38: warning:
+         CALL GETLEN(IDENT,  LENGTH)
+              1
+cvmasw.f:254: (continued):
+         CALL GETLEN(IB(I01+(I-1)*2),  LENGTH)
+              2
+Argument #1 of `getlen' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+cvmasw.f:39: warning:
+         CALL READ  (IDENT,B,LENGTH)
+              1
+cvmasw.f:255: (continued):
+         CALL READ  (IB(I01+(I-1)*2),B,LENGTH)
+              2
+Argument #1 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+cvmasw.f:39: warning:
+         CALL READ  (IDENT,B,LENGTH)
+              1
+cvmasw.f:305: (continued):
+                        CALL READ  (IB(I01+(I-1)*2),B,LENGTH)
+                             2
+Argument #1 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+d2ochk.f: In subroutine `d2ochk':
+d2ochk.f:22: warning:
+         CALL D2OCK1(NMAT,NMP,ID2O,NISO,LISO,IDENT,PAA(LCMATD))
+              1
+d2ochk.f:25: (continued):
+         CALL D2OCK1(NMAT,NMPA,ID2O,NISO,LISO,IDENT,ISA(LCNMPA))
+              2
+Argument #7 of `d2ock1' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+d2ochk.f:22: warning:
+         CALL D2OCK1(NMAT,NMP,ID2O,NISO,LISO,IDENT,PAA(LCMATD))
+              1
+d2ochk.f:31: (continued):
+         CALL D2OCK1(NMAT,NMPT,ID2O,NISO,LISO,IDENT,IIT(LCMTM))
+              2
+Argument #7 of `d2ock1' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+d2ochk.f:22: warning:
+         CALL D2OCK1(NMAT,NMP,ID2O,NISO,LISO,IDENT,PAA(LCMATD))
+              1
+d2ochk.f:34: (continued):
+         CALL D2OCK1(NMAT,NMC,ID2O,NISO,LISO,IDENT,ICT(LCNMC))
+              2
+Argument #7 of `d2ock1' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+dt.f: In subroutine `dt':
+dt.f:50: warning:
+         XND(IP,2)=0.0
+                ^
+Array element value at (^) out of defined range
+dt.f:63: warning:
+         XND(I,2)=(SR(I)*(XNE(I) + SAT(I)*XND(I+1,1)) -
+               ^
+Array element value at (^) out of defined range
+dt.f:65: warning:
+        &         XND(I+1,2)*(XNE(I)*AA(I+1) - ST(I)*SAT(I))) / E8
+                          ^
+Array element value at (^) out of defined range
+dt.f:66: warning:
+         IF(XND(I,2).LT.0.)XND(I,2)=0.5*(XND(I,2) + XND(I+1,2))
+                  ^
+Array element value at (^) out of defined range
+dt.f:66: warning:
+         IF(XND(I,2).LT.0.)XND(I,2)=0.5*(XND(I,2) + XND(I+1,2))
+                                 ^
+Array element value at (^) out of defined range
+dt.f:66: warning:
+         IF(XND(I,2).LT.0.)XND(I,2)=0.5*(XND(I,2) + XND(I+1,2))
+                                               ^
+Array element value at (^) out of defined range
+dt.f:66: warning:
+         IF(XND(I,2).LT.0.)XND(I,2)=0.5*(XND(I,2) + XND(I+1,2))
+                                                            ^
+Array element value at (^) out of defined range
+dt.f:72: warning:
+         IF(IBL.EQ.1.OR.IBL.EQ.2)XND(1,3)=XND(1,2)/XND(1,1)
+                                       ^
+Array element value at (^) out of defined range
+dt.f:72: warning:
+         IF(IBL.EQ.1.OR.IBL.EQ.2)XND(1,3)=XND(1,2)/XND(1,1)
+                                                ^
+Array element value at (^) out of defined range
+dt.f:73: warning:
+         IF(IBL.EQ.0)XND(1,3)=XND(1,2)/(XND(1,1)+0.57735033)
+                           ^
+Array element value at (^) out of defined range
+dt.f:73: warning:
+         IF(IBL.EQ.0)XND(1,3)=XND(1,2)/(XND(1,1)+0.57735033)
+                                    ^
+Array element value at (^) out of defined range
+dt.f:74: warning:
+         IF(IBL.EQ.3)XND(1,3)=(XND(1,2)*(1.0+ALFT(IIG)))/(ALFT(IIG)*
+                           ^
+Array element value at (^) out of defined range
+dt.f:74: warning:
+         IF(IBL.EQ.3)XND(1,3)=(XND(1,2)*(1.0+ALFT(IIG)))/(ALFT(IIG)*
+                                     ^
+Array element value at (^) out of defined range
+dt.f:78: warning:
+         XND(I+1,3)=(XND(I,3)*(AA(I)*XND(I,1) - ST(I)) + AA(I+1)*XND(I+1,2)
+                 ^
+Array element value at (^) out of defined range
+dt.f:78: warning:
+         XND(I+1,3)=(XND(I,3)*(AA(I)*XND(I,1) - ST(I)) + AA(I+1)*XND(I+1,2)
+                           ^
+Array element value at (^) out of defined range
+dt.f:78: warning:
+         XND(I+1,3)=(XND(I,3)*(AA(I)*XND(I,1) - ST(I)) + AA(I+1)*XND(I+1,2)
+                                                                         ^
+Array element value at (^) out of defined range
+dt.f:79: warning:
+        &  - AA(I)*XND(I,2) + SR(I)) / (AA(I+1)*XND(I+1,1) + ST(I))
+                         ^
+Array element value at (^) out of defined range
+dt.f:80: warning:
+         IF(XND(I+1,3).LT.0.)XND(I+1,3)=0.5*(XND(I+1,3)+XND(I,3))
+                    ^
+Array element value at (^) out of defined range
+dt.f:80: warning:
+         IF(XND(I+1,3).LT.0.)XND(I+1,3)=0.5*(XND(I+1,3)+XND(I,3))
+                                     ^
+Array element value at (^) out of defined range
+dt.f:80: warning:
+         IF(XND(I+1,3).LT.0.)XND(I+1,3)=0.5*(XND(I+1,3)+XND(I,3))
+                                                     ^
+Array element value at (^) out of defined range
+dt.f:80: warning:
+         IF(XND(I+1,3).LT.0.)XND(I+1,3)=0.5*(XND(I+1,3)+XND(I,3))
+                                                              ^
+Array element value at (^) out of defined range
+dt.f:100: warning:
+         E1=(XND(1,3)-XND(IP,3))/(XNR(IP)-XNR(1))
+                   ^
+Array element value at (^) out of defined range
+dt.f:100: warning:
+         E1=(XND(1,3)-XND(IP,3))/(XNR(IP)-XNR(1))
+                             ^
+Array element value at (^) out of defined range
+dt.f:103: warning:
+         XND(I,2)=XND(I,2) + E1*XNA(I)
+               ^
+Array element value at (^) out of defined range
+dt.f:103: warning:
+         XND(I,2)=XND(I,2) + E1*XNA(I)
+                        ^
+Array element value at (^) out of defined range
+dt.f:104: warning:
+      12 XND(I,3)=XND(I,3) + E1*XNR(I)
+               ^
+Array element value at (^) out of defined range
+dt.f:104: warning:
+      12 XND(I,3)=XND(I,3) + E1*XNR(I)
+                        ^
+Array element value at (^) out of defined range
+dt.f:107: warning:
+      13 XNN(I)=0.5*(XND(I,3)+XND(I+1,3))
+                           ^
+Array element value at (^) out of defined range
+dt.f:107: warning:
+      13 XNN(I)=0.5*(XND(I,3)+XND(I+1,3))
+                                      ^
+Array element value at (^) out of defined range
+dt.f:110: warning:
+      14 XND(I,1)=XND(I,1)*XND(I,3) - XND(I,2)
+                                 ^
+Array element value at (^) out of defined range
+dt.f:110: warning:
+      14 XND(I,1)=XND(I,1)*XND(I,3) - XND(I,2)
+                                            ^
+Array element value at (^) out of defined range
+dt.f:119: warning:
+      15 E2=-0.28867517/(WD(2))
+                            ^
+Array element value at (^) out of defined range
+dt.f:120: warning:
+         E3=+0.28867517/(WD(3))
+                            ^
+Array element value at (^) out of defined range
+dt.f:123: warning:
+         XND(I,1)=XND(I,3) - 3.0*XND(I,1)
+                        ^
+Array element value at (^) out of defined range
+dt.f:124: warning:
+         XND(I,2)=(XND(I,3) - E1)*E2
+               ^
+Array element value at (^) out of defined range
+dt.f:124: warning:
+         XND(I,2)=(XND(I,3) - E1)*E2
+                         ^
+Array element value at (^) out of defined range
+dt.f:125: warning:
+         XND(I,3)=(XND(I,3) + E1)*E3
+               ^
+Array element value at (^) out of defined range
+dt.f:125: warning:
+         XND(I,3)=(XND(I,3) + E1)*E3
+                         ^
+Array element value at (^) out of defined range
+edcall.f: In subroutine `edcall':
+edcall.f:36: warning:
+         CALL REED (NEDIT,0,0.0,0,4)
+              1
+edcall.f:37: (continued):
+         CALL REED (NEDIT,0,NEDS,ITEMP,3)
+              2
+Argument #3 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+edcall.f:36: warning:
+         CALL REED (NEDIT,0,0.0,0,4)
+              1
+edcall.f:117: (continued):
+         CALL REED (NEDIT,0,IEDIT,ITEMP,3)
+              2
+Argument #3 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+editor.f: In subroutine `editor':
+editor.f:33: warning:
+         CALL REED (NEXTRA,0,0.0,0,4)
+              1
+editor.f:34: (continued):
+         CALL REED (NEDIT,0,NEDZ,ITEMP,3)
+              2
+Argument #3 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+finpr.f: In subroutine `finpr':
+finpr.f:157: warning:
+         CALL PACK (IDENT(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+finpr.f:158: warning:
+         CALL READ (IDENT,NGL,1)
+              1
+finpr.f:159: (continued):
+         CALL READ (IDENT,WT1,NGL+1)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+finpr.f:125: warning:
+         CALL WOT(T3,ID3,IZP,1,'ZONE','ACT.',0)
+              1
+finpr.f:242: (continued):
+         CALL WOT(PA,IM,MM,IGM,'ANGL','INT.','GRP.')
+              2
+Argument #7 of `wot' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourc.f: In subroutine `fsourc':
+fsourc.f:63: warning:
+         CALL READ(NODE,NGR   ,1    )
+              1
+fsourc.f:64: (continued):
+         CALL READ(NODE,AAA(3),NGR+1)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourc.f:67: warning:
+                           CALL PACK(NODE(2),      1,LETT )
+                                ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+fsourc.f:63: warning:
+         CALL READ(NODE,NGR   ,1    )
+              1
+fsourc.f:69: (continued):
+                           CALL READ(NODE   ,AAA(78),NGR+1)
+                                2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourc.f:63: warning:
+         CALL READ(NODE,NGR   ,1    )
+              1
+fsourc.f:91: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourc.f:63: warning:
+         CALL READ(NODE,NGR   ,1    )
+              1
+fsourc.f:119: (continued):
+                        CALL READ(NODE,AA,LTH)
+                             2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourc.f:63: warning:
+         CALL READ(NODE,NGR   ,1    )
+              1
+fsourc.f:154: (continued):
+                          CALL READ(NODE,XI,NG)
+                               2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourw.f: In subroutine `fsourw':
+fsourw.f:56: warning:
+         CALL BSHIFT(FILENM(1),'MACR',0)
+              1
+fsourw.f:64: (continued):
+         CALL BSHIFT(NODE(1),'CONT',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourw.f:56: warning:
+         CALL BSHIFT(FILENM(1),'MACR',0)
+              1
+fsourw.f:66: (continued):
+         CALL BSHIFT(NODE(2),'F002',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourw.f:70: warning:
+         CALL READ(NODE,NGR,1)
+              1
+fsourw.f:71: (continued):
+         CALL READ(NODE,AAA(3),NGR+1)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourw.f:74: warning:
+         CALL PACK(NODE(2),1,LETT)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+fsourw.f:70: warning:
+         CALL READ(NODE,NGR,1)
+              1
+fsourw.f:76: (continued):
+         CALL READ(NODE,AAA(78),NGR+1)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourw.f:70: warning:
+         CALL READ(NODE,NGR,1)
+              1
+fsourw.f:88: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fsourw.f:70: warning:
+         CALL READ(NODE,NGR,1)
+              1
+fsourw.f:102: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fspvel.f: In subroutine `fspvel':
+fspvel.f:27: warning:
+         CALL PACK(IIDENT(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+fspvew.f: In subroutine `fspvew':
+fspvew.f:25: warning:
+         CALL BSHIFT(FILENM(1),'MACR',0)
+              1
+fspvew.f:33: (continued):
+         CALL BSHIFT(IIDENT(1),'CONT',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fspvew.f:25: warning:
+         CALL BSHIFT(FILENM(1),'MACR',0)
+              1
+fspvew.f:35: (continued):
+         CALL BSHIFT(IIDENT(2),'X00X',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+fspvew.f:37: warning:
+         CALL PACK(IIDENT(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+fwrite.f: In subroutine `fwrite':
+fwrite.f:58: warning:
+         CALL PACK (NODE(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+fwrite.f:61: warning:
+         CALL READ (NODE,NGL      ,1    )
+              1
+fwrite.f:62: (continued):
+         CALL READ (NODE,WT       ,NGL+1)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f: In subroutine `gam':
+gam.f:58: warning:
+                      CALL READ(NODE,I0(2001),LTH)
+                           1
+gam.f:192: (continued):
+                           CALL READ(NODE,F0,NWORD)
+                                2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f:58: warning:
+                      CALL READ(NODE,I0(2001),LTH)
+                           1
+gam.f:199: (continued):
+                           CALL READ(NODE,F1,NWORD)
+                                2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f:58: warning:
+                      CALL READ(NODE,I0(2001),LTH)
+                           1
+gam.f:251: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f:350: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+gam.f:350: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+gam.f:106: warning:
+         CALL WRITE(NODE,I0(2001),LTH)
+              1
+gam.f:352: (continued):
+         CALL WRITE ( NODE , AA , LTH )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f:362: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+gam.f:362: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+gam.f:58: warning:
+                      CALL READ(NODE,I0(2001),LTH)
+                           1
+gam.f:381: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f:58: warning:
+                      CALL READ(NODE,I0(2001),LTH)
+                           1
+gam.f:411: (continued):
+         CALL READ(NODE,AA,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+gam.f:106: warning:
+         CALL WRITE(NODE,I0(2001),LTH)
+              1
+gam.f:426: (continued):
+         CALL WRITE(NODE,AA,LTH)
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+geomxr.f: In subroutine `geomxr':
+geomxr.f:89: warning:
+         D(2)=D(L)
+           ^
+Array element value at (^) out of defined range
+geomxr.f:91: warning:
+         IP(2)=1
+            ^
+Array element value at (^) out of defined range
+geomxy.f: In subroutine `geomxy':
+geomxy.f:72: warning:
+         D(2)=D(L)
+           ^
+Array element value at (^) out of defined range
+geomxy.f:74: warning:
+         IP(2)=1
+            ^
+Array element value at (^) out of defined range
+gplotz.f: In subroutine `gplotz':
+gplotz.f:104: warning:
+         X(2) = EMAX
+           ^
+Array element value at (^) out of defined range
+gplotz.f:106: warning:
+         Y(2) = SMAX
+           ^
+Array element value at (^) out of defined range
+gshift.f: In subroutine `gshift':
+gshift.f:35: warning:
+                LOC(0)=0
+                    ^
+Array element value at (^) out of defined range
+gshift.f:36: warning:
+                FCT(0)=0.
+                    ^
+Array element value at (^) out of defined range
+homofp.f: In subroutine `homofp':
+homofp.f:80: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homofp.f:80: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homofp.f:58: warning:
+         CALL READ(NODE,I0(2001),LTH)
+              1
+homofp.f:88: (continued):
+         CALL READ  (NODE,A0  ,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+homofp.f:58: warning:
+         CALL READ(NODE,I0(2001),LTH)
+              1
+homofp.f:102: (continued):
+           CALL READ  (NODE,AN2N,LTHN2N)
+                2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+homofp.f:202: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homofp.f:202: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homofp.f:208: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homofp.f:208: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homofp.f:58: warning:
+         CALL READ(NODE,I0(2001),LTH)
+              1
+homofp.f:218: (continued):
+         CALL READ (NODE,A0,LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+homofp.f:240: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homofp.f:240: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homofp.f:277: warning:
+                           ISTEP = IOPT(79) + 1
+                                        ^
+Array element value at (^) out of defined range
+homosm.f: In subroutine `homosm':
+homosm.f:56: warning:
+         CALL READ(NODE,X00,NEF)
+              1
+homosm.f:66: (continued):
+         CALL READ(NODE,I0(2001),LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+homosm.f:89: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosm.f:89: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosm.f:253: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosm.f:253: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosm.f:512: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosm.f:512: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosm.f:518: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosm.f:518: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosm.f:561: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosm.f:561: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosm.f:598: warning:
+                           ISTEP = IOPT(79) + 1
+                                        ^
+Array element value at (^) out of defined range
+homosp.f: In subroutine `homosp':
+homosp.f:55: warning:
+         CALL READ(NODE,X00,NEF)
+              1
+homosp.f:65: (continued):
+         CALL READ(NODE,I0(2001),LTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+homosp.f:92: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosp.f:92: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosp.f:254: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosp.f:254: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosp.f:511: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosp.f:511: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosp.f:517: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosp.f:517: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosp.f:561: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+homosp.f:561: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2)  =  NUMB(IOPT(79)) (4:4)
+                                                       ^
+Array element value at (^) out of defined range
+homosp.f:598: warning:
+                           ISTEP = IOPT(79) + 1
+                                        ^
+Array element value at (^) out of defined range
+ifinsn.f: In subroutine `ifinsn':
+ifinsn.f:28: warning:
+         CALL REED (ISNCON,0,0.0,0,4)
+              1
+ifinsn.f:29: (continued):
+         CALL REED (ISNCON,IDENT(4),IDENT,4,10)
+              2
+Argument #2 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifinsn.f:28: warning:
+         CALL REED (ISNCON,0,0.0,0,4)
+              1
+ifinsn.f:29: (continued):
+         CALL REED (ISNCON,IDENT(4),IDENT,4,10)
+              2
+Argument #3 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifinsn.f:28: warning:
+         CALL REED (ISNCON,0,0.0,0,4)
+              1
+ifinsn.f:31: (continued):
+         CALL REED (ISNCON,0,ISPEC,2,2)
+              2
+Argument #3 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifinxs.f: In subroutine `ifinxs':
+ifinxs.f:39: warning:
+         CALL REED (ISOTXS,0,0.0,0,4)
+              1
+ifinxs.f:43: (continued):
+         CALL REED (ISOTXS,IDENT(4),IDENT,4,10)
+              2
+Argument #2 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifinxs.f:39: warning:
+         CALL REED (ISOTXS,0,0.0,0,4)
+              1
+ifinxs.f:43: (continued):
+         CALL REED (ISOTXS,IDENT(4),IDENT,4,10)
+              2
+Argument #3 of `reed' is one precision at (2) but is some other precision at (1) [info -f g77 M GLOBALS]
+ifinxs.f:39: warning:
+         CALL REED (ISOTXS,0,0.0,0,4)
+              1
+ifinxs.f:69: (continued):
+         CALL REED (ISOTXS,0,EXTRA8,NWDS,9)
+              2
+Argument #3 of `reed' is one precision at (2) but is some other precision at (1) [info -f g77 M GLOBALS]
+ifinxs.f:39: warning:
+         CALL REED (ISOTXS,0,0.0,0,4)
+              1
+ifinxs.f:104: (continued):
+         CALL REED (ISOTXS,XSPEC,IEXTRA(2),NWDS,11)
+              2
+Argument #2 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifinxs.f:39: warning:
+         CALL REED (ISOTXS,0,0.0,0,4)
+              1
+ifinxs.f:104: (continued):
+         CALL REED (ISOTXS,XSPEC,IEXTRA(2),NWDS,11)
+              2
+Argument #3 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifinxs.f:39: warning:
+         CALL REED (ISOTXS,0,0.0,0,4)
+              1
+ifinxs.f:131: (continued):
+         CALL REED (ISOTXS,XSPEC,EXTRA(2),NWDS,11)
+              2
+Argument #2 of `reed' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifrite.f: In subroutine `ifrite':
+ifrite.f:86: warning:
+         CALL RITE (ITFLUX,0,FLUXA,ITJT,2)
+              1
+ifrite.f:108: (continued):
+         CALL RITE (IAFLUX,IDENT(4),IDENT,NDENT,9)
+              2
+Argument #2 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifrite.f:86: warning:
+         CALL RITE (ITFLUX,0,FLUXA,ITJT,2)
+              1
+ifrite.f:108: (continued):
+         CALL RITE (IAFLUX,IDENT(4),IDENT,NDENT,9)
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifrite.f:86: warning:
+         CALL RITE (ITFLUX,0,FLUXA,ITJT,2)
+              1
+ifrite.f:109: (continued):
+         CALL RITE (IAFLUX,0,ISPEC,NCOUNT,2)
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifrite.f:86: warning:
+         CALL RITE (ITFLUX,0,FLUXA,ITJT,2)
+              1
+ifrite.f:232: (continued):
+         CALL RITE (ISNCON,IDENT(4),IDENT,NDENT,9)
+              2
+Argument #2 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifrite.f:86: warning:
+         CALL RITE (ITFLUX,0,FLUXA,ITJT,2)
+              1
+ifrite.f:232: (continued):
+         CALL RITE (ISNCON,IDENT(4),IDENT,NDENT,9)
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ifrite.f:86: warning:
+         CALL RITE (ITFLUX,0,FLUXA,ITJT,2)
+              1
+ifrite.f:233: (continued):
+         CALL RITE (ISNCON,0,ISPEC,NCOUNT,2)
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inital.f: In subroutine `inital':
+inital.f:133: warning:
+         CALL WWRITE (2,2,C,IHM,MIN,1,'      ','      ','      ','MATERL')
+              1
+inital.f:138: (continued):
+         CALL WWRITE (5,2,C,IHM,MT,1,XTEMP,'MIXED ','X-SECT','MATERL')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+initq.f: In subroutine `initq':
+initq.f:85: warning:
+          CALL WWRITE(4,2,Q,NM,IT,JT,XTEMP,'      ','      ',
+               1
+initq.f:90: (continued):
+         CALL WWRITE (2,2,QR1,JT,MM,1,'NORMAL','.RBY1 ','SOURCE','DIRECT')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+initq.f:85: warning:
+          CALL WWRITE(4,2,Q,NM,IT,JT,XTEMP,'      ','      ',
+               1
+initq.f:91: (continued):
+         CALL WWRITE (2,2,QR2,JT,MM,1,'NORMAL',',RBY2 ','SOURCE','DIRECT')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+initq.f:85: warning:
+          CALL WWRITE(4,2,Q,NM,IT,JT,XTEMP,'      ','      ',
+               1
+initq.f:95: (continued):
+         CALL WWRITE (2,2,QB1,IT,MM,1,'NORMAL','BTBY1 ','SOURCE','DIRECT')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+initq.f:85: warning:
+          CALL WWRITE(4,2,Q,NM,IT,JT,XTEMP,'      ','      ',
+               1
+initq.f:96: (continued):
+         CALL WWRITE (2,2,QB2,IT,MM,1,'NORMAL','BTBY2 ','SOURCE','DIRECT')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+initq.f:85: warning:
+          CALL WWRITE(4,2,Q,NM,IT,JT,XTEMP,'      ','      ',
+               1
+initq.f:100: (continued):
+         CALL WWRITE (2,2,QT1,IT,MM,1,'NORMAL',',TBY1 ','SOURCE','DIRECT')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+initq.f:85: warning:
+          CALL WWRITE(4,2,Q,NM,IT,JT,XTEMP,'      ','      ',
+               1
+initq.f:101: (continued):
+         CALL WWRITE (2,2,QT2,IT,MM,1,'NORMAL',',TBY2 ','SOURCE','DIRECT')
+              2
+Argument #7 of `wwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inner.f: In subroutine `inner':
+inner.f:98: warning:
+         CALL SETBC(BT1,BT2,AAA(LQT1),AAA(LQT2),WETA,MM,IT,IBT,IQT,SUMETA,
+              1
+inner.f:110: (continued):
+         CALL SETBC(BR1,BR2,AAA(LQR1),AAA(LQR2),WMU,MM,JT,IBR,IQR,SUMMU,
+              2
+Argument #19 of `setbc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inp2f.f: In subroutine `inp2f':
+inp2f.f:39: warning:
+         CALL PACK (IDENT(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+inpt15.f: In subroutine `inpt15':
+inpt15.f:206: warning:
+         CALL RITE (NEDIT,0,NEDS,1,3)
+              1
+inpt15.f:216: (continued):
+         CALL RITE (NEDIT,0,DD(LFU),MN,3)
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inpt15.f:206: warning:
+         CALL RITE (NEDIT,0,NEDS,1,3)
+              1
+inpt15.f:226: (continued):
+         CALL RITE ( NEDIT, 0, DD(LFLA), IMJM, 3 )
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inpt15.f:206: warning:
+         CALL RITE (NEDIT,0,NEDS,1,3)
+              1
+inpt15.f:244: (continued):
+         CALL RITE (NEDIT,0,0.0,0,4)
+              2
+Argument #3 of `rite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inpt2.f: In subroutine `inpt2':
+inpt2.f:59: warning:
+         CALL  CLEA(  TAU , LENG , 0.0 )
+               1
+inpt2.f:94: (continued):
+         CALL CLEA (II(LCVLMT),NMPT,0.0 )
+              2
+Argument #1 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+inpt3.f: In subroutine `inpt3':
+inpt3.f:50: warning:
+         CALL PACK (IDENT(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+input1.f: In subroutine `input1':
+input1.f:121: warning:
+         CALL REAM ( AB ,IOPT , AB , 0 , 20 , 0 )
+              1
+input1.f:227: (continued):
+         CALL REAM(AB,AB,BSQ,0,0,1)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f: In subroutine `input2':
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:75: (continued):
+         CALL REAM(AA(JM),IDUMY,ADUMY,2,2,3)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:75: (continued):
+         CALL REAM(AA(JM),IDUMY,ADUMY,2,2,3)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:94: (continued):
+                       CALL REAM(ADUMY,IDUMY,ADUMY,IDUMY(1),0,0)
+                            2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:94: (continued):
+                       CALL REAM(ADUMY,IDUMY,ADUMY,IDUMY(1),0,0)
+                            2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:98: (continued):
+                       CALL REAM(ADUMY,IDUMY,ADUMY,2,0,0)
+                            2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:98: (continued):
+                       CALL REAM(ADUMY,IDUMY,ADUMY,2,0,0)
+                            2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:121: (continued):
+         CALL REAM(AA(LCIDNT+LISO*2-2),II(LCIRES+LISO-1),AA(LCDN+LISO-1)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:121: (continued):
+         CALL REAM(AA(LCIDNT+LISO*2-2),II(LCIRES+LISO-1),AA(LCDN+LISO-1)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:125: (continued):
+         CALL REAM(AA(LCIDNT+LISO*2-2),II(LCIRES+LISO-1),ADUMY(1),2,2,2)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+input2.f:44: warning:
+         CALL REAM(NMAT,NMAT,NMAT,0,1,0)
+              1
+input2.f:125: (continued):
+         CALL REAM(AA(LCIDNT+LISO*2-2),II(LCIRES+LISO-1),ADUMY(1),2,2,2)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+insert.f: In subroutine `insert':
+insert.f:14: warning:
+         D(2)=Y
+           ^
+Array element value at (^) out of defined range
+insert.f:16: warning:
+         IP(2)=IB
+            ^
+Array element value at (^) out of defined range
+inset7.f: In subroutine `inset7':
+inset7.f:20: warning:
+         D(2)=Y
+           ^
+Array element value at (^) out of defined range
+inset7.f:22: warning:
+         IP(2)=IB
+            ^
+Array element value at (^) out of defined range
+iracal.f: In subroutine `iracal':
+iracal.f:73: warning:
+         CALL PACK(MTNAME(2,I),1,IDPQ(2))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+iracon.f: In subroutine `iracon':
+iracon.f:26: warning:
+         CALL  PACK(NAMEP(1),1,IDPQ(1))
+               ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+ira.f: In subroutine `ira':
+ira.f:53: warning:
+         MEMORY = IOPT(96)
+                       ^
+Array element value at (^) out of defined range
+ira.f:187: warning:
+         IOPT(80)=MAXX
+              ^
+Array element value at (^) out of defined range
+ira.f:214: warning:
+         IOPT(80)=0
+              ^
+Array element value at (^) out of defined range
+iraprt.f: In subroutine `iraprt':
+iraprt.f:72: warning:
+         CALL PACK (NAMEP(2),4,IDTEMP(ITMP))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+iraprt.f:72: warning:
+         CALL PACK (NAMEP(2),4,IDTEMP(ITMP))
+              1
+iraprt.f:75: (continued):
+         CALL PACK (NAMEP(2),1,IDPQF)
+              2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+iraprt.f:72: warning:
+         CALL PACK (NAMEP(2),4,IDTEMP(ITMP))
+              1
+iraprt.f:76: (continued):
+         CALL PACK (NAMEP(1),1,IDPQC)
+              2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+iraprt.f:72: warning:
+         CALL PACK (NAMEP(2),4,IDTEMP(ITMP))
+              1
+iraprt.f:79: (continued):
+         CALL PACK(NAMEP(1),1,IDPQM)
+              2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+iraprt.f:78: warning:
+         CALL READ(NAMEP,IA,41)
+              1
+iraprt.f:82: (continued):
+         CALL READ(NAMEP(1),A,LENG)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+irarsp.f: In subroutine `irarsp':
+irarsp.f:24: warning:
+         CALL  PACK(NAMEP(1),1,IDPQ(2))
+               ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+irasig.f: In subroutine `irasig':
+irasig.f:82: warning:
+         CALL PACK(NAMEP(1),1,IDPQ(1))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+itud.f: In subroutine `itud':
+itud.f:489: warning:
+                           ISTEP = IOPT(79) + 1
+                                        ^
+Array element value at (^) out of defined range
+load.f: In subroutine `load':
+load.f:30: warning:
+         CALL REAM(B,B,B,0,0,NC)
+              1
+load.f:36: (continued):
+         CALL REAM(IB,IB,IB,0,NC,0)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+load.f:30: warning:
+         CALL REAM(B,B,B,0,0,NC)
+              1
+load.f:36: (continued):
+         CALL REAM(IB,IB,IB,0,NC,0)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+load.f:30: warning:
+         CALL REAM(B,B,B,0,0,NC)
+              1
+load.f:36: (continued):
+         CALL REAM(IB,IB,IB,0,NC,0)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+lscale.f: In subroutine `lscale':
+lscale.f:34: warning:
+         CALL  SCALE(X,WITH,IMAX,1,10.)
+               ^
+Reference to unimplemented intrinsic `SCALE' at (^) (assumed EXTERNAL)
+lsigma.f: In subroutine `lsigma':
+lsigma.f:21: warning:
+         IF (IRANG.EQ.0) CALL PACK(MEMBER(2),1,LETF)
+                              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+macr.f: In subroutine `macr':
+macr.f:82: warning:
+         IF (IEDG(16).NE.0) SIG(K,M,13) = T4
+                                    ^
+Array element value at (^) out of defined range
+macrof.f: In subroutine `macrof':
+macrof.f:48: warning:
+         MEMORY = IOPT(96)
+                       ^
+Array element value at (^) out of defined range
+macrof.f:145: warning:
+         IOPT(80) = MAXX
+              ^
+Array element value at (^) out of defined range
+macrof.f:189: warning:
+     999 IOPT(80)=0
+              ^
+Array element value at (^) out of defined range
+macrtr.f: In subroutine `macrtr':
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:172: (continued):
+         CALL  CLEA( EFFMIC , LENEFF , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:178: (continued):
+         CALL READ ( IDENT , EFFMIC , LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:186: (continued):
+         CALL  CLEA ( DD , 2160 , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:192: (continued):
+                       CALL READ('YD020000',DD1,LENGD)
+                            2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:201: (continued):
+         CALL  CLEA (XNSIGF,    48  , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:202: (continued):
+         CALL  CLEA (SIGM  ,   LGT  , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:203: (continued):
+         CALL  CLEA (SIGM1 ,   LGT  , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:204: (continued):
+         CALL  CLEA (SIGML , 4*2600 , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:205: (continued):
+         CALL  CLEA (BVSIGF, 15*NET , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:206: (continued):
+         CALL  CLEA (BLSIGF, 15*NET , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:209: (continued):
+         CALL  CLEA (XNUTAB, 48*MXNISO , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:246: (continued):
+         CALL CLEA (CARRAY,    50  , 0.0 )
+              2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:497: (continued):
+         CALL READ (IDENT,CCC,LENGTH)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:500: (continued):
+         CALL CLEA ( AA , LGT , 0.0 )
+              2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:546: warning:
+                       NARRAY (30)  = LENGO
+                               ^
+Array element value at (^) out of defined range
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:552: (continued):
+                                    CALL WRITE( KIDENT , AA(ISTO) , LENGO )
+                                         2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:581: (continued):
+         CALL CLEA( AA1   ,  LGT , 0.0 )
+              2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:584: (continued):
+                      CALL READ( IDENT , CCC , LLTH )
+                           2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:615: (continued):
+                                    CALL WRITE( KIDENT , AA1 , LGT )
+                                         2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:634: (continued):
+                       CALL CLEA  ( AAL(1,L) , LGT  , 0.0 )
+                            2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:637: (continued):
+                                     CALL READ( IDENT , CCC , LLTH )
+                                          2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:704: (continued):
+                                      CALL READ(IDENT,DD,LENGY)
+                                           2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:797: (continued):
+         CALL READ(IDENT,CARRAY,LGTC)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:813: (continued):
+         CALL CLEA(AA   ,LGT , 0.0 )
+              2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:814: (continued):
+         CALL READ(IDENT,AA(IST0),LENG0)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:831: (continued):
+                              CALL  CLEA( SIGZ , 48 , 1.0E+10 )
+                                    2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:866: (continued):
+         CALL READ  (IDENT,FTAB,LGTF)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:110: warning:
+      13 CALL READ(IDENT,II,2*(NET+1))
+              1
+macrtr.f:925: (continued):
+         CALL READ(IDENT,FTAB,LGTF)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:984: (continued):
+         CALL  CLEA (SIGTAB    ,  8 , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:985: (continued):
+         CALL  CLEA (TMPTAB    , 12 , 0.0 )
+               2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:1006: (continued):
+                      CALL WRITE( IDENT , CARRAY ,LGTC )
+                           2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:1009: (continued):
+                      CALL WRITE(IDENT,AA(ISTO),LENGO)
+                           2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:1027: (continued):
+         CALL CLEA (AA1 ,LENWRK ,0.0)
+              2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:90: warning:
+         CALL  CLEA( BARRAY , 22 , 0 )
+               1
+macrtr.f:1028: (continued):
+         CALL CLEA (AAL ,4*LENWRK,0.0)
+              2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:1137: (continued):
+         CALL WRITE(IDENT,AA,LTH)
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:1145: (continued):
+         CALL WRITE(IDENT,AA1,LTH)
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:1151: (continued):
+     954                CALL WRITE(IDENT,AAL(1,L),LTH)
+                             2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+macrtr.f:119: warning:
+                                        CALL WRITE(IDENT,II,2*(NET+1))
+                                             1
+macrtr.f:1168: (continued):
+                          CALL WRITE(IDENT,DD,NET*NFAMLY*3)
+                               2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mafdat.f: In subroutine `mafdat':
+mafdat.f:122: warning:
+         CALL PACK(IDENT(2,M,J),4,IDTMP)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+mafflx.f: In subroutine `mafflx':
+mafflx.f:93: warning:
+         CALL  READ( NAMEP , WORK , LENG )
+               1
+mafflx.f:251: (continued):
+                                      CALL READ( NAMEP , IA , 30 )
+                                           2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mafflx.f:93: warning:
+         CALL  READ( NAMEP , WORK , LENG )
+               1
+mafflx.f:258: (continued):
+                                           CALL READ( NAMEP , IA , 30 )
+                                                2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mafflx.f:93: warning:
+         CALL  READ( NAMEP , WORK , LENG )
+               1
+mafflx.f:269: (continued):
+                        CALL READ( NAMEP , IA , 30 )
+                             2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mafprt.f: In subroutine `mafprt':
+mafprt.f:137: warning:
+         CALL WRITE(NAMEP(1),IA,42)
+              1
+mafprt.f:191: (continued):
+         CALL WRITE(NAMEP(1),A,LTOT)
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mafsig.f: In subroutine `mafsig':
+mafsig.f:152: warning:
+         CALL READ(NAMEP(1),IA,4)
+              1
+mafsig.f:160: (continued):
+         CALL  READ(NAMEP(1),A,LENG)
+               2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mafsig.f:152: warning:
+         CALL READ(NAMEP(1),IA,4)
+              1
+mafsig.f:236: (continued):
+         CALL READ(NAMEP(1),A,LENG)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+micref.f: In subroutine `micref':
+micref.f:111: warning:
+         IF(IOPT(79).GT.0)   CALL PACK(IDENT(2),2,NUMB(IOPT(79)))
+                 ^
+Array element value at (^) out of defined range
+micref.f:111: warning:
+         IF(IOPT(79).GT.0)   CALL PACK(IDENT(2),2,NUMB(IOPT(79)))
+                                  ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+micref.f:111: warning:
+         IF(IOPT(79).GT.0)   CALL PACK(IDENT(2),2,NUMB(IOPT(79)))
+                                                            ^
+Array element value at (^) out of defined range
+mix11.f: In subroutine `mix11':
+mix11.f:50: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mix11.f:50: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mix11.f:365: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mix11.f:365: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mixx1.f: In subroutine `mixx1':
+mixx1.f:52: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mixx1.f:52: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mixx1.f:481: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mixx1.f:481: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mixx2.f: In subroutine `mixx2':
+mixx2.f:49: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mixx2.f:49: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mixx2.f:255: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mixx2.f:255: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mixx3.f: In subroutine `mixx3':
+mixx3.f:49: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mixx3.f:49: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+mixx3.f:208: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                 ^
+Array element value at (^) out of defined range
+mixx3.f:208: warning:
+         IF(IOPT(79).GT.0) NODE(2) (2:2) = NUMB(IOPT(79)) (4:4)
+                                                     ^
+Array element value at (^) out of defined range
+outpt2.f: In subroutine `outpt2':
+outpt2.f:126: warning:
+         IF(IOPT(79).GT.0)   CALL PACK(NOM(2),2,NUMB(IOPT(79)))
+                 ^
+Array element value at (^) out of defined range
+outpt2.f:126: warning:
+         IF(IOPT(79).GT.0)   CALL PACK(NOM(2),2,NUMB(IOPT(79)))
+                                  ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+outpt2.f:126: warning:
+         IF(IOPT(79).GT.0)   CALL PACK(NOM(2),2,NUMB(IOPT(79)))
+                                                          ^
+Array element value at (^) out of defined range
+pcoin1.f: In subroutine `pcoin1':
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         1
+pcoin1.f:171: (continued):
+         CALL PACK(IDENT(1,M,J),1,IDPQ(1))
+              2
+Argument #1 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         1
+pcoin1.f:172: (continued):
+         CALL PACK(IDENT(2,M,J),1,IDPQ(1))
+              2
+Argument #1 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         1
+pcoin1.f:272: (continued):
+        *                        CALL PACK(IDENT(2,M,J),4,IDTMP  )
+                                      2
+Argument #1 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         1
+pcoin1.f:272: (continued):
+        *                        CALL PACK(IDENT(2,M,J),4,IDTMP  )
+                                      2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:269: warning:
+                                 CALL PACKX(CHACHK,1,IDENT(2,M,J),2)
+                                      1
+pcoin1.f:283: (continued):
+                                 CALL PACKX(IDENT(2,M,J),2,MTNAME(2,J),2)
+                                      2
+Argument #3 of `packx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:269: warning:
+                                 CALL PACKX(CHACHK,1,IDENT(2,M,J),2)
+                                      1
+pcoin1.f:284: (continued):
+                                 CALL PACKX(IDENT(2,M,J),3,MTNAME(2,J),3)
+                                      2
+Argument #3 of `packx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         1
+pcoin1.f:286: (continued):
+                                 CALL PACK(IDENT(2,M,J),4,IDTMP  )
+                                      2
+Argument #1 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin1.f:122: warning:
+         IF(I.EQ.2) CALL PACK(IAIA,1,IDPQ(3))
+                         1
+pcoin1.f:286: (continued):
+                                 CALL PACK(IDENT(2,M,J),4,IDTMP  )
+                                      2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcoin3.f: In subroutine `pcoin3':
+pcoin3.f:58: warning:
+         CALL   READ( MEMBER , EFFMIC , LENG )
+                1
+pcoin3.f:118: (continued):
+         CALL READ ( MEMBER , IRCONT(1,MPOS) , 5 )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcomcr.f: In subroutine `pcomcr':
+pcomcr.f:102: warning:
+         CALL  WRITE(IDENT,IA,LENG)
+               1
+pcomcr.f:110: (continued):
+         CALL  WRITE( IDENT ,SIGE(IST), LENG )
+               2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcomcr.f:102: warning:
+         CALL  WRITE(IDENT,IA,LENG)
+               1
+pcomcr.f:119: (continued):
+         CALL  WRITE( IDENT ,SIGC(IST), LENG )
+               2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pcomcr.f:102: warning:
+         CALL  WRITE(IDENT,IA,LENG)
+               1
+pcomcr.f:129: (continued):
+         CALL  WRITE( IDENT ,SIGF(IST), LENG )
+               2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pdsflx.f: In subroutine `pdsflx':
+pdsflx.f:32: warning:
+         CALL PACK(NODE(2),2,IB(J79))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+peaco.f: In subroutine `peaco':
+peaco.f:54: warning:
+         CALL  CLEA(A     ,MEMORY,0.0)
+               1
+peaco.f:67: (continued):
+                        CALL CLEA ( KCOREK , MAXMAT , 0 )
+                             2
+Argument #1 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+peaco.f:54: warning:
+         CALL  CLEA(A     ,MEMORY,0.0)
+               1
+peaco.f:67: (continued):
+                        CALL CLEA ( KCOREK , MAXMAT , 0 )
+                             2
+Argument #3 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pertc.f: In subroutine `pertc':
+pertc.f:56: warning:
+         CALL IVALUE(ZONVOL,MMAX,0.0)
+              1
+pertc.f:111: (continued):
+         CALL IVALUE(TERM(1,1),10*2*KMAX,0.0)
+              2
+Argument #1 of `ivalue' is one precision at (2) but is some other precision at (1) [info -f g77 M GLOBALS]
+pertc.f:56: warning:
+         CALL IVALUE(ZONVOL,MMAX,0.0)
+              1
+pertc.f:252: (continued):
+         CALL IVALUE(EDIT1,5*2,0.0)
+              2
+Argument #1 of `ivalue' is one precision at (2) but is some other precision at (1) [info -f g77 M GLOBALS]
+pertc.f:56: warning:
+         CALL IVALUE(ZONVOL,MMAX,0.0)
+              1
+pertc.f:275: (continued):
+         CALL IVALUE(EDIT1,6*2,0.0)
+              2
+Argument #1 of `ivalue' is one precision at (2) but is some other precision at (1) [info -f g77 M GLOBALS]
+perti1.f: In subroutine `perti1':
+perti1.f:16: warning:
+         CALL REAM(SAMPLE(1,I),IDUM,DUM(3),2,2,1)
+              1
+perti1.f:34: (continued):
+         CALL REAM(DDD,DDDD,XYZ(1,1,I),0,0,6)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+perti1.f:16: warning:
+         CALL REAM(SAMPLE(1,I),IDUM,DUM(3),2,2,1)
+              1
+perti1.f:55: (continued):
+         CALL REAM(DDD,DDD,P(LBKLGP(I)),0,0,NGP)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pertm.f: In subroutine `pertm':
+pertm.f:36: warning:
+         CALL PACK(RIDENT(2),1,RANGE(IRANGE+1))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+pij1.f: In subroutine `pij1':
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:71: (continued):
+     345 CALL REAM(RX,RX,RX,0,0,NX1)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:71: (continued):
+     345 CALL REAM(RX,RX,RX,0,0,NX1)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:71: (continued):
+     345 CALL REAM(RX,RX,RX,0,0,NX1)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:79: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:79: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:79: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:87: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:87: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:87: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:95: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:95: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:95: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:100: (continued):
+             CALL REAM(THETA,THETA,THETA,0,0,NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:100: (continued):
+             CALL REAM(THETA,THETA,THETA,0,0,NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:100: (continued):
+             CALL REAM(THETA,THETA,THETA,0,0,NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:106: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:106: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:106: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:114: (continued):
+             CALL REAM(TY,TY,TY,0,0,NY)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:114: (continued):
+             CALL REAM(TY,TY,TY,0,0,NY)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:114: (continued):
+             CALL REAM(TY,TY,TY,0,0,NY)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:123: warning:
+                   TY(0)  =TY(NY)-2.*PI
+                      ^
+Array element value at (^) out of defined range
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:132: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:132: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:132: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:135: (continued):
+             CALL REAM(THETA,THETA,THETA,0,0,NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:135: (continued):
+             CALL REAM(THETA,THETA,THETA,0,0,NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:135: (continued):
+             CALL REAM(THETA,THETA,THETA,0,0,NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:141: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:141: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:141: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:148: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:148: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:148: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:170: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:170: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:170: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:178: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:178: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:178: (continued):
+             CALL REAM(RPP,RPP,RPP,0,0,NAPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:181: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:181: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:181: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:201: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:201: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:201: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:219: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:219: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:219: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:226: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:226: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:226: (continued):
+           CALL REAM(TY,TY,TY,0,0,NY1)
+                2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:248: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:248: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij1.f:40: warning:
+         CALL REAM(NREG,NREG,NREG,0,NZ,0)
+              1
+pij1.f:248: (continued):
+             CALL REAM(RDP,RDP,RDP,0,0,NDPIN1*NTPIN)
+                  2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pij2.f: In subroutine `pij2':
+pij2.f:127: warning:
+         CALL PAINT(A(L01),A(L02),A(L03),A(L04),A(L07),A(L08),A(L05),A(L06)
+              1
+pij2.f:131: (continued):
+         CALL PAINT(A(L01),A(L02),A(L03),A(L04),A(L07),A(L08),A(L05),A(L06)
+              2
+Argument #11 of `paint' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pijin.f: In subroutine `pijin':
+pijin.f:107: warning:
+         CALL REAM (IA,IA,IA,0,18,0)
+              1
+pijin.f:168: (continued):
+      20 CALL REAM(TITLE,IEDFLX,EPSI,0,7,6)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+pijin.f:107: warning:
+         CALL REAM (IA,IA,IA,0,18,0)
+              1
+pijin.f:168: (continued):
+      20 CALL REAM(TITLE,IEDFLX,EPSI,0,7,6)
+              2
+Argument #3 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+prehx.f: In subroutine `prehx':
+prehx.f:77: warning:
+              PITCH=RX(2)-RX(1)
+                       ^
+Array element value at (^) out of defined range
+rafx1d.f: In subroutine `rafx1d':
+rafx1d.f:25: warning:
+         CALL PACK(MEMBER(2),1,RANG(IRANG+1))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+rafx1d.f:26: warning:
+         IF (IIOPT(4).EQ.0) CALL PACK(MEMBER(2),1,RANG(1))
+                   ^
+Array element value at (^) out of defined range
+rafx1d.f:28: warning:
+         IF (IIOPT(79).GT.0) CALL PACK(MEMBER(2),2,NUMB(IIOPT(79)))
+                   ^
+Array element value at (^) out of defined range
+rafx1d.f:28: warning:
+         IF (IIOPT(79).GT.0) CALL PACK(MEMBER(2),2,NUMB(IIOPT(79)))
+                                                              ^
+Array element value at (^) out of defined range
+rafx1d.f:25: warning:
+         CALL PACK(MEMBER(2),1,RANG(IRANG+1))
+              1
+rafx1d.f:28: (continued):
+         IF (IIOPT(79).GT.0) CALL PACK(MEMBER(2),2,NUMB(IIOPT(79)))
+                                  2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+rafx1d.f:25: warning:
+         CALL PACK(MEMBER(2),1,RANG(IRANG+1))
+              1
+rafx1d.f:30: (continued):
+         CALL PACK(MEMBER(2),4,ICF)
+              2
+Argument #3 of `pack' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f: In subroutine `reaci1':
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:29: (continued):
+             CALL REAM(DUM,MESH(1,IMESH1),DUM,0,IRN(2)*3,0)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:50: (continued):
+             CALL REAM(DUM,MESH(1,LOC),DUM,0,IRN(2)*3,0)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:54: (continued):
+             CALL REAM(DUM,DUM,FG(1,I),0,0,IGMAX)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:54: (continued):
+             CALL REAM(DUM,DUM,FG(1,I),0,0,IGMAX)
+                  2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:74: (continued):
+             CALL REAM(DUM,IRN,FGS(1,I),0,6,IGMAX)
+                  2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:115: (continued):
+         CALL REAM(DUM,NREG,DUM,0,1,0)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:127: (continued):
+         CALL REAM(IA(LOC),DUM  ,DUM ,2 ,  0,0)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+reaci1.f:25: warning:
+             CALL REAM(MTNAM1(1,I),IRN,DUM,2,2,0)
+                  1
+reaci1.f:141: (continued):
+         CALL REAM(DUM,IA(LOC),DUM,0 , 2,0)
+              2
+Argument #1 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+react.f: In subroutine `react':
+react.f:177: warning:
+         IF(IOPT(18).LT.0) THEN
+                 ^
+Array element value at (^) out of defined range
+s804.f: In subroutine `s804':
+s804.f:59: warning:
+       9 PNC(M,2)=1.5*DSN(M)*DSN(M) - 0.5
+               ^
+Array element value at (^) out of defined range
+s807.f: In subroutine `s807':
+s807.f:52: warning:
+         CALL WOT(CRX,MT,IHP,1,'POS.','MAT.',0)
+              1
+s807.f:63: (continued):
+         CALL WOT(CRX,IGM,IHP,MT,'POS.','GRP.','MAT.')
+              2
+Argument #7 of `wot' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+sigt.f: In subroutine `sigt':
+sigt.f:36: warning:
+         CALL PACK ( NODE(2),4,ICF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+sn1ar.f: In subroutine `sn1ar':
+sn1ar.f:221: warning:
+         CALL REAM(DUM,LDTK(ITEMP),DUM,0,NCOUNT,0)
+              1
+sn1ar.f:227: (continued):
+         CALL REAM(DUM,DUM,D(ITEMP),0,0,NCOUNT)
+              2
+Argument #2 of `ream' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+sn1tr.f: In subroutine `sn1tr':
+sn1tr.f:135: warning:
+         CALL CLEARW(0.0,DD(3),153)
+                            ^
+Array element value at (^) out of defined range
+sn1tr.f:137: warning:
+         CALL CLEARW(0.0,DD(212),LIM1-211)
+                            ^
+Array element value at (^) out of defined range
+sn1tr.f:135: warning:
+         CALL CLEARW(0.0,DD(3),153)
+              1
+sn1tr.f:139: (continued):
+         CALL CLEARW('    ',IDUSE,18)
+              2
+Argument #1 of `clearw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+sn1tr.f:135: warning:
+         CALL CLEARW(0.0,DD(3),153)
+              1
+sn1tr.f:139: (continued):
+         CALL CLEARW('    ',IDUSE,18)
+              2
+Argument #2 of `clearw' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f: In subroutine `srac':
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:206: (continued):
+    7200 CALL BURNIN(NMP,PAA(LCMATD),PAA(LCVOLM)
+              2
+Argument #2 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:206: (continued):
+    7200 CALL BURNIN(NMP,PAA(LCMATD),PAA(LCVOLM)
+              2
+Argument #4 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:206: (continued):
+    7200 CALL BURNIN(NMP,PAA(LCMATD),PAA(LCVOLM)
+              2
+Argument #5 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:209: (continued):
+    7300 CALL BURNIN(NMPA,ISA(LCNMPA),ISA(LCVLMA)
+              2
+Argument #3 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:212: (continued):
+    7400 CALL BURNIN(NMPW,TWRN(LZRDUC),TWRN(LVOLMA)
+              2
+Argument #2 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:212: (continued):
+    7400 CALL BURNIN(NMPW,TWRN(LZRDUC),TWRN(LVOLMA)
+              2
+Argument #4 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:212: (continued):
+    7400 CALL BURNIN(NMPW,TWRN(LZRDUC),TWRN(LVOLMA)
+              2
+Argument #5 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:215: (continued):
+    7500 CALL BURNIN(NMPT,IIT(LCMTM),IIT(LCVLMT)
+              2
+Argument #3 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:203: warning:
+    7100 CALL BURNIN(1,1,1.0,1,1,1)
+              1
+srac.f:218: (continued):
+    7600 CALL BURNIN(NMC,ICT(LCNMC),ICT(LCVLMC)
+              2
+Argument #3 of `burnin' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:264: warning:
+    8200 CALL GAM(0,II(LCMTNM),1,1.0,II(LCNISO))
+              1
+srac.f:266: (continued):
+    8300 CALL GAM(NMP,II(LCMTNM),PAA(LCMATD),PAA(LCVOLM),II(LCNISO))
+              2
+Argument #3 of `gam' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:264: warning:
+    8200 CALL GAM(0,II(LCMTNM),1,1.0,II(LCNISO))
+              1
+srac.f:268: (continued):
+    8400 CALL GAM(NMPA,II(LCMTNM),ISA(LCNMPA),ISA(LCVLMA),II(LCNISO))
+              2
+Argument #4 of `gam' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:264: warning:
+    8200 CALL GAM(0,II(LCMTNM),1,1.0,II(LCNISO))
+              1
+srac.f:273: (continued):
+         CALL GAM(NMPW,II(LCMTNM),TWRN(LZRDUC),TWRN(LVOLMA),II(LCNISO))
+              2
+Argument #3 of `gam' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:317: warning:
+         CALL FSOURC (NRR,NFTL,NMP,PAA(LCMATD),II(LCMTNM),PAA(LCMAR),IPAA)
+              1
+srac.f:331: (continued):
+   10500 CALL FSOURC(IM,NFTL,NMPA,ISA(LCNMPA),II(LCMTNM),ISA(LMZ),
+              2
+Argument #4 of `fsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:317: warning:
+         CALL FSOURC (NRR,NFTL,NMP,PAA(LCMATD),II(LCMTNM),PAA(LCMAR),IPAA)
+              1
+srac.f:331: (continued):
+   10500 CALL FSOURC(IM,NFTL,NMPA,ISA(LCNMPA),II(LCMTNM),ISA(LMZ),
+              2
+Argument #6 of `fsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:337: (continued):
+         CALL MIXX(IOPT(2),IZM,NXRA,NEF,NFTL,II(LCMTNM),ISA(LMZ),
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:337: (continued):
+         CALL MIXX(IOPT(2),IZM,NXRA,NEF,NFTL,II(LCMTNM),ISA(LMZ),
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:317: warning:
+         CALL FSOURC (NRR,NFTL,NMP,PAA(LCMATD),II(LCMTNM),PAA(LCMAR),IPAA)
+              1
+srac.f:353: (continued):
+         CALL FSOURC(NNRMAX,NFTL,NMPT,IIT(LCMTM),II(LCMTNM),IIT(LCIK)
+              2
+Argument #4 of `fsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:317: warning:
+         CALL FSOURC (NRR,NFTL,NMP,PAA(LCMATD),II(LCMTNM),PAA(LCMAR),IPAA)
+              1
+srac.f:353: (continued):
+         CALL FSOURC(NNRMAX,NFTL,NMPT,IIT(LCMTM),II(LCMTNM),IIT(LCIK)
+              2
+Argument #6 of `fsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:358: (continued):
+         CALL MIXX(IOPT(2),NRT,NXRT,NEF,NFTL,II(LCMTNM),IIT(LCIK)
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:358: (continued):
+         CALL MIXX(IOPT(2),NRT,NXRT,NEF,NFTL,II(LCMTNM),IIT(LCIK)
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:366: (continued):
+         CALL MIXX(IOPT(2),IRN,NXRC,NEF,NFTL,II(LCMTNM),ICT(LCMACC),
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:366: (continued):
+         CALL MIXX(IOPT(2),IRN,NXRC,NEF,NFTL,II(LCMTNM),ICT(LCMACC),
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:306: warning:
+   10100 CALL FWRITE(IOPT(2),NFTL,NFFL,1,1,1,1.0)
+              1
+srac.f:391: (continued):
+         CALL FWRITE(IOPT(2),NFTL,NFTL,NR,NRR,PAA(LCIRR),PAA(LCVOL))
+              2
+Argument #6 of `fwrite' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:388: warning:
+         CALL TSOURC(NR ,NRR,PAA(LCMAR),PAA(LCIRR),II(LCMTNM),PAA(LCVOLR))
+              1
+srac.f:399: (continued):
+   14500 CALL TSOURC (IM ,IZM,ISA(LMZ),ISA(LMA),II(LCMTNM),ISA(LV))
+              2
+Argument #3 of `tsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:388: warning:
+         CALL TSOURC(NR ,NRR,PAA(LCMAR),PAA(LCIRR),II(LCMTNM),PAA(LCVOLR))
+              1
+srac.f:399: (continued):
+   14500 CALL TSOURC (IM ,IZM,ISA(LMZ),ISA(LMA),II(LCMTNM),ISA(LV))
+              2
+Argument #4 of `tsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:388: warning:
+         CALL TSOURC(NR ,NRR,PAA(LCMAR),PAA(LCIRR),II(LCMTNM),PAA(LCVOLR))
+              1
+srac.f:399: (continued):
+   14500 CALL TSOURC (IM ,IZM,ISA(LMZ),ISA(LMA),II(LCMTNM),ISA(LV))
+              2
+Argument #6 of `tsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:405: (continued):
+         CALL MIXX(IOPT(2),IZM,NXRA,NET,NFTL,II(LCMTNM),ISA(LMZ),
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:405: (continued):
+         CALL MIXX(IOPT(2),IZM,NXRA,NET,NFTL,II(LCMTNM),ISA(LMZ),
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:388: warning:
+         CALL TSOURC(NR ,NRR,PAA(LCMAR),PAA(LCIRR),II(LCMTNM),PAA(LCVOLR))
+              1
+srac.f:420: (continued):
+   14700 CALL TSOURC(NNRMAX,NRT,IIT(LCIK),IIT(LCNNR),II(LCMTNM),
+              2
+Argument #3 of `tsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:388: warning:
+         CALL TSOURC(NR ,NRR,PAA(LCMAR),PAA(LCIRR),II(LCMTNM),PAA(LCVOLR))
+              1
+srac.f:420: (continued):
+   14700 CALL TSOURC(NNRMAX,NRT,IIT(LCIK),IIT(LCNNR),II(LCMTNM),
+              2
+Argument #4 of `tsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:388: warning:
+         CALL TSOURC(NR ,NRR,PAA(LCMAR),PAA(LCIRR),II(LCMTNM),PAA(LCVOLR))
+              1
+srac.f:420: (continued):
+   14700 CALL TSOURC(NNRMAX,NRT,IIT(LCIK),IIT(LCNNR),II(LCMTNM),
+              2
+Argument #6 of `tsourc' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:426: (continued):
+         CALL MIXX(IOPT(2),NRT,NXRT,NET,NFTL,II(LCMTNM),IIT(LCIK)
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:426: (continued):
+         CALL MIXX(IOPT(2),NRT,NXRT,NET,NFTL,II(LCMTNM),IIT(LCIK)
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:436: (continued):
+         CALL MIXX(IOPT(2),IRN,NXRC,NET,NFTL,II(LCMTNM),ICT(LCMACC),
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:436: (continued):
+         CALL MIXX(IOPT(2),IRN,NXRC,NET,NFTL,II(LCMTNM),ICT(LCMACC),
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:465: warning:
+   15510 CALL CONDEN(IC,JC,0,II(LCNECF),II(LCMTNM),0,IPAA(1),II(LCNISO))
+              1
+srac.f:467: (continued):
+   15520 CALL CONDEN(IC,JC,NXX,II(LCNECF),II(LCMTNM),NMP,PAA(LCMATD)
+              2
+Argument #7 of `conden' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:465: warning:
+   15510 CALL CONDEN(IC,JC,0,II(LCNECF),II(LCMTNM),0,IPAA(1),II(LCNISO))
+              1
+srac.f:473: (continued):
+   15540 CALL CONDEN(IC,JC,NXX,II(LCNECF),II(LCMTNM),NMPW,TWRN(LZRDUC)
+              2
+Argument #7 of `conden' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:488: warning:
+   16500 IF(IOPT(2).NE.0) CALL CONCAT(NXX  ,CASEID    ,IOPT(2))
+                               1
+srac.f:489: (continued):
+   16600                  CALL CONCAT(NMAT ,II(LCMTNM),      0)
+                               2
+Argument #2 of `concat' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:514: (continued):
+         CALL MICREM(0       ,ISA(LMZ),ISA(LCNXRA),NXRA)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:514: (continued):
+         CALL MICREM(0       ,ISA(LMZ),ISA(LCNXRA),NXRA)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:517: (continued):
+   17113 CALL MICREM(IOPT(10),ISA(LMZ),ISA(LCNXRA),NXRA)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:517: (continued):
+   17113 CALL MICREM(IOPT(10),ISA(LMZ),ISA(LCNXRA),NXRA)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:530: (continued):
+         CALL MICREM(0       ,IIT(LCIK),IIT(LCXR),NXRT)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:530: (continued):
+         CALL MICREM(0       ,IIT(LCIK),IIT(LCXR),NXRT)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:533: (continued):
+   17115 CALL MICREM(IOPT(10),IIT(LCIK),IIT(LCXR),NXRT)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:533: (continued):
+   17115 CALL MICREM(IOPT(10),IIT(LCIK),IIT(LCXR),NXRT)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:538: (continued):
+         CALL MICREM(0       ,ICT(LCMACC),ICT(LCNXRC),NXRC)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:538: (continued):
+         CALL MICREM(0       ,ICT(LCMACC),ICT(LCNXRC),NXRC)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:541: (continued):
+   17116 CALL MICREM(IOPT(10),ICT(LCMACC),ICT(LCNXRC),NXRC)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:541: (continued):
+   17116 CALL MICREM(IOPT(10),ICT(LCMACC),ICT(LCNXRC),NXRC)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:554: (continued):
+   17012 CALL BURNUP(NMP,PAA(LCMATD),PAA(LCVOLM))
+              2
+Argument #2 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:556: (continued):
+   17013 CALL BURNUP(NMPA,ISA(LCNMPA),ISA(LCVLMA))
+              2
+Argument #3 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:558: (continued):
+   17014 CALL BURNUP(NMPW,TWRN(LZRDUC),TWRN(LVOLMA))
+              2
+Argument #2 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:560: (continued):
+   17015 CALL BURNUP(NMPT,IIT(LCMTM),IIT(LCVLMT))
+              2
+Argument #3 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:562: (continued):
+   17016 CALL BURNUP(NMC,ICT(LCNMC),ICT(LCVLMC))
+              2
+Argument #3 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:643: (continued):
+         CALL MIXX(IOPT(12),IZM,NXRA,NFTL,NFTL,II(LCMTNM),ISA(LMZ),
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:643: (continued):
+         CALL MIXX(IOPT(12),IZM,NXRA,NFTL,NFTL,II(LCMTNM),ISA(LMZ),
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:661: (continued):
+         CALL MIXX(IOPT(12),NRT,NXRT,NFTL,NFTL,II(LCMTNM),IIT(LCIK)
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:661: (continued):
+         CALL MIXX(IOPT(12),NRT,NXRT,NFTL,NFTL,II(LCMTNM),IIT(LCIK)
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:670: (continued):
+         CALL MIXX(IOPT(12),IRN,NXRC,NFTL,NFTL,II(LCMTNM),ICT(LCMACC),
+              2
+Argument #7 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:327: warning:
+         CALL MIXX(IOPT(2),NRR,NXR,NEF,NFTL,II(LCMTNM),PAA(LCMAR)
+              1
+srac.f:670: (continued):
+         CALL MIXX(IOPT(12),IRN,NXRC,NFTL,NFTL,II(LCMTNM),ICT(LCMACC),
+              2
+Argument #8 of `mixx' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:465: warning:
+   15510 CALL CONDEN(IC,JC,0,II(LCNECF),II(LCMTNM),0,IPAA(1),II(LCNISO))
+              1
+srac.f:697: (continued):
+   18100 CALL CONDEN(IC,IC12,NXX,II(LCNECF),II(LCMTNM),NMP ,PAA(LCMATD)
+              2
+Argument #7 of `conden' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:465: warning:
+   15510 CALL CONDEN(IC,JC,0,II(LCNECF),II(LCMTNM),0,IPAA(1),II(LCNISO))
+              1
+srac.f:706: (continued):
+         CALL CONDEN(IC,IC12,NXX,II(LCNECF),II(LCMTNM),NMPW,TWRN(LZRDUC)
+              2
+Argument #7 of `conden' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:725: (continued):
+   18720 CALL MICREM(IOPT(10),ISA(LMZ),ISA(LCNXRA),NXRA)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:725: (continued):
+   18720 CALL MICREM(IOPT(10),ISA(LMZ),ISA(LCNXRA),NXRA)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:731: (continued):
+   18740 CALL MICREM(IOPT(10),IIT(LCIK),IIT(LCXR),NXRT)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:731: (continued):
+   18740 CALL MICREM(IOPT(10),IIT(LCIK),IIT(LCXR),NXRT)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:734: (continued):
+   18750 CALL MICREM(IOPT(10),ICT(LCMACC),ICT(LCNXRC),NXRC)
+              2
+Argument #2 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:506: warning:
+         CALL MICREM(0       ,PAA(LCMAR),PAA(LCIXR),NXR)
+              1
+srac.f:734: (continued):
+   18750 CALL MICREM(IOPT(10),ICT(LCMACC),ICT(LCNXRC),NXRC)
+              2
+Argument #3 of `micrem' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:743: (continued):
+   18810 CALL BURNUP(NMP,PAA(LCMATD),PAA(LCVOLM))
+              2
+Argument #2 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:746: (continued):
+   18820 CALL BURNUP(NMPA,ISA(LCNMPA),ISA(LCVLMA))
+              2
+Argument #3 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:749: (continued):
+   18830 CALL BURNUP(NMPW,TWRN(LZRDUC),TWRN(LVOLMA))
+              2
+Argument #2 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:752: (continued):
+   18840 CALL BURNUP(NMPT,IIT(LCMTM),IIT(LCVLMT))
+              2
+Argument #3 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+srac.f:551: warning:
+   17011 CALL BURNUP(1,1,1.0)
+              1
+srac.f:755: (continued):
+         CALL BURNUP(NMC,ICT(LCNMC),ICT(LCVLMC))
+              2
+Argument #3 of `burnup' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ssourc.f: In subroutine `ssourc':
+ssourc.f:36: warning:
+         IF(IOPT(20).NE.0 .AND. IOPT(79).NE.0)
+                                     ^
+Array element value at (^) out of defined range
+ssourc.f:37: warning:
+        *NODE(2)(2:2)=NUMB(IOPT(79))(4:4)
+                                ^
+Array element value at (^) out of defined range
+tsourc.f: In subroutine `tsourc':
+tsourc.f:56: warning:
+         CALL PACK(NODE(2),1,LETF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+tsourc.f:57: warning:
+         IF(IOPT(79).GT.0)    CALL PACK(NODE(2),2,NUMB(IOPT(79)))
+                 ^
+Array element value at (^) out of defined range
+tsourc.f:57: warning:
+         IF(IOPT(79).GT.0)    CALL PACK(NODE(2),2,NUMB(IOPT(79)))
+                                                            ^
+Array element value at (^) out of defined range
+tsourw.f: In subroutine `tsourw':
+tsourw.f:49: warning:
+         CALL BSHIFT(FILENM(1),'FLUX',0)
+              1
+tsourw.f:56: (continued):
+         CALL BSHIFT(NODE(2),'X00X',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+tsourw.f:57: warning:
+         CALL PACK (NODE(2),1,LETF)
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+tsourw.f:49: warning:
+         CALL BSHIFT(FILENM(1),'FLUX',0)
+              1
+tsourw.f:121: (continued):
+         CALL BSHIFT(NODE(1),'CONT',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+tsourw.f:49: warning:
+         CALL BSHIFT(FILENM(1),'FLUX',0)
+              1
+tsourw.f:123: (continued):
+         CALL BSHIFT(NODE(2),'T002',0)
+              2
+Argument #1 of `bshift' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+tsourw.f:59: warning:
+         CALL READ(NODE,FLUX,IJG)
+              1
+tsourw.f:124: (continued):
+         CALL READ(NODE,NGR,1)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f: In subroutine `uflcal':
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:124: (continued):
+         CALL READ( NAMEP(1), AA, LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:125: (continued):
+         CALL READ( NMYLD(1), FCHI, NEFL )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:173: (continued):
+         CALL WRITE( NMYLD(1), BCHI, NEF )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:193: (continued):
+               IF ( ISW.EQ.0 ) CALL READ( NMTEMP(1), STND, 71 )
+                                    2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:194: (continued):
+               IF ( ISW.EQ.1 ) CALL WRITE( NMTEMP(1), STND, 71 )
+                                    2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:214: warning:
+         CALL PACK( NAMEP(1), 1, IBLNK )
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:234: (continued):
+         CALL READ( NAMEP(1), AA, LTOT )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:408: (continued):
+         CALL WRITE( NAMEP(1), AA, ISW )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:423: (continued):
+         CALL READ( NAMEP(1), AA, LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:469: (continued):
+         CALL WRITE( NAMEP(1), AA, JSW )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:509: (continued):
+         CALL READ( NAMEP(1), AA, LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:847: (continued):
+         CALL WRITE( NAMEP(1), AA, ICNT )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:877: (continued):
+            CALL READ( NAMEP(1), AA, LENG )
+                 2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:880: (continued):
+            CALL WRITE( NAMEP(1), AA, LENG )
+                 2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:115: warning:
+         CALL READ( NAMEP(1), II, 4 )
+              1
+uflcal.f:895: (continued):
+         CALL READ( NAMEP(1), AA, LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:927: (continued):
+         CALL WRITE( NAMEP, AA, LOC )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflcal.f:172: warning:
+         CALL WRITE( NAMEP(1), II, LENG )
+              1
+uflcal.f:949: (continued):
+         CALL WRITE( NMTEMP(1), STND, 71 )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+uflmpl.f: In subroutine `uflmpl':
+uflmpl.f:49: warning:
+         CALL PACK(IDENT(1),1,IDMPL(NN))
+              ^
+Reference to unimplemented intrinsic `PACK' at (^) (assumed EXTERNAL)
+umccrs.f: In subroutine `umccrs':
+umccrs.f:86: warning:
+         CALL CLEA( EMESHF , IMAX  , 0.0 )
+              1
+umccrs.f:87: (continued):
+         CALL CLEA( LOC    , IMAX  , 0.0 )
+              2
+Argument #1 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umceng.f: In subroutine `umceng':
+umceng.f:52: warning:
+         CALL CLEA(  INTBL , 2000 , 0.0 )
+              1
+umceng.f:53: (continued):
+         CALL CLEA(  ENGD  , 2000 , 0.0 )
+              2
+Argument #1 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umceng.f:52: warning:
+         CALL CLEA(  INTBL , 2000 , 0.0 )
+              1
+umceng.f:54: (continued):
+         CALL CLEA(  EWORK ,  500 , 0.0 )
+              2
+Argument #1 of `clea' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umceng.f:107: warning:
+         CALL  READ( MEMBER , NEF   , 1 )
+               1
+umceng.f:110: (continued):
+         CALL  READ( MEMBER , WORK  , LENG )
+               2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umceng.f:402: warning:
+         CALL WRITE ( MEMBER , IWORK , LENG )
+              1
+umceng.f:411: (continued):
+         CALL WRITE ( MEMBER , ENERGY, LENG )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umceng.f:402: warning:
+         CALL WRITE ( MEMBER , IWORK , LENG )
+              1
+umceng.f:420: (continued):
+         CALL WRITE ( MEMBER , EBOUND, LENG )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umceng.f:402: warning:
+         CALL WRITE ( MEMBER , IWORK , LENG )
+              1
+umceng.f:438: (continued):
+         CALL WRITE ( MEMBER , ENGD  , LENG )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umcont.f: In subroutine `umcont':
+umcont.f:62: warning:
+         CALL WRITE( MEMBER  , IWORK , LENG )
+              1
+umcont.f:71: (continued):
+         CALL WRITE( MEMBER  , SIG1D , LENG )
+              2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umcros.f: In subroutine `umcros':
+umcros.f:66: warning:
+         CALL   READ  ( MEMBER , WORK , 14 )
+                1
+umcros.f:202: (continued):
+         CALL READ ( MEMBER , IWORK , LENGTH )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umcset.f: In subroutine `umcset':
+umcset.f:33: warning:
+         CALL READ (MEMBER ,NEF   ,1)
+              1
+umcset.f:35: (continued):
+         CALL READ (MEMBER ,WORK  ,LENG)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umcset.f:33: warning:
+         CALL READ (MEMBER ,NEF   ,1)
+              1
+umcset.f:72: (continued):
+         CALL READ (  MEMBER , ENERGY, LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umcset.f:33: warning:
+         CALL READ (MEMBER ,NEF   ,1)
+              1
+umcset.f:84: (continued):
+         CALL READ ( MEMBER , EBOUND , LENG )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+umcset.f:33: warning:
+         CALL READ (MEMBER ,NEF   ,1)
+              1
+umcset.f:96: (continued):
+         CALL READ  ( MEMBER , ENGD  , LENG  )
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+utlcal.f: In subroutine `utlcal':
+utlcal.f:114: warning:
+                      CALL READ( MEMBER , FLUX1 , LGT )
+                           1
+utlcal.f:243: (continued):
+         CALL READ(MNNAME,II,LGTCON)
+              2
+Argument #2 of `read' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+utlcal.f:191: warning:
+         CALL WRITE(NTNAME,AA,NETA)
+              1
+utlcal.f:732: (continued):
+         IF(ISW.EQ.1) CALL WRITE(MNNAME,II,LGTCON)
+                           2
+Argument #2 of `write' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+xset.f: In subroutine `xset':
+xset.f:58: warning:
+         GIS(2) = SIG(K,M,11)
+                          ^
+Array element value at (^) out of defined range
+xset.f:59: warning:
+         GIS(3) = SIG(K,M,12)
+                          ^
+Array element value at (^) out of defined range
+g77: -lfrtbegin: linker input file unused because linking not done
+g77: -lg2c: linker input file unused because linking not done
+g77: -lm: linker input file unused because linking not done
+--- end compile process for Fortran-programs ---
+--- end linking process ---
+ XXX Production of SRAC load module completed.
+ XXX All processes completed.

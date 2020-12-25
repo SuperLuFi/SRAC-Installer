@@ -1,0 +1,203 @@
+C             IRACMP              LEVEL=1        DATE=85.07.25
+      SUBROUTINE  IRACMP(MTNAME,NISO  ,TEMP  ,XL    ,DC    ,LISO  ,
+     &                   IDENT ,IRES  ,DN    ,LXMICR,VOL   )
+C
+      DOUBLE PRECISION JNEFST,FNEFST,JNMACR,FNMACR
+C
+CDEL  PARAMETER   (MXLISO= 2000)
+      INCLUDE  'MATDTINC'
+      COMMON  /MAINC / NN(100),ID(2),TITLE(18),AA(380)
+      COMMON  /PIJ2C / LL(50),BB(950)
+      COMMON  /IRACNL/ IOPT(20),JNEFST,FNEFST,JNMACR,FNMACR,NEF,IGT,
+     &                 NMAT,KNMAX,MXMTX,MXTEMP,MXSIG0,LNMAX,IDS,NEF1,
+     &                 MXREAC,NOUT1,NOUT2
+C
+      COMMON  /IRADAT/ ISTART,NEFR,NEFB,NOMTF,NISOM,TCOR,S,NRES,
+     &                 NPSE,VOLF,VOLM,KKNMAX,NMP,MATD(50)
+C
+      DIMENSION  IA(380),IB(950)
+C
+      EQUIVALENCE (IA(1),AA(1))
+      EQUIVALENCE (IB(1),BB(1))
+C
+      DIMENSION  MTNAME(2,NMAT),NISO(NMAT),TEMP(NMAT),XL(NMAT),
+C    +           DC(NMAT),IRES(KNMAX,NMAT),LISO(NMAT),VOL(NMAT),
+     &           DC(KNMAX,NMAT),IRES(KNMAX,NMAT),LISO(NMAT),VOL(NMAT),
+     &           IDENT(2,KNMAX,NMAT),DN(KNMAX,NMAT),LXMICR(KNMAX,NMAT)
+CJAIS ADDED FOR NUCLIDE-WISE DANCOFF FACTOR 4/8/1984
+      COMMON /NEWDAN/ DANNEW(MXLISO)
+C
+      NMP    = LL(33)
+      LCMATD = LL(50)
+      CALL ICLEA(MATD  ,50    ,0)
+      CALL ICLEA(NISO  ,NMAT  ,0)
+C
+      DO 9 M=1,NMP
+      MATD(M)=IB(LCMATD)
+    9 LCMATD=LCMATD+1
+C
+      LCMTNM=NN(85)
+      DO 11 J=1,NMAT
+      DO 11 I=1,2
+      MTNAME(I,J)=IA(LCMTNM)
+   11 LCMTNM=LCMTNM+1
+C
+      LCNISO=NN(86)
+      DO 12 J=1,NMAT
+      ISW=LCNISO+J-1
+      NISO(J)=IA(ISW)
+   12 CONTINUE
+C
+      DO 111 K=1,NMP
+      J=MATD(K)
+      IF(NISO(J).NE.0.) GO TO 111
+      WRITE(6,112) J
+      STOP
+  111 CONTINUE
+C
+  112 FORMAT(' *** NULL COMPOSITION ENCOUNTERED FOR',I2,' TH MIXTURE,',
+     &' GIVE COMPOSITION EVEN IF MACRO X-SECTION IS ALREADY COMPOSED')
+C
+      LCTEMP=NN(87)
+      DO 13 J=1,NMAT
+      TEMP(J)=AA(LCTEMP)
+   13 LCTEMP=LCTEMP+1
+C
+      LCXL=NN(88)
+      DO 14 J=1,NMAT
+      XL(J)=AA(LCXL)
+   14 LCXL=LCXL+1
+C
+CJAIS DELETED FOR NUCLIDE-WISE DANCOFF FACTOR 4/8/1984
+C     LCXCDC=NN(89)
+C     DO 15 J=1,NMAT
+C     DC(J)=AA(LCXCDC)
+C  15 LCXCDC=LCXCDC+1
+C
+      LCLISO=NN(90)
+      DO 16 J=1,NMAT
+      LISO(J)=IA(LCLISO)
+      LCLISO=LCLISO+1
+   16 CONTINUE
+CJAIS ADDED FOR NUCLIDE-WISE DANCOFF FACTOR 4/8/1984
+      DO 115 J=1,NMAT
+      ISW=LISO(J)-1
+      MM =NISO(J)
+      IF(MM.LE.0) GO TO 115
+      DO  15 M=1,MM
+      ISW=ISW+1
+      DC(M,J)=DANNEW(ISW)
+   15 CONTINUE
+  115 CONTINUE
+C
+      LCIDNT=NN(91)
+      DO 117 J=1,NMAT
+      ISW=LCIDNT+(LISO(J)-1)*2
+      MM=NISO(J)
+      IF(MM.LE.0)   GO TO 117
+      DO 17 M=1,MM
+      DO 17 I=1,2
+      IDENT(I,M,J)=IA(ISW)
+      ISW=ISW+1
+   17 CONTINUE
+  117 CONTINUE
+C
+      LCDN=NN(92)
+      DO 118 J=1,NMAT
+      ISW=LCDN+LISO(J)-1
+      MM=NISO(J)
+      IF(MM.LE.0)   GO TO 118
+      DO 18 M=1,MM
+      DN(M,J)=AA(ISW)
+      ISW=ISW+1
+   18 CONTINUE
+  118 CONTINUE
+C
+      NOMTF = 0
+      IERR  = 0
+C
+      LCIRES=NN(93)
+      DO 119 J=1,NMAT
+      ISW=LCIRES+LISO(J)-1
+      MM=NISO(J)
+      IF(MM.LE.0)  GO TO 119
+      DO 19 M=1,MM
+      IIRES=IA(ISW)
+      IRES(M,J)=IIRES
+CM    IF(IIRES.EQ.2 .AND. NOMTF.NE.0 .AND. NOMTF.NE.J) IERR=1
+CM    IF(IIRES.EQ.2)  NOMTF=J
+      ISW=ISW+1
+   19 CONTINUE
+  119 CONTINUE
+C
+      DO 150 K=1,NMP
+      J     = MATD(K)
+      MMK   = NISO(J)
+      IF(MMK.LE.0) GO TO 150
+            DO 50 M = 1 , MMK
+            IF(IRES(M,J).NE.2) GO TO 50
+            IF(NOMTF    .EQ.J) GO TO 50
+            IF(NOMTF.EQ.0) THEN
+                           NOMTF = J
+                           ELSE
+                           IERR  = 1
+                           ENDIF
+   50       CONTINUE
+  150 CONTINUE
+C
+      IF(IERR.NE.0) THEN
+                    WRITE(NOUT1,131)
+                    STOP
+                    ENDIF
+C
+  131 FORMAT(/1H ,5X,' *** ERROR STOP AT IRA-MODULE ***',
+     &       /1H ,5X,' *** NUMBER OF RESONANT M-REGION MUST BE ONE ]] ')
+C
+      LCIXMC=NN(94)
+      DO 120 J=1,NMAT
+      ISW=LCIXMC+LISO(J)-1
+      MM=NISO(J)
+      IF(MM.LE.0)  GO TO 120
+      DO 20 M=1,MM
+      LXMICR(M,J)=IA(ISW)
+      ISW=ISW+1
+   20 CONTINUE
+  120 CONTINUE
+C
+      VOLF  = 0.0
+      VOLM  = 0.0
+      NISOM = 0
+      LCVOL = LL(49)
+      CALL  CLEA ( VOL , NMAT , 0.0 )
+C
+      DO 21 K=1,NMP
+      J     = MATD(K)
+      ISW   = LCVOL+K-1
+      VOL(J)= BB(ISW)
+C     IF(J.EQ.NOMTF) VOLF  = VOL(J)
+      IF(J.EQ.NOMTF) THEN
+                     VOLF  = VOL(J)
+                     ELSE
+                     VOLM  = VOLM  + VOL(J)
+                     NISOM = NISOM + NISO(J)
+                     ENDIF
+   21 CONTINUE
+CM
+CM    DO 22 N=1,NMAT
+CM    IF(N.NE.NOMTF) VOLM=VOLM+VOL(N)
+CM    IF(N.NE.NOMTF) NISOM=NISOM+NISO(N)
+CM 22 CONTINUE
+CM
+CM    COMPOSITION DATA STORAGE END
+CM
+CM    WRITE(NOUT2,208) (VOL(I),I=1,NMAT)
+CM    WRITE(NOUT2,209) NOMTF,NISOM,NMP,VOLF,VOLM
+CM    WRITE(NOUT2,210) (MATD(I),I=1,NMP)
+CM    WRITE(NOUT2,211) (NISO(I),I=1,NMAT)
+CM308 FORMAT(1H ,' ** VOLUME OF MATERIAL ** ',1P5E12.5)
+CM209 FORMAT(1H ,' ** NOMTF NISOM NMP VOLF VOLM** ',3I3,1P2E12.5)
+CM210 FORMAT(1H ,' ** MATD ** ',10I3)
+CM211 FORMAT(1H ,' ** NISO ** ',10I3)
+C
+      RETURN
+      END

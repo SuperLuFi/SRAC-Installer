@@ -1,0 +1,45 @@
+C             WOT                 LEVEL=1        DATE=80.09.29
+      SUBROUTINE WOT(X,NCOL,LTBL,LG,TOP1,TOP2,TOP3)
+C   ***  WOT   WRITES 1,2, OR 3-D ARRAYS
+      COMMON /MAINC/III(1000)
+      DIMENSION X(LTBL,NCOL,1 )
+      EQUIVALENCE (III(65),NOUT2)
+      N6=6
+      DO 1 L=1,LG
+      I02=0
+      I03=(NCOL+7)/8
+      IF(LG.GT.1)WRITE(NOUT2,10) TOP3,L
+   10 FORMAT(/1H0,2X,A4,I5)
+      DO 2 I=1,I03
+      I01=I02+1
+      I02=MIN0(I01+7,NCOL)
+      WRITE (NOUT2,20) TOP1,(TOP2,J,J=I01,I02)
+      DO 3 K=1,LTBL
+      IF(K.EQ.1)GO TO 4
+      DO 6 J=I01,I02
+      IF(X(K,J,L).NE.X(K-1,J,L))GO TO 7
+    6 CONTINUE
+      IF(KE.EQ.KS)GO TO 8
+      KE=K
+      IF(K.EQ.LTBL)GO TO 7
+      GO TO 3
+    8 IF(K.EQ.LTBL)GO TO 4
+      DO 9 J=I01,I02
+      IF(X(K,J,L).NE.X(K+1,J,L))GO TO 4
+    9 CONTINUE
+      KE=KE+1
+      GO TO 3
+    7 IF(KE.EQ.KS)GO TO 4
+                  WRITE(NOUT2,40) TOP1,KS,TOP1,KE
+      IF(K.EQ.LTBL .AND. KE.EQ.K)GO TO 3
+   40 FORMAT(8X,A4,I5,' THRU ',A4,I5,' SAME AS ABOVE')
+    4 WRITE(NOUT2,30) K,(X(K,J,L),J=I01,I02)
+      KS=K+1
+      KE=KS
+    3 CONTINUE
+    2 CONTINUE
+    1 CONTINUE
+   20 FORMAT('0 ',A4,3X,A4,I3,7(6X,A4,I3))
+   30 FORMAT(I6,1P8E13.5)
+      RETURN
+      END

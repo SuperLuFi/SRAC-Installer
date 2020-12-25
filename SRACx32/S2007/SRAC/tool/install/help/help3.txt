@@ -1,0 +1,137 @@
+
+*******************************************************************************
+                           How to Install SRAC Code
+*******************************************************************************
+(1) Required Disk Capacity for Installation (No Library Data)
+    before Installation : about  5 M-bytes    (now occupied)
+    after  Installation : about 10-17-M bytes (depends on system)  
+    Note: more large capacity is necessary during installation.
+
+(2) Fisrt of All
+    Set the SRAC file in the directory you like.
+    e.g. /home/okumura/code/JAERI/SRAC
+    You can change the name of the top directory (e.g. SRAC => srac-code)
+
+    Suggested setting of ".cshrc" or ".login" file for convenient use of SRAC :
+    e.g.      set path=($HOME/SRAC/cmnd $path)
+          or  cp SRAC/cmnd/*  $HOME/bin (your private comannd directory)
+    Especially, commands "dir" and "files" in SRAC/cmnd will be very 
+    convenient to manage many library data of SRAC.
+
+(3) Before Installation
+    Pre-processor must be executed in the main menu of @PunchMe.
+    The pre-processor will generates system-dependent source programs,
+    makefiles, and shell-scripts to generate load modules.
+    The pre-processor will ask you machine type you are now using, then select
+    the appropriate number in the menu.
+
+    If you can not find the machine type in the menu, select "You don't know
+    who I am". Then, you can change the compile driver name (e.g. f77) and
+    compile options by yourself. However, the function to get date, real-time,
+    and cpu-time will be suppressed. Although they are not effective for 
+    calculated resuts, the lack of the last function restricts restart
+    calculatins. Rewrite the source program( /SRAC/src/extnl/uclckm.f), if you
+    want.
+
+(4) Installation of SRAC
+    In the installation menu of @PunchMe, the following programs and data 
+    can be installed.
+    1) Utility Programs : binary file manager
+    2) Bickley function table : binary data which is used in the collision 
+                                probability calculation in SRAC.
+    3) SRAC load module : will be generated in the directory SRAC/bin.
+    Before the installation of the Bickley function data, the utility 
+    programs must be installed.
+    Background job will be used except for the utility installation. 
+    Messages will be written in the directory SRAC/tmp/. Check them 
+    carefully and remove them.
+    When the installation failed, try again after you change the Fortran
+    compile options or compiler itself. You can see details in the custom-
+    installation menu under the installation menu.
+
+(5) Required installation time (depend on compilers and machines)
+    about 1 minute       for the utility programs,
+    about 15-60 minutes  for the SRAC load module,
+    about 1 minite       for the Bickley function table
+
+(6) Manual Installation
+    In the cases when the automatic installation by @PunchMe does not work well
+    or CPU time of direct job execution is shortly limited, 
+    copy the following installation shell-scripts ;
+      SRAC/tool/install/UtilInst.sh (utility programs),
+      SRAC/tool/install/ProgInst.sh (SRAC load module),
+      SRAC/tool/install/DataInst.sh (Bickley function table),
+    and change them as you like for manual installation.
+
+(7) Note for Users of FACOM-VPP500 Machines
+    In the FACOM-VPP500, data types are different in the front-end processor
+    (M,EBCDIC) and in the back-end processor(IEEE,ASCII). Therefore, bainary
+    data must be generated in the back-end processor by a batch job.
+    The installation of the Bickley function table should not be done in the
+    menu of @PunchMe. Install it by yourself as a batch job using the shell-
+    script ; SRAC/tool/install/DataInst.sh.
+
+(8) Uninstallation
+    All installed data can be deleted selectively in the uninstallation menu of
+    @PunchMe. If you failed the installation process, execute the uninstaller
+    and try again after you remove the causes of troubles. By using the 
+    uninstaller, this file can be recoverd to the initial condition. Therefore,
+    you can install without any hesitations.
+
+(9) Library Data
+    Any librares for SRAC are not included in this file. They are prepared 
+    as external files ; SRACLIB-JDL32, SRACLIB-EDFB4, SRACLIB-JEF22, ....
+    To install these library data, use the installer equipped in each
+    library file.
+
+(10)Test Run
+    After all installations (including library), try to run sample problems 
+    and check output data.
+
+    %cd SRAC/smpl/shr
+    %Test.sh               (wait for a few time)
+    %cd SRAC/smpl/outp
+    %vi {file-name}   (confirm output results)
+    Other samples may take a lot of time.
+    Sample output result in SRAC/smpl/outp is based on the JENDL-3.2 library.
+    
+    The execution tests have been done on the following machines in JAERI.
+    -----------------------------------------------------------------------
+    Tested Machine  :  OS              : FORTRAN Compiler       : Note
+    -----------------------------------------------------------------------
+    HP9000/735      : HP-UX9.07        : HP-UX9.0               : EWS
+    Sun Sparc 20    : SunOS 4.1.3      : Sparc 2.01 in Sola.1.1 : EWS
+    Sun Sparc 20    : SunOS 4.1.3      : Sparc 3.0  in Sola.1.1 : EWS
+    IBM AIX RS/6000 : AIX              : AIX FORTRAN            : EWS / SP
+    FACOM AP-3000   : UltarSPARC with Solaris 2.5.1             : Scalar-Paral
+    FACOM M-780     : MSP/EX           : FORTRAN77EX            : Scalar
+    FACOM GS-8400   : MSP/EX           : FORTRAN77EX            : Scalar
+    FACOM VP-2600   : MSP/EX           : FORTRAN77EX/VP         : Vector
+    FACOM VPP500/42 : UNIX System V 4.0: UXP/M VPP FORTRAN77EX  : Vector-Paral
+    Monte4(NEC SX3) : Monte-UX         : FORTRAN77/M4           : Vector-Paral
+    PC/AT Compatible: Linux(redhatV4.2): f2c + gcc (GNU)        : pentium-II
+    PC/AT Compatible: Linux(redhatV4.2): g77 + gcc (GNU)        : pentium-II
+    -----------------------------------------------------------------------
+    *single CPU Job for parallel computers (Parallel job is not supproted)
+    -----------------------------------------------------------------------
+
+    In some computers, error message by underflow may be appeaed, but it is
+    not effective to calculated results. However, overflow causes significant
+    errors to results.
+    
+(11)Permitting of the SRAC to Other Users
+    Execute the following shell-scripts if necessary.
+    SRAC/tool/permit/usrpmt.sh (programs, data, utilities for SRAC execution)
+    SRAC/tool/permit/srcpmt.sh (source programs)
+
+(12)Others
+    The SRAC load module generated by the installer requires program memory 
+    of about 24 M-bytes for scalar computers or 44 M-bytes for vector 
+    computers.(These are strongly depend on compilers and options.)
+    If you want to change the size of program memory, edit the include files 
+    in SRAC/src/inc/*/MAINSINC,READPINC.., as you like. And generale a new
+    load module using the shell-scripts in SRAC/tool/lmmake/.
+
+    The default installer (ProgInst.sh) do not keep any object files. If you
+    want to keep them in SRAC/obj, use the shell-scripts in 
+    SRAC/tool/lmmake/objmk/.

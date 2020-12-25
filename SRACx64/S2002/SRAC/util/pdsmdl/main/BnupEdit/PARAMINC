@@ -1,0 +1,26 @@
+C     PARAMETER DEFINISION FOR PDSMDL
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MAXNG     MAXIMUM FINE ENERGY GROUPS                      107
+C     MAXNGC    MAXIMUM CONDENSED ENERGY GROUPS                  20
+C     MAXSTP    MAXIMUM BURNUP STEPS                             35
+C     MAXNUC    MAXIMUM BURNABLE NUCLIDES IN CHAIN              110
+C     MAXZN     MAXIMUM BURNABLE ZONES                           50
+C     MAXNR     MAXIMUM R-REGIONS                               300 
+C     MAXXS     MAXIMUM XS-TYPES                                 10
+C     MAXUP     MAXIMUM UP-SCATTERING GROUPS                     48
+C     MAXWRK    MAXIMUM LENGTH OF A PDS MEMBER               200000
+C     ------------------------------------------------------------------
+      PARAMETER ( MAXNG=107 )
+      PARAMETER ( MAXNGC=20 )
+      PARAMETER ( MAXSTP=35 )
+      PARAMETER ( MAXNUC=150 )
+      PARAMETER ( MAXZN=50 )  
+      PARAMETER ( MAXNR=300 )
+      PARAMETER ( MAXXS=10 )
+      PARAMETER ( MAXUP=48 )
+      PARAMETER ( MAXWRK=200000 )
+C     ------------------------------------------------------------------

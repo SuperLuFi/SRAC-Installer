@@ -1,0 +1,19 @@
+C     PARAMETER DEFINISION FOR SRAC CITATION ROUTINE
+C     THIS DEFINISION FILE NAME IS <<CITPMINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER FOR SRAC-CITATION, < >:ORIGINAL VALUE
+C     RGX  : MAX OF REGIONS IN ANY DIRECTION <100>
+C     MSX  : MAX OF MESH BOUNDARIES IN ANY DIRECTION <211>
+C     ZNEX : MAX OF ZONES <1000>
+C            ZNEX SHOULD BE EVEN NUMBER
+C     ZDX  : MAX OF ZONES DEPENDIND OPTIONS <200>
+C            SET ZDX = ZNEX IF POSSIBLE
+C     WZX  : MAX OF WORKING AREA <100> 
+C            WZX > MAX( ZNEX, MSX, ENERGY GROUPS ) IF POSSIBLE
+C     ------------------------------------------------------------------
+      INTEGER RGX , MSX , ZNEX , ZDX , WZX
+C
+C     PARAMETER ( RGX=100, MSX=211, ZNEX=1000, ZDX=200,  WZX=220 )
+      PARAMETER ( RGX=310, MSX=311, ZNEX=1000, ZDX=1000, WZX=320 )
+C     ------------------------------------------------------------------

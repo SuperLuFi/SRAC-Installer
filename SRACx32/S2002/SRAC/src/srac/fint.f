@@ -1,0 +1,16 @@
+C             FINT                LEVEL=3        DATE=82.03.11
+      SUBROUTINE FINT(NRMAX,NK,RK,TAU,RRN,ANS  ,NNMAX1)
+      DIMENSION NK(NRMAX),RK(NRMAX),TAU(NNMAX1,8),RRN(NNMAX1)
+C
+      ANS=0.
+      NN1=0
+      DO 100 K=1,NRMAX
+      RK(K)=0.
+      NC=NK(K)
+      DO 99  N=1,NC
+      NN1=NN1+1
+   99 RK(K)=RK(K)+ RRN(NN1)*TAU(NN1,4) + RRN(NN1+1)*TAU(NN1+1,3)
+  100 ANS=ANS+RK(K)
+      RETURN
+C     DEBUG SUBCHK
+      END

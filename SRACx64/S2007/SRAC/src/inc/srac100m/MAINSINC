@@ -1,0 +1,16 @@
+C     PARAMETER DEFINISION FOR SRAC MAIN ROUTINE
+C     THIS DEFINISION FILE NAME IS <<MAINSINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXSIZE    MAXIMUM SIZE OF VARIABLE DIMENSION         120 0000
+C     MXTW1C    PARAMETER FOR LENGTH-2 OF COMMON /TW1C/        9998
+C     MXSN1C    PARAMETER FOR LENGTH-2 OF COMMON /SN1C/        4998
+C     MXCITC    PARAMETER FOR LENGTH-19 OF COMMON /CIT1C/      9981
+C     ------------------------------------------------------------------
+      PARAMETER  ( MXSIZE = 700 0000 )
+      PARAMETER  ( MXTW1C =     9998 , MXSN1C = 4998 )
+      PARAMETER  ( MXCT1C =     9981 )
+C     ------------------------------------------------------------------

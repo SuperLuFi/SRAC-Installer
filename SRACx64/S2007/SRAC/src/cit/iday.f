@@ -1,0 +1,6 @@
+      SUBROUTINE IDAY(DAY)
+      REAL*8 DAY
+CKSK  CALL DATE(DAY)
+      CALL UDATE(DAY)
+      RETURN
+      END

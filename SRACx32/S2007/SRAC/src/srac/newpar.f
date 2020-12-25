@@ -1,0 +1,79 @@
+C             NEWPAR              LEVEL=1        DATE=81.11.14
+      SUBROUTINE NEWPAR
+C
+C     COMPUTES NEW PARAMETERS FOR IMPLICIT EIGENVALUE SEARCH
+C
+      COMMON /TW1C/ DD(1),LIM1,IA(210)
+      COMMON /WORK/AAA(1),LIM2,AA(130)
+      DIMENSION D(212),A(132)
+      EQUIVALENCE (D(1),DD(1)),(AAA(1),A(1))
+C
+      EQUIVALENCE (IA(11),IEVT),(IA(37),EV),(IA(38),EVM),(IA(40),XLAL),
+     &(IA(41),XLAH),(IA(42),XLAX),(IA(43),EPSO),(IA(49),POD),
+     &( A(10),XLAPP),( A(11),XLAP),( A(12),ICNT),( A(13),E2),
+     &( A(14),E1),( A(15),EVPP),( A(16),EVP),( A(18),NGO),
+     &( A(19),ALAR),( A(23),ICONV),( A(26),EVS),( A(28),ALA)
+C
+      E3=ABS(1.0-ALAR/ALA)
+      IF (XLAPP.EQ.0.0) GO TO 110
+      IF (E3.GT.XLAX) GO TO 210
+      Z=EVPP-EVP
+      E=EVPP-EV
+      F=EVP-EV
+      DEN=Z*E*F
+      EQA=((XLAPP-1.0)*F*EVP*EV-(XLAP-1.0)*E*EV*EVPP+(ALA-1.0)*Z*EVPP*EV
+     &P)/DEN
+      EQB=-(XLAPP*F*(EVP+EV)-XLAP*E*(EV+EVPP)+ALA*(EVPP+EVP)*Z)/DEN
+      EQC=(XLAPP*F-XLAP*E+ALA*Z)/DEN
+      R=EQB**2-4.*EQA*EQC
+      IF (R.LT.0.0) GO TO 120
+      IF (E2.LE.XLAL) GO TO 170
+      EVS=1.0/(EQB+2.0*EV*EQC)
+      XLAPP=XLAP
+      XLAP=ALA
+      EVPP=EVP
+      EVP=EV
+      SQRTR=SQRT(R)
+      TWOEQC=2.*EQC
+      EV1=(-EQB+SQRTR)/TWOEQC
+      EV2=(-EQB-SQRTR)/TWOEQC
+      IF (ABS(EV1-EV).GT.ABS(EV2-EV)) GO TO 100
+      EV=EV1
+      GO TO 150
+  100 EV=EV2
+      GO TO 150
+  110 IF (XLAP.EQ.0.0) GO TO 160
+      IF (E3.GT.XLAX) GO TO 210
+  120 EVS=(EVP-EV)/(XLAP-ALA)
+      IF (ICNT.NE.0) GO TO 130
+      IF (E2.LE.XLAL) GO TO 170
+      IF (E2.LE.XLAH) GO TO 130
+      E1=SIGN(XLAH,E1)
+  130 XLAPP=XLAP
+      XLAP=ALA
+      EVPP=EVP
+      EVP=EV
+  140 EV=EV+POD*EVS*E1
+  150 IF ((XLAPP-1.0)/(XLAP-1.0).GT.0.0) GO TO 200
+      B=AMAX1(EVP,EVPP)
+      C=AMIN1(EVP,EVPP)
+      IF (EV.GT.B.OR.EV.LT.C) EV=(EVP+EVPP)*0.5
+      GO TO 200
+  160 IF (EVS.EQ.0.0) GO TO 180
+      GO TO 140
+  170 ICNT=1
+      XLAP=0.0
+      XLAPP=0.0
+      GO TO 140
+  180 IF (E3.GT.EPSO) GO TO 210
+      XLAP=ALA
+      EVP=EV
+      IF (E1.GT.0.0) GO TO 190
+      EV=EV+EVM
+      GO TO 200
+  190 EV=EV-EVM
+  200 NGO=3
+      RETURN
+  210 NGO=2
+      RETURN
+      END

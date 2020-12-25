@@ -1,0 +1,25 @@
+
+START HELP -------------------------------------------------------------------
+   
+    You can install SRAC on personal computer with unix OS or similar ones
+    (e.g. Linux, FreeBSD, Cygwin. ....)
+
+    Defaulted compile driver and its option will be shown by installer.
+    They are optimized to use SRAC on Linux/FreeBSD with g77 and gcc compilers.
+    If the compile driver and options are not available on your system,
+    Change them at your own risk.
+    
+---------------------------------------
+
+    <<< about the g77 / gcc / f2c >>>
+    
+    "g77" is a FORTRAN77 compiler.
+    "gcc" is a C compiler.
+    "f2c" is a translator from FORTRAN sources to C sources.
+
+    These are all freewares.
+    You can get them from the "Free Software Foundation".
+    For more details, see the home page of the GNU project
+    or related ones. (e.g.  http://www.gnu.org/ )
+
+--------------------------------------------------------------------- END HELP

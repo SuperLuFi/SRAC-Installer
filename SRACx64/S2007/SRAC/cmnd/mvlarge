@@ -1,0 +1,11 @@
+#!/bin/csh -f
+# command mvlarge : change the small character of file name to large character
+# sample usage : mvlarge *.f
+#                a.f, b.f => A.F, B.F
+ 
+foreach i ($*)
+	set lname=`echo $i | tr '[a-z]' '[A-Z]'`
+	if( "$i" != "$lname" ) then
+		mv $i $lname
+	endif
+end

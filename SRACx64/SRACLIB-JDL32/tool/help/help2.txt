@@ -1,0 +1,79 @@
+
+*******************************************************************************
+                           How to Install Library (JENDL-3.2)
+*******************************************************************************
+(1) Required Disk Capacity for Installation
+    Size of this library file will increase at twice or more after the 
+    installation of binary library data.
+
+(2) Before Installation
+    The SRAC code must be installed before installation of this library,
+    because a ulility program in the SRAC code will be used.
+    The Installer(@PunchMe) will ask you where the SRAC code is, then you
+    should reply full path name of the SRAC code.
+    (A new file:tool/sracdir.txt will be made at that time.)
+    You can put this file on any directory and you can change the file name
+    (e.g. /home/okumura/SRACLIB/JENDL32 ) before installation.
+
+(3) Installation of Library
+    Installation can be done in the menu of @PunchMe.
+    The @PunchMe executes an installation command tool/LibInst.sh
+    as a background job.
+    The required time for the library installation is about 15 min.- 1 hour.
+    The messages will be written in the directory tmp/. Check them 
+    carefully and delete them.
+    The binary library data used in SRAC will be generated in directories:
+    pds/pfast, pds/pmcrs, pds/pthml. They are the data for the fast energy,
+    resonace energy for ultra-fine group calculation, and thermal energy
+    calculation, respectively.
+
+    *Note (manual-installation) :
+    In some computers, the installation should be done as a remote batch job.
+    ( for example, public machines where computation time is limitted. )
+    In such the case, please change the contents of LibInst.sh and execute
+    it by yourself not by @PunchMe.
+
+(4) Uninstallation of Library
+    All installed data can be easily deleted in the menu of @PunchMe.
+    Unistallation comand is tool/LibRset.sh. This command restore the 
+    library file to the initial condition.
+    When you failed the library installation, execute this command, and 
+    try installation again after you remove causes of troubles.
+
+(5) Permitting of Library to Other Users (if necessary)                        
+    Execute the command tool/Permit.sh. The Permit.sh changes the library      
+    access mode (all users/group users/owner only).                            
+                                                                               
+(6) How to Make the Concatinated Library                                       
+    Some library has data for many nuclides, while some library do not so many.
+    If there is no data for the nuclide you want to use, look for it in other  
+    librarys. As all library data is stored by nuclide,                        
+    it is easy to supplement or replace specified nuclides data.
+
+    <Example : Replacement of Pu-239 data in ENDF/B-IV by JENDL-3.2 data>
+
+            cp SRACLIB-JDL32/pfast/?PU9*   SRACLIB-EDFB4/pfast
+            cp SRACLIB-JDL32/pmcrs/?PU9*   SRACLIB-EDFB4/pmcrs
+            cp SRACLIB-JDL32/pthml/?PU9*   SRACLIB-EDFB4/pthml
+
+    This is convenient to investigate the effects of different library data.
+
+    <Example : Supplement of ENDF/B-IV library with JENDL-3.2>
+
+            cp SRACLIB-EDFB4/pfast/*       SRACLIB-JDL32/pfast
+            cp SRACLIB-EDFB4/pmcrs/*       SRACLIB-JDL32/pmcrs
+            cp SRACLIB-EDFB4/pthml/*       SRACLIB-JDL32/pthml
+
+    Here, all nuclide data existing in the ENDF/B-IV library will be
+    over-written on the JENDL-3.2 library.
+    However this procedure using "*" often failed when there are so many 
+    files, because of shortage of working memory. In such case, copy files
+    in installments.(A sample shell-script is there in tool/Concat.sh)
+
+            cp  SRACLIB-JDL32/pthml/[A-D]*   NewLib/pthml
+            cp  SRACLIB-JDL32/pthml/[E-J]*   NewLib/pthml
+            cp  SRACLIB-JDL32/pthml/[K-N]*   NewLib/pthml
+            cp  SRACLIB-JDL32/pthml/[O-Z]*   NewLib/pthml
+   
+    It should be noted the over-written library can not be restored.
+    You shold backup the original library before concatination.

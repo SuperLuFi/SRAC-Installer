@@ -1,0 +1,46 @@
+C             CSMESH              LEVEL=1        DATE=81.11.14
+      SUBROUTINE CSMESH ( IHXC,IHYC,IDXC,IDYC,IDYAC,IDCM,IMC,JMC,IT,JT,
+     &IMJM )
+C
+      DIMENSION IHXC(1),IHYC(1),IDXC(1),IDYC(1),IDCM(1),E1(4),IDYAC(1)
+C
+CSASA REAL*8 E1
+      CHARACTER*8 E1
+C
+      DATA E1/'MAT.ME','SH.NE.','FINE M','ESH   '/
+C
+C
+C     CHECK INPUT VALUES
+C
+      K=0
+      DO 100 I=1,IMC
+  100 K=K+IHXC(I)
+      L=0
+      DO 110 J=1,JMC
+  110 L=L+IHYC(J)
+      IF ((K.NE.IT).OR.(L.NE.JT)) CALL ERROR (2,E1,4)
+C
+C     GENERATE MATERIAL MESH INDICES
+C
+      K=1
+      L=IHXC(1)
+      DO 120 I=1,IT
+      IF (I.LE.L) GO TO 120
+      K=K+1
+      L=L+IHXC(K)
+  120 IDXC(I)=K
+      K=1
+      L=IHYC(1)
+      DO 140 I=1,JT
+      IF (I.LE.L) GO TO 130
+      K=K+1
+      L=L+IHYC(K)
+  130 IDYC(I)=(K-1)*IMC
+  140 IDYAC(I)=K
+C
+C     GENERATE COARSE MESH ID ARRAY  (TO LABEL BLOCKS IN REBALANCE MAP)
+C
+      DO 150 I=1,IMJM
+  150 IDCM(I)=I
+      RETURN
+      END

@@ -1,0 +1,90 @@
+      SUBROUTINE HEX2(RX,D,IM,IP)
+      COMMON / PIJ1C / NX,DUM(15),IXP,IYP,IZP,I20,I21,I22,LL,DUM24(4)
+     1                ,IC,P,RO,ALP,DIN,DOUT,C1,C2,LC
+      COMMON /MAINC/ DUMMY(63),NOUT1,NOUT2,DUMMY2(435)
+      DIMENSION D(1),IM(1),IP(1),RX(1)
+      DIMENSION SD(6),DR(6)
+      DATA C0/1.7320508/,PAI/3.1415926/,P3/1.0471975/,P6/0.52359877/
+      LL=0
+      C3=2.*P
+      CS=C0*C1
+      CC=C0*C2
+C
+      SD(1)=(-RO*(CC+C1)+C3)/(C2-CS)
+      SD(2)=(RO*(CC-C1)-C3)/(C2+CS)
+      SD(3)=(-RO*C1-P)/C2
+      SD(4)=(RO*(CC+C1)+C3)/(CS-C2)
+      SD(5)=(RO*(CC-C1)+C3)/(CS+C2)
+      SD(6)=(P-RO*C1)/C2
+C
+      IF(ALP.GT.0.0.AND.ALP.LE.P6) GO TO 20
+      IF(ALP.GT.P6.AND.ALP.LE.P3) GO TO 30
+      WRITE(NOUT1,10) ALP
+   10 FORMAT(1H1 ///10X,' *****  ILLEGAL ANGLE IN HEX2 ALP(RADIAN)='
+     *   ,1PE11.4, 6H *****)
+      STOP
+C
+   20 DIN=AMIN1(SD(1),SD(5),SD(6))
+      DOUT=SD(2)
+      DO 25 I=2,4
+      IF(SD(I)-DOUT) 25,24,24
+   24 IJ=I
+      DOUT=SD(I)
+   25 CONTINUE
+      IF( DIN .LE. DOUT ) RETURN
+      GO TO 40
+C
+   30 DIN=AMIN1(SD(4),SD(5),SD(6))
+      DOUT=SD(1)
+      DO 35 I=1,3
+      IF(SD(I)-DOUT) 35,34,34
+   34 IJ=I
+      DOUT=SD(I)
+   35 CONTINUE
+      IF( DIN .LE. DOUT ) RETURN
+C
+   40 CALL INSERT(DIN,2*NX-1,2*NX-1,DOUT,D,IM,IP)
+      N=NX-1
+   50 DD=RX(N+1)**2-RO**2
+      IF(DD.LE.0.0) GO TO 60
+      SDP=SQRT(DD)
+      SDM=-SDP
+      CALL INSERT(SDP,2*N -1,2*N -1,SDM ,D,IM,IP)
+      N=N-1
+      IF(N.LE.0) GO TO 60
+      GO TO 50
+C
+   60 DO 71 I=1,6
+   71 DR(I)=RO*TAN(PAI*FLOAT(13-2*I)/12.-ALP)
+C
+      IF(N.GE.IC) GO TO 72
+      DP=SQRT(RX(IC+1)**2-RO**2)
+      DM=-DP
+      GO TO 73
+   72 DP=0.
+      DM=0.
+   73 IF(ALP.LT.0.25*PAI.AND. ALP.GT.0.0833333*PAI) GO TO 75
+      CALL COMPAR(DP,DM,DR(2),DR(3),D,IM,IP)
+   74 CALL COMPAR(DP,DM,DR(4),DR(5),D,IM,IP)
+      CALL COMPAR(DP,DM,DR(1),DR(6),D,IM,IP)
+      GO TO 76
+   75 CALL COMPAR(DP,DM,1.E10*DR(2),DR(2),D,IM,IP)
+      CALL COMPAR(DP,DM,DR(3),1.E10*DR(3),D,IM,IP)
+      GO TO 74
+   76 CONTINUE
+      GO TO (61,62,63,64),IJ
+   61 RO=-P*(CC+C1)+RO
+      IXP=IXP+1
+      GO TO 65
+   62 RO=-P*(CC-C1)+RO
+      IYP=IYP+1
+      GO TO 65
+   63 RO=RO+C3*C1
+      IZP=IZP+1
+      GO TO 65
+   64 RO=P*(CC+C1)+RO
+      IXP=IXP+1
+C
+   65 CONTINUE
+      RETURN
+      END

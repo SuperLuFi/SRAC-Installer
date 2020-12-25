@@ -1,0 +1,3042 @@
+************************************************************************
+*  Burn-up chain data (th2cm6fp193bp6T-SWAT) to verify the burnup chain
+*  description of SRAC by comparing the result of SWAT(SRAC+ORIGEN)
+*  code. For this purpose, some data is coincided with that of SWAT
+*  even if SWAT employs older or invalid data.
+*
+*  by Keisuke OKUMURA and Hiroshi AKIE (07 Jun. 2002)
+*  Last revision : 04 Apr. 2003
+************************************************************************
+* The following data is major difference from th2cm6fp193bp6T, which is
+* a recommended burnup chain data of SRAC.
+*  (1) isomeric ratios of HM and FP nuclides are the same value of those
+*      of SWAT. SWAT employs the fission yield data from JNDC-V2 as well
+*      as SRAC, however, SWAT employs isomeric ratios from the ORIGEN
+*      library (PWR-U).
+*  (2) decay half-time for all nuclides.
+*      SRAC(from "Chart of the Nuclides 2000" by JNDC) =>
+*      SWAT(? for H.M. and JNDC-V2(1990) for F.P.)
+*      It should be noted that the JNDC-Rev2 includes old or invalid
+*      data for decay half-times.
+*      Ex. half-life of Eu157 = 545.4s (correct value is 15.18h = 54648s)
+*  (3) IRES=2 for all HM and FP nuclides (conventional in the SWAT Input)
+************************************************************************
+*
+*  Note: Beta- decay from Ru106(1y) to Pd106(stable) via Rh-106(30sec)
+*        can not be solved correctly by DCHAIN method.
+*        Therefore, Doubly defined Beta decay is given to Ru106.
+*
+************************************************************************
+*LNMAX NMAX NFIS NPAR NYLDTY  (FREE FORMAT) for Block-1-1
+  227  227   28    4   10
+*  ANMU       AVOGA          EVTOJ    GASCON (FREE FORMAT) for Block-1-2
+1.008665  6.0221358E+23  1.60219E-19  8.31480
+************************************************************************
+* Registration of Nuclide for Block-2, Repeat LNMAX Times
+* Note : (1) Include released energy by capture gannma in EFIS,
+*            ECAP should be always 0.0 (not used).
+*        (2) Set IRES=-1 for the nuclides whose XS is not in the library
+*            then only decay is considered.
+************************************************************************
+* AMASS(neutron mass unit) x ANMU = Mass in Atomic Mass Unit
+*IHOL      SRACID  NCODE   AMASS    IFISS  IRES   EFIS    ECAP  FACT2N
+*28 Heavy Nuclide --------------------------------------------------
+TH232     XTH20001 902320  230.045     2     2    193.54  0.00   1.0
+PA231     XPA10001 912310  229.051     1     2    193.54  0.00   1.0
+PA233     XPA30001 912330  231.038     1     2    193.54  0.00   1.0
+U-232     XU020001 922320  230.044     1     2    199.86  0.00   1.0
+U-233     XU030001 922330  231.038     3     2    199.86  0.00   1.0
+U-234     XU040001 922340  232.030     1     2    200.32  0.00   1.0
+U-235     XU050001 922350  233.025     3     2    202.25  0.00   1.0
+U-236     XU060001 922360  234.018     1     2    202.39  0.00   1.0
+U-237     XU070001 922370  235.013     1     2    202.39  0.00   1.0
+U-238     XU080001 922380  236.006     2     2    205.92  0.00   1.0
+NP236     XNP60001 932360  233.973     1     2    205.92  0.00   1.0
+NP237     XNP70001 932370  235.012     1     2    206.05  0.00   1.0
+NP239     XNP90001 932390  236.999     1     2    206.05  0.00   1.0
+PU236     XPU60001 942360  234.018     1     2    206.05  0.00   1.0
+PU238     XPU80001 942380  236.005     1     2    206.05  0.00   1.0
+PU239     XPU90001 942390  236.999     3     2    210.96  0.00   1.0
+PU240     XPU00001 942400  237.992     2     2    211.01  0.00   1.0
+PU241     XPU10001 942410  238.986     3     2    213.27  0.00   1.0
+PU242     XPU20001 942420  239.979     1     2    214.29  0.00   1.0
+AM241     XAM10001 952410  238.986     1     2    215.25  0.00   1.0
+AM242     XAMG0001 952420  239.981     1     2    215.62  0.00   1.0
+AM242M    XAMM0001 952421  239.981     1     2    215.62  0.00   1.0
+AM243     XAM30001 952430  240.973     1     2    216.00  0.00   1.0
+CM242     XCM20001 962420  239.980     1     2    219.48  0.00   1.0
+CM243     XCM30001 962430  240.972     1     2    219.86  0.00   1.0
+CM244     XCM40001 962440  241.966     1     2    220.25  0.00   1.0
+CM245     XCM50001 962450  242.961     1     2    220.63  0.00   1.0
+CM246     XCM60001 962460  243.953     1     2    221.02  0.00   1.0
+*193 FP Nuclide
+GE073     XGE30001 320730   72.373     0     2      0.00  0.00   1.0
+GE074     XGE40001 320740   73.364     0     2      0.00  0.00   1.0
+GE076     XGE60001 320760   75.347     0     2      0.00  0.00   1.0
+AS075     XAS50001 330750   74.356     0     2      0.00  0.00   1.0
+SE076     XSE60001 340760   75.347     0     2      0.00  0.00   1.0
+SE077     XSE70001 340770   76.339     0     2      0.00  0.00   1.0
+SE078     XSE80001 340780   77.330     0     2      0.00  0.00   1.0
+SE079     XSE90001 340790   78.321     0     2      0.00  0.00   1.0
+SE080     XSE00001 340800   79.313     0     2      0.00  0.00   1.0
+SE082     XSE20001 340820   81.296     0     2      0.00  0.00   1.0
+BR081     XBR10001 350810   80.304     0     2      0.00  0.00   1.0
+KR082     XKR20001 360820   81.296     0     2      0.00  0.00   1.0
+KR083     XKR30001 360830   82.287     0     2      0.00  0.00   1.0
+KR084     XKR40001 360840   83.278     0     2      0.00  0.00   1.0
+KR085     XKR50001 360850   84.270     0     2      0.00  0.00   1.0
+KR086     XKR60001 360860   85.261     0     2      0.00  0.00   1.0
+RB085     XRB50001 370850   84.270     0     2      0.00  0.00   1.0
+RB086     XRB60001 370860   85.261     0     2      0.00  0.00   1.0
+RB087     XRB70001 370870   86.253     0     2      0.00  0.00   1.0
+SR086     XSR60001 380860   85.261     0     2      0.00  0.00   1.0
+SR087     XSR70001 380870   86.253     0     2      0.00  0.00   1.0
+SR088     XSR80001 380880   87.244     0     2      0.00  0.00   1.0
+SR089     XSR90001 380890   88.235     0     2      0.00  0.00   1.0
+SR090     XSR00001 380900   89.227     0     2      0.00  0.00   1.0
+Y-089     XY090001 390890   88.235     0     2      0.00  0.00   1.0
+Y-090     XY000001 390900   89.227     0     2      0.00  0.00   1.0
+Y-091     XY010001 390910   90.218     0     2      0.00  0.00   1.0
+ZR090     XZR00001 400900   89.227     0     2      0.00  0.00   1.0
+ZR091     XZR10001 400910   90.218     0     2      0.00  0.00   1.0
+ZR092     XZR20001 400920   91.218     0     2      0.00  0.00   1.0
+ZR093     XZR30001 400930   92.201     0     2      0.00  0.00   1.0
+ZR094     XZR40001 400940   93.192     0     2      0.00  0.00   1.0
+ZR095     XZR50001 400950   94.184     0     2      0.00  0.00   1.0
+ZR096     XZR60001 400960   95.175     0     2      0.00  0.00   1.0
+NB093M    XNBM0001 410931   92.201     0    -1      0.00  0.00   1.0
+NB093     XNB30001 410930   92.201     0     2      0.00  0.00   1.0
+NB094     XNB40001 410940   93.192     0     2      0.00  0.00   1.0
+NB095     XNB50001 410950   94.184     0     2      0.00  0.00   1.0
+MO092     XMO20001 420920   91.210     0     2      0.00  0.00   1.0
+MO094     XMO40001 420940   93.192     0     2      0.00  0.00   1.0
+MO095     XMO50001 420950   94.184     0     2      0.00  0.00   1.0
+MO096     XMO60001 420960   95.175     0     2      0.00  0.00   1.0
+MO097     XMO70001 420970   96.167     0     2      0.00  0.00   1.0
+MO098     XMO80001 420980   97.158     0     2      0.00  0.00   1.0
+MO099     XMO90001 420990   98.150     0     2      0.00  0.00   1.0
+MO100     XMO00001 421000   99.141     0     2      0.00  0.00   1.0
+TC099     XTC90001 430990   98.150     0     2      0.00  0.00   1.0
+RU100     XRU00001 441000   99.141     0     2      0.00  0.00   1.0
+RU101     XRU10001 441010  100.132     0     2      0.00  0.00   1.0
+RU102     XRU20001 441020  101.124     0     2      0.00  0.00   1.0
+RU103     XRU30001 441030  102.115     0     2      0.00  0.00   1.0
+RU104     XRU40001 441040  103.107     0     2      0.00  0.00   1.0
+RU105     XRU50001 441050  104.098     0     2      0.00  0.00   1.0
+RU106     XRU60001 441060  105.089     0     2      0.00  0.00   1.0
+RH103     XRH30001 451030  102.115     0     2      0.00  0.00   1.0
+RH105     XRH50001 451050  104.098     0     2      0.00  0.00   1.0
+RH106     XRH60001 451060  105.089     0    -1      0.00  0.00   1.0
+PD104     XPD40001 461040  103.107     0     2      0.00  0.00   1.0
+PD105     XPD50001 461050  104.098     0     2      0.00  0.00   1.0
+PD106     XPD60001 461060  105.089     0     2      0.00  0.00   1.0
+PD107     XPD70001 461070  106.081     0     2      0.00  0.00   1.0
+PD108     XPD80001 461080  107.072     0     2      0.00  0.00   1.0
+PD110     XPD00001 461100  109.055     0     2      0.00  0.00   1.0
+AG107     XAG70001 471070  106.081     0     2      0.00  0.00   1.0
+AG109     XAG90001 471090  108.064     0     2      0.00  0.00   1.0
+AG110M    XAG00001 471101  109.055     0     2      0.00  0.00   1.0
+CD110     XCD00001 481100  109.055     0     2      0.00  0.00   1.0
+CD111     XCD10001 481110  110.046     0     2      0.00  0.00   1.0
+CD112     XCD20001 481120  111.038     0     2      0.00  0.00   1.0
+CD113M    XCDM0001 481131  112.029     0    -1      0.00  0.00   1.0
+CD113     XCD30001 481130  112.029     0     2      0.00  0.00   1.0
+CD114     XCD40001 481140  113.021     0     2      0.00  0.00   1.0
+CD116     XCD60001 481160  115.003     0     2      0.00  0.00   1.0
+IN113     XIN30001 491130  112.029     0     2      0.00  0.00   1.0
+IN115     XIN50001 491150  114.012     0     2      0.00  0.00   1.0
+SN116     XSN60001 501160  115.003     0     2      0.00  0.00   1.0
+SN117     XSN70001 501170  115.995     0     2      0.00  0.00   1.0
+SN118     XSN80001 501180  116.986     0     2      0.00  0.00   1.0
+SN119M    XSNL0001 501191  117.978     0    -1      0.00  0.00   1.0
+SN119     XSN90001 501190  117.978     0     2      0.00  0.00   1.0
+SN120     XSN00001 501200  118.969     0     2      0.00  0.00   1.0
+SN121M    XSNM0001 501211  119.961     0    -1      0.00  0.00   1.0
+SN121     XSN10001 501210  119.961     0    -1      0.00  0.00   1.0
+SN122     XSN20001 501220  120.952     0     2      0.00  0.00   1.0
+SN123     XSN30001 501230  121.943     0     2      0.00  0.00   1.0
+SN124     XSN40001 501240  122.935     0     2      0.00  0.00   1.0
+SN126     XSNG0001 501260  124.918     0     2      0.00  0.00   1.0
+SB121     XSB10001 511210  119.961     0     2      0.00  0.00   1.0
+SB123     XSB30001 511230  121.943     0     2      0.00  0.00   1.0
+SB124     XSB40001 511240  122.935     0     2      0.00  0.00   1.0
+SB125     XSB50001 511250  123.926     0     2      0.00  0.00   1.0
+SB126M    XSBM0001 511261  124.918     0    -1      0.00  0.00   1.0
+SB126     XSB60001 511260  124.918     0     2      0.00  0.00   1.0
+TE122     XTE20001 521220  120.952     0     2      0.00  0.00   1.0
+TE123M    XTEM0001 521231  121.943     0    -1      0.00  0.00   1.0
+TE123     XTE30001 521230  121.943     0     2      0.00  0.00   1.0
+TE124     XTE40001 521240  122.935     0     2      0.00  0.00   1.0
+TE125M    XTEN0001 521251  123.926     0    -1      0.00  0.00   1.0
+TE125     XTE50001 521250  123.926     0     2      0.00  0.00   1.0
+TE126     XTE60001 521260  124.918     0     2      0.00  0.00   1.0
+TE127M    XTE70001 521271  125.909     0     2      0.00  0.00   1.0
+TE128     XTE80001 521280  126.900     0     2      0.00  0.00   1.0
+TE129M    XTE90001 521291  127.892     0     2      0.00  0.00   1.0
+TE130     XTE00001 521300  128.883     0     2      0.00  0.00   1.0
+TE132     XTEC0001 521320  130.866     0     2      0.00  0.00   1.0
+I-127     XI070001 531270  125.909     0     2      0.00  0.00   1.0
+I-129     XI090001 531290  127.892     0     2      0.00  0.00   1.0
+I-130     XI000001 531300  128.883     0     2      0.00  0.00   1.0
+I-131     XI010001 531310  129.875     0     2      0.00  0.00   1.0
+I-135     XI050001 531350  133.840     0     2      0.00  0.00   1.0
+XE126     XXEG0001 541260  124.918     0     2      0.00  0.00   1.0
+XE128     XXE80001 541280  126.900     0     2      0.00  0.00   1.0
+XE129     XXE90001 541290  127.892     0     2      0.00  0.00   1.0
+XE130     XXE00001 541300  128.883     0     2      0.00  0.00   1.0
+XE131     XXE10001 541310  129.875     0     2      0.00  0.00   1.0
+XE132     XXE20001 541320  130.866     0     2      0.00  0.00   1.0
+XE133     XXE30001 541330  131.857     0     2      0.00  0.00   1.0
+XE134     XXE40001 541340  132.849     0     2      0.00  0.00   1.0
+XE135     XXE50001 541350  133.840     0     2      0.00  0.00   1.0
+XE136     XXE60001 541360  134.832     0     2      0.00  0.00   1.0
+CS133     XCS30001 551330  131.857     0     2      0.00  0.00   1.0
+CS134     XCS40001 551340  132.849     0     2      0.00  0.00   1.0
+CS135     XCS50001 551350  133.840     0     2      0.00  0.00   1.0
+CS136     XCS60001 551360  134.832     0     2      0.00  0.00   1.0
+CS137     XCS70001 551370  135.823     0     2      0.00  0.00   1.0
+BA134     XBA40001 561340  132.849     0     2      0.00  0.00   1.0
+BA135     XBA50001 561350  133.840     0     2      0.00  0.00   1.0
+BA136     XBA60001 561360  134.832     0     2      0.00  0.00   1.0
+BA137M    XBAM0001 561371  135.823     0    -1      0.00  0.00   1.0
+BA137     XBA70001 561370  135.823     0     2      0.00  0.00   1.0
+BA138     XBA80001 561380  136.815     0     2      0.00  0.00   1.0
+BA140     XBA00001 561400  138.797     0     2      0.00  0.00   1.0
+LA139     XLA90001 571390  137.806     0     2      0.00  0.00   1.0
+LA140     XLA00001 571400  138.797     0     2      0.00  0.00   1.0
+CE140     XCE00001 581400  138.797     0     2      0.00  0.00   1.0
+CE141     XCE10001 581410  139.789     0     2      0.00  0.00   1.0
+CE142     XCE20001 581420  140.780     0     2      0.00  0.00   1.0
+CE143     XCE30001 581430  141.772     0     2      0.00  0.00   1.0
+CE144     XCE40001 581440  142.763     0     2      0.00  0.00   1.0
+PR141     XPR10001 591410  139.789     0     2      0.00  0.00   1.0
+PR143     XPR30001 591430  141.772     0     2      0.00  0.00   1.0
+PR144     XPR40001 591440  142.763     0    -1      0.00  0.00   1.0
+ND142     XND20001 601420  140.780     0     2      0.00  0.00   1.0
+ND143     XND30001 601430  141.772     0     2      0.00  0.00   1.0
+ND144     XND40001 601440  142.763     0     2      0.00  0.00   1.0
+ND145     XND50001 601450  143.754     0     2      0.00  0.00   1.0
+ND146     XND60001 601460  144.746     0     2      0.00  0.00   1.0
+ND147     XND70001 601470  145.737     0     2      0.00  0.00   1.0
+ND148     XND80001 601480  146.729     0     2      0.00  0.00   1.0
+ND150     XND00001 601500  148.711     0     2      0.00  0.00   1.0
+PM147     XPM70001 611470  145.737     0     2      0.00  0.00   1.0
+PM148M    XPMM0001 611481  146.729     0     2      0.00  0.00   1.0
+PM148     XPMG0001 611480  146.729     0     2      0.00  0.00   1.0
+PM149     XPM90001 611490  147.720     0     2      0.00  0.00   1.0
+PM151     XPM10001 611510  149.703     0     2      0.00  0.00   1.0
+SM147     XSM70001 621470  145.737     0     2      0.00  0.00   1.0
+SM148     XSM80001 621480  146.729     0     2      0.00  0.00   1.0
+SM149     XSM90001 621490  147.720     0     2      0.00  0.00   1.0
+SM150     XSM00001 621500  148.711     0     2      0.00  0.00   1.0
+SM151     XSM10001 621510  149.703     0     2      0.00  0.00   1.0
+SM152     XSM20001 621520  150.694     0     2      0.00  0.00   1.0
+SM153     XSM30001 621530  151.686     0     2      0.00  0.00   1.0
+SM154     XSM40001 621540  152.677     0     2      0.00  0.00   1.0
+EU151     XEU10001 631510  149.703     0     2      0.00  0.00   1.0
+EU152     XEU20001 631520  150.694     0     2      0.00  0.00   1.0
+EU153     XEU30001 631530  151.686     0     2      0.00  0.00   1.0
+EU154     XEU40001 631540  152.677     0     2      0.00  0.00   1.0
+EU155     XEU50001 631550  153.668     0     2      0.00  0.00   1.0
+EU156     XEU60001 631560  154.660     0     2      0.00  0.00   1.0
+EU157     XEU70001 631570  155.651     0     2      0.00  0.00   1.0
+GD152     XGD20001 641520  150.694     0     2      0.00  0.00   1.0
+GD154     XGD40001 641540  152.677     0     2      0.00  0.00   1.0
+GD155     XGD50001 641550  153.668     0     2      0.00  0.00   1.0
+GD156     XGD60001 641560  154.660     0     2      0.00  0.00   1.0
+GD157     XGD70001 641570  155.651     0     2      0.00  0.00   1.0
+GD158     XGD80001 641580  156.643     0     2      0.00  0.00   1.0
+GD160     XGD00001 641600  158.626     0     2      0.00  0.00   1.0
+TB159     XTB90001 651590  157.634     0     2      0.00  0.00   1.0
+TB160     XTB00001 651600  158.626     0     2      0.00  0.00   1.0
+DY160     XDY00001 661600  158.626     0     2      0.00  0.00   1.0
+DY161     XDY10001 661610  159.617     0     2      0.00  0.00   1.0
+DY162     XDY20001 661620  160.608     0     2      0.00  0.00   1.0
+DY163     XDY30001 661630  161.600     0     2      0.00  0.00   1.0
+DY164     XDY40001 661640  162.591     0     2      0.00  0.00   1.0
+HO163     XHO30001 671630  161.600     0    -1      0.00  0.00   1.0
+HO165     XHO50001 671650  163.583     0     2      0.00  0.00   1.0
+HO166M    XHO60001 671661  164.574     0    -1      0.00  0.00   1.0
+ER162     XER20001 681620  160.608     0     2      0.00  0.00   1.0
+ER164     XER40001 681640  162.591     0     2      0.00  0.00   1.0
+ER166     XER60001 681660  164.574     0     2      0.00  0.00   1.0
+ER167     XER70001 681670  165.565     0     2      0.00  0.00   1.0
+ER168     XER80001 681680  166.557     0     2      0.00  0.00   1.0
+ER170     XER00001 681700  168.540     0     2      0.00  0.00   1.0
+*6 Burnable Poisons except FPs -------------------------------------
+B-010     XB000001  50100    9.9269  -10     0      0.00  0.00   1.0
+HF176     XHF60001 721760  174.488   -10     2      0.00  0.00   1.0
+HF177     XHF70001 721770  175.479   -10     2      0.00  0.00   1.0
+HF178     XHF80001 721780  176.471   -10     2      0.00  0.00   1.0
+HF179     XHF90001 721790  177.462   -10     2      0.00  0.00   1.0
+HF180     XHF00001 721800  178.454   -10     2      0.00  0.00   1.0
+*------------------------------------------------------------------- 
+*NUCL   NCH   HALFT TUNIT (A8,I2,E10.3,A8) for Block-3-1
+* Half lives of heavy isotopes are from "Chart of the Nuclides 2000"
+TH232    1 1.405E+10YEARS
+*NUCLP   NBIC         PBIC (A8,2X,A8,2X,E12.5) for Block-3-2
+U-236     ALPHA       1.000
+* Repeat from Block-3-1 to Block-3-2 NMAX Times
+*
+PA231    1  3.279E+4YEARS
+TH232     2N          1.000
+*
+PA233    1  27.002  DAYS
+TH232     CAPTURE     1.000
+*
+U-232    4  72.045  YEARS
+PA231     CAPTURE     1.000
+PA233     2N          1.000
+U-233     2N          1.000
+PU236     ALPHA       1.000
+*
+U-233    3  1.586E+5YEARS
+PA233     BETA-       1.000
+U-232     CAPTURE     1.000
+U-234     2N          1.000
+*
+U-234    4  2.447E+5YEARS
+PA233     CAPTURE     1.000
+U-233     CAPTURE     1.000
+U-235     2N          1.000
+PU238     ALPHA       1.000
+*
+U-235    3  7.043E+8YEARS
+U-234     CAPTURE     1.000
+U-236     2N          1.000
+PU239     ALPHA       1.000
+*
+U-236    4  2.343E+7YEARS
+U-235     CAPTURE     1.000
+NP237     2N          0.3856
+U-237     2N          1.000
+PU240     ALPHA       1.000
+*
+U-237    3  6.75    DAYS
+U-236     CAPTURE     1.000
+U-238     2N          1.000
+PU241     ALPHA       0.000025
+*
+U-238    2  4.471E+9YEARS
+U-237     CAPTURE     1.000
+PU242     ALPHA       1.000
+*
+NP236    1  1.151E+5YEARS
+NP237     2N          0.2585
+*
+NP237    3  2.141E+6YEARS
+U-237     BETA-       1.000
+NP236     CAPTURE     1.000
+AM241     ALPHA       1.000
+*
+NP239    2  2.3553  DAYS
+U-238     CAPTURE     1.000
+AM243     ALPHA       1.000
+*
+PU236    1  2.8529  YEARS
+NP237     2N          0.3559
+*
+PU238    3 87.804   YEARS
+NP237     CAPTURE     1.000
+PU239     2N          1.000
+CM242     ALPHA       1.000
+*
+PU239    4  2.408E+4YEARS
+PU238     CAPTURE     1.000
+PU240     2N          1.000
+NP239     BETA-       1.000
+CM243     ALPHA       1.000
+*
+PU240    4  6.562E+3YEARS
+PU239     CAPTURE     1.000
+PU241     2N          1.000
+NP239     CAPTURE     1.000
+CM244     ALPHA       1.000
+*
+PU241    3 14.409   YEARS
+PU240     CAPTURE     1.000
+PU242     2N          1.000
+CM245     ALPHA       1.000
+*
+PU242    3  3.872E+5YEARS
+PU241     CAPTURE     1.000
+AM242     EC          0.1730
+CM246     ALPHA       0.99974
+*
+AM241    2  432.52  YEARS
+PU241     BETA-       0.999975
+AM242M    2N          1.0000
+*
+AM242    3   16.019 HOURS
+AM241     CAPTURE     0.890
+AM242M    IT          0.9952
+AM243     2N          1.0000
+*
+AM242M   1  141.01  YEARS
+AM241     CAPTURE     0.11
+*
+AM243    3 7385.21  YEARS
+AM242M    CAPTURE     1.0000
+AM242     CAPTURE     1.0000
+PU242     CAPTURE     1.0000
+*
+CM242    2  163.194 DAYS
+AM242     BETA-       0.82700
+CM243     2N          1.0000
+*
+CM243    2   28.52  YEARS
+CM242     CAPTURE     1.0000
+CM244     2N          1.0000
+*
+CM244    3   18.122 YEARS
+CM243     CAPTURE     1.0000
+AM243     CAPTURE     1.0000
+CM245     2N          1.0000
+*
+CM245    2   8504.6 YEARS
+CM244     CAPTURE     1.0000
+CM246     2N          1.0000
+*
+CM246    1   4734.3 YEARS
+CM245     CAPTURE     1.0000
+*
+*Block-3 for Fission Products
+GE073    0   0.0    SECONDS
+*
+GE074    1   0.0    SECONDS
+GE073     CAPTURE     1.0000
+*
+GE076    0   0.0    SECONDS
+*
+AS075    1   0.0    SECONDS
+GE074     CAPTURE     1.0000
+*
+SE076    1   0.0    SECONDS
+AS075     CAPTURE     1.0000
+*
+SE077    1   0.0    SECONDS
+SE076     CAPTURE     1.0000
+*
+SE078    1   0.0    SECONDS
+SE077     CAPTURE     1.0000
+*
+SE079    1 6.5000E+4YEARS
+SE078     CAPTURE     1.0000
+*
+SE080    1   0.0    SECONDS
+SE079     CAPTURE     1.0000
+*
+SE082    0   0.0    SECONDS
+*
+BR081    1   0.0    SECONDS
+SE080     CAPTURE     1.0000
+*
+KR082    1   0.0    SECONDS
+BR081     CAPTURE     1.0000
+*
+KR083    1   0.0    SECONDS
+KR082     CAPTURE     1.0000
+*
+KR084    1   0.0    SECONDS
+KR083     CAPTURE     1.0000
+*
+KR085    1  10.737  YEARS                   !!! 10.737y(SWAT)
+KR084     CAPTURE     0.76653               !!! 0.76653(SWAT)
+*
+KR086    1   0.0    SECONDS
+KR085     CAPTURE     1.0000 
+*
+RB085    2   0.0    SECONDS
+KR084     CAPTURE     0.23347               !!! 0.23347(SWAT)
+KR085     BETA-       1.0000
+*
+RB086    1  18.6574 DAYS                    !!! 18.6574d(SWAT)
+RB085     CAPTURE     1.0000
+*
+RB087    2 4.7026E10YEARS                   !!! 4.7026E10y(SWAT)
+KR086     CAPTURE     1.0000
+RB086     CAPTURE     1.0000
+*
+SR086    1   0.0    SECONDS
+RB086     BETA-       1.0000
+*
+SR087    2   0.0    SECONDS
+RB087     BETA-       1.0000
+SR086     CAPTURE     0.99911               !!! 0.99911(SWAT)
+*
+SR088    2   0.0    SECONDS
+RB087     CAPTURE     1.0000
+SR087     CAPTURE     1.0000
+*
+SR089    1  50.498  DAYS                    !!! 50.498d(SWAT)
+SR088     CAPTURE     1.0000
+*
+SR090    1  28.52   YEARS                   !!! 28.52y(SWAT)
+SR089     CAPTURE     1.0000
+*
+Y-089    1   0.0    SECONDS
+SR089     BETA-       1.0000
+*
+Y-090    2   2.671  DAYS                    !!! 2.671d(SWAT)
+SR090     BETA-       1.0000
+Y-089     CAPTURE     1.0000
+*
+Y-091    2  58.507  DAYS                    !!! 58.507d(SWAT)
+SR090     CAPTURE     1.0000
+Y-090     CAPTURE     1.0000
+*
+ZR090    1   0.0    SECONDS
+Y-090     BETA-       1.0000
+*
+ZR091    2   0.0    SECONDS
+Y-091     BETA-       1.0000
+ZR090     CAPTURE     1.0000
+*
+ZR092    2   0.0    SECONDS
+Y-091     CAPTURE     1.0000
+ZR091     CAPTURE     1.0000
+*
+ZR093    1 1.5310E+6YEARS                   !!! 1.5310E+6y(SWAT)
+ZR092     CAPTURE     1.0000
+*
+ZR094    1   0.0    SECONDS
+ZR093     CAPTURE     1.0000
+*
+ZR095    1  64.051  DAYS                    !!! 64.051d(SWAT)
+ZR094     CAPTURE     1.0000
+*
+ZR096    1   0.0    SECONDS
+ZR095     CAPTURE     1.0000
+*
+NB093M   1  13.61   YEARS                   !!! 13.61y(SWAT)
+ZR093     BETA-       0.9500
+*
+NB093    2   0.0    SECONDS
+NB093M    IT          1.0000
+ZR093     BETA-       0.0500
+*
+NB094    1 2.0310E+4YEARS
+NB093     CAPTURE     0.99907               !!! 0.99907(SWAT)
+*
+NB095    2  34.965  DAYS                    !!! 34.965d(SWAT)
+ZR095     BETA-       0.999775
+NB094     CAPTURE     1.0000                !!! 1.0000(SWAT)
+*
+MO092    0   0.0    SECONDS
+*
+MO094    2   0.0    SECONDS
+NB094     BETA-       1.0000
+NB093     CAPTURE     0.0009306            !!! add this path in SWAT
+*
+MO095    3   0.0    SECONDS
+ZR095     BETA-       0.000225
+NB095     BETA-       1.0000
+MO094     CAPTURE     1.0000
+*NB094     CAPTURE     0.000975              !!! delete this path in SWAT
+*
+MO096    2   0.0    SECONDS
+NB095     CAPTURE     1.0000
+MO095     CAPTURE     1.0000
+*
+MO097    1   0.0    SECONDS
+MO096     CAPTURE     1.0000
+*
+MO098    1   0.0    SECONDS
+MO097     CAPTURE     1.0000
+*
+MO099    1  2.7512  DAYS                    !!! 2.7512y(SWAT)
+MO098     CAPTURE     1.0000
+*
+MO100    1   0.0    SECONDS
+MO099     CAPTURE     1.0000
+*
+TC099    1 2.1410E+5YEARS                   !!! 2.1410E+5y(SWAT)
+MO099     BETA-       1.0000
+*
+RU100    1   0.0    SECONDS
+TC099     CAPTURE     1.0000
+*
+RU101    1   0.0    SECONDS
+RU100     CAPTURE     1.0000
+*
+RU102    1   0.0    SECONDS
+RU101     CAPTURE     1.0000
+*
+RU103    1  39.433  DAYS                    !!! 39.433d(SWAT)
+RU102     CAPTURE     1.0000
+*
+RU104    2   0.0    SECONDS
+RU103     CAPTURE     1.0000
+RH103     CAPTURE     3.99944E-3
+*
+RU105    1   4.4389 HOURS                   !!! 4.4389h(SWAT)
+RU104     CAPTURE     1.0000
+*
+RU106    1   1.018  YEARS                   !!! 1.018y(SWAT)
+RU105     CAPTURE     1.0000
+*
+RH103    1   0.0    SECONDS
+RU103     BETA-       1.0000
+*
+RH105    1   1.4734 DAYS                    !!! 1.4734d(SWAT)
+RU105     BETA-       1.0000
+*
+RH106    2  30.40   SECONDS                 !!! 30.40s(SWAT)
+RU106     BETA-       1.0000
+RH105     CAPTURE     0.6731                !!! 0.6731(SWAT)
+*
+PD104    1   0.0    SECONDS
+RH103     CAPTURE     0.99600056
+*
+PD105    2   0.0    SECONDS
+RH105     BETA-       1.0000
+PD104     CAPTURE     1.0000
+*  Note (by K.Okumura) : Beta- decay from Ru106(1y) to Pd106(stable) via
+*  Rh-106(30sec)can not be solved correctly by DCHAIN method.
+*  Therefore, Doubly defined Beta decay is given to Ru106.
+*  Ru106 ->(b-)-> Rh106g ->(b-)-> no nuclide
+*  Ru106 ->(b-)-> Pd106
+*  Isomeric ratio of Rh105g to Rh106m (=0.313) should be 1.000
+*  because production path of Pd106 via Rh106g is cut.
+*  Yield of Pd106 = Sum of independent yields of Pd106, Rh106m, Rh106g.
+*  As a result, total yield become negligibly larger than 2.0.
+PD106    3   0.0    SECONDS
+*RH106     BETA-       1.0000
+RH105     CAPTURE     1.0000
+RU106     BETA-       1.0000
+PD105     CAPTURE     1.0000
+*
+PD107    1 6.5040E+6YEARS                   !!! 6.504E+06y(SWAT)
+PD106     CAPTURE     1.0000
+*
+PD108    1   0.0    SECONDS
+PD107     CAPTURE     1.0000
+*
+PD110    2   0.0    SECONDS
+AG109     CAPTURE     0.0028476             !!! 0.0028476(SWAT)
+AG110M    EC          4.2E-5                * Ag110m->IT->Ag110g->EC->Pd110
+*
+AG107    1   0.0    SECONDS
+PD107     BETA-       1.0000
+*
+AG109    1   0.0    SECONDS
+PD108     CAPTURE     1.0000
+*
+AG110M   1 250.347  DAYS                    !!! 250.347d(SWAT)
+AG109     CAPTURE     0.0508                !!! 0.0508(SWAT)
+*
+CD110    2   0.0    SECONDS
+AG109     CAPTURE     0.946352              !!! 0.946352(SWAT)
+AG110M    BETA-       0.999958              * Include Ag110m->IT->Ag110g(beta)
+*
+CD111    1   0.0    SECONDS
+CD110     CAPTURE     1.0000
+*
+CD112    1   0.0    SECONDS
+CD111     CAPTURE     1.0000
+*
+CD113M   1  13.610  YEARS                   !!! 13.610y(SWAT)
+CD112     CAPTURE     0.6628               !!! add this path in SWAT
+*
+CD113    2 9.3068E15YEARS                   !!! 9.3068E+15y(SWAT)
+CD112     CAPTURE     0.3372                !!! 0.3372(SWAT)
+CD113M    IT          0.0010
+*
+CD114    1   0.0    SECONDS
+CD113     CAPTURE     1.0000
+*
+CD116    0   0.0    SECONDS
+*
+IN113    1   0.0    SECONDS
+CD113M    BETA-       0.9990
+*
+IN115    1 5.1021E14YEARS                   !!! 5.1021E+14y(SWAT)
+CD114     CAPTURE     0.965936              !!! 0.965936(SWAT)
+*
+SN116    1   0.0    SECONDS
+IN115     CAPTURE     1.0000
+*
+SN117    1   0.0    SECONDS
+SN116     CAPTURE     1.0000
+*
+SN118    1   0.0    SECONDS
+SN117     CAPTURE     1.0000
+*
+SN119M   1   245.0  DAYS                     !!! 245.0d(SWAT)
+SN118     CAPTURE     0.4333                 !!! 0.4333(SWAT)
+*
+SN119    1   0.0    SECONDS
+SN118     CAPTURE     0.5667                 !!! 0.5667(SWAT)
+*
+SN120    1   0.0    SECONDS
+SN119     CAPTURE     1.0000
+*
+SN121M   1  55.0482 YEARS                    !!! 55.0482y(SWAT)
+SN120     CAPTURE     0.0058                 !!! 0.0058(SWAT)
+*
+SN121    2   1.12755DAYS                     !!! 1.12755d(SWAT)
+SN120     CAPTURE     0.9942                 !!! 0.9942(SWAT)
+SN121M    IT          0.7760
+*
+SN122    1   0.0    SECONDS
+SB121     CAPTURE     0.0240
+*
+SN123    1 129.167  DAYS                     !!! 129.167d(SWAT)
+SN122     CAPTURE     0.9962                 !!! 0.9962(SWAT)
+*
+SN124    1   0.0    SECONDS
+SN123     CAPTURE     1.0000
+*
+SN126    0 1.0000E+5YEARS
+*
+SB121    2   0.0    SECONDS
+SN121M    BETA-       0.2240
+SN121     BETA-       1.0000
+*
+SB123    3   0.0    SECONDS
+SN122     CAPTURE     0.0038                 !!! 0.0038(SWAT)
+SN123     BETA-       1.0000
+TE123     EC          1.0000
+*
+SB124    1  60.197  DAYS                     !!! 60.197d(SWAT)
+SB123     CAPTURE     0.99944                !!! 0.99944(SWAT)
+*
+SB125    2   2.7720 YEARS                    !!! 2.7720y(SWAT)
+SN124     CAPTURE     1.0000
+SB124     CAPTURE     1.0000
+*
+SB126M   2  19.00   MINUTES                  !!! 19.00m(SWAT)
+SN126     BETA-       1.0000
+SB125     CAPTURE     0.0928                !!! add this path in SWAT
+*
+SB126    2  12.396  DAYS                     !!! 12.396d(SWAT)
+SB125     CAPTURE     0.9072                 !!! 0.9072(SWAT)
+SB126M    IT          0.14
+*
+TE122    1   0.0    SECONDS
+SB121     CAPTURE     0.9760
+*
+TE123M   1 119.676  DAYS                     !!! 119.676d(SWAT)
+TE122     CAPTURE     0.2625                 !!! 0.2625(SWAT)
+*
+TE123    2 1.2408E13YEARS                    !!! 1.2408E13y(SWAT)
+TE122     CAPTURE     0.7375                 !!! 0.7375(SWAT)
+TE123M    IT          1.0000
+*
+TE124    3   0.0    SECONDS
+SB124     BETA-       1.0000
+SB123     CAPTURE     0.00056                !!! 0.00056(SWAT)
+TE123     CAPTURE     1.0000
+*
+TE125M   2  57.998  DAYS                     !!! 57.998d(SWAT)
+SB125     BETA-       0.2180
+TE124     CAPTURE     0.0051                 !!! 0.0051(SWAT)
+*
+TE125    3   0.0    SECONDS
+SB125     BETA-       0.7820
+TE124     CAPTURE     0.9949                 !!! 0.9949(SWAT)
+TE125M    IT          1.0000
+*
+TE126    3   0.0    SECONDS
+SB126M    BETA-       0.8600
+SB126     BETA-       1.0000
+TE125     CAPTURE     1.0000
+*
+TE127M   1 109.005  DAYS
+TE126     CAPTURE     0.0915                 !!! 0.0915(SWAT)
+*
+TE128    2   0.0    YEARS                    !!! 0.0y(SWAT)
+TE127M    CAPTURE     1.0000
+I-127     CAPTURE     0.0610
+*
+TE129M   1  33.6    DAYS
+TE128     CAPTURE     0.0319                 !!! 0.0319(SWAT)
+*
+TE130    1   0.0    SECONDS
+TE129M    CAPTURE     1.0000
+*
+TE132    0   3.204  DAYS
+*
+I-127    2   0.0    SECONDS
+TE127M    BETA-       1.0000
+TE126     CAPTURE     0.9085                 !!! 0.9085(SWAT)
+*
+I-129    2 1.5710E+7YEARS                    !!! 1.5710E+7y(SWAT)
+TE129M    BETA-       1.0000
+TE128     CAPTURE     0.9681                 !!! 0.9681(SWAT)
+*
+I-130    1  12.36   HOURS
+I-129     CAPTURE     0.93515                !!! 0.93515(SWAT)
+*
+I-131    2   8.041  DAYS                     !!! 8.041d(SWAT)
+TE130     CAPTURE     1.0000
+I-130     CAPTURE     1.0000
+*
+I-135    0   6.55   HOURS                    !!! 6.55h(SWAT)
+*
+XE126    0   0.0    SECONDS
+*
+XE128    1   0.0    SECONDS
+I-127     CAPTURE     0.9390
+*
+XE129    2   0.0    SECONDS
+I-129     BETA-       1.0000
+XE128     CAPTURE     1.0000
+*
+XE130    3   0.0    SECONDS
+I-129     CAPTURE     0.06485                !!! 0.06485(SWAT)
+I-130     BETA-       1.0000
+XE129     CAPTURE     1.0000
+*
+XE131    2   0.0    SECONDS
+I-131     BETA-       1.0000
+XE130     CAPTURE     1.0000
+*
+XE132    3   0.0    SECONDS
+TE132     BETA-       1.0000
+I-131     CAPTURE     1.0000
+XE131     CAPTURE     1.0000
+*
+XE133    1   5.2910 DAYS                     !!! 5.291d(SWAT)
+XE132     CAPTURE     1.0000
+*
+XE134    1   0.0    SECONDS
+XE133     CAPTURE     1.0000
+*
+XE135    2   9.081  HOURS                    !!! 9.081h(SWAT)
+XE134     CAPTURE     1.0000
+I-135     BETA-       1.0000
+*
+XE136    2   0.0    SECONDS
+I-135     CAPTURE     1.0000
+XE135     CAPTURE     1.0000
+*
+CS133    1   0.0    SECONDS
+XE133     BETA-       1.0000
+*
+CS134    1   2.0630 YEARS                    !!! 2.063y(SWAT)
+CS133     CAPTURE     1.0000
+*
+CS135    2 2.3020E+6YEARS                    !!! 2.302E6y(SWAT)
+CS134     CAPTURE     1.0000
+XE135     BETA-       1.0000
+*
+CS136    1  12.9745 DAYS                     !!! 12.9745d(SWAT)
+CS135     CAPTURE     1.0000
+*
+CS137    1  30.191  YEARS                    !!! 30.191y(SWAT)
+XE136     CAPTURE     1.0000
+*
+BA134    1   0.0    SECONDS
+CS134     BETA-       1.0000
+*
+BA135    2   0.0    SECONDS
+CS135     BETA-       1.0000
+BA134     CAPTURE     1.0000
+*
+BA136    2   0.0    SECONDS
+BA135     CAPTURE     1.0000
+CS136     BETA-       1.0000
+*
+BA137M   2   2.552  MINUTES
+CS137     BETA-       0.9470
+BA136     CAPTURE     0.0155                 !!! 0.0155(SWAT)
+*
+BA137    3   0.0    SECONDS
+CS137     BETA-       0.0530
+BA137M    IT          1.0000
+BA136     CAPTURE     0.9845                 !!! 0.9845(SWAT)
+*
+BA138    2   0.0    SECONDS
+CS137     CAPTURE     1.0000
+BA137     CAPTURE     1.0000
+*
+BA140    0  12.743  DAYS                     !!! 12.743d(SWAT)
+*
+LA139    1   0.0    SECONDS
+BA138     CAPTURE     1.0000
+*
+LA140    2   1.6781 DAYS
+BA140     BETA-       1.0000
+LA139     CAPTURE     1.0000
+*
+CE140    1   0.0    SECONDS
+LA140     BETA-       1.0000
+*
+CE141    2  32.384  DAYS                     !!! 32.384d(SWAT)
+CE140     CAPTURE     1.0000
+LA140     CAPTURE     1.0000
+*
+CE142    1   0.0    SECONDS
+CE141     CAPTURE     1.0000
+*
+CE143    1   1.375  DAYS                     !!! 1.375d(SWAT)
+CE142     CAPTURE     1.0000
+*
+CE144    1 284.3    DAYS                     !!! 284.3d(SWAT)
+CE143     CAPTURE     1.0000
+*
+PR141    1   0.0    SECONDS
+CE141     BETA-       1.0000
+*
+PR143    1  13.58   DAYS                     !!! 13.58d(SWAT)
+CE143     BETA-       1.0000
+*
+PR144    2  17.28   MINUTES
+CE144     BETA-       0.99999245
+PR143     CAPTURE     1.0000
+*
+ND142    1   0.0    SECONDS
+PR141     CAPTURE     0.9998
+*
+ND143    2   0.0    SECONDS
+PR143     BETA-       1.0000
+ND142     CAPTURE     1.0000
+*
+ND144    3   0.0    SECONDS
+CE144     BETA-       7.5500E-06
+PR144     BETA-       1.0000
+ND143     CAPTURE     1.0000
+*
+ND145    2   0.0    SECONDS
+CE144     CAPTURE     1.0000
+ND144     CAPTURE     1.0000
+*
+ND146    1   0.0    SECONDS
+ND145     CAPTURE     1.0000
+*
+ND147    1  11.06   DAYS                     !!! 11.06d(SWAT)
+ND146     CAPTURE     1.0000
+*
+ND148    1   0.0    SECONDS
+ND147     CAPTURE     1.0000
+*
+ND150    0   0.0    SECONDS
+*
+PM147    1   2.6250 YEARS                    !!! 2.625y(SWAT)
+ND147     BETA-       1.0000
+*
+PM148M   1  41.296  DAYS                     !!! 41.296d(SWAT)
+PM147     CAPTURE     0.3416                 !!! 0.3416(SWAT)
+*
+PM148    2   5.3704 DAYS                     !!! 5.3704d(SWAT)
+PM147     CAPTURE     0.6584                 !!! 0.6584(SWAT)
+PM148M    IT          0.0460
+*
+PM149    3   2.212  DAYS
+PM148M    CAPTURE     1.0000
+PM148     CAPTURE     1.0000
+ND148     CAPTURE     1.0000
+*
+PM151    1   1.183  DAYS
+ND150     CAPTURE     1.0000
+*
+SM147    1   0.0    YEARS                    !!! 0.0y (SWAT)
+PM147     BETA-       1.0000
+*
+SM148    3   0.0    SECONDS
+PM148M    BETA-       0.9540
+PM148     BETA-       1.0000
+SM147     CAPTURE     1.0000
+*
+SM149    2   0.0    SECONDS
+PM149     BETA-       1.0000
+SM148     CAPTURE     1.0000
+*
+SM150    2   0.0    SECONDS
+PM149     CAPTURE     1.0000
+SM149     CAPTURE     1.0000
+*
+SM151    2  90.056  YEARS                    !!! 90.056y(SWAT)
+PM151     BETA-       1.0000
+SM150     CAPTURE     1.0000
+*
+SM152    2   0.0    SECONDS
+PM151     CAPTURE     1.0000
+SM151     CAPTURE     1.0000
+*
+SM153    1   1.9456 DAYS                     !!! 1.9456d(SWAT)
+SM152     CAPTURE     1.0000
+*
+SM154    1   0.0    SECONDS
+SM153     CAPTURE     1.0000
+*
+EU151    1   0.0    SECONDS
+SM151     BETA-       1.0000
+*
+EU152    1  13.610  YEARS                    !!! 13.610y(SWAT)
+EU151     CAPTURE     0.7142                 !!! 0.7142(SWAT)
+*
+EU153    2   0.0    SECONDS
+SM153     BETA-       1.0000
+EU152     CAPTURE     1.0000
+*
+EU154    1   8.606  YEARS                    !!! 8.606y(SWAT)
+EU153     CAPTURE     1.0000
+*
+EU155    2   4.963  YEARS                    !!! 4.963y(SWAT)
+EU154     CAPTURE     1.0000
+SM154     CAPTURE     1.0000
+*
+EU156    1  15.19   DAYS
+EU155     CAPTURE     1.0000
+*
+EU157    1  1.515E-1HOURS                    !!! 1.515E-1h(SWAT)
+EU156     CAPTURE     1.0000
+*
+GD152    2  0.0     YEARS                    !!! 0.0(SWAT)
+EU151     CAPTURE     0.217208               !!! 0.217208(SWAT)
+EU152     BETA-       0.2700
+*
+GD154    1   0.0    SECONDS
+EU154     BETA-       0.9998
+*
+GD155    2   0.0    SECONDS
+EU155     BETA-       1.0000
+GD154     CAPTURE     1.0000
+*
+GD156    2   0.0    SECONDS
+EU156     BETA-       1.0000
+GD155     CAPTURE     1.0000
+*
+GD157    2   0.0    SECONDS
+EU157     BETA-       1.0000
+GD156     CAPTURE     1.0000
+*
+GD158    2   0.0    SECONDS
+EU157     CAPTURE     1.0000
+GD157     CAPTURE     1.0000
+*
+GD160    0   0.0    SECONDS
+*
+TB159    1   0.0    SECONDS
+GD158     CAPTURE     1.0000
+*
+TB160    1  72.095  DAYS
+TB159     CAPTURE     1.0000
+*
+DY160    1   0.0    SECONDS
+TB160     BETA-       1.0000
+*
+DY161    2   0.0    SECONDS
+TB160     CAPTURE     1.0000
+DY160     CAPTURE     1.0000
+*
+DY162    1   0.0    SECONDS
+DY161     CAPTURE     1.0000
+*
+DY163    2   0.0    SECONDS
+DY162     CAPTURE     1.0000
+HO163     EC          1.0000
+*
+DY164    1   0.0    SECONDS
+DY163     CAPTURE     1.0000
+*
+HO163    1  4569.4  YEARS                    !!! 4569.4y(SWAT)
+ER162     CAPTURE     1.0000
+*
+HO165    2   0.0    SECONDS
+DY164     CAPTURE     1.0000
+ER164     CAPTURE     1.0000
+*
+HO166M   1  1200.8  YEARS                    !!! 1200.8y(SWAT)
+HO165     CAPTURE     0.0445                 !!! 0.0445(add for SWAT)
+*
+ER162    0   0.0    SECONDS
+*
+ER164    0   0.0    SECONDS
+*
+ER166    2   0.0    SECONDS
+HO166M    BETA-       1.0000
+HO165     CAPTURE     0.9555                 !!! 0.9555(SWAT)
+*
+ER167    1   0.0    SECONDS
+ER166     CAPTURE     1.0000
+*
+ER168    1   0.0    SECONDS
+ER167     CAPTURE     1.0000
+*
+ER170    0   0.0    SECONDS
+*
+*Block-3 for Burnable Poison Nuclides
+B-010    0   0.0    SECONDS
+*
+HF176    0   0.0    SECONDS
+*
+HF177    1   0.0    SECONDS
+HF176     CAPTURE     1.0000
+*
+HF178    1   0.0    SECONDS
+HF177     CAPTURE     1.0000
+*
+HF179    1   0.0    SECONDS
+HF178     CAPTURE     1.0000
+*
+HF180    1   0.0    SECONDS
+HF179     CAPTURE     1.0000
+*
+*Repeat from Block-4-1 to Block-4-3 NYLDTY Times
+*FP-Yield-Data for Fast Fission of Pa-231,Pa-233,Th-230,Th-232,U-232
+*NAMYLD          NYNUCL     NFP (A8,*) for Block-4-1 
+YTH232F            4       193
+*(NAMFIS(I),I=1,NYNUCL) (5(A8,2X)) for Block-4-2 
+PA231     PA233     TH232     U-232
+*NAMFP        YLDFP for Block-4-3, Repeat NFP Times
+GE073       6.62431E-06
+GE074       1.22519E-05
+GE076       7.10985E-05
+AS075       2.95783E-05
+SE076       9.02037E-11
+SE077       1.22914E-04
+SE078       3.64261E-04
+SE079       8.48945E-04
+SE080       2.08673E-03
+SE082       1.10950E-02
+BR081       4.27026E-03
+KR082       4.77290E-07
+KR083       2.19532E-02
+KR084       4.52267E-02
+KR085       8.23158E-03
+KR086       6.72469E-02
+RB085       3.04582E-02
+RB086       1.81044E-07
+RB087       7.14983E-02
+SR086       2.25054E-11
+SR087       2.14345E-09
+SR088       7.54467E-02
+SR089       7.59662E-02
+SR090       7.67480E-02
+Y-089       2.81968E-10
+Y-090       1.16022E-08
+Y-091       7.33827E-02
+ZR090       1.08299E-12
+ZR091       4.74114E-11
+ZR092       6.81081E-02
+ZR093       6.75548E-02
+ZR094       5.66451E-02
+ZR095       5.37511E-02
+ZR096       4.38912E-02
+NB093M      5.57296E-13
+NB093       2.76850E-12
+NB094       1.97897E-10
+NB095       1.12853E-08
+MO092       1.14097E-20
+MO094       3.50669E-13
+MO095       4.78691E-11
+MO096       2.12084E-07
+MO097       4.49217E-02
+MO098       3.66427E-02
+MO099       2.87299E-02
+MO100       1.39256E-02
+TC099       9.27216E-11
+RU100       1.25035E-09
+RU101       7.29408E-03
+RU102       3.72559E-03
+RU103       1.52462E-03
+RU104       9.10231E-04
+RU105       4.57223E-04
+RU106       4.45859E-04
+RH103       8.20539E-15
+RH105       1.00524E-11
+RH106       9.07359E-11
+PD104       3.58748E-13
+PD105       1.69390E-16
+PD106       2.47372E-10
+PD107       5.16786E-04
+PD108       6.20664E-04
+PD110       7.31050E-04
+AG107       6.91142E-18
+AG109       6.09244E-04
+AG110M      3.62236E-11
+CD110       1.32496E-11
+CD111       7.09397E-04
+CD112       8.62079E-04
+CD113M      1.38087E-05
+CD113       8.49242E-04
+CD114       7.58418E-04
+CD116       7.56715E-04
+IN113       3.30600E-16
+IN115       6.90820E-04
+SN116       4.79181E-16
+SN117       6.78094E-04
+SN118       6.48980E-04
+SN119M      1.84899E-06
+SN119       5.87458E-04
+SN120       5.59519E-04
+SN121M      1.42221E-05
+SN121       4.87802E-04
+SN122       3.75614E-04
+SN123       1.00461E-05
+SN124       2.74551E-04
+SN126       4.95687E-04
+SB121       3.23078E-13
+SB123       2.98648E-04
+SB124       2.93441E-10
+SB125       3.84936E-04
+SB126M      3.20803E-08
+SB126       2.29329E-08
+TE122       4.07097E-12
+TE123M      3.55809E-15
+TE123       9.39760E-16
+TE124       5.26754E-11
+TE125M      7.98378E-13
+TE125       2.10868E-13
+TE126       3.00074E-11
+TE127M      1.24572E-04
+TE128       1.90314E-03
+TE129M      3.57981E-04
+TE130       8.36453E-03
+TE132       2.88761E-02
+I-127       7.71623E-04
+I-129       3.36474E-03
+I-130       6.63055E-09
+I-131       1.62271E-02
+I-135       5.31401E-02
+XE126       5.00976E-17
+XE128       1.36189E-12
+XE129       2.08773E-15
+XE130       3.11689E-10
+XE131       9.55233E-11
+XE132       1.23454E-05
+XE133       3.95833E-02
+XE134       5.42281E-02
+XE135       3.08885E-04
+XE136       5.65020E-02
+CS133       2.97072E-11
+CS134       4.22102E-09
+CS135       2.39158E-07
+CS136       3.01572E-05
+CS137       6.74334E-02
+BA134       1.47036E-13
+BA135       2.37057E-11
+BA136       2.40059E-09
+BA137M      1.09505E-07
+BA137       3.91313E-08
+BA138       7.02270E-02
+BA140       7.74676E-02
+LA139       7.08327E-02
+LA140       3.43083E-07
+CE140       5.14123E-11
+CE141       7.33548E-02
+CE142       6.31803E-02
+CE143       6.53266E-02
+CE144       7.80799E-02
+PR141       1.95047E-14
+PR143       2.16051E-10
+PR144       1.00638E-08
+ND142       2.13018E-12
+ND143       1.48866E-15
+ND144       5.00780E-12
+ND145       5.28459E-02
+ND146       4.51575E-02
+ND147       3.01054E-02
+ND148       1.97891E-02
+ND150       3.46928E-03
+PM147       2.89069E-12
+PM148M      1.08231E-10
+PM148       3.97031E-11
+PM149       8.82309E-03
+PM151       3.14028E-03
+SM147       7.27779E-18
+SM148       1.92266E-15
+SM149       1.68041E-13
+SM150       3.70168E-08
+SM151       3.03073E-10
+SM152       7.59043E-04
+SM153       3.32454E-04
+SM154       7.29045E-05
+EU151       2.46114E-15
+EU152       8.34729E-14
+EU153       2.96072E-12
+EU154       2.11051E-11
+EU155       3.82555E-05
+EU156       2.56226E-05
+EU157       9.56560E-06
+GD152       3.00073E-15
+GD154       9.41418E-16
+GD155       3.71090E-14
+GD156       9.53230E-13
+GD157       9.41228E-12
+GD158       5.03929E-06
+GD160       7.51763E-07
+TB159       1.06242E-06
+TB160       1.22030E-12
+DY160       1.02407E-16
+DY161       1.65070E-07
+DY162       8.67208E-08
+DY163       5.04237E-08
+DY164       2.20737E-08
+HO163       2.95941E-17
+HO165       3.73762E-09
+HO166M      2.76618E-14
+ER162       0.00000E+00
+ER164       2.37468E-16
+ER166       1.49722E-09
+ER167       1.06223E-09
+ER168       5.74284E-10
+ER170       1.15693E-10
+*FP-Yield-Data for Thermal Fission of U-233
+YU233T             1       193
+U-233
+GE073       1.13363E-05
+GE074       2.77951E-05
+GE076       1.47021E-04
+AS075       8.26383E-05
+SE076       5.18000E-08
+SE077       2.61510E-04
+SE078       5.51616E-04
+SE079       1.51162E-03
+SE080       2.39382E-03
+SE082       5.51125E-03
+BR081       2.90756E-03
+KR082       7.65722E-06
+KR083       1.01753E-02
+KR084       1.74065E-02
+KR085       4.86657E-03
+KR086       2.86210E-02
+RB085       1.67441E-02
+RB086       2.31904E-06
+RB087       4.00979E-02
+SR086       8.76636E-08
+SR087       6.79375E-07
+SR088       5.52055E-02
+SR089       6.32054E-02
+SR090       6.89241E-02
+Y-089       1.85136E-07
+Y-090       9.87545E-07
+Y-091       6.53400E-02
+ZR090       1.30582E-09
+ZR091       5.45775E-08
+ZR092       6.59235E-02
+ZR093       7.01507E-02
+ZR094       6.81596E-02
+ZR095       6.18971E-02
+ZR096       5.65004E-02
+NB093M      1.25780E-09
+NB093       5.43944E-09
+NB094       1.98132E-07
+NB095       9.44155E-06
+MO092       1.35739E-16
+MO094       4.02766E-10
+MO095       4.58487E-08
+MO096       5.56517E-05
+MO097       5.49547E-02
+MO098       5.12828E-02
+MO099       4.86635E-02
+MO100       4.41623E-02
+TC099       1.39342E-07
+RU100       1.87968E-06
+RU101       3.23063E-02
+RU102       2.44967E-02
+RU103       1.66963E-02
+RU104       1.03054E-02
+RU105       4.82196E-03
+RU106       2.58787E-03
+RH103       3.23967E-10
+RH105       8.56646E-08
+RH106       7.71659E-08
+PD104       5.30677E-09
+PD105       1.17951E-11
+PD106       1.81218E-07
+PD107       1.17345E-03
+PD108       6.31073E-04
+PD110       2.61496E-04
+AG107       4.75703E-13
+AG109       4.42382E-04
+AG110M      1.87172E-08
+CD110       7.97723E-09
+CD111       1.92074E-04
+CD112       1.43984E-04
+CD113M      2.19243E-06
+CD113       1.34435E-04
+CD114       1.30843E-04
+CD116       1.44229E-04
+IN113       1.65431E-12
+IN115       1.17990E-04
+SN116       2.27906E-12
+SN117       1.14036E-04
+SN118       1.22395E-04
+SN119M      6.77160E-07
+SN119       1.25171E-04
+SN120       1.38453E-04
+SN121M      1.04950E-05
+SN121       1.38998E-04
+SN122       1.47498E-04
+SN123       1.65901E-05
+SN124       2.43214E-04
+SN126       2.40111E-03
+SB121       4.12858E-10
+SB123       1.82538E-04
+SB124       2.40744E-07
+SB125       1.12161E-03
+SB126M      3.32252E-05
+SB126       1.94729E-05
+TE122       3.88369E-09
+TE123M      3.69023E-11
+TE123       1.12777E-11
+TE124       4.14477E-08
+TE125M      1.14383E-08
+TE125       3.49638E-09
+TE126       3.46879E-07
+TE127M      7.83885E-04
+TE128       7.58940E-03
+TE129M      1.79895E-03
+TE130       2.09813E-02
+TE132       4.62597E-02
+I-127       4.83359E-03
+I-129       1.32721E-02
+I-130       2.71881E-05
+I-131       3.60613E-02
+I-135       4.91248E-02
+XE126       1.76808E-11
+XE128       5.66262E-07
+XE129       4.95795E-10
+XE130       1.46780E-06
+XE131       1.06264E-06
+XE132       3.12734E-03
+XE133       6.02236E-02
+XE134       6.31264E-02
+XE135       1.28300E-02
+XE136       7.01404E-02
+CS133       3.72846E-07
+CS134       1.32045E-05
+CS135       1.85916E-04
+CS136       1.05093E-03
+CS137       6.81940E-02
+BA134       6.15746E-09
+BA135       2.76896E-07
+BA136       5.30811E-06
+BA137M      7.51457E-05
+BA137       3.11203E-05
+BA138       5.89626E-02
+BA140       6.47017E-02
+LA139       6.33239E-02
+LA140       2.42710E-04
+CE140       3.96849E-07
+CE141       6.53099E-02
+CE142       6.65697E-02
+CE143       5.89200E-02
+CE144       4.63787E-02
+PR141       9.50618E-10
+PR143       9.93589E-07
+PR144       1.12103E-05
+ND142       3.80800E-08
+ND143       1.33945E-10
+ND144       1.11378E-08
+ND145       3.39176E-02
+ND146       2.53660E-02
+ND147       1.74993E-02
+ND148       1.27196E-02
+ND150       4.99461E-03
+PM147       2.01917E-08
+PM148M      9.02936E-09
+PM148       3.85529E-09
+PM149       7.77019E-03
+PM151       3.15255E-03
+SM147       1.00958E-12
+SM148       8.65643E-11
+SM149       3.01879E-09
+SM150       2.80218E-05
+SM151       7.10706E-07
+SM152       2.13552E-03
+SM153       1.04777E-03
+SM154       4.66680E-04
+EU151       1.24947E-10
+EU152       2.71788E-09
+EU153       4.16904E-08
+EU154       2.27906E-07
+EU155       2.17924E-04
+EU156       1.13107E-04
+EU157       6.32126E-05
+GD152       1.22500E-10
+GD154       1.62932E-10
+GD155       1.65938E-09
+GD156       1.12964E-08
+GD157       5.74763E-08
+GD158       2.31442E-05
+GD160       3.53768E-06
+TB159       8.74547E-06
+TB160       5.82759E-09
+DY160       7.64683E-12
+DY161       1.20770E-06
+DY162       1.56105E-07
+DY163       7.31949E-08
+DY164       2.40896E-08
+HO163       3.91838E-13
+HO165       7.58979E-09
+HO166M      3.02613E-11
+ER162       0.00000E+00
+ER164       9.19776E-13
+ER166       4.59875E-09
+ER167       6.48569E-10
+ER168       1.66973E-10
+ER170       1.66601E-11
+*FP-Yield-Data for Thermal Fission of U-235
+YU235T             2       193
+U-235     NP236
+GE073       1.17798E-06
+GE074       3.68439E-06
+GE076       3.85318E-05
+AS075       1.17723E-05
+SE076       1.90971E-09
+SE077       8.43268E-05
+SE078       2.18234E-04
+SE079       4.53206E-04
+SE080       1.31292E-03
+SE082       3.27240E-03
+BR081       1.95197E-03
+KR082       6.18312E-07
+KR083       5.38052E-03
+KR084       1.03536E-02
+KR085       2.74288E-03
+KR086       1.97254E-02
+RB085       9.95976E-03
+RB086       8.01820E-08
+RB087       2.55432E-02
+SR086       6.52854E-10
+SR087       4.42862E-08
+SR088       3.64897E-02
+SR089       4.88502E-02
+SR090       5.90449E-02
+Y-089       1.33374E-08
+Y-090       4.29883E-07
+Y-091       5.91870E-02
+ZR090       7.50638E-11
+ZR091       3.49922E-09
+ZR092       5.97377E-02
+ZR093       6.39023E-02
+ZR094       6.43947E-02
+ZR095       6.49607E-02
+ZR096       6.26407E-02
+NB093M      7.53133E-11
+NB093       3.25697E-10
+NB094       1.68434E-08
+NB095       1.26475E-06
+MO092       1.45312E-18
+MO094       3.34303E-11
+MO095       6.03518E-09
+MO096       5.59343E-06
+MO097       6.00817E-02
+MO098       5.70831E-02
+MO099       6.11047E-02
+MO100       6.23231E-02
+TC099       1.44467E-08
+RU100       3.02965E-07
+RU101       5.08143E-02
+RU102       4.23310E-02
+RU103       3.02742E-02
+RU104       1.83972E-02
+RU105       9.63842E-03
+RU106       4.02306E-03
+RH103       3.32126E-11
+RH105       1.70062E-08
+RH106       5.16929E-08
+PD104       7.35898E-10
+PD105       9.99775E-13
+PD106       1.21113E-07
+PD107       1.40280E-03
+PD108       6.69376E-04
+PD110       3.04316E-04
+AG107       1.33970E-14
+AG109       3.44818E-04
+AG110M      1.78169E-09
+CD110       7.58798E-10
+CD111       2.00221E-04
+CD112       1.60353E-04
+CD113M      2.61378E-06
+CD113       1.60745E-04
+CD114       1.40363E-04
+CD116       1.69140E-04
+IN113       4.22905E-14
+IN115       1.07631E-04
+SN116       7.84825E-14
+SN117       1.08339E-04
+SN118       1.09347E-04
+SN119M      5.10153E-07
+SN119       1.21096E-04
+SN120       1.21051E-04
+SN121M      7.10713E-06
+SN121       1.22526E-04
+SN122       1.52990E-04
+SN123       3.05863E-05
+SN124       2.59132E-04
+SN126       5.49319E-04
+SB121       3.89913E-11
+SB123       1.28227E-04
+SB124       1.06136E-07
+SB125       2.93782E-04
+SB126M      1.61115E-06
+SB126       9.44276E-07
+TE122       2.83975E-10
+TE123M      1.03377E-12
+TE123       3.15927E-13
+TE124       1.81488E-08
+TE125M      1.10422E-10
+TE125       3.37461E-11
+TE126       5.94025E-09
+TE127M      1.73348E-04
+TE128       3.52785E-03
+TE129M      7.19872E-04
+TE130       1.78493E-02
+TE132       4.28300E-02
+I-127       1.07322E-03
+I-129       6.45861E-03
+I-130       2.06110E-06
+I-131       2.88432E-02
+I-135       6.28967E-02
+XE126       1.29731E-12
+XE128       1.00459E-08
+XE129       4.53899E-12
+XE130       1.08600E-07
+XE131       4.27914E-08
+XE132       1.69293E-04
+XE133       6.70193E-02
+XE134       7.82582E-02
+XE135       2.41917E-03
+XE136       6.30593E-02
+CS133       8.34813E-09
+CS134       1.26972E-07
+CS135       2.08938E-05
+CS136       5.47177E-05
+CS137       6.26854E-02
+BA134       7.25837E-11
+BA135       1.02978E-08
+BA136       1.16977E-07
+BA137M      6.63862E-06
+BA137       2.74927E-06
+BA138       6.70543E-02
+BA140       6.29458E-02
+LA139       6.35242E-02
+LA140       5.46978E-05
+CE140       1.47968E-08
+CE141       5.79671E-02
+CE142       5.87937E-02
+CE143       5.93879E-02
+CE144       5.47242E-02
+PR141       1.72961E-11
+PR143       4.61897E-08
+PR144       1.04230E-06
+ND142       1.06960E-09
+ND143       2.05954E-12
+ND144       5.67611E-10
+ND145       3.91752E-02
+ND146       2.97547E-02
+ND147       2.25335E-02
+ND148       1.66954E-02
+ND150       6.48289E-03
+PM147       9.45789E-10
+PM148M      7.81900E-11
+PM148       3.33850E-11
+PM149       1.06635E-02
+PM151       4.18377E-03
+SM147       1.51966E-14
+SM148       1.95956E-12
+SM149       1.10975E-10
+SM150       3.04152E-07
+SM151       7.19839E-08
+SM152       2.67834E-03
+SM153       1.61350E-03
+SM154       7.34042E-04
+EU151       2.50943E-12
+EU152       1.22138E-10
+EU153       2.34966E-09
+EU154       2.68939E-08
+EU155       3.20438E-04
+EU156       1.31858E-04
+EU157       6.15279E-05
+GD152       5.49710E-12
+GD154       6.56853E-12
+GD155       8.57808E-11
+GD156       7.99844E-10
+GD157       5.81870E-09
+GD158       2.91590E-05
+GD160       3.16238E-06
+TB159       1.00291E-05
+TB160       2.66940E-10
+DY160       2.23950E-13
+DY161       8.52670E-07
+DY162       1.91779E-07
+DY163       7.66523E-08
+DY164       2.39556E-08
+HO163       1.47967E-14
+HO165       1.16571E-08
+HO166M      8.09926E-12
+ER162       0.00000E+00
+ER164       5.35901E-14
+ER166       5.51463E-09
+ER167       3.00628E-09
+ER168       6.89173E-10
+ER170       5.91679E-11
+*FP-Yield-Data for Fast Fission of U-236, U-234 and U-237
+YU236F             4       193
+U-234     U-236     U-237     PU236
+GE073       6.67420E-06
+GE074       1.69801E-05
+GE076       2.04952E-04
+AS075       1.20849E-04
+SE076       2.62979E-09
+SE077       4.19475E-04
+SE078       5.22881E-04
+SE079       1.04934E-03
+SE080       1.69599E-03
+SE082       3.44957E-03
+BR081       2.41774E-03
+KR082       1.09054E-06
+KR083       5.22132E-03
+KR084       1.05647E-02
+KR085       3.02275E-03
+KR086       1.67442E-02
+RB085       1.11224E-02
+RB086       4.18996E-07
+RB087       2.29804E-02
+SR086       7.24992E-11
+SR087       6.63669E-09
+SR088       2.98498E-02
+SR089       3.80244E-02
+SR090       4.52066E-02
+Y-089       1.86800E-09
+Y-090       7.67953E-08
+Y-091       5.62289E-02
+ZR090       8.49471E-12
+ZR091       4.56992E-10
+ZR092       6.20667E-02
+ZR093       5.69954E-02
+ZR094       5.58222E-02
+ZR095       6.41134E-02
+ZR096       5.73422E-02
+NB093M      7.87386E-12
+NB093       3.91153E-11
+NB094       2.75511E-09
+NB095       1.38018E-07
+MO092       7.55227E-19
+MO094       4.90405E-12
+MO095       5.88457E-10
+MO096       2.52051E-06
+MO097       5.14394E-02
+MO098       5.73905E-02
+MO099       5.87313E-02
+MO100       5.61258E-02
+TC099       2.54097E-09
+RU100       6.02025E-08
+RU101       5.29101E-02
+RU102       4.92730E-02
+RU103       4.20302E-02
+RU104       3.37809E-02
+RU105       2.45692E-02
+RU106       1.01846E-02
+RH103       5.89693E-12
+RH105       9.22991E-09
+RH106       3.23668E-08
+PD104       2.22007E-10
+PD105       2.79997E-13
+PD106       8.82471E-08
+PD107       9.22816E-03
+PD108       3.44851E-03
+PD110       1.03379E-03
+AG107       1.25776E-14
+AG109       1.43471E-03
+AG110M      1.35275E-09
+CD110       4.94864E-10
+CD111       6.52552E-04
+CD112       4.76344E-04
+CD113M      6.10089E-06
+CD113       3.75231E-04
+CD114       3.27243E-04
+CD116       3.36882E-04
+IN113       1.21998E-14
+IN115       5.11055E-04
+SN116       1.46999E-14
+SN117       3.56982E-04
+SN118       3.59352E-04
+SN119M      1.26971E-06
+SN119       3.48626E-04
+SN120       3.78405E-04
+SN121M      1.61568E-05
+SN121       3.51591E-04
+SN122       4.96950E-04
+SN123       2.62830E-05
+SN124       9.24394E-04
+SN126       2.44519E-03
+SB121       8.75991E-12
+SB123       6.96220E-04
+SB124       2.35712E-08
+SB125       1.63114E-03
+SB126M      2.01181E-06
+SB126       1.43816E-06
+TE122       1.79883E-10
+TE123M      5.31589E-13
+TE123       1.40404E-13
+TE124       4.23374E-09
+TE125M      1.08138E-10
+TE125       2.85630E-11
+TE126       3.63000E-09
+TE127M      3.10802E-04
+TE128       6.10820E-03
+TE129M      9.55321E-04
+TE130       1.99129E-02
+TE132       4.29007E-02
+I-127       1.92501E-03
+I-129       8.87096E-03
+I-130       3.61054E-07
+I-131       3.03689E-02
+I-135       5.61647E-02
+XE126       3.48478E-14
+XE128       1.86864E-10
+XE129       4.29996E-13
+XE130       1.69996E-08
+XE131       5.53001E-09
+XE132       1.72690E-04
+XE133       7.02589E-02
+XE134       8.07309E-02
+XE135       1.58467E-03
+XE136       6.40343E-02
+CS133       2.24998E-09
+CS134       1.70998E-07
+CS135       4.33665E-06
+CS136       4.04096E-05
+CS137       6.12883E-02
+BA134       1.12999E-11
+BA135       9.70994E-10
+BA136       6.36007E-08
+BA137M      1.34526E-06
+BA137       4.80725E-07
+BA138       6.15386E-02
+BA140       5.81584E-02
+LA139       5.84611E-02
+LA140       4.49995E-06
+CE140       1.23999E-09
+CE141       5.54610E-02
+CE142       5.81946E-02
+CE143       6.08848E-02
+CE144       5.20610E-02
+PR141       1.17999E-12
+PR143       6.20994E-09
+PR144       1.72419E-07
+ND142       1.09981E-10
+ND143       1.21999E-13
+ND144       9.19304E-11
+ND145       3.66819E-02
+ND146       2.94311E-02
+ND147       2.34066E-02
+ND148       1.74054E-02
+ND150       7.29555E-03
+PM147       9.90982E-11
+PM148M      3.00691E-09
+PM148       1.10305E-09
+PM149       1.36836E-02
+PM151       4.22637E-03
+SM147       8.44410E-16
+SM148       1.25999E-13
+SM149       1.13999E-11
+SM150       1.25047E-06
+SM151       9.83989E-09
+SM152       3.87746E-03
+SM153       2.55329E-03
+SM154       1.29281E-03
+EU151       2.94997E-13
+EU152       2.00512E-11
+EU153       6.58011E-10
+EU154       8.72991E-09
+EU155       9.22833E-04
+EU156       3.36478E-04
+EU157       2.30794E-04
+GD152       7.20956E-13
+GD154       8.94991E-13
+GD155       2.84997E-11
+GD156       2.92997E-10
+GD157       3.29997E-09
+GD158       1.10789E-04
+GD160       1.93907E-05
+TB159       4.33879E-05
+TB160       6.27994E-10
+DY160       1.18999E-13
+DY161       4.91034E-06
+DY162       4.98041E-06
+DY163       1.10728E-06
+DY164       4.42816E-07
+HO163       2.55997E-14
+HO165       1.70445E-07
+HO166M      2.67476E-11
+ER162       0.00000E+00
+ER164       1.59211E-13
+ER166       1.01487E-07
+ER167       4.80209E-08
+ER168       1.20063E-08
+ER170       8.95438E-10
+*FP-Yield-Data for Fast Fission of U-238, Pu-238
+YU238F             2       193
+U-238     PU238
+GE073       4.77384E-07
+GE074       9.66288E-07
+GE076       8.00692E-06
+AS075       2.42765E-06
+SE076       5.81564E-12
+SE077       3.33471E-05
+SE078       1.12786E-04
+SE079       3.35248E-04
+SE080       7.10737E-04
+SE082       2.37090E-03
+BR081       1.41987E-03
+KR082       6.22917E-08
+KR083       3.86596E-03
+KR084       8.96502E-03
+KR085       1.40107E-03
+KR086       1.27852E-02
+RB085       5.18763E-03
+RB086       1.99233E-08
+RB087       1.58800E-02
+SR086       2.04239E-12
+SR087       2.61575E-10
+SR088       2.08538E-02
+SR089       2.84852E-02
+SR090       3.24308E-02
+Y-089       5.18706E-11
+Y-090       2.63295E-09
+Y-091       4.04542E-02
+ZR090       2.25729E-13
+ZR091       1.25147E-11
+ZR092       4.50943E-02
+ZR093       5.00091E-02
+ZR094       4.95711E-02
+ZR095       5.10681E-02
+ZR096       5.90907E-02
+NB093M      1.81353E-13
+NB093       9.00913E-13
+NB094       8.61484E-11
+NB095       6.16133E-09
+MO092       2.53360E-21
+MO094       1.52506E-13
+MO095       2.60877E-11
+MO096       1.67217E-07
+MO097       5.57464E-02
+MO098       5.74670E-02
+MO099       6.19570E-02
+MO100       6.69985E-02
+TC099       9.97161E-11
+RU100       3.29396E-09
+RU101       6.08223E-02
+RU102       6.31980E-02
+RU103       6.20956E-02
+RU104       5.02329E-02
+RU105       3.93933E-02
+RU106       2.53108E-02
+RH103       1.78709E-13
+RH105       7.05324E-10
+RH106       4.12722E-09
+PD104       9.52300E-12
+PD105       3.26382E-09
+PD106       1.12519E-08
+PD107       1.29612E-02
+PD108       5.98748E-03
+PD110       1.36940E-03
+AG107       1.68472E-16
+AG109       2.68437E-03
+AG110M      6.47506E-11
+CD110       2.36841E-11
+CD111       8.02051E-04
+CD112       6.50398E-04
+CD113M      8.42696E-06
+CD113       5.18262E-04
+CD114       3.93598E-04
+CD116       4.17687E-04
+IN113       1.43872E-16
+IN115       3.37741E-04
+SN116       1.92008E-16
+SN117       3.66012E-04
+SN118       3.96222E-04
+SN119M      1.11312E-06
+SN119       3.56524E-04
+SN120       3.57947E-04
+SN121M      1.16804E-05
+SN121       4.21493E-04
+SN122       3.74284E-04
+SN123       1.32834E-05
+SN124       4.44771E-04
+SN126       6.30422E-04
+SB121       2.12249E-13
+SB123       3.95591E-04
+SB124       4.55001E-10
+SB125       5.25418E-04
+SB126M      3.39784E-08
+SB126       2.42898E-08
+TE122       3.49822E-12
+TE123M      3.92469E-15
+TE123       1.03658E-15
+TE124       8.16767E-11
+TE125M      8.32385E-13
+TE125       2.19850E-13
+TE126       2.96348E-11
+TE127M      1.75223E-04
+TE128       4.67181E-03
+TE129M      9.60832E-04
+TE130       1.86613E-02
+TE132       5.14499E-02
+I-127       1.08538E-03
+I-129       9.03673E-03
+I-130       8.39632E-09
+I-131       3.23857E-02
+I-135       6.78304E-02
+XE126       4.37109E-17
+XE128       1.83321E-12
+XE129       2.29738E-15
+XE130       3.94566E-10
+XE131       4.14487E-11
+XE132       1.46289E-05
+XE133       6.60617E-02
+XE134       7.74561E-02
+XE135       2.79476E-04
+XE136       6.85056E-02
+CS133       2.54298E-11
+CS134       3.14368E-09
+CS135       1.88446E-07
+CS136       9.11067E-06
+CS137       6.09070E-02
+BA134       9.00055E-14
+BA135       1.40164E-11
+BA136       2.30270E-09
+BA137M      5.58359E-08
+BA137       1.99528E-08
+BA138       5.55928E-02
+BA140       5.98817E-02
+LA139       5.90335E-02
+LA140       1.53179E-07
+CE140       1.93226E-11
+CE141       5.48315E-02
+CE142       4.72968E-02
+CE143       4.56657E-02
+CE144       4.53722E-02
+PR141       4.55463E-15
+PR143       7.55882E-11
+PR144       3.25433E-09
+ND142       7.70779E-13
+ND143       4.01763E-16
+ND144       1.59436E-12
+ND145       3.75588E-02
+ND146       3.39528E-02
+ND147       2.52979E-02
+ND148       2.08160E-02
+ND150       1.26605E-02
+PM147       1.09128E-12
+PM148M      5.90368E-11
+PM148       2.16569E-11
+PM149       1.60757E-02
+PM151       8.00639E-03
+SM147       2.16659E-18
+SM148       8.05193E-16
+SM149       1.39163E-13
+SM150       8.01077E-08
+SM151       5.12601E-10
+SM152       5.20747E-03
+SM153       4.10948E-03
+SM154       2.13528E-03
+EU151       2.51437E-15
+EU152       5.50634E-09
+EU153       1.78209E-11
+EU154       3.44404E-10
+EU155       1.32657E-03
+EU156       6.74806E-04
+EU157       3.87188E-04
+GD152       1.98446E-10
+GD154       1.57184E-14
+GD155       6.22730E-13
+GD156       1.29151E-11
+GD157       2.10246E-10
+GD158       1.72993E-04
+GD160       3.22775E-05
+TB159       8.09138E-05
+TB160       3.02354E-11
+DY160       1.96146E-15
+DY161       1.27981E-05
+DY162       4.92644E-06
+DY163       1.20788E-06
+DY164       3.91959E-07
+HO163       3.26603E-16
+HO165       1.50283E-07
+HO166M      5.98431E-13
+ER162       0.00000E+00
+ER164       2.14946E-15
+ER166       5.38419E-08
+ER167       1.59672E-08
+ER168       6.82238E-09
+ER170       6.82498E-10
+*FP-Yield-Data for Fast Fission of Np-237, Np-239
+YNP237F            2       193
+NP237     NP239
+GE073       3.73681E-06
+GE074       6.85283E-06
+GE076       6.12766E-05
+AS075       1.34722E-05
+SE076       6.14999E-09
+SE077       1.08900E-04
+SE078       2.51439E-04
+SE079       5.79704E-04
+SE080       1.15665E-03
+SE082       3.35518E-03
+BR081       2.35460E-03
+KR082       5.66407E-06
+KR083       4.81007E-03
+KR084       8.03678E-03
+KR085       2.00542E-03
+KR086       1.30919E-02
+RB085       7.25590E-03
+RB086       2.41003E-06
+RB087       1.72587E-02
+SR086       5.85008E-10
+SR087       3.76831E-08
+SR088       2.20963E-02
+SR089       2.52049E-02
+SR090       3.32645E-02
+Y-089       1.45806E-08
+Y-090       5.29980E-07
+Y-091       3.90753E-02
+ZR090       7.18341E-11
+ZR091       3.19004E-09
+ZR092       4.47426E-02
+ZR093       5.13900E-02
+ZR094       5.12679E-02
+ZR095       5.69951E-02
+ZR096       5.52528E-02
+NB093M      9.67037E-11
+NB093       4.80399E-10
+NB094       3.05467E-08
+NB095       1.03267E-06
+MO092       1.57021E-17
+MO094       5.46026E-11
+MO095       4.43845E-09
+MO096       1.65552E-05
+MO097       6.20551E-02
+MO098       6.05606E-02
+MO099       6.15581E-02
+MO100       6.59457E-02
+TC099       3.04904E-08
+RU100       6.92061E-07
+RU101       6.17697E-02
+RU102       5.87815E-02
+RU103       5.58313E-02
+RU104       4.22259E-02
+RU105       3.16626E-02
+RU106       2.24408E-02
+RH103       1.20501E-10
+RH105       1.23802E-07
+RH106       6.49501E-07
+PD104       3.77895E-09
+PD105       6.74009E-12
+PD106       1.77096E-06
+PD107       1.69243E-02
+PD108       9.51979E-03
+PD110       2.31278E-03
+AG107       4.59106E-13
+AG109       4.47322E-03
+AG110M      3.87761E-08
+CD110       1.41872E-08
+CD111       9.59671E-04
+CD112       7.26509E-04
+CD113M      8.27699E-06
+CD113       5.09041E-04
+CD114       5.13047E-04
+CD116       4.82016E-04
+IN113       6.87009E-13
+IN115       4.87956E-04
+SN116       6.40006E-13
+SN117       4.33960E-04
+SN118       5.53205E-04
+SN119M      2.40534E-06
+SN119       5.54483E-04
+SN120       5.54258E-04
+SN121M      3.15143E-05
+SN121       5.14111E-04
+SN122       6.08767E-04
+SN123       3.36908E-05
+SN124       7.50307E-04
+SN126       1.62776E-03
+SB121       2.90004E-10
+SB123       6.39735E-04
+SB124       2.17063E-07
+SB125       1.31748E-03
+SB126M      9.12623E-06
+SB126       6.52398E-06
+TE122       4.15808E-09
+TE123M      1.20242E-11
+TE123       3.17599E-12
+TE124       3.90226E-08
+TE125M      1.55130E-09
+TE125       4.09796E-10
+TE126       2.98019E-08
+TE127M      4.96743E-04
+TE128       6.82856E-03
+TE129M      1.43508E-03
+TE130       2.29735E-02
+TE132       4.89184E-02
+I-127       3.07423E-03
+I-129       1.25099E-02
+I-130       6.14188E-06
+I-131       3.69768E-02
+I-135       6.65467E-02
+XE126       1.19243E-12
+XE128       6.36672E-09
+XE129       2.52004E-11
+XE130       2.90077E-07
+XE131       1.23308E-07
+XE132       1.16168E-03
+XE133       6.63974E-02
+XE134       7.38955E-02
+XE135       8.82934E-03
+XE136       6.81602E-02
+CS133       6.08009E-08
+CS134       3.11003E-06
+CS135       6.07309E-05
+CS136       4.98577E-04
+CS137       6.30488E-02
+BA134       3.96005E-10
+BA135       2.62009E-08
+BA136       8.87095E-07
+BA137M      1.25320E-05
+BA137       4.47827E-06
+BA138       6.16462E-02
+BA140       5.49114E-02
+LA139       5.64278E-02
+LA140       4.64007E-05
+CE140       2.42009E-08
+CE141       5.43925E-02
+CE142       4.90223E-02
+CE143       4.70364E-02
+CE144       4.19620E-02
+PR141       5.57007E-11
+PR143       1.11002E-07
+PR144       2.36196E-06
+ND142       3.39955E-09
+ND143       4.64007E-12
+ND144       1.41679E-09
+ND145       3.48222E-02
+ND146       2.79800E-02
+ND147       2.21081E-02
+ND148       1.72929E-02
+ND150       9.83449E-03
+PM147       2.81004E-09
+PM148M      6.92850E-08
+PM148       2.54164E-08
+PM149       1.27434E-02
+PM151       7.13741E-03
+SM147       4.35006E-14
+SM148       5.41008E-12
+SM149       2.75004E-10
+SM150       1.65519E-05
+SM151       1.76002E-07
+SM152       4.56312E-03
+SM153       3.59418E-03
+SM154       1.85326E-03
+EU151       1.92003E-11
+EU152       6.95132E-10
+EU153       1.83013E-08
+EU154       1.99002E-07
+EU155       1.19201E-03
+EU156       9.99145E-04
+EU157       3.32957E-04
+GD152       2.49982E-11
+GD154       3.79004E-11
+GD155       7.59031E-10
+GD156       1.02008E-08
+GD157       4.73007E-08
+GD158       1.32023E-04
+GD160       2.59092E-05
+TB159       6.70965E-05
+TB160       1.07001E-08
+DY160       3.76005E-12
+DY161       8.05957E-06
+DY162       3.12700E-06
+DY163       1.33984E-06
+DY164       5.81208E-07
+HO163       8.52012E-13
+HO165       1.96081E-07
+HO166M      2.50436E-10
+ER162       0.00000E+00
+ER164       4.22468E-12
+ER166       1.16028E-07
+ER167       1.60559E-08
+ER168       4.12269E-09
+ER170       4.21871E-09
+*FP-Yield-Data for Thermal Fission of Pu-239
+YPU239T            1       193
+PU239
+GE073       2.30712E-06
+GE074       5.37339E-06
+GE076       2.75269E-05
+AS075       1.24172E-05
+SE076       7.17427E-09
+SE077       7.33611E-05
+SE078       2.85317E-04
+SE079       4.70417E-04
+SE080       1.13582E-03
+SE082       2.02330E-03
+BR081       1.71383E-03
+KR082       3.31417E-05
+KR083       2.94999E-03
+KR084       4.80890E-03
+KR085       1.26270E-03
+KR086       7.60259E-03
+RB085       4.40954E-03
+RB086       6.51211E-07
+RB087       9.89135E-03
+SR086       2.18071E-09
+SR087       1.01181E-07
+SR088       1.37073E-02
+SR089       1.71228E-02
+SR090       2.10110E-02
+Y-089       3.39629E-08
+Y-090       9.98275E-07
+Y-091       2.50213E-02
+ZR090       2.65924E-10
+ZR091       3.79123E-08
+ZR092       3.00687E-02
+ZR093       3.89629E-02
+ZR094       4.42976E-02
+ZR095       4.89422E-02
+ZR096       5.06651E-02
+NB093M      4.42997E-10
+NB093       1.91577E-09
+NB094       8.71585E-08
+NB095       5.72484E-06
+MO092       1.07053E-16
+MO094       1.75390E-10
+MO095       2.74444E-08
+MO096       3.63706E-05
+MO097       5.44524E-02
+MO098       5.78854E-02
+MO099       6.14028E-02
+MO100       6.82629E-02
+TC099       1.04734E-07
+RU100       2.07106E-06
+RU101       5.89788E-02
+RU102       5.96460E-02
+RU103       6.95000E-02
+RU104       5.92626E-02
+RU105       5.35131E-02
+RU106       4.28510E-02
+RH103       8.37269E-10
+RH105       5.23168E-07
+RH106       1.42473E-06
+PD104       1.83330E-08
+PD105       5.75186E-11
+PD106       3.34140E-06
+PD107       3.36101E-02
+PD108       2.16852E-02
+PD110       5.99716E-03
+AG107       6.07095E-12
+AG109       1.87949E-02
+AG110M      2.68487E-07
+CD110       1.14391E-07
+CD111       3.03603E-03
+CD112       1.33308E-03
+CD113M      1.04490E-05
+CD113       6.41190E-04
+CD114       6.06204E-04
+CD116       4.95122E-04
+IN113       6.41207E-12
+IN115       3.56475E-04
+SN116       5.90188E-12
+SN117       5.63143E-04
+SN118       3.64170E-04
+SN119M      2.03757E-06
+SN119       3.88719E-04
+SN120       3.65762E-04
+SN121M      2.62338E-05
+SN121       3.56437E-04
+SN122       5.01762E-04
+SN123       3.31093E-05
+SN124       8.77316E-04
+SN126       2.65697E-03
+SB121       2.80096E-09
+SB123       4.04457E-04
+SB124       7.02261E-07
+SB125       1.11031E-03
+SB126M      2.55112E-05
+SB126       1.49518E-05
+TE122       1.17960E-08
+TE123M      5.69261E-11
+TE123       1.73977E-11
+TE124       1.20716E-07
+TE125M      7.11778E-09
+TE125       2.17567E-09
+TE126       2.00077E-07
+TE127M      6.82350E-04
+TE128       7.49490E-03
+TE129M      1.56719E-03
+TE130       2.32361E-02
+TE132       5.20219E-02
+I-127       4.21312E-03
+I-129       1.23668E-02
+I-130       5.26391E-05
+I-131       3.84661E-02
+I-135       6.44680E-02
+XE126       9.24314E-12
+XE128       8.86723E-07
+XE129       2.07067E-10
+XE130       2.79258E-06
+XE131       6.86265E-07
+XE132       1.90910E-03
+XE133       6.97556E-02
+XE134       7.63103E-02
+XE135       1.15238E-02
+XE136       6.62559E-02
+CS133       2.65086E-07
+CS134       9.89319E-06
+CS135       1.59157E-04
+CS136       8.13422E-04
+CS137       6.72736E-02
+BA134       3.33108E-09
+BA135       1.78063E-07
+BA136       4.17175E-06
+BA137M      4.71536E-05
+BA137       1.95279E-05
+BA138       6.02168E-02
+BA140       5.54526E-02
+LA139       5.61759E-02
+LA140       1.28212E-04
+CE140       1.80063E-07
+CE141       5.25758E-02
+CE142       4.98550E-02
+CE143       4.42858E-02
+CE144       3.73679E-02
+PR141       4.04131E-10
+PR143       3.66119E-07
+PR144       4.01049E-06
+ND142       1.95038E-08
+ND143       3.65118E-11
+ND144       3.42371E-09
+ND145       2.99155E-02
+ND146       2.46206E-02
+ND147       2.04281E-02
+ND148       1.63468E-02
+ND150       9.65165E-03
+PM147       1.45047E-08
+PM148M      2.36240E-07
+PM148       1.00868E-07
+PM149       1.23920E-02
+PM151       7.71947E-03
+SM147       5.52179E-13
+SM148       5.43176E-11
+SM149       2.68090E-09
+SM150       1.15842E-05
+SM151       1.12036E-06
+SM152       5.85170E-03
+SM153       3.63685E-03
+SM154       2.71589E-03
+EU151       1.72056E-10
+EU152       4.60867E-09
+EU153       8.24383E-08
+EU154       9.22299E-07
+EU155       1.65470E-03
+EU156       1.18375E-03
+EU157       7.40532E-04
+GD152       2.07640E-10
+GD154       4.91158E-10
+GD155       7.15258E-09
+GD156       7.18297E-08
+GD157       4.45144E-07
+GD158       4.07384E-04
+GD160       9.71243E-05
+TB159       2.05888E-04
+TB160       1.16038E-07
+DY160       1.13037E-10
+DY161       4.84587E-05
+DY162       2.39567E-05
+DY163       9.70157E-06
+DY164       3.66391E-06
+HO163       3.20804E-11
+HO165       1.38920E-06
+HO166M      3.48402E-09
+ER162       0.00000E+00
+ER164       9.36901E-11
+ER166       6.79135E-07
+ER167       1.98073E-07
+ER168       5.54102E-08
+ER170       3.93795E-09
+*FP-Yield-Data for Fast Fission of Pu-240
+YPU240F            1       193
+PU240
+GE073       3.33795E-06
+GE074       8.74558E-06
+GE076       1.46601E-05
+AS075       5.38376E-06
+SE076       8.08162E-10
+SE077       1.31011E-04
+SE078       2.70817E-04
+SE079       5.07616E-04
+SE080       8.52429E-04
+SE082       2.00307E-03
+BR081       1.40840E-03
+KR082       2.12768E-06
+KR083       3.02678E-03
+KR084       4.47305E-03
+KR085       1.19639E-03
+KR086       7.57107E-03
+RB085       4.33374E-03
+RB086       7.91078E-07
+RB087       9.87806E-03
+SR086       3.18032E-10
+SR087       2.07121E-08
+SR088       1.24184E-02
+SR089       1.47547E-02
+SR090       1.88096E-02
+Y-089       4.79463E-09
+Y-090       1.56007E-07
+Y-091       2.26543E-02
+ZR090       2.98127E-11
+ZR091       1.67017E-09
+ZR092       2.87721E-02
+ZR093       3.77965E-02
+ZR094       4.11756E-02
+ZR095       4.39651E-02
+ZR096       4.91421E-02
+NB093M      4.38226E-11
+NB093       2.17699E-10
+NB094       1.22496E-08
+NB095       4.89488E-07
+MO092       1.22889E-17
+MO094       2.20988E-11
+MO095       2.11949E-09
+MO096       2.22802E-05
+MO097       5.19829E-02
+MO098       5.42848E-02
+MO099       5.97430E-02
+MO100       6.06893E-02
+TC099       1.65116E-08
+RU100       3.24071E-07
+RU101       6.05171E-02
+RU102       6.08056E-02
+RU103       6.71192E-02
+RU104       5.91927E-02
+RU105       5.53267E-02
+RU106       4.97594E-02
+RH103       1.64716E-10
+RH105       2.10320E-07
+RH106       1.06828E-06
+PD104       4.78144E-09
+PD105       1.73017E-11
+PD106       2.91353E-06
+PD107       4.15073E-02
+PD108       3.03066E-02
+PD110       1.17903E-02
+AG107       1.49914E-12
+AG109       1.79477E-02
+AG110M      1.52264E-07
+CD110       5.57284E-08
+CD111       5.02996E-03
+CD112       2.39244E-03
+CD113M      2.55572E-05
+CD113       1.57130E-03
+CD114       9.86688E-04
+CD116       7.93380E-04
+IN113       1.74717E-12
+IN115       6.62287E-04
+SN116       1.25012E-12
+SN117       7.85641E-04
+SN118       7.39073E-04
+SN119M      3.47846E-06
+SN119       7.36587E-04
+SN120       7.82119E-04
+SN121M      4.97218E-05
+SN121       7.34205E-04
+SN122       8.76976E-04
+SN123       5.68735E-05
+SN124       1.15393E-03
+SN126       2.78047E-03
+SB121       3.45047E-10
+SB123       9.57193E-04
+SB124       2.73047E-07
+SB125       1.05375E-03
+SB126M      1.11799E-05
+SB126       7.99204E-06
+TE122       4.21723E-09
+TE123M      2.58306E-11
+TE123       6.82264E-12
+TE124       4.91822E-08
+TE125M      2.41299E-09
+TE125       6.37389E-10
+TE126       6.42080E-08
+TE127M      5.81826E-04
+TE128       6.71078E-03
+TE129M      1.08645E-03
+TE130       1.99287E-02
+TE132       4.73035E-02
+I-127       3.60068E-03
+I-129       9.42925E-03
+I-130       3.53355E-06
+I-131       3.54507E-02
+I-135       6.74359E-02
+XE126       1.35976E-12
+XE128       3.73780E-09
+XE129       2.05019E-11
+XE130       1.67706E-07
+XE131       1.28517E-07
+XE132       7.66536E-04
+XE133       7.00558E-02
+XE134       7.04588E-02
+XE135       6.98431E-03
+XE136       6.74760E-02
+CS133       4.25042E-08
+CS134       1.82018E-06
+CS135       4.43302E-05
+CS136       5.77427E-04
+CS137       6.49276E-02
+BA134       4.08040E-10
+BA135       2.85032E-08
+BA136       1.42021E-06
+BA137M      1.36235E-05
+BA137       4.86834E-06
+BA138       6.51144E-02
+BA140       5.11033E-02
+LA139       5.87087E-02
+LA140       2.86128E-05
+CE140       2.46027E-08
+CE141       4.76486E-02
+CE142       4.96547E-02
+CE143       4.72102E-02
+CE144       4.06648E-02
+PR141       3.05029E-11
+PR143       6.60065E-08
+PR144       1.25255E-06
+ND142       1.71993E-09
+ND143       3.74037E-12
+ND144       8.68520E-10
+ND145       3.27723E-02
+ND146       2.73685E-02
+ND147       2.23294E-02
+ND148       1.91500E-02
+ND150       1.13942E-02
+PM147       7.88551E-11
+PM148M      3.55600E-08
+PM148       1.30448E-08
+PM149       1.36919E-02
+PM151       8.43150E-03
+SM147       5.27150E-14
+SM148       4.45044E-12
+SM149       2.64025E-10
+SM150       1.14040E-05
+SM151       2.20022E-07
+SM152       6.57577E-03
+SM153       5.79668E-03
+SM154       3.17070E-03
+EU151       1.49015E-11
+EU152       5.09934E-10
+EU153       1.64028E-08
+EU154       1.74017E-07
+EU155       2.47600E-03
+EU156       1.75429E-03
+EU157       1.30384E-03
+GD152       1.83439E-11
+GD154       5.31052E-11
+GD155       1.45016E-09
+GD156       2.04027E-08
+GD157       1.71017E-07
+GD158       8.50324E-04
+GD160       3.04528E-04
+TB159       3.65106E-04
+TB160       6.94068E-08
+DY160       3.90039E-11
+DY161       1.19022E-04
+DY162       6.74500E-05
+DY163       2.28329E-05
+DY164       1.14067E-05
+HO163       8.41082E-12
+HO165       5.64612E-06
+HO166M      7.17785E-09
+ER162       0.00000E+00
+ER164       3.95382E-11
+ER166       5.17472E-06
+ER167       2.86554E-06
+ER168       1.28303E-06
+ER170       3.20311E-07
+*FP-Yield-Data for Thermal Fission of Pu-241,Am-242g,m,Cm-243,Cm-245
+YPU241T            5       193
+PU241     AM242     AM242M    CM243     CM245
+GE073       5.83960E-07
+GE074       9.90693E-07
+GE076       9.64038E-06
+AS075       2.89323E-06
+SE076       1.32031E-10
+SE077       1.93230E-05
+SE078       9.46519E-05
+SE079       1.52607E-04
+SE080       2.99837E-04
+SE082       1.31577E-03
+BR081       6.27671E-04
+KR082       4.39381E-07
+KR083       2.11888E-03
+KR084       3.95894E-03
+KR085       8.03600E-04
+KR086       6.40226E-03
+RB085       2.95493E-03
+RB086       1.74049E-07
+RB087       7.83841E-03
+SR086       3.51099E-11
+SR087       2.87523E-09
+SR088       1.02803E-02
+SR089       1.22915E-02
+SR090       1.57130E-02
+Y-089       6.83203E-10
+Y-090       3.11072E-08
+Y-091       1.88660E-02
+ZR090       3.66061E-12
+ZR091       2.21061E-10
+ZR092       2.36597E-02
+ZR093       3.09401E-02
+ZR094       3.54175E-02
+ZR095       4.07446E-02
+ZR096       4.59351E-02
+NB093M      5.59072E-12
+NB093       2.41774E-11
+NB094       1.94276E-09
+NB095       9.21910E-08
+MO092       4.77746E-19
+MO094       3.82248E-12
+MO095       4.40791E-10
+MO096       1.26247E-04
+MO097       4.91168E-02
+MO098       5.08645E-02
+MO099       6.23345E-02
+MO100       6.17381E-02
+TC099       2.84080E-09
+RU100       7.12242E-08
+RU101       6.00422E-02
+RU102       6.38270E-02
+RU103       6.14402E-02
+RU104       6.90976E-02
+RU105       6.10735E-02
+RU106       6.25044E-02
+RH103       1.05629E-11
+RH105       2.58673E-08
+RH106       2.14299E-07
+PD104       5.10099E-10
+PD105       9.26260E-13
+PD106       5.02006E-07
+PD107       5.20110E-02
+PD108       3.92531E-02
+PD110       1.17769E-02
+AG107       5.78163E-14
+AG109       2.26164E-02
+AG110M      1.72231E-08
+CD110       7.33356E-09
+CD111       5.69898E-03
+CD112       2.31089E-03
+CD113M      2.33445E-05
+CD113       1.43579E-03
+CD114       7.25140E-04
+CD116       2.86208E-04
+IN113       1.07330E-13
+IN115       4.21367E-04
+SN116       2.51070E-14
+SN117       2.53485E-04
+SN118       2.38257E-04
+SN119M      2.10969E-06
+SN119       2.36160E-04
+SN120       2.39528E-04
+SN121M      1.09096E-05
+SN121       2.23697E-04
+SN122       2.34870E-04
+SN123       9.44446E-06
+SN124       2.91489E-04
+SN126       7.55492E-04
+SB121       9.40265E-12
+SB123       2.40605E-04
+SB124       1.07129E-08
+SB125       4.24004E-04
+SB126M      9.35268E-07
+SB126       5.48150E-07
+TE122       1.31416E-10
+TE123M      3.40166E-13
+TE123       1.03959E-13
+TE124       1.83367E-09
+TE125M      1.50164E-07
+TE125       4.59393E-08
+TE126       2.11062E-09
+TE127M      3.17687E-04
+TE128       3.57461E-03
+TE129M      7.17805E-04
+TE130       1.65052E-02
+TE132       4.20218E-02
+I-127       1.96759E-03
+I-129       6.64038E-03
+I-130       3.67764E-07
+I-131       2.84532E-02
+I-135       7.05441E-02
+XE126       2.25785E-14
+XE128       1.78466E-10
+XE129       5.72160E-13
+XE130       1.94170E-08
+XE131       6.40188E-09
+XE132       1.78809E-04
+XE133       6.76957E-02
+XE134       7.47840E-02
+XE135       2.31400E-03
+XE136       6.66450E-02
+CS133       2.52071E-09
+CS134       1.85052E-07
+CS135       6.77734E-06
+CS136       1.25455E-04
+CS137       6.93464E-02
+BA134       1.48042E-11
+BA135       1.73050E-09
+BA136       1.45044E-07
+BA137M      2.00179E-06
+BA137       8.29007E-07
+BA138       6.69891E-02
+BA140       6.21503E-02
+LA139       5.89717E-02
+LA140       6.84193E-06
+CE140       2.40069E-09
+CE141       4.96639E-02
+CE142       5.03506E-02
+CE143       4.70672E-02
+CE144       4.33165E-02
+PR141       1.79050E-12
+PR143       7.09200E-09
+PR144       1.91067E-07
+ND142       1.50018E-10
+ND143       1.75049E-13
+ND144       1.04912E-10
+ND145       3.34377E-02
+ND146       2.86224E-02
+ND147       2.36779E-02
+ND148       1.98980E-02
+ND150       1.24852E-02
+PM147       1.56042E-10
+PM148M      4.68957E-09
+PM148       2.00232E-09
+PM149       1.52325E-02
+PM151       9.36824E-03
+SM147       2.24928E-15
+SM148       2.62074E-13
+SM149       2.16061E-11
+SM150       2.78214E-06
+SM151       3.41096E-08
+SM152       7.46591E-03
+SM153       5.48159E-03
+SM154       3.96215E-03
+EU151       1.11030E-12
+EU152       5.79826E-11
+EU153       2.04064E-09
+EU154       3.62102E-08
+EU155       2.41672E-03
+EU156       1.76058E-03
+EU157       1.37159E-03
+GD152       2.61053E-12
+GD154       4.75134E-12
+GD155       1.23035E-10
+GD156       2.31069E-09
+GD157       2.93082E-08
+GD158       8.62482E-04
+GD160       1.91697E-04
+TB159       4.86660E-04
+TB160       8.24232E-09
+DY160       2.00056E-12
+DY161       8.57268E-05
+DY162       2.49144E-05
+DY163       8.99076E-06
+DY164       2.88570E-06
+HO163       3.59900E-13
+HO165       9.00443E-07
+HO166M      1.95293E-10
+ER162       0.00000E+00
+ER164       1.44861E-12
+ER166       6.03491E-07
+ER167       2.73456E-07
+ER168       1.24618E-07
+ER170       1.52870E-08
+*FP-Yield-Data for Fast Fission of Pu-242,Am241,Am243,Cm242,Cm244,Cm246
+YPU242F            6       193
+PU242     AM241     AM243     CM242     CM244
+CM246
+GE073       1.73188E-07
+GE074       4.81302E-07
+GE076       2.83049E-06
+AS075       9.44441E-07
+SE076       1.93964E-11
+SE077       9.62003E-05
+SE078       1.79764E-04
+SE079       3.56249E-04
+SE080       6.39259E-04
+SE082       1.60569E-03
+BR081       1.03689E-03
+KR082       3.01541E-07
+KR083       2.39524E-03
+KR084       3.74996E-03
+KR085       8.37860E-04
+KR086       6.53999E-03
+RB085       3.08490E-03
+RB086       8.91011E-08
+RB087       8.52785E-03
+SR086       2.40003E-11
+SR087       2.23893E-09
+SR088       1.10116E-02
+SR089       1.34539E-02
+SR090       1.72731E-02
+Y-089       4.06105E-10
+Y-090       1.51994E-08
+Y-091       2.05801E-02
+ZR090       2.19098E-12
+ZR091       1.38002E-10
+ZR092       2.50025E-02
+ZR093       3.13660E-02
+ZR094       3.64852E-02
+ZR095       4.02262E-02
+ZR096       4.47473E-02
+NB093M      2.70457E-12
+NB093       1.34356E-11
+NB094       9.60320E-10
+NB095       5.31471E-08
+MO092       1.10594E-19
+MO094       1.71890E-12
+MO095       2.27440E-10
+MO096       1.08037E-06
+MO097       4.88292E-02
+MO098       5.13470E-02
+MO099       5.36173E-02
+MO100       5.65623E-02
+TC099       1.30101E-09
+RU100       3.16029E-08
+RU101       5.88359E-02
+RU102       5.82541E-02
+RU103       5.87684E-02
+RU104       5.84231E-02
+RU105       5.64217E-02
+RU106       5.33303E-02
+RH103       5.04606E-12
+RH105       1.29502E-08
+RH106       8.32001E-08
+PD104       2.09363E-10
+PD105       5.03007E-13
+PD106       2.26862E-07
+PD107       5.01321E-02
+PD108       4.21459E-02
+PD110       2.20860E-02
+AG107       3.04004E-14
+AG109       3.25676E-02
+AG110M      1.94539E-08
+CD110       7.11785E-09
+CD111       1.28204E-02
+CD112       6.44542E-03
+CD113M      4.92532E-05
+CD113       3.02916E-03
+CD114       1.51455E-03
+CD116       9.47452E-04
+IN113       1.47001E-13
+IN115       1.02189E-03
+SN116       7.64010E-14
+SN117       9.71633E-04
+SN118       8.65808E-04
+SN119M      3.39096E-06
+SN119       8.62420E-04
+SN120       8.17949E-04
+SN121M      4.85464E-05
+SN121       8.69259E-04
+SN122       9.38928E-04
+SN123       3.87253E-05
+SN124       1.12401E-03
+SN126       1.76251E-03
+SB121       3.25004E-11
+SB123       9.49500E-04
+SB124       3.12028E-08
+SB125       6.66717E-04
+SB126M      1.73777E-06
+SB126       1.24226E-06
+TE122       3.94338E-10
+TE123M      1.57266E-12
+TE123       4.15369E-13
+TE124       5.61162E-09
+TE125M      1.65256E-10
+TE125       4.36476E-11
+TE126       6.80015E-09
+TE127M      4.22079E-04
+TE128       5.10752E-03
+TE129M      8.05683E-04
+TE130       1.48499E-02
+TE132       4.55026E-02
+I-127       2.61398E-03
+I-129       7.42435E-03
+I-130       2.70893E-07
+I-131       3.18720E-02
+I-135       6.88949E-02
+XE126       4.97211E-14
+XE128       2.16915E-10
+XE129       8.15010E-13
+XE130       1.27975E-08
+XE131       1.00402E-08
+XE132       1.70952E-04
+XE133       6.59243E-02
+XE134       7.42357E-02
+XE135       2.64428E-03
+XE136       6.87596E-02
+CS133       2.64004E-09
+CS134       1.48002E-07
+CS135       5.83800E-06
+CS136       6.67608E-05
+CS137       6.43036E-02
+BA134       1.90003E-11
+BA135       1.99003E-09
+BA136       1.16003E-07
+BA137M      2.09971E-06
+BA137       7.50327E-07
+BA138       6.28325E-02
+BA140       5.00497E-02
+LA139       6.01235E-02
+LA140       3.21004E-06
+CE140       1.60002E-09
+CE141       5.10985E-02
+CE142       4.60000E-02
+CE143       4.68003E-02
+CE144       4.25756E-02
+PR141       1.19002E-12
+PR143       4.27006E-09
+PR144       1.01495E-07
+ND142       7.29892E-11
+ND143       1.22002E-13
+ND144       6.00275E-11
+ND145       3.46686E-02
+ND146       3.00273E-02
+ND147       2.41926E-02
+ND148       2.06327E-02
+ND150       1.36024E-02
+PM147       9.64009E-11
+PM148M      2.68653E-09
+PM148       9.85522E-10
+PM149       1.61448E-02
+PM151       1.02467E-02
+SM147       3.46226E-16
+SM148       1.97003E-13
+SM149       1.68002E-11
+SM150       1.79123E-06
+SM151       3.10004E-08
+SM152       8.34760E-03
+SM153       6.55417E-03
+SM154       4.60121E-03
+EU151       7.01010E-13
+EU152       3.53295E-11
+EU153       1.49008E-09
+EU154       2.28003E-08
+EU155       3.67723E-03
+EU156       2.65657E-03
+EU157       1.83915E-03
+GD152       1.27010E-12
+GD154       4.10006E-12
+GD155       1.45002E-10
+GD156       2.94007E-09
+GD157       3.42005E-08
+GD158       1.22612E-03
+GD160       4.59798E-04
+TB159       7.35664E-04
+TB160       1.11002E-08
+DY160       3.69004E-12
+DY161       2.65647E-04
+DY162       1.43045E-04
+DY163       6.13119E-05
+DY164       3.06484E-05
+HO163       1.47702E-12
+HO165       2.03123E-05
+HO166M      2.10489E-09
+ER162       0.00000E+00
+ER164       8.16048E-12
+ER166       1.02099E-05
+ER167       3.98703E-06
+ER168       1.73858E-06
+ER170       4.59430E-07

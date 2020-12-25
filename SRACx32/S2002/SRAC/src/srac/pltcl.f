@@ -1,0 +1,61 @@
+      SUBROUTINE  PLTCL (IMAX3,IMAXX,IMAX,X,Y,IPS,NP,IST)
+C     PLOT  CONTROL
+      REAL  X(IMAX3),Y(IMAX3)
+      IP=IPS
+      LAS=0
+      CMC=1.0
+      IF(IP.GT.20)   GO TO  300
+      AIP=FLOAT(IP)/2.0
+      AIP=ABS(AIP)
+      CALL PLOT(X(1),Y(1),3)
+      DO  100   I=1,IMAX
+      IF(IP.EQ.0) GO TO 200
+      IF(IP.LT.0)   GO TO  230
+      IF(I.EQ.IMAX) GO TO 200
+      CALL PLOT(X(I),Y(I),3)
+      CALL PLOT(X(I+1),Y(I+1),2)
+      GO TO  200
+  230 IF(I. EQ.IMAX)  GO TO 200
+      CALL PLOT(X(I),Y(I),3)
+      CALL  CHAINP(X(I),X(I+1),Y(I),Y(I+1),AIP,LAS,CMC)
+  200 CONTINUE
+      IF(NP.EQ.0) GO TO 100
+      IF(IST.EQ.0)  GO TO  100
+      IF(IST.EQ.1.OR.I.EQ.1)  GO  TO  299
+      IF(MOD(I,IST).NE.0)     GO  TO  100
+  299 CONTINUE
+      CALL SYMBOL (X(I),Y(I),2.,NP,0.,-1)
+  100 CONTINUE
+      RETURN
+  300 CONTINUE
+      IP=IP-50
+      AIP=FLOAT(IP)/2.0
+      AIP=ABS(AIP)
+      NPC=2
+      IF(NP.EQ.0.AND.IST.EQ.1)  NPC=3
+      CALL PLOT(X(1),Y(1),3)
+      DO 400 I=1,IMAX
+      IF(IP.EQ.0) GO TO 220
+      IF(IP.LT.0)   GO TO  1220
+      CALL  PLOT(X(I),Y(I),3)
+      CALL  PLOT(X(I+1),Y(I),2)
+      IF(I+1.GT.IMAX)   GO TO  220
+      CALL  PLOT(X(I+1),Y(I+1),NPC)
+      GO TO 220
+ 1220 CALL  PLOT(X(I),Y(I),3)
+      CALL  CHAINP(X(I),X(I+1),Y(I),Y(I),AIP,LAS,CMC)
+      IF(NPC.EQ.3)  GO TO  220
+      IF(I+1.GT.IMAX)   GO TO  220
+      CALL  CHAINP(X(I+1),X(I+1),Y(I),Y(I+1),AIP,LAS,CMC)
+  220 CONTINUE
+      XX=(X(I)+X(I+1))/2.
+      IF(NP.EQ.0) GO TO 400
+      IF(IST.EQ.0)   GO TO 399
+      IF(IST.EQ.1.OR.I.EQ.1)   GO  TO 398
+      IF(MOD(I,IST).NE.0)      GO  TO 400
+  398 CONTINUE
+      CALL  SYMBOL(XX,Y(I),2.,NP,0.,-1)
+  399 CONTINUE
+  400 CONTINUE
+      RETURN
+      END

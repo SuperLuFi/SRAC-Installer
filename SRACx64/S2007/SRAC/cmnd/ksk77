@@ -1,0 +1,210 @@
+#!/bin/csh
+################################################################
+#  This is my private fortran compiler (ksk77), which invokes  #
+#  f2c and gcc successively for the files ending ".f" or ".F". #
+#  It should be noted that functions as a compiler are         #
+#  ristricted and some "rm" processes are included for the     # 
+#  the files ending with ".c" or ".o".                         #
+#  Use freely at your own risk, if you like this.              #
+#                                                              #
+#                               by KeiSuKe Okumura (JAERI)     #
+################################################################
+#
+# set default compile options in FFLAGS
+set FFLAGS = ""
+#set FFLAGS = "-Nn802"
+# -Nn802 : if too many names
+#
+alias rm rm
+#
+if ($#argv == 0 ) then
+  echo "compiler error (ksk77) : no arguments"
+  exit
+endif
+#
+set noptN = 0
+set nopto = 0
+set noptc = 0
+foreach para ($argv[*])
+  switch ($para)
+    case -c* :
+#     echo "specified -c"
+      set noptc = `expr $noptc + 1 `
+      breaksw
+    case -o* :
+#     echo "specified -o"
+      set nopto = `expr $nopto + 1 `
+      breaksw
+    case -* :
+#     echo "specified some options except -c or -o"
+      set noptN = `expr $noptN + 1 `
+      set FFLAGS = ( $FFLAGS $para )
+    default:
+#     echo "specified no options"
+  endsw
+end
+#
+if ( $noptc > 0 && $nopto > 0 ) then
+  echo "compiler error (ksk77) : options conflict"
+  exit
+endif
+if ( $noptc > 0) then
+   set root = 1
+else if ($nopto > 0) then
+   set root = 2
+else
+   set root = 3
+endif
+#
+#echo "number of options = $noptN will be neglected"
+#
+############################################
+# ksk77 -c {options} *.f *.F
+# compile and make a object
+############################################
+#
+if ($root == 1 ) then
+  if ($#argv < 2 ) then
+    echo "compiler error (ksk77) : no input for file names"
+    exit
+  endif
+#
+  foreach file ($argv[*])
+    switch ($file)
+      case *.f :
+#       echo "$file is a fortran-source."
+        set cfile = `basename $file .f`.c
+        set ofile = `basename $file .f`.o
+        if ( -e $cfile) then
+          echo "compiler error (ksk77) : f2c stopped because $cfile is existing"
+          exit
+        endif
+        f2c $FFLAGS $file
+        if ( ! -e $cfile) then
+          echo "compiler error (ksk77) : f2c step failed for $file"
+          exit
+        endif
+        gcc -c $cfile
+        rm $cfile
+        if ( ! -e $ofile) then
+          echo "compiler error (ksk77) : gcc step failed for $cfile"
+          exit
+        endif
+        breaksw
+      case *.F :
+#       echo "$file is a fortran-source."
+        set cfile = `basename $file .F`.c
+        set ofile = `basename $file .F`.o
+        if ( -e $cfile) then
+          echo "compiler error (ksk77) : f2c stopped because $cfile is existing"
+          exit
+        endif
+        f2c $FFLAGS $file
+        if ( ! -e $cfile) then
+          echo "compiler error (ksk77) : f2c step failed for $file"
+          exit
+        endif
+        gcc -c $cfile
+        rm $cfile
+        if ( ! -e $ofile) then
+          echo "compiler error (ksk77) : gcc step failed for $cfile"
+          exit
+        endif
+        breaksw
+      default:
+#       echo "$file is not a fortran-source"
+    endsw
+  end
+  exit
+endif
+#
+############################################
+# ksk77 -o test.out {options} *.f *.F *.o
+# compile and make a named load module
+############################################
+#
+if ($root == 2 ) then
+  if ($#argv < 3 ) then
+    echo "compiler error (ksk77) : no input for file names"
+    exit
+  endif
+  set LMN  = $2
+  set start = `expr $noptN + 3 `
+endif
+#
+############################################
+# ksk77 {options} *.f *.F *.o 
+# compile and make a default-named load module
+############################################
+#
+if ($root == 3 ) then
+  if ($#argv < 1 ) then
+    echo "compiler error (ksk77) : no input for file names"
+    exit
+  endif
+  set LMN = a.out
+  set start = `expr $noptN + 1 `
+endif
+#
+############# for root2 and root3 ##########
+#
+set newobj = ""
+set allobj = ""
+foreach file ($argv[$start-$#argv])
+  switch ($file)
+    case *.f :
+      set cfile = `basename $file .f`.c
+      set ofile = `basename $file .f`.o
+      if ( -e $cfile) then
+        echo "compiler error (ksk77) : f2c stopped because $cfile is existing"
+        exit
+      endif
+      f2c $FFLAGS $file
+      if ( ! -e $cfile) then
+        echo "compiler error (ksk77) : f2c step failed for $file"
+        exit
+      endif
+      gcc -c $cfile
+      rm $cfile
+      if ( ! -e $ofile) then
+        echo "compiler error (ksk77) : gcc step failed for $cfile"
+        exit
+      endif
+      set newobj = ( $newobj $ofile )
+      set allobj = ( $allobj $ofile )
+      breaksw
+    case *.F :
+      set cfile = `basename $file .F`.c
+      set ofile = `basename $file .F`.o
+      if ( -e $cfile) then
+        echo "compiler error (ksk77) : f2c stopped because $cfile is existing"
+        exit
+      endif
+      f2c $FFLAGS $file
+      if ( ! -e $cfile) then
+        echo "compiler error (ksk77) : f2c step failed for $file"
+        exit
+      endif
+      gcc -c $cfile
+      rm $cfile
+      if ( ! -e $ofile) then
+        echo "compiler error (ksk77) : gcc step failed for $cfile"
+        exit
+      endif
+      set newobj = ( $newobj $ofile )
+      set allobj = ( $allobj $ofile )
+    case *.o :
+      set allobj = ( $allobj $file )
+      breaksw
+    default:
+#     echo "$file is not a fortran-source or objects"
+  endsw
+end
+# make a load module
+gcc -o $LMN -lm $allobj -lf2c
+# remove new objects compiled here
+set numo = `echo $newobj | wc -w`
+if ( $numo != "0" ) then
+  rm $newobj
+endif
+exit

@@ -1,0 +1,74 @@
+      SUBROUTINE RAFX1D(F     ,FLUX  ,MESH  ,IXM   ,IGM   ,
+     1                  IMESH ,ICODE ,VOLR  ,VOLUME,VA    ,
+     2                  IRANG ,VOLB  ,ISTEP ,ICF            )
+C
+C     READ 1-DIMENSIONAL FLUX (PIJ AND ANISN)
+C
+      COMMON /PDSPDS/BUF(540),IFLSW,FILENM(3),ECODE,TEMPRY
+      COMMON /TMPSET/ STND(35),NUMB(61),NTDUMY 
+      COMMON /MAINC/ IOPT(2000)
+      DIMENSION F(IXM,IGM),FLUX(IGM,IMESH),MESH(3,IMESH),MEMBER(2),
+     1          RANG(3)   ,VOLR(IXM)      ,IIOPT(1)     ,VOLUME(IMESH),
+     2          VA(IXM)   ,VOLB(IXM)
+      CHARACTER*4 RANG,FLUXF,BLANK,FILENM,ZERO,MEMBER,IOPT
+      EQUIVALENCE (IOPT(1),IIOPT(1))
+      DATA FLUXF,BLANK,ZERO/'FLUX','    ','0000'/
+      DATA RANG /'   F','   T','   A'/
+C
+      IF (ICODE.NE.1) GO TO 100
+      FILENM(1) = FLUXF
+      FILENM(2) = BLANK
+      FILENM(3) = BLANK
+      IFLSW     = 1
+      MEMBER(1) = IOPT(101)
+      MEMBER(2) = ZERO
+      CALL PACK(MEMBER(2),1,RANG(IRANG+1))
+      IF (IIOPT(4).EQ.0) CALL PACK(MEMBER(2),1,RANG(1))
+CKSK  IF (IIOPT(79).GT.0) CALL PACK(MEMBER,2,NUMB(IIOPT(79)))
+      IF (IIOPT(79).GT.0) CALL PACK(MEMBER(2),2,NUMB(IIOPT(79)))
+C     CALL PACK(MEMBER(2),4,IOPT(99))
+      CALL PACK(MEMBER(2),4,ICF)
+C     IF (ISTEP.EQ.1) CALL PACK(MEMBER(2),4,'0002')
+      CALL GETLEN(MEMBER,LTH)
+      CALL READ(MEMBER,F,LTH)
+C
+      IF (ISTEP.EQ.0) GO TO 110
+      MEMBER(2) = 'FVOL'
+      CALL SEARCH(MEMBER,LLL,ISW)
+      IF(ISW.EQ.1) THEN
+      CALL PACK(MEMBER(2),1,RANG(IRANG+1))
+                   ENDIF
+      CALL READ(MEMBER,VOLB,IXM)
+C
+      GO TO 110
+  100 CONTINUE
+      LFLUX=33
+      REWIND LFLUX
+      READ(LFLUX) ((F(I,J),I=1,IXM),J=1,IGM)
+  110 CONTINUE
+      DO 150 J=1,IMESH
+          IX = MESH(1,J)
+          IF(IX.LT.1 .OR. IX.GT.IXM) GO TO 130
+          GO TO (111,112) , ICODE
+          IF (ISTEP.EQ.1) GO TO 1111
+  111     VOLUME(J) = VOLR(IX)
+          RVOLR     = 1./VOLUME(J)
+          GO TO 113
+ 1111     CONTINUE
+          VOLUME(J) = VOLB(IX)
+          RVOLR     = 1./VOLUME(J)
+          GO TO 113
+  112     VOLUME(J) = VA(IX)
+          RVOLR     = 1.0
+  113     CONTINUE
+          DO 120 I=1,IGM
+              FLUX(I,J)=F(IX,I) * RVOLR
+  120     CONTINUE
+          GO TO 150
+  130     CONTINUE
+          DO 140 I=1,IGM
+              FLUX(I,J)=-1.0E11
+  140     CONTINUE
+  150 CONTINUE
+      RETURN
+      END

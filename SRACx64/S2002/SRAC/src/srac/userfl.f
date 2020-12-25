@@ -1,0 +1,85 @@
+      SUBROUTINE  USERFL(NEGF,IPATH,NUCMAX)
+C
+C     MAIN ROUTINE --- PROGRAM TO COMPOSE USERS' FAST LIBRARY
+C
+C
+      DIMENSION   NEGF(1)
+C
+      COMMON /MAINC/  IOPT(20),JNFSTL(2),FNFSTL(2),JNTHEL(2),FNTHEL(2)
+     &    ,JNEFST(2),FNEFST(2),JNETHE(2),FNETHE(2),JNMACR(2),FNMACR(2)
+     &    ,JNMCRS(2),FNMCRS(2),JNEMIC(2),FNEMIC(2),JNFLUX(2),FNFLUX(2)
+     &    ,NEFL     ,NETL     ,NEF      ,NET      ,NERF     ,NERT
+     &    ,NMAT     ,NETL1    ,BSQ,NIN1,NIN2,NOUT1,NOUT2
+     &  ,IT0  ,NBFL(3),NBF(3),DUMMY1(8)
+     &    ,LCNEGF   ,LCNEGT   ,LCNECF   ,LCNECT   ,LCMTNM   ,LCNISO
+     &    ,LCTEMP   ,LCXL     ,LCXCDC   ,LCLISO   ,LCIDNT   ,LCDN
+     &    ,LCIRES   ,LCIXMC   ,DUMMY2(6)
+     &    ,CASEID(2),TITLE(18)
+     &    ,II(380)
+C
+      CHARACTER*12 DDNAME,FILENM
+C     COMMON /PDSPDS/ DDNAME(135),IOS(135),IFLSW,FILENM,ECODE,TEMPRY
+      COMMON /PDSPDS/ DDNAME(125),IST(15),IRW(15),IOS(35),NC(5,20),
+     &                IFLSW,FILENM,ECODE,TEMP
+C
+C *** OPEN PUBILIC FAST LIBRARY
+C
+          IFLSW = 1
+CMOD      FILENM=DDNAME(2)
+CKSK      FILENM=12HFASTP
+          FILENM='FASTP       '
+          MPSPDS= 0
+          CALL FILSRC(MPSPDS,FILENM)
+          FILENM=DDNAME(MPSPDS)
+          IF(IOS(MPSPDS).EQ.0) CALL OPNPDS(IRW(MPSPDS))
+          WRITE(6,*) ' FILENM IRW IST ; ',FILENM,IRW(MPSPDS),IST(MPSPDS)
+C
+      IF(IPATH.EQ.0) THEN
+                     WRITE(NOUT2,100)
+                     WRITE(NOUT2,101) NEFL,NETL,NEF,NET
+                     ENDIF
+C
+C     WRITE(NOUT2,102) (NEGF(I),I=1,NEF+NET)
+C
+      NUCMAX  = 0
+      IF(IPATH.EQ.1.AND.NMAT.GT.0) THEN
+                        DO 10  M = 1 , NMAT
+                        NUCMAX   = NUCMAX + II(LCNISO+M-1)
+   10                   CONTINUE
+*                       WRITE(6,*) ' ** NMAT NUCMAX ** ',NMAT,NUCMAX
+                        ENDIF
+C
+      IF(IPATH.EQ.0) THEN
+                     CALL  UFLCAL(NEGF,IPATH,NUCMAX,II(LCIDNT))
+                     WRITE(NOUT2,103)
+                     ELSE
+                     IF(NUCMAX.GT.0) THEN
+                              ISW  = LCIDNT - 1
+*                             WRITE(6,104) (II(ISW+I),I=1,2*NUCMAX)
+                              CALL  UFLCAL(NEGF,IPATH,NUCMAX,II(LCIDNT))
+                                     ENDIF
+                     ENDIF
+C
+C *** CLOSE PUBILIC FAST LIBRARY
+C
+CMOD      FILENM=DDNAME(2)
+CKSK      FILENM=12HFASTP
+          FILENM='FASTP       '
+          MPSPDS= 0
+          CALL FILSRC(MPSPDS,FILENM)
+          FILENM=DDNAME(MPSPDS)
+          IF(IOS(MPSPDS).NE.0) CALL CLSPDS(0)
+C
+  100 FORMAT(1H1//1H ,20X,'### USERFL START ###'//)
+  101 FORMAT(1H ,30X,' ENERGY GROUP STRUCTURE '
+     &//1H ,10X,'NEFL: TOTAL NBR OF PUBLIC FAST GROUPS ----- ',I3
+     & /1H ,10X,'NETL: TOTAL NBR OF PUBLIC THERMAL GROUPS -- ',I3
+     & /1H ,10X,'NEF : TOTAL NBR OF USERS  FAST GROUPS ----- ',I3
+     & /1H ,10X,'NET : TOTAL NBR OF USERS  THERMAL GROUPS -- ',I3)
+  102 FORMAT(1H0,10X,'NEGF: NBR OF LIBRARY GROUPS IN THE USERS LIBRARY G
+     +ROUPS'/(15X,10I8/))
+  103 FORMAT(/1H ,20X,'### USERFL END ###'//)
+  104 FORMAT(1H ,' ## IDENT ## ',20A4)
+C
+      RETURN
+      END

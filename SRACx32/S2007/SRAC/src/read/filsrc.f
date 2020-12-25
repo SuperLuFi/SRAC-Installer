@@ -1,0 +1,23 @@
+      SUBROUTINE FILSRC(N,FFFF)
+C
+      CHARACTER*12    DDNAME,FFFF
+C
+      COMMON /PDSPDS/ DDNAME(125),IST(15),IRW(15),IOS(35),NC(5,20),
+     &                IFILSW
+C
+C
+C
+      N       = 1
+      IF(IFILSW.EQ.0) RETURN
+C
+      DO 10 I = 2 , 15
+      N       = I
+      IF(FFFF(1:8).EQ.DDNAME(I)(1:8)) RETURN
+   10 CONTINUE
+C
+      WRITE(6,*)' *** DDNAME ',FFFF(1:8),' NOT FOUND IN EXPECTED TABLE'
+CKSK  CALL ERRTRA
+CKSK  CALL UERTRA
+C
+      STOP
+      END

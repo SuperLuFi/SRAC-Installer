@@ -1,0 +1,11 @@
+      SUBROUTINE  COPYDT ( ADATA , BDATA , LENG)
+C
+      REAL*4         ADATA(LENG),BDATA(LENG)
+C
+      IF(LENG.EQ.0) RETURN
+      DO 100 I =  1 , LENG
+      BDATA(I) = ADATA(I)
+  100 CONTINUE
+C
+      RETURN
+      END

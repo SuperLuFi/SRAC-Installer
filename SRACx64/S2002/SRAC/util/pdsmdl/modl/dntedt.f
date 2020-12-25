@@ -1,0 +1,276 @@
+C***********************************************************************
+C  PROGRAM TO EDIT MEMBER 'CASE'//DN?T IN MACRO OR MACROWRK FILE       *
+C  VERSION : SRAC95 FOR UNIX                                           *
+C***********************************************************************
+C
+      SUBROUTINE DNTEDT (DIRNAM, IOUT, IPRN, MEMNAM,
+     &           NOWSTP, NTNUC, NGC, NGT, CASE, STDNUC, MTYPX, VOLX,
+     &           POWRX, EXPSX, U235FX, HMINVX, RLHTX, YDXEX, YDI0X,
+     &           YDSMX, YDPMX, NUCLID, DENSX, AFISS, CFERT, SIGXEX,
+     &           SIGI0X, SIGSMX, SIGPMX)
+C
+C=========================== FOR MAIN ==================================
+CDEL  PARAMETER (MAXNGC=20, MAXSTP=35, MAXNUC=110)
+      INCLUDE  'PARAMINC'
+      DIMENSION    POWRX(MAXSTP), EXPSX(MAXSTP), U235FX(MAXSTP),
+     &             HMINVX(MAXSTP), RLHTX(MAXSTP), YDXEX(MAXSTP),
+     &             YDI0X(MAXSTP), YDSMX(MAXSTP), YDPMX(MAXSTP),
+     &             DENSX(MAXSTP,MAXNUC), AFISS(MAXNGC,MAXSTP),
+     &             CFERT(MAXNGC,MAXSTP), SIGXEX(MAXNGC,MAXSTP),
+     &             SIGI0X(MAXNGC,MAXSTP),SIGSMX(MAXNGC,MAXSTP),
+     &             SIGPMX(MAXNGC,MAXSTP)
+      CHARACTER*4  CASE, STDNUC, NUCLID(MAXNUC)
+      CHARACTER*8  MEMNAM
+      CHARACTER*72 DIRNAM
+C=======================================================================
+CDEL  PARAMETER    (MAXWRK=10000)
+      COMMON /WKPDS/ WORK(MAXWRK)  
+      DIMENSION      IWORK(1)
+      EQUIVALENCE  (WORK(1),IWORK(1))
+      CHARACTER*8  MEMBER
+C-------------------------------INPUT-----------------------------------
+C   DIRNAM       : DIRECTORY NAME (A72) OF PDS : /XXX/XXX/MACRO01
+C   IOUT         : LOGICAL DEVICE FOR OUTPUT
+C   IPRN         : =0(NO PRINT), =1(PRINT OUT IN DEVICE IOUT)
+C   MEMNAM       : PDS MEMBER NAME TO EDIT(A8): ____ND?T
+C                  ?=X-REGION TAG (1,2,3,....9,A,B,....Z)
+C-------------------------------OUTPUT----------------------------------
+C   *** ALL DATA BELOW IS HOMOGENIZED VALUE IN X-REGION ***
+C   NOWSTP       : NUMBER OF BURNUP STEPS INCLUDING THE INITIAL STEP
+C                  NOWSTP = 1 + NEP(INPUT IN BURNUP)
+C   NTNUC        : TOTAL NUMBER OF DEPLETING NUCLIDES
+C   NGC          : NUMBER OF CONDENSED ENERGY GROUPS
+C   NGT          : NUMBER OF CONDENSED THERMAL ENERGY GROUPS
+C   CASE         : CASE IDENTIFICATION (A4)
+C   STDNUC       : STANDARD NUCLIDE NAME (A4) TO INDICATE FRACTIONAL
+C                  BURNED DENSITY (%), DEFALT:XU05
+C   MTYPX        : MATERIAL TYPE (=0:NOT BURNABLE, =1:FISSILE & BURNABLE
+C                  =2:NOT FISSILE BUT BURNABLE)
+C   VOLX         : VOLUME OF X-REGION (CM3)
+C   NUCLID(K)    : K-TH DEPLETING NUCLIDE NAME (A4)
+C                  EX. XU05,XPU9
+C   POWRX(J)     : POWER DENSITY (W/CM3) BY STEP(J)
+C   EXPSX(J)     : ACCUMULATED BURNUP (MWD/T) BY STEP(J)
+C                  IF MTYPX=2 THEN ACCUMULATED ABSORPTION RATE (ABS/CM3)
+C   U235FX(J)    : FRACTIONAL BURNED DENSITY OF STDNUC (%)
+C   HMINVX(J)    : HEAVY METAL INVENTRY DENSITY (TON/CM3)
+C   RLHTX(J)     : RELEASED ENERGY/FISSION (J/FISS) BY STEP(J)
+C   YDXEX(J)     : FISSION YIELD OF XE-135 BY STEP(J)
+C   YDI0X(J)     : FISSION YIELD OF I-135 BY STEP(J)
+C   YDSMX(J)     : FISSION YIELD OF SM-149 BY STEP(J)
+C   YDPMX(J)     : FISSION YIELD OF PM-149 BY STEP(J)
+C   DENSX(J,K)   : DENSITY OF NUCLIDE(K) BY STEP(J)
+C   AFISS(G,J)   : FISSILE ABSORPTION MACRO (/CM) IN GROUP(G) BY STEP(J)
+C   CFERT(G,J)   : FERTILE CAPTURE MACRO (/CM) IN GROUP(G) BY STEP(J)
+C   SIGXEX(G,J)  : MICRO ABSORPTION XS OF XE-135 IN GROUP(G) BY STEP(J)
+C   SIGI0X(G,J)  : MICRO ABSORPTION XS OF I-135 IN GROUP(G) BY STEP(J)
+C   SIGSMX(G,J)  : MICRO ABSORPTION XS OF SM-149 IN GROUP(G) BY STEP(J)
+C   SIGPMX(G,J)  : MICRO ABSORPTION XS OF PM-149 IN GROUP(G) BY STEP(J)
+C-----------------------------------------------------------------------
+**************
+*  ZERO SET  *---------------------------------------------------------
+**************
+      DO 10 I=1,MAXWRK
+        WORK(I)=0.0
+   10 CONTINUE
+C
+      IF(MEMNAM(5:6).NE.'DN'.OR.MEMNAM(8:8).NE.'T') THEN
+        WRITE(IOUT,*) ' CAUTION(DNTEDT): THE LAST 4 CHARACTER IS NOT',
+     &             ' DN?T , MEMBER NAME = ',MEMNAM
+        if(iout.ne.6) then 
+        WRITE(6,*)    ' CAUTION(DNTEDT): THE LAST 4 CHARACTER IS NOT',
+     &             ' DN?T , MEMBER NAME = ',MEMNAM
+        endif
+      ENDIF
+***************************
+*  ----DN?T DATA EDIT     *---------------------------------------------
+***************************
+      MEMBER=MEMNAM
+      CALL PDSIN (DIRNAM,MEMBER,WORK,LENG,IRC,IOUT)
+      IF(IRC.NE.0) THEN
+        WRITE(IOUT,*) ' ERROR(DNTEDT): PDSIN ERROR, CODE=', IRC
+        if(iout.ne.6) then 
+        WRITE(6,*)    ' ERROR(DNTEDT): PDSIN ERROR, CODE=', IRC
+        endif
+        STOP
+      ENDIF
+C------ 1:NOWSTP, 2:NTNUC, 3:NGC, 4:NGT, 5-10:IDUMY,ZONE -------
+      NOWSTP = IWORK(1)
+      NTNUC  = IWORK(2)
+      NGC    = IWORK(3)
+      NGT    = IWORK(4)
+      IPOS = 10
+C
+      IF (NGC.GT.MAXNGC) THEN
+        WRITE(IOUT,*) ' ERROR(DNTEDT): NUMBER OF ENERGY GROUPS(=', NGC,
+     &             ') IS GREATER THAN THE SET VALUE(=', MAXNGC, ')'
+        if(iout.ne.6) then 
+        WRITE(6,*)    ' ERROR(DNTEDT): NUMBER OF ENERGY GROUPS(=', NGC,
+     &             ') IS GREATER THAN THE SET VALUE(=', MAXNGC, ')'
+        endif
+        STOP
+      ENDIF
+      IF (NOWSTP.GT.MAXSTP) THEN
+        WRITE(IOUT,*) ' ERROR(DNTEDT): NUMBER OF BURNUP STEP(=', NOWSTP,
+     &             ') IS GREATER THAN THE SET VALUE(=', MAXSTP, ')'
+        if(iout.ne.6) then 
+        WRITE(6,*)    ' ERROR(DNTEDT): NUMBER OF BURNUP STEP(=', NOWSTP,
+     &             ') IS GREATER THAN THE SET VALUE(=', MAXSTP, ')'
+        endif
+        STOP
+      ENDIF
+      IF (NTNUC.GT.MAXNUC) THEN
+        WRITE(IOUT,*) ' ERROR(DNTEDT): NUMBER OF DEP. NUCLIDES(=',
+     &       NTNUC, ') IS GREATER THAN THE SET VALUE(=', MAXNUC, ')'
+        if(iout.ne.6) then 
+        WRITE(6,*)    ' ERROR(DNTEDT): NUMBER OF DEP. NUCLIDES(=',
+     &       NTNUC, ') IS GREATER THAN THE SET VALUE(=', MAXNUC, ')'
+        endif
+        STOP
+      ENDIF
+C------ 11:CASE, 12:STDNUC, 13:MTYPX, 14:VOLX -------
+      WRITE(CASE(1:4),'(A4)') IWORK(IPOS+1)
+      WRITE(STDNUC(1:4),'(A4)') IWORK(IPOS+2)
+      MTYPX  = IWORK(IPOS+3)
+      VOLX   = WORK(IPOS+4)
+      IPOS=IPOS+4
+C------ 15:NUCLID -----------------------------------
+      DO 100 K=1,NTNUC
+        IPOS = IPOS + 1
+        WRITE(NUCLID(K)(1:4),'(A4)') IWORK(IPOS)
+  100 CONTINUE
+C------ 16:POWRX, 17:EXPSX, 18:U235FX, 19:HMINVX, 20:RLHTX
+C       21:YDXEX, 22:YDI0X, 23:YDSMX, 24:YDPMX --------------------
+      DO 110 J=1,NOWSTP
+        POWRX(J)  = WORK(IPOS+J)
+        EXPSX(J)  = WORK(IPOS+NOWSTP*1+J)
+        U235FX(J) = WORK(IPOS+NOWSTP*2+J)
+        HMINVX(J) = WORK(IPOS+NOWSTP*3+J)
+        RLHTX(J)  = WORK(IPOS+NOWSTP*4+J)
+        YDXEX(J)  = WORK(IPOS+NOWSTP*5+J)
+        YDI0X(J)  = WORK(IPOS+NOWSTP*6+J)
+        YDSMX(J)  = WORK(IPOS+NOWSTP*7+J)
+        YDPMX(J)  = WORK(IPOS+NOWSTP*8+J)
+  110 CONTINUE
+      IPOS=IPOS+9*NOWSTP
+C------ 25:DENSX -------------------------------
+      DO 120 K=1,NTNUC
+        DO 120 J=1,NOWSTP
+          IPOS = IPOS + 1
+          DENSX(J,K) = WORK(IPOS)
+  120 CONTINUE
+C------ 26:AFISS, 27:CFERT, 28:SIGXEX, 29:SIGI0X, 30:SIGSMX, 31:SOGPMX
+      NSTG = NOWSTP*NGC
+      DO 130 J=1,NOWSTP
+        DO 130 I=1,NGC
+          AFISS(I,J)  = WORK(IPOS+NGC*(J-1)+I)
+          CFERT(I,J)  = WORK(IPOS+NSTG+NGC*(J-1)+I)
+          SIGXEX(I,J) = WORK(IPOS+2*NSTG+NGC*(J-1)+I)
+          SIGI0X(I,J) = WORK(IPOS+3*NSTG+NGC*(J-1)+I)
+          SIGSMX(I,J) = WORK(IPOS+4*NSTG+NGC*(J-1)+I)
+          SIGPMX(I,J) = WORK(IPOS+5*NSTG+NGC*(J-1)+I)
+  130 CONTINUE
+      IPOS=IPOS+6*NSTG
+C------ DATA LENGTH CHECK ----------------------
+      IF(IPOS.NE.LENG) THEN
+        WRITE(IOUT,*) ' CAUTION(DNTEDT): DATA LENGTH IN PDS FILE(=',
+     &        LENG, ') IS MISMATCHED WITH EDIT LENGTH(=', IPOS,')'
+        if(iout.ne.6) then 
+        WRITE(6,*)    ' CAUTION(DNTEDT): DATA LENGTH IN PDS FILE(=',
+     &        LENG, ') IS MISMATCHED WITH EDIT LENGTH(=', IPOS,')'
+        endif
+      ENDIF
+***************************
+*     PRINT OUT           *--------------------------------------------
+***************************
+      IF(IPRN.EQ.0) GOTO 9000
+      WRITE(IOUT,*)
+      WRITE(IOUT,7000)
+      WRITE(IOUT,*)
+      WRITE(IOUT,*) '    ***** HOMOGENEOUS BURNUP DATA : MEMBER NAME = '
+     &           ,MEMNAM,' *****'
+      WRITE(IOUT,*)
+      WRITE(IOUT,'(1X,A,A)')         'CASE    = ',CASE
+      WRITE(IOUT,'(1X,A,I3)')        'MTYPX   =',MTYPX
+      WRITE(IOUT,'(1X,A,I3)')        'NOWSTP  =',NOWSTP
+      WRITE(IOUT,'(1X,A,I3)')        'NTNUC   =',NTNUC
+      WRITE(IOUT,'(1X,A,I3)')        'NGC     =',NGC
+      WRITE(IOUT,'(1X,A,I3)')        'NGT     =',NGT
+      WRITE(IOUT,'(1X,A,1P10E12.5)') 'VOLX(CC)=',VOLX
+C
+      WRITE(IOUT,6000) (J,J=0,NOWSTP-1)
+      IF(MTYPX.EQ.2) THEN
+        WRITE(IOUT,6010) (EXPSX(J),J=1,NOWSTP)
+      ELSE
+        WRITE(IOUT,6020) (EXPSX(J),J=1,NOWSTP)
+      ENDIF
+      WRITE(IOUT,6030) STDNUC(2:4),(U235FX(J),J=1,NOWSTP)
+      WRITE(IOUT,6040) (POWRX(J),J=1,NOWSTP)
+      WRITE(IOUT,6050) (HMINVX(J),J=1,NOWSTP)
+      WRITE(IOUT,6060) (RLHTX(J),J=1,NOWSTP)
+      WRITE(IOUT,6070) (YDXEX(J),J=1,NOWSTP)
+      WRITE(IOUT,6080) (YDI0X(J),J=1,NOWSTP)
+      WRITE(IOUT,6090) (YDSMX(J),J=1,NOWSTP)
+      WRITE(IOUT,6100) (YDPMX(J),J=1,NOWSTP)
+      WRITE(IOUT,*)
+ 6000 FORMAT(/' BNUP-STEP  ',10(5X,I2,5X):/(12X,10(5X,I2,5X)))
+ 6010 FORMAT( ' ABS./CC    ',1P10E12.5:/(12X,1P10E12.5))
+ 6020 FORMAT( ' MWD/TON    ',1P10E12.5:/(12X,1P10E12.5))
+ 6030 FORMAT(1X,A3,'-%',6X,  1P10E12.5:/(12X,1P10E12.5))
+ 6040 FORMAT( ' POW(MW/CC) ',1P10E12.5:/(12X,1P10E12.5))
+ 6050 FORMAT( ' HM-TON/CC  ',1P10E12.5:/(12X,1P10E12.5))
+ 6060 FORMAT( ' J-ENG/FIS. ',1P10E12.5:/(12X,1P10E12.5))
+ 6070 FORMAT( ' XE-135 YD. ',1P10E12.5:/(12X,1P10E12.5))
+ 6080 FORMAT( ' I -135 YD. ',1P10E12.5:/(12X,1P10E12.5))
+ 6090 FORMAT( ' SM-149 YD. ',1P10E12.5:/(12X,1P10E12.5))
+ 6100 FORMAT( ' PM-149 YD. ',1P10E12.5:/(12X,1P10E12.5))
+C
+      WRITE(IOUT,'(/A)') ' * NUMBER DENSITY (*E24 N/CC)'
+      WRITE(IOUT,6000) (J,J=0,NOWSTP-1)
+      WRITE(IOUT,6200)
+      DO 1000 K=1,NTNUC
+        WRITE(IOUT,6210) K,NUCLID(K),(DENSX(J,K),J=1,NOWSTP)
+ 1000 CONTINUE
+ 6200 FORMAT(1X,3(1H-),2X,4('-'),1X,11(1X,10(1H-)))
+ 6210 FORMAT(1X,I3,2X,A4,1X,1P11E11.4:/(11X,1P11E11.4))
+C
+        WRITE(IOUT,'(/A)') ' * MACRO FISSILE ABSORPTION XS BY GROUP'
+        DO 1010 J=1,NOWSTP
+          WRITE(IOUT,6300) J-1,(AFISS(IG,J),IG=1,NGC)
+ 1010   CONTINUE
+ 6300   FORMAT(1X,'STEP:',I3,2X,1P10E11.4:/(11X,1P10E11.4))
+C
+        WRITE(IOUT,'(/A)') ' * MACRO FERTILE CAPTURE XS BY GROUP'
+        DO 1020 J=1,NOWSTP
+          WRITE(IOUT,6300) J-1,(CFERT(IG,J),IG=1,NGC)
+ 1020   CONTINUE
+C
+        WRITE(IOUT,'(/A)') ' * XE-135 MICRO ABSORPTION XS BY GROUP'
+        DO 1030 J=1,NOWSTP
+          WRITE(IOUT,6300) J-1,(SIGXEX(IG,J),IG=1,NGC)
+ 1030   CONTINUE
+C
+        WRITE(IOUT,'(/A)') ' * I -135 MICRO ABSORPTION XS BY GROUP'
+        DO 1040 J=1,NOWSTP
+          WRITE(IOUT,6300) J-1,(SIGI0X(IG,J),IG=1,NGC)
+ 1040   CONTINUE
+C
+        WRITE(IOUT,'(/A)') ' * SM-149 MICRO ABSORPTION XS BY GROUP'
+        DO 1050 J=1,NOWSTP
+          WRITE(IOUT,6300) J-1,(SIGSMX(IG,J),IG=1,NGC)
+ 1050   CONTINUE
+C
+        WRITE(IOUT,'(/A)') ' * PM-149 MICRO ABSORPTION XS BY GROUP'
+        DO 1060 J=1,NOWSTP
+          WRITE(IOUT,6300) J-1,(SIGPMX(IG,J),IG=1,NGC)
+ 1060   CONTINUE
+C
+      WRITE(IOUT,*)
+      WRITE(IOUT,*)
+      WRITE(IOUT,7010)
+      WRITE(IOUT,*)
+ 7000 FORMAT(1H ,'DNTEDT',114(1H=))
+ 7010 FORMAT(1H ,114(1H=),'DNTEDT')
+C
+ 9000 RETURN
+      END

@@ -1,0 +1,4 @@
+#!/bin/csh -f
+# command cutspc : cut last blank spaces and data over than 72 columns
+# Sample Usage : cutspc < file-in > file-out
+cut -c1-72 | sed 's/ *$//' 

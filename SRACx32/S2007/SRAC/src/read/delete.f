@@ -1,0 +1,87 @@
+      SUBROUTINE DELETE(MEMBER)
+C
+      INCLUDE  'READPINC'
+C
+      CHARACTER*8     CZMEMB,SCMEMB,FLMODE,DATAKP,MEMBER
+      CHARACTER*12    DDNAME,FILENM
+      CHARACTER*68    PATHNM
+      INTEGER*4       ECODE,TEMP,PATH
+C
+      COMMON /PDSPDS/ DDNAME(125),IST(15),IRW(15),IOS(35),NC(5,20),
+     &                IFLSW,FILENM,ECODE,TEMP
+C
+      COMMON /PDSWK3/ PATHNM(15),FLMODE(15),DATAKP(15),CZMEMB(MAXMEM),
+     1                SCMEMB(MAXMEM)
+      COMMON /PDSWK2/ IZWRIT,IZMXDT,IZWCNT,IZDWTL,ICNTMX,
+     1                LENPAT(15),INCORE(15),ICNTSC,
+     2                IZDTLN(MAXMEM),IZDTTL(MAXMEM),IDUMZ,
+     3                IPOSDD(MAXMEM),IPOSSC(MAXMEM),
+     4                RZDATA(MXWORK)
+C
+C *** START OF PROCESS
+C
+      ECODE     = 0
+      CALL FILSRC(NFILE,FILENM)
+C
+      IF(IOS(NFILE).EQ.0) THEN
+                    WRITE(6,*) ' *** FILE NOT OPENED DD=',DDNAME(NFILE)
+                    STOP
+                    ENDIF
+C
+      PATH       = 7
+C
+C
+      IF( INCORE(NFILE) .EQ. 1 ) THEN
+             DO 100 I=ICNTMX,1,-1
+             IF( IPOSDD(I).EQ.NFILE .AND. CZMEMB(I).EQ.MEMBER) GO TO 200
+  100        CONTINUE
+             ENDIF
+C
+C *** CASE FOR DIRECT FILE I/O CASE
+C
+      NC(4,NFILE) = NC(4,NFILE)+1
+CFACOMS
+CM    CALL PDSDEL(DDNAME(NFILE),MEMBER,'        ',ECODE)
+CFACOME
+CUNIXS
+      CALL PDSDEL( PATHNM(NFILE) , LENPAT(NFILE) , MEMBER , ECODE )
+CUNIXE
+      IF(ECODE.EQ.0) THEN
+                     WRITE(6,16) MEMBER,DDNAME(NFILE)(1:8)
+                     ELSE
+                     CALL PDSERR(ECODE,MEMBER,PATH,DDNAME(NFILE))
+                     ENDIF
+C
+      RETURN
+C
+   16 FORMAT(10X,'MEMBER ',A8,21X,' IS DELETED FROM DD=',A8)
+C
+C *** CASE FOR INCORE MODE **
+C
+  200 CONTINUE
+      IPOSDD(I)   = 0
+CKSK  CZMEMB(I)   = 8H
+      CZMEMB(I)   = '        '
+      IZDTLN(I)   = 0
+      NC(4,NFILE) = NC(4,NFILE)+1
+C**** CASE FOR SCRATCH FILE & INCORE MODE I/O
+      IF(IST(NFILE).EQ.3) THEN
+                          WRITE(6,16) MEMBER,DDNAME(NFILE)(1:8)
+                          RETURN
+                          ENDIF
+C
+      ECODE       = 0
+CFACOMS
+CM    CALL PDSDEL(DDNAME(NFILE),MEMBER,'        ',ECODE)
+CFACOME
+CUNIXS
+      CALL PDSDEL( PATHNM(NFILE) , LENPAT(NFILE) , MEMBER , ECODE )
+CUNIXE
+      IF(ECODE.EQ.0) THEN
+                     WRITE(6,16) MEMBER,DDNAME(NFILE)(1:8)
+                     ELSE
+                     CALL PDSERR(ECODE,MEMBER,PATH,DDNAME(NFILE))
+                     ENDIF
+C
+      RETURN
+      END

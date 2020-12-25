@@ -1,0 +1,11 @@
+ XXX Installation of public fast library started.
+ XXX Installation of public fast library completed.
+ XXX Installation of public mcross library started.
+mkdir: cannot create directory `/home/lab/SRACLIB-JDL32/pds/pmcrs': File exists
+ XXX Installation of public mcross library completed.
+ XXX Installation of public thermal library started.
+mkdir: cannot create directory `/home/lab/SRACLIB-JDL32/pds/pthml': File exists
+ XXX Installation of public thermal library completed.
+
+ XXX All processes of library (j32) installation completed.
+ XXX Confirm output messages written in /home/lab/SRACLIB-JDL32/tmp/plibmk.*.

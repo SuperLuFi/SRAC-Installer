@@ -1,0 +1,12 @@
+#!/bin/csh
+#
+#  files : count number of files which have the input form
+#  by K.OKUMURA
+#
+alias ls  ls
+echo -n "Input file type name to be counted (ex. *.f) =====>"
+set flname = $<
+ls -aF $flname
+set nf = `ls -a $flname | wc -w`
+echo ' '  
+echo 'Number of files =' $nf

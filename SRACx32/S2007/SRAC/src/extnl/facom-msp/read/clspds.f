@@ -1,0 +1,97 @@
+      SUBROUTINE CLSPDS(IEND)
+C
+C
+CMOD  PARAMETER   ( MAXMEM = 20000  , MXWORK =  3000000  )
+*INCLUDE READPINC
+C
+      CHARACTER*8     CZMEMB,SCMEMB,FLMODE,DATAKP,MEMBER
+      CHARACTER*12    DDNAME,FILENM
+      CHARACTER*68    PATHNM
+      INTEGER*4       ECODE,TEMP,PATH
+C
+      COMMON /PDSPDS/ DDNAME(125),IST(15),IRW(15),IOS(35),NC(5,20),
+     &                IFLSW,FILENM,ECODE,TEMP
+C
+      COMMON /PDSWK3/ PATHNM(15),FLMODE(15),DATAKP(15),CZMEMB(MAXMEM),
+     1                SCMEMB(MAXMEM)
+      COMMON /PDSWK2/ IZWRIT,IZMXDT,IZWCNT,IZDWTL,ICNTMX,
+     1                LENPAT(15),INCORE(15),ICNTSC,
+     2                IZDTLN(MAXMEM),IZDTTL(MAXMEM),IDUMZ,
+     3                IPOSDD(MAXMEM),IPOSSC(MAXMEM),
+     4                RZDATA(MXWORK)
+C
+C * CLOSE
+C
+      PATH  = 2
+      ECODE = 0
+      NFILE = 0
+      CALL FILSRC(NFILE,FILENM)
+CFACOMS  NEXT STATEMENT IS USED FOR FACOM-M  MACHINE
+      CALL PDSCLS(DDNAME(NFILE),ECODE)
+CFACOME
+CUNIXS  NEXT STATEMENTS IS USED FOR UNIX MACHINE
+C       MEMBER IN SCRATCH PDS-FILE WILL BE DELETED
+CM    IF( IST(NFILE).EQ.3 .AND. NC(3,NFILE).GT.0 ) THEN
+CM              DO 30 I = 1 , ICNTSC
+CM              IF(IPOSSC(I).EQ.NFILE) THEN
+CM                    IERR   = 0
+CM                    MEMBER = SCMEMB(I)
+CM        CALL PDSDEL ( PATHNM(NFILE) , LENPAT(NFILE) , MEMBER , IERR )
+CM     IF(IERR.GT.8)  CALL PDSERR ( IERR , MEMBER , 7 , DDNAME(NFILE) )
+CM                    ENDIF
+CM 30           CONTINUE
+CM              ENDIF
+CUNIXE
+C
+C
+      IF(ECODE.EQ.0) THEN
+          IF(INCORE(NFILE).EQ.1) THEN
+C
+          ICTRMN = 0
+          ICTRLN = 0
+C
+          DO 100 I=1,ICNTMX
+          IF( IPOSDD(I) .EQ. NFILE ) THEN
+                    ICTRMN = ICTRMN + 1
+                    ICTRLN = ICTRLN + IZDTLN(I)
+                    ENDIF
+  100     CONTINUE
+C
+          WRITE(6,110) DDNAME(NFILE)(1:8),(NC(I,NFILE),I=1,5),
+     @                 ICTRMN,ICTRLN
+C
+          IF(IEND.EQ.0.AND.ICTRLN.GT.10000) THEN
+                DO 105 I = 1 , ICNTMX
+                IF( IPOSDD(I) .EQ. NFILE ) IPOSDD(I) = 0
+  105           CONTINUE
+                CALL PDSCON
+                ENDIF
+C
+          IF(FILENM(1:4).EQ.'FLUX') THEN
+          WRITE(6,*  ) ' ** IZWCNT IZDWTL : ',IZWCNT,IZDWTL
+          WRITE(6,*  ) ' ** IZWRIT IZMXDT : ',IZWRIT,IZMXDT
+          WRITE(6,*  ) ' ** ICNTMX USED M : ',ICNTMX,IZDTTL(ICNTMX+1)-1
+          ENDIF
+C
+          ELSE
+          WRITE(6,120) DDNAME(NFILE)(1:8),(NC(I,NFILE),I=1,5)
+          ENDIF
+C
+      IOS(NFILE)=0
+      IST(NFILE)=0
+      INCORE(NFILE) = 0
+      ENDIF
+C
+  110 FORMAT(1X,'FILE DD=',A8,' CLOSED AFTER SEARCH',I4,' READ ',I4
+     @ ,' WRITE ',I4,' DELETE ',I4,' OVRWRT ',I4,' TIMES   ',
+     @  'MEMBER',I5,' LENGTH',I7)
+  120 FORMAT(1X,'FILE DD=',A8,' CLOSED AFTER SEARCH',I4,' READ ',I4
+     @ ,' WRITE ',I4,' DELETE ',I4,' OVRWRT ',I4,' TIMES')
+C
+      IF(ECODE.NE.0) THEN
+                     MEMBER = 8HCLSPDS
+                     CALL PDSERR(ECODE,MEMBER,PATH,DDNAME(NFILE))
+                     ENDIF
+C
+      RETURN
+      END

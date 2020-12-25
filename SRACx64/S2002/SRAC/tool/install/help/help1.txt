@@ -1,0 +1,36 @@
+*******************************************************************************
+           SRAC95 ; General Purpose Neutronics Code System
+*******************************************************************************
+SRAC is a general purpose neutronics code system applicable to core analyses of
+various types of reactors. Since the publication of JAERI-1302 for the revised
+SRAC in 1986, a number of additions and modifications have been made for nuclear
+data libraries and programs. Thus, the new version SRAC95 has been completed.
+
+The system consists of several nuclear data libraries (ENDF/B-IV, -VI(R5),
+JENDL-3.1, -3.2, JEF-2.2), five modular codes integrated into SRAC95; collision
+probability calculation module(PIJ) for 16 types of lattice geometries, Sn
+transport calculation modules(ANISN, TWOTRAN), diffusion calculation
+modules(TUD, CITATION) and two optional codes for fuel assembly and core burn-up
+calculations(newly developed ASMBURN, revised COREBN).
+
+In this version, many new functions and data are implemented to support nuclear
+design studies of advanced reactors. SRAC95 is available on scalar or vector
+computers with the UNIX operating system or its similar ones (Linux/FreeBSD).
+
+*******************************************************************************
+                       Users Manual
+*******************************************************************************
+
+(1) Okumura K.,Kaneko K. and Tsuchihashi K.:"SRAC95 ; General Purpose Neutronics
+    Code System", JAERI-Data/Code 96-015 (1996) (in Japanese).
+
+(2) Tsuchihashi K.,Ishiguro Y.,Kaneko K. and Ido M.:"Revised SRAC Code System",
+    JAERI 1302 (1986). (in English but for old version SRAC)
+
+*******************************************************************************
+                       Messages from Developers
+*******************************************************************************
+
+(1) We have no responsibility to any troubles in installation or execution
+    of SRAC.
+(2) When you find some errors in SRAC, please tell us the situation.

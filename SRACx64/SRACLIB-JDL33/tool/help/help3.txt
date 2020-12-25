@@ -1,0 +1,466 @@
+
+*******************************************************************************
+                        Nuclide List of JENDL-3.3 Library
+*******************************************************************************
+
+   FAST DATA      = YES : There is a self-shielding factor table in fast
+                          energy group for NTEMP temperature points.
+   MCROSS LIBRARY = YES : There is a MCROSS library for ultra-fine group
+                          calclulation by PEACO option.
+   THERMAL F-TAB. = YES : There is a self-shielding factor table in thermal
+                          energy group
+   NTEMP (7th column)   : Number of the temperature points for which thermal
+                          cross sections are prepared
+   THERMAL KERNEL       : Thernmal scatering kernel data
+
+  ----------------------------------------------------------------------
+   NO   NUCLIDE         FAST F-TABLE   MCROSS  THERMAL  NTEMP   THERMAL 
+                        DATA  NTEMP    LIBRARY F-TAB.           KERNEL  
+  ----------------------------------------------------------------------
+    1  XAC50000         YES    1       NO        NO      1      P0,P1       
+    2  XAC60000         YES    1       NO        NO      1      P0,P1       
+    3  XAC70000         YES    1       NO        NO      1      P0,P1       
+    4  XAG00000         YES    4       NO        NO     10      P0,P1       
+    5  XAG70000         YES    4       YES       NO     10      P0,P1       
+    6  XAG90000         YES    4       YES       YES    10      P0,P1       
+    7  XAL70000         YES    4       NO        NO     10      P0,P1       
+    8  XAM10000         YES    4       YES       YES    10      P0,P1       
+    9  XAM30000         YES    4       YES       YES    10      P0,P1       
+   10  XAM40000         YES    1       NO        NO      1      P0,P1       
+   11  XAMG0000         YES    4       YES       YES    10      P0,P1       
+   12  XAMM0000         YES    4       YES       YES    10      P0,P1       
+   13  XAMT0000         YES    1       NO        NO      1      P0,P1       
+   14  XAR00000         YES    4       NO        NO     10      P0,P1       
+   15  XAS50000         YES    4       NO        NO      1      NO DATA     
+   16  XAU70000 (b62)   YES    4       YES       YES    10      P0,P1       
+   17  XB000000         YES    1       NO        NO     10      P0,P1       
+   18  XB010000         YES    1       NO        NO     10      P0,P1       
+   19  XBA00000         YES    4       NO        NO      1      NO DATA     
+   20  XBA20000         YES    4       NO        NO      1      NO DATA     
+   21  XBA40000         YES    4       NO        NO      1      NO DATA     
+   22  XBA50000         YES    4       NO        NO      1      NO DATA     
+   23  XBA60000         YES    4       NO        NO      1      NO DATA     
+   24  XBA70000         YES    4       NO        NO      1      NO DATA     
+   25  XBA80000         YES    4       NO        NO      1      NO DATA     
+   26  XBAA0000         YES    4       NO        NO      1      NO DATA     
+   27  XBE90000         YES    1       NO        NO     10      P0,P1       
+   28  XBE9B000         YES    1       NO        NO      8      P0-P3       
+   29  XBE9E000         YES    1       NO        NO      8      P0-P3       
+   30  XBI90000         YES    4       NO        NO     10      P0,P1       
+   31  XBK00000         YES    4       NO        YES     1      P0,P1       
+   32  XBK70000         YES    4       NO        YES    10      P0,P1       
+   33  XBK90000         YES    4       NO        YES     1      P0,P1       
+   34  XBR10000         YES    4       NO        NO      1      NO DATA     
+   35  XBR90000         YES    4       NO        NO      1      NO DATA     
+   36  XC020000         YES    1       NO        NO     10      P0-P3       
+   37  XC02C000         YES    1       NO        NO     10      P0-P3       
+   38  XC02Q000         YES    1       NO        NO      8      NO DATA     
+   39  XCA00000         YES    4       NO        NO     10      P0,P1       
+   40  XCA20000         YES    4       NO        NO     10      P0,P1       
+   41  XCA30000         YES    4       NO        NO     10      P0,P1       
+   42  XCA40000         YES    4       NO        NO     10      P0,P1       
+   43  XCA60000         YES    4       NO        NO     10      P0,P1       
+   44  XCA80000         YES    4       NO        NO     10      P0,P1       
+   45  XCAN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+   46  XCD00000         YES    4       NO        NO     10      P0,P1       
+   47  XCD10000         YES    4       NO        NO     10      P0,P1       
+   48  XCD20000         YES    4       NO        NO     10      P0,P1       
+   49  XCD30000         YES    4       NO        YES    10      P0,P1       
+   50  XCD40000         YES    4       NO        NO     10      P0,P1       
+   51  XCD60000         YES    4       NO        NO     10      P0,P1       
+   52  XCD80000         YES    4       NO        NO     10      P0,P1       
+   53  XCDG0000         YES    4       NO        NO     10      P0,P1       
+   54  XCE00000         YES    4       NO        NO      1      NO DATA     
+   55  XCE10000         YES    4       NO        NO      1      NO DATA     
+   56  XCE20000         YES    4       NO        NO      1      NO DATA     
+   57  XCE30000 (b62)   YES    1       NO        NO      1      NO DATA     
+   58  XCE40000         YES    4       NO        NO      1      NO DATA     
+   59  XCF00000         YES    4       NO        YES     1      P0,P1       
+   60  XCF10000         YES    4       NO        YES     1      P0,P1       
+   61  XCF20000         YES    4       NO        YES     1      P0,P1       
+   62  XCF30000 (b62)   YES    4       NO        YES     1      P0,P1       
+   63  XCF40000         YES    1       NO        NO      1      P0,P1       
+   64  XCF90000         YES    4       NO        YES    10      P0,P1       
+   65  XCL50000         YES    4       NO        NO     10      P0,P1       
+   66  XCL70000         YES    4       NO        NO     10      P0,P1       
+   67  XCLN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+   68  XCM00000         YES    4       NO        NO     10      P0,P1       
+   69  XCM10000         YES    4       NO        YES    10      P0,P1       
+   70  XCM20000         YES    4       NO        NO     10      P0,P1       
+   71  XCM30000         YES    4       NO        YES    10      P0,P1       
+   72  XCM40000         YES    4       YES       NO     10      P0,P1       
+   73  XCM50000         YES    4       YES       YES    10      P0,P1       
+   74  XCM60000         YES    4       NO        YES    10      P0,P1       
+   75  XCM70000         YES    4       NO        YES    10      P0,P1       
+   76  XCM80000         YES    4       NO        NO     10      P0,P1       
+   77  XCM90000         YES    4       NO        NO     10      P0,P1       
+   78  XCMA0000         YES    4       NO        YES    10      P0,P1       
+   79  XCO90000         YES    4       NO        NO     10      P0,P1       
+   80  XCR00000         YES    4       NO        NO     10      P0,P1       
+   81  XCR20000         YES    4       NO        NO     10      P0,P1       
+   82  XCR30000         YES    4       NO        NO     10      P0,P1       
+   83  XCR40000         YES    4       NO        NO     10      P0,P1       
+   84  XCRN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+   85  XCS30000         YES    4       YES       NO      1      NO DATA     
+   86  XCS40000         YES    4       NO        NO      1      NO DATA     
+   87  XCS50000         YES    4       NO        NO      1      NO DATA     
+   88  XCS60000         YES    4       NO        NO      1      NO DATA     
+   89  XCS70000         YES    4       NO        NO     10      P0,P1       
+   90  XCU30000         YES    4       NO        NO     10      P0,P1       
+   91  XCU50000         YES    4       NO        NO     10      P0,P1       
+   92  XCUN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+   93  XD020000         NO     0       NO        NO     10      P0-P3       
+   94  XD02D000         NO     0       NO        NO      8      P0-P3       
+   95  XDY00000 (b67)   YES    4       NO        NO      1      NO DATA     
+   96  XDY10000 (b67)   YES    4       NO        NO      1      NO DATA     
+   97  XDY20000 (b67)   YES    4       NO        NO      1      NO DATA     
+   98  XDY30000 (b67)   YES    4       NO        NO      1      NO DATA     
+   99  XDY40000 (b67)   YES    4       NO        NO      1      NO DATA     
+  100  XER00000         YES    4       YES       NO     10      P0,P1       
+  101  XER20000         YES    4       NO        NO     10      P0,P1       
+  102  XER40000         YES    4       YES       NO     10      P0,P1       
+  103  XER60000         YES    4       YES       NO     10      P0,P1       
+  104  XER70000         YES    4       YES       YES    10      P0,P1       
+  105  XER80000         YES    4       YES       NO     10      P0,P1       
+  106  XES30000 (b62)   YES    4       NO        YES     1      P0,P1       
+  107  XES40000         YES    1       NO        NO      1      P0,P1       
+  108  XES50000         YES    1       NO        NO      1      P0,P1       
+  109  XEU10000         YES    4       NO        YES    10      P0,P1       
+  110  XEU20000         YES    4       NO        YES    10      P0,P1       
+  111  XEU30000         YES    4       NO        YES    10      P0,P1       
+  112  XEU40000         YES    4       NO        YES    10      P0,P1       
+  113  XEU50000         YES    4       NO        YES    10      P0,P1       
+  114  XEU60000         YES    4       NO        NO      1      NO DATA     
+  115  XEU70000 (b62)   YES    1       NO        NO      1      NO DATA     
+  116  XF090000         YES    4       NO        NO     10      P0-P3       
+  117  XFE40000         YES    4       NO        NO     10      P0,P1       
+  118  XFE60000         YES    4       NO        NO     10      P0,P1       
+  119  XFE70000         YES    4       NO        NO     10      P0,P1       
+  120  XFE80000         YES    4       NO        NO     10      P0,P1       
+  121  XFEN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  122  XFM50000         YES    1       NO        NO      1      P0,P1       
+  123  XGA10000         YES    4       NO        NO     10      P0,P1       
+  124  XGA90000         YES    4       NO        NO     10      P0,P1       
+  125  XGD00000         YES    4       YES       NO     10      P0,P1       
+  126  XGD20000         YES    4       NO        YES    10      P0,P1       
+  127  XGD40000         YES    4       NO        NO     10      P0,P1       
+  128  XGD50000         YES    4       YES       YES    10      P0,P1       
+  129  XGD60000         YES    4       YES       NO     10      P0,P1       
+  130  XGD70000         YES    4       YES       YES    10      P0,P1       
+  131  XGD80000         YES    4       YES       NO     10      P0,P1       
+  132  XGE00000         YES    4       NO        NO     10      P0,P1       
+  133  XGE20000         YES    4       NO        NO     10      P0,P1       
+  134  XGE30000         YES    4       NO        NO     10      P0,P1       
+  135  XGE40000         YES    4       NO        NO     10      P0,P1       
+  136  XGE60000         YES    4       NO        NO     10      P0,P1       
+  137  XGEN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  138  XH010000         NO     0       NO        NO     10      P0-P3       
+  139  XH01H000         NO     0       NO        NO      8      P0-P5       
+  140  XH01P000         NO     0       NO        NO      2      P0-P3       
+  141  XH01Q000         NO     0       NO        NO      8      P0-P3       
+  142  XH01Z000         NO     0       NO        NO      8      P0-P3       
+  143  XHE30000         YES    1       NO        NO     10      P0,P1       
+  144  XHE40000         YES    1       NO        NO     10      P0,P1       
+  145  XHF00000         YES    4       YES       NO     10      P0,P1       
+  146  XHF40000         YES    4       YES       NO     10      P0,P1       
+  147  XHF60000         YES    4       NO        NO     10      P0,P1       
+  148  XHF70000         YES    4       YES       YES    10      P0,P1       
+  149  XHF80000         YES    4       YES       NO     10      P0,P1       
+  150  XHF90000         YES    4       YES       NO     10      P0,P1       
+  151  XHG00000         YES    4       NO        NO     10      P0,P1       
+  152  XHG10000         YES    4       YES       NO     10      P0,P1       
+  153  XHG20000         YES    4       NO        NO     10      P0,P1       
+  154  XHG40000         YES    4       NO        NO     10      P0,P1       
+  155  XHG60000         YES    4       NO        NO     10      P0,P1       
+  156  XHG80000         YES    4       YES       NO     10      P0,P1       
+  157  XHG90000         YES    4       YES       NO     10      P0,P1       
+  158  XHO50000 (b65)   YES    4       NO        YES    10      P0,P1       
+  159  XI000000 (b62)   YES    1       NO        NO      1      NO DATA     
+  160  XI010000         YES    4       NO        NO      1      NO DATA     
+  161  XI050000 (b62)   YES    1       NO        NO      1      NO DATA     
+  162  XI070000         YES    4       NO        NO      1      NO DATA     
+  163  XI090000         YES    4       NO        NO      1      NO DATA     
+  164  XIN30000         YES    4       YES       YES    10      P0,P1       
+  165  XIN50000         YES    4       YES       YES    10      P0,P1       
+  166  XK000000         YES    4       NO        NO     10      P0,P1       
+  167  XK010000         YES    4       NO        NO     10      P0,P1       
+  168  XK090000         YES    4       NO        NO     10      P0,P1       
+  169  XK0N0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  170  XKR00000         YES    4       NO        NO      1      NO DATA     
+  171  XKR20000         YES    4       NO        NO      1      NO DATA     
+  172  XKR30000         YES    4       NO        NO      1      NO DATA     
+  173  XKR40000         YES    4       NO        NO      1      NO DATA     
+  174  XKR50000         YES    4       NO        NO      1      NO DATA     
+  175  XKR60000         YES    4       NO        NO      1      NO DATA     
+  176  XKR80000         YES    4       NO        NO      1      NO DATA     
+  177  XLA00000 (b62)   YES    1       NO        NO      1      NO DATA     
+  178  XLA80000         YES    4       NO        NO      1      NO DATA     
+  179  XLA90000         YES    4       NO        NO      1      NO DATA     
+  180  XLI60000         YES    1       NO        NO     10      P0,P1       
+  181  XLI70000         YES    1       NO        NO     10      P0,P1       
+  182  XMG40000         YES    4       NO        NO     10      P0,P1       
+  183  XMG50000         YES    4       NO        NO     10      P0,P1       
+  184  XMG60000         YES    4       NO        NO     10      P0,P1       
+  185  XMGN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  186  XMN50000         YES    4       NO        NO     10      P0,P1       
+  187  XMO00000         YES    4       NO        NO     10      P0,P1       
+  188  XMO20000         YES    4       NO        NO     10      P0,P1       
+  189  XMO40000         YES    4       NO        NO     10      P0,P1       
+  190  XMO50000         YES    4       NO        NO     10      P0,P1       
+  191  XMO60000         YES    4       NO        NO     10      P0,P1       
+  192  XMO70000         YES    4       NO        NO     10      P0,P1       
+  193  XMO80000         YES    4       NO        NO     10      P0,P1       
+  194  XMO90000         YES    4       NO        NO      1      NO DATA     
+  195  XMON0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  196  XN040000         YES    1       NO        NO     10      P0-P3       
+  197  XN050000         YES    1       NO        NO     10      P0-P3       
+  198  XNA30000         YES    4       NO        NO     10      P0,P1       
+  199  XNB30000         YES    4       NO        NO     10      P0,P1       
+  200  XNB40000         YES    4       NO        NO      1      NO DATA     
+  201  XNB50000         YES    4       NO        NO      1      NO DATA     
+  202  XND00000         YES    4       NO        NO      1      NO DATA     
+  203  XND20000         YES    4       NO        NO      1      NO DATA     
+  204  XND30000         YES    4       NO        NO      1      NO DATA     
+  205  XND40000         YES    4       NO        NO      1      NO DATA     
+  206  XND50000         YES    4       NO        NO      1      NO DATA     
+  207  XND60000         YES    4       NO        NO      1      NO DATA     
+  208  XND70000         YES    4       NO        NO      1      NO DATA     
+  209  XND80000         YES    4       NO        NO      1      NO DATA     
+  210  XNI00000         YES    4       NO        NO     10      P0,P1       
+  211  XNI10000         YES    4       NO        NO     10      P0,P1       
+  212  XNI20000         YES    4       NO        NO     10      P0,P1       
+  213  XNI40000         YES    4       NO        NO     10      P0,P1       
+  214  XNI80000         YES    4       NO        NO     10      P0,P1       
+  215  XNIN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  216  XNP50000         YES    1       NO        NO     10      P0,P1       
+  217  XNP60000         YES    1       NO        NO      1      P0,P1       
+  218  XNP70000         YES    4       YES       YES    10      P0,P1       
+  219  XNP80000         YES    1       NO        NO      1      P0,P1       
+  220  XNP90000         YES    1       YES       NO      1      P0,P1       
+  221  XO060000         YES    1       NO        NO     10      P0-P3       
+  222  XO06E000         YES    1       NO        NO      8      NO DATA     
+  223  XP010000         YES    4       NO        NO     10      P0,P1       
+  224  XPA10000         YES    4       NO        YES    10      P0,P1       
+  225  XPA20000         YES    1       NO        NO      1      P0,P1       
+  226  XPA30000         YES    4       NO        YES    10      P0,P1       
+  227  XPB40000         YES    4       NO        NO     10      P0,P1       
+  228  XPB60000         YES    4       NO        NO     10      P0,P1       
+  229  XPB70000         YES    4       NO        NO     10      P0,P1       
+  230  XPB80000         YES    4       NO        NO     10      P0,P1       
+  231  XPBN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  232  XPD00000         YES    4       NO        NO      1      NO DATA     
+  233  XPD20000         YES    4       NO        NO      1      NO DATA     
+  234  XPD40000         YES    4       NO        NO      1      NO DATA     
+  235  XPD50000         YES    4       YES       NO      1      NO DATA     
+  236  XPD60000         YES    4       NO        NO      1      NO DATA     
+  237  XPD70000         YES    4       NO        NO      1      NO DATA     
+  238  XPD80000         YES    4       NO        YES    10      P0,P1       
+  239  XPM10000 (b62)   YES    1       NO        NO      1      NO DATA     
+  240  XPM70000         YES    4       NO        NO      1      NO DATA     
+  241  XPM90000         YES    4       NO        NO      1      NO DATA     
+  242  XPMG0000         YES    4       NO        YES    10      P0,P1       
+  243  XPMM0000         YES    4       NO        YES    10      P0,P1       
+  244  XPR10000         YES    4       NO        NO      1      NO DATA     
+  245  XPR30000         YES    4       NO        NO      1      NO DATA     
+  246  XPU00000         YES    4       YES       YES    10      P0,P1       
+  247  XPU10000         YES    4       YES       YES    10      P0,P1       
+  248  XPU20000         YES    4       YES       YES    10      P0,P1       
+  249  XPU40000         YES    4       NO        YES    10      P0,P1       
+  250  XPU60000         YES    4       YES       YES    10      P0,P1       
+  251  XPU70000         YES    1       NO        NO     10      P0,P1       
+  252  XPU80000         YES    4       YES       YES    10      P0,P1       
+  253  XPU90000         YES    4       YES       YES    10      P0,P1       
+  254  XPUG0000         YES    1       NO        NO      1      P0,P1       
+  255  XRA30000         YES    1       NO        NO      1      P0,P1       
+  256  XRA40000         YES    1       NO        NO      1      P0,P1       
+  257  XRA50000         YES    1       NO        NO      1      P0,P1       
+  258  XRA60000         YES    4       NO        YES     1      P0,P1       
+  259  XRB50000         YES    4       NO        NO      1      NO DATA     
+  260  XRB60000 (b62)   YES    1       NO        NO      1      NO DATA     
+  261  XRB70000         YES    4       NO        NO      1      NO DATA     
+  262  XRH30000         YES    4       YES       YES    10      P0,P1       
+  263  XRH50000         YES    4       NO        YES    10      P0,P1       
+  264  XRU00000         YES    4       NO        NO      1      NO DATA     
+  265  XRU10000         YES    4       YES       NO      1      NO DATA     
+  266  XRU20000         YES    4       NO        NO      1      NO DATA     
+  267  XRU30000         YES    4       NO        NO      1      NO DATA     
+  268  XRU40000         YES    4       NO        NO      1      NO DATA     
+  269  XRU50000 (b62)   YES    1       NO        NO      1      NO DATA     
+  270  XRU60000         YES    4       NO        NO      1      NO DATA     
+  271  XRU80000         YES    4       NO        NO      1      NO DATA     
+  272  XRU90000         YES    4       NO        NO      1      NO DATA     
+  273  XRUG0000         YES    4       NO        NO      1      NO DATA     
+  274  XS020000         YES    4       NO        NO     10      P0,P1       
+  275  XS030000         YES    4       NO        NO     10      P0,P1       
+  276  XS040000         YES    4       NO        NO     10      P0,P1       
+  277  XS060000         YES    4       NO        NO     10      P0,P1       
+  278  XS0N0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  279  XSB10000         YES    4       NO        NO     10      P0,P1       
+  280  XSB30000         YES    4       NO        NO     10      P0,P1       
+  281  XSB40000         YES    4       NO        NO      1      NO DATA     
+  282  XSB50000         YES    4       NO        NO      1      NO DATA     
+  283  XSB60000 (b62)   YES    1       NO        NO      1      NO DATA     
+  284  XSC50000         YES    4       NO        NO     10      P0,P1       
+  285  XSE00000         YES    4       NO        NO      1      NO DATA     
+  286  XSE20000         YES    4       NO        NO      1      NO DATA     
+  287  XSE40000         YES    4       NO        NO      1      NO DATA     
+  288  XSE60000         YES    4       NO        NO      1      NO DATA     
+  289  XSE70000         YES    4       NO        NO      1      NO DATA     
+  290  XSE80000         YES    4       NO        NO      1      NO DATA     
+  291  XSE90000         YES    4       NO        NO      1      NO DATA     
+  292  XSI00000         YES    4       NO        NO     10      P0,P1       
+  293  XSI80000         YES    4       NO        NO     10      P0,P1       
+  294  XSI90000         YES    4       NO        NO     10      P0,P1       
+  295  XSIN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  296  XSM00000         YES    4       YES       NO      1      NO DATA     
+  297  XSM10000         YES    4       YES       YES    10      P0,P1       
+  298  XSM20000         YES    4       YES       NO      1      NO DATA     
+  299  XSM30000         YES    4       NO        NO      1      NO DATA     
+  300  XSM40000         YES    4       NO        NO      1      NO DATA     
+  301  XSM70000         YES    4       NO        YES    10      P0,P1       
+  302  XSM80000         YES    4       NO        NO      1      NO DATA     
+  303  XSM90000         YES    4       NO        YES    10      P0,P1       
+  304  XSME0000         YES    4       NO        NO      1      NO DATA     
+  305  XSN00000         YES    4       NO        NO      1      NO DATA     
+  306  XSN20000         YES    4       NO        NO      1      NO DATA     
+  307  XSN30000         YES    4       NO        NO      1      NO DATA     
+  308  XSN40000         YES    4       NO        NO      1      NO DATA     
+  309  XSN50000         YES    4       NO        NO      1      NO DATA     
+  310  XSN60000         YES    4       NO        NO      1      NO DATA     
+  311  XSN70000         YES    4       NO        NO      1      NO DATA     
+  312  XSN80000         YES    4       NO        NO      1      NO DATA     
+  313  XSN90000         YES    4       NO        NO      1      NO DATA     
+  314  XSNC0000         YES    4       NO        NO      1      NO DATA     
+  315  XSNE0000         YES    4       NO        NO      1      NO DATA     
+  316  XSNG0000         YES    4       NO        NO      1      NO DATA     
+  317  XSNN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  318  XSR00000         YES    4       NO        NO      1      NO DATA     
+  319  XSR40000 (b62)   YES    4       NO        NO      1      NO DATA     
+  320  XSR60000         YES    4       NO        NO      1      NO DATA     
+  321  XSR70000         YES    4       NO        NO      1      NO DATA     
+  322  XSR80000         YES    4       NO        NO      1      NO DATA     
+  323  XSR90000         YES    4       NO        NO      1      NO DATA     
+  324  XTA10000         YES    4       YES       YES    10      P0,P1       
+  325  XTB00000 (b62)   YES    1       NO        NO      1      NO DATA     
+  326  XTB90000         YES    4       NO        YES    10      P0,P1       
+  327  XTC90000         YES    4       YES       YES    10      P0,P1       
+  328  XTE00000         YES    4       NO        NO      1      NO DATA     
+  329  XTE20000         YES    4       NO        NO      1      NO DATA     
+  330  XTE30000         YES    4       NO        NO      1      NO DATA     
+  331  XTE40000         YES    4       NO        NO      1      NO DATA     
+  332  XTE50000         YES    4       NO        NO      1      NO DATA     
+  333  XTE60000         YES    4       NO        NO      1      NO DATA     
+  334  XTE70000         YES    4       NO        NO      1      NO DATA     
+  335  XTE80000         YES    4       NO        NO      1      NO DATA     
+  336  XTE90000         YES    4       NO        NO      1      NO DATA     
+  337  XTEA0000         YES    4       NO        NO      1      NO DATA     
+  338  XTEC0000 (b62)   YES    1       NO        NO      1      NO DATA     
+  339  XTH00000         YES    4       NO        YES     1      P0,P1       
+  340  XTH20000         YES    4       YES       NO     10      P0,P1       
+  341  XTH30000         YES    1       NO        NO      1      P0,P1       
+  342  XTH40000         YES    1       NO        NO      1      P0,P1       
+  343  XTH70000         YES    1       NO        NO      1      P0,P1       
+  344  XTH80000         YES    4       NO        YES     1      P0,P1       
+  345  XTH90000         YES    4       NO        YES     1      P0,P1       
+  346  XTI00000         YES    4       NO        NO     10      P0,P1       
+  347  XTI60000         YES    4       NO        NO     10      P0,P1       
+  348  XTI70000         YES    4       NO        NO     10      P0,P1       
+  349  XTI80000         YES    4       NO        NO     10      P0,P1       
+  350  XTI90000         YES    4       NO        NO     10      P0,P1       
+  351  XTIN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  352  XU020000         YES    4       NO        NO      1      P0,P1       
+  353  XU030000         YES    4       YES       YES    10      P0,P1       
+  354  XU040000         YES    4       YES       NO     10      P0,P1       
+  355  XU050000         YES    4       YES       YES    10      P0,P1       
+  356  XU060000         YES    4       YES       NO     10      P0,P1       
+  357  XU070000         YES    4       NO        YES    10      P0,P1       
+  358  XU080000         YES    4       YES       NO     10      P0,P1       
+  359  XV0N0000         YES    4       NO        NO     10      P0,P1       
+  360  XW020000         YES    4       YES       YES    10      P0,P1       
+  361  XW030000         YES    4       YES       NO     10      P0,P1       
+  362  XW040000         YES    4       YES       NO     10      P0,P1       
+  363  XW060000         YES    4       YES       NO     10      P0,P1       
+  364  XXE00000         YES    4       NO        NO      1      NO DATA     
+  365  XXE10000         YES    4       YES       NO      1      NO DATA     
+  366  XXE20000         YES    4       NO        NO      1      NO DATA     
+  367  XXE30000         YES    4       NO        NO      1      NO DATA     
+  368  XXE40000         YES    4       NO        NO      1      NO DATA     
+  369  XXE50000         YES    4       NO        YES    10      P0,P1       
+  370  XXE60000         YES    4       NO        NO      1      NO DATA     
+  371  XXE80000         YES    4       NO        NO      1      NO DATA     
+  372  XXE90000         YES    4       NO        NO      1      NO DATA     
+  373  XXEE0000         YES    4       NO        NO      1      NO DATA     
+  374  XXEG0000         YES    4       NO        NO      1      NO DATA     
+  375  XY000000 (b62)   YES    1       NO        NO      1      NO DATA     
+  376  XY010000         YES    4       NO        NO      1      NO DATA     
+  377  XY090000         YES    4       NO        NO      1      NO DATA     
+  378  XZ310000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  379  XZ320000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  380  XZ330000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  381  XZ350000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  382  XZ380000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  383  XZ390000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  384  XZ500000 (psd)   NO     0       NO        NO      1      NO DATA     
+  385  XZ660000 (psd*)  NO     0       NO        NO      1      NO DATA     
+  386  XZ990000 (psd)   NO     0       NO        NO      1      NO DATA     
+  387  XZR00000         YES    4       NO        NO     10      P0,P1       
+  388  XZR10000         YES    4       NO        NO     10      P0,P1       
+  389  XZR20000         YES    4       NO        NO     10      P0,P1       
+  390  XZR30000         YES    4       NO        NO     10      P0,P1       
+  391  XZR40000         YES    4       NO        NO     10      P0,P1       
+  392  XZR50000         YES    4       NO        NO     10      P0,P1       
+  393  XZR60000         YES    4       NO        NO     10      P0,P1       
+  394  XZRN0000 (comp)  YES    4       NO        NO     10      P0,P1       
+  395  XZRNZ000         YES    4       NO        NO      8      P0-P3       
+  396  XZRY0000 (b4)    YES    4       NO        NO     10      P0,P1       
+  ----------------------------------------------------------------------
+  Note: Some nuclides are supplemented with other nuclear data files
+  b4   : Based on ENDF/B-IV (no evaluation in JENDL-3.3)
+  b6#  : Based on ENDF/B-VI(R#) (no evaluation in JENDL-3.3)
+  ----- Natural nuclides
+  comp : Natural nuclide composed from individual isotope evaluation
+  ----- Special nuclides
+  psd  : Pseudo Fission Products based on JENDL-3.3 for burn-up calculation
+  psd* : Pseudo Fission Products based on JENDL-3.2
+
+  Ambiguous nuclide symbol (zzm) ---------------------------------------
+
+  BAA  Ba-130      CDG  Cd-106      RUG  Ru-96       SME  Sm-144
+  BA1  Ba-131      CD7  Cd-107      RU7  Ru-97       SM7  Sm-147
+  BA2  Ba-132      CD8  Cd-108      RU8  Ru-98       SM8  Sm-148
+  BA3  Ba-133      CD9  Cd-109      RU9  Ru-99       SM9  Sm-149
+  BA4  Ba-134      CD0  Cd-110      RU0  Ru-100      SM0  Sm-150
+  BA5  Ba-135      CD1  Cd-111      RU1  Ru-101      SM1  Sm-151
+  BA6  Ba-136      CD2  Cd-112      RU2  Ru-102      SM2  Sm-152
+  BA7  Ba-137      CD3  Cd-113      RU3  Ru-103      SM3  Sm-153
+  BA8  Ba-138      CD4  Cd-114      RU4  Ru-104      SM4  Sm-154
+  BA9  Ba-139      CD5  Cd-115      RU5  Ru-105
+  BA0  Ba-140      CDM  Cd-115m     RU6  Ru-106
+                   CD6  Cd-116
+
+  SNC  Sn-112      TEA  Te-120      XEE  Xe-124      AG0  Ag-110m
+  SNE  Sn-114      TE1  Te-121      XEG  Xe-126
+  SN5  Sn-115      TE2  Te-122      XE8  Xe-128      PMM  Pm-148m
+  SN6  Sn-116      TE3  Te-123      XE9  Xe-129      PMG  Pm-148g
+  SN7  Sn-117      TE4  Te-124      XE0  Xe-130
+  SN8  Sn-118      TE5  Te-125      XE1  Xe-131      AMM  Am-242m
+  SN9  Sn-119      TE6  Te-126      XE2  Xe-132      AMG  Am-242g
+  SN0  Sn-120      TE7  Te-127m     XE3  Xe-133      AMT  Am-244m
+  SN1  Sn-121      TE8  Te-128      XE4  Xe-134
+  SN2  Sn-122      TE9  Te-129m     XE5  Xe-135      ZRY  Zrcaloy-2(b4)
+  SN3  Sn-123      TE0  Te-130      XE6  Xe-136
+  SN4  Sn-124      TEC  Te-132                       PUG  Pu-246
+  SNF  Sn-125
+  SNG  Sn-126                                        CMA  Cm-240
+  SNN  Sn-nat.
+
+  Chemical binding symbol (c of zzmc)-----------------------------------
+  0 :         Free gas
+  B : Be      Berylium metal     XBE9B001
+  E : BeO     Berylium oxide     XBE9E001 & XO06E001
+  Q : C6H6    Benzene            XC02Q001 & XH01Q001
+  C : C       Graphite           XC02C001
+  P : (CH2)n  Polyethylene       XH01P001 & XC020001(free)
+  H : H2O     Light water        XH01H001 & XO060001(free)
+  D : D2O     Heavy water        XD02D001 & XO060001(free)
+

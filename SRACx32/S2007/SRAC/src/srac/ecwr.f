@@ -1,0 +1,20 @@
+C             ECWR                LEVEL=1        DATE=81.11.14
+      SUBROUTINE ECWR ( CORE, IP, NWDS, IEREX )
+C
+C     CORE TO LCM TRANSFER REPLACEMENT ROUTINE
+C
+      COMMON /WORK/AAA(1),LIM2,AA(130)
+      DIMENSION A(132)
+      EQUIVALENCE (A(1),AAA(1))
+      EQUIVALENCE (A(52),LAST2)
+C
+      DIMENSION CORE ( 1 )
+C
+      INDEX = LAST2 + IP
+      DO 10 IDX = 1, NWDS
+CKSK  A ( INDEX ) = CORE ( IDX )
+      AAA ( INDEX ) = CORE ( IDX )
+      INDEX = INDEX + 1
+   10 CONTINUE
+      RETURN
+      END

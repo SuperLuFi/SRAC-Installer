@@ -1,0 +1,15 @@
+
+START HELP -------------------------------------------------------------------
+
+    <<< about the g77 / gcc / f2c >>>
+    
+    "g77" is a FORTRAN77 compiler.
+    "gcc" is a C compiler.
+    "f2c" is a translator from FORTRAN sources to C sources.
+
+    These are all freewares.
+    You can get them from the "Free Software Foundation".
+    For more details, see the home page of the GNU project
+    or related ones. (e.g.  http://www.gnu.org/ )
+
+--------------------------------------------------------------------- END HELP

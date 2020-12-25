@@ -1,0 +1,26 @@
+###################### About options for Makefile #################
+#
+# For HP-C200
+#   F77    = f77
+#   FFLAGS = -K +ppu +U77 +E1 +E4 +O2 +DA1.1
+#
+# Other alternatives
+#
+# For HP-9000
+# FFLAGS = -K +ppu +U77 +E1 +E4 +O2
+#        = -K +ppu +A3 +U77 +E1 +E4 +E7
+#        = -K +ppu +U77 +E1 +E4 +E7
+#        = -K +U77 +E1 +E4 +O2
+#
+#   -K  : save local valuables (may not be necessary if excellent codes)
+#         This option will disturb optimization performances
+#   +U77: use BSD library
+#   +E1 : use DATE,IDATE,SECNDS,TIME... Functions
+#   +E4 : ( .0  => 0.0)
+#   +On : optimization level
+#
+# ... for HP series with PA-RISC 1.x (e.g. HP-C200)
+#
+# FFLAGS = -K +ppu +U77 +E1 +E4 +O2 +DA1.1
+#
+###################################################################

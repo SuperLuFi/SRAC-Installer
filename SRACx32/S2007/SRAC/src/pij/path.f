@@ -1,0 +1,56 @@
+C***********************************************************************
+                      SUBROUTINE PATH
+C***********************************************************************
+      COMMON / PIJ1C / NX,NY,NTPIN,NAPIN,NCELL,NM,NGR,NGA,
+     1                 NDPIN,IDIVP,BETM,NX1,IDUM(8),
+     2                 NDR,NDA,LL,L0,RO1,DRO,FVOL,IC2D,FL,ROG,ANG,
+     3                 DIN,DOUT,SINB,COSB,LC
+      COMMON / PIJ2C / IGT,NZ,NR,NRR,NXR,IBOUND,IDRECT,LCOUNT,IEDPIJ,
+     1                 IFORM,NTTAB,NUTAB,SZ,IDUM2(18),ICOOD,IDUM3(7)
+     2                ,LCMMR,LCNREG,LCIRR,LCIXR,LCMAR,LCMAT,LCVOL,
+     3                 LCVOLR,LCVOLX,LCVOLM,LCMATD,AA(950)
+      COMMON / MAINC / DDM(63),NOUT1,NOUT2,IT0,DDM67(29),MXDIM,DM97(4),
+     1                 CASENM(2),TITLE(18),DDM2(880)
+      COMMON / PIJC /L00,L01,L02,L03,L04,L05,L06,L07,L08,
+     1               L09,L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,L20,
+     2               L21,L22,L23,L24,L25,L26,L27,L28,L29,L30,L31,L32,
+     3               L33,L34,L35,DD(65)
+      COMMON /WORK/A(30000)
+   20 CONTINUE
+C 1   RX  BY L01
+C 2   RPP BY L02
+C 3   RDP BY L03
+C 4   NPIN  BY L04
+C 5   THETA BY L05
+C 6   TY    BY L06
+C 8   D     BY L08
+C 9   IM    BY L09
+C 10  IP    BY L10
+C 11  II    BY L11
+C 12  X     BY L12
+C 14  S     BY L14
+C 25  XX          LENGTH NUTAB
+C 26  III         LENGTH NUTAB
+C 27   V-SUB
+C     L27=L26+NUTAB
+C 28
+      L28=L27+NZ
+      LAST=L28
+      IF(LAST.LE.MXDIM) GO TO 100
+      LAST=LAST-MXDIM
+      WRITE(NOUT1,9000) LAST,MXDIM
+      WRITE(NOUT2,9000) LAST,MXDIM
+      STOP
+  100 CONTINUE
+      WRITE(NOUT1,9010) LAST,MXDIM
+      WRITE(NOUT2,9010) LAST,MXDIM
+ 9000 FORMAT(' *** DIMENSION OVER FOUND IN PATH ',I10,' FROM ',I10/)
+ 9010 FORMAT('  STRAGE USED ',I10,' FROM ',I10/)
+       CALL PREPA(A(L01),A(L27),AA(LCNREG))
+       CALL VOLPIJ(
+     1            AA(LCNREG),AA(LCIRR),AA(LCIXR),AA(LCMMR),A(L27),
+     2            AA(LCVOL),AA(LCVOLR),AA(LCVOLX),AA(LCVOLM))
+      CALL MAKEPT(AA(LCNREG),AA(LCIRR),AA(LCMMR),AA(LCVOL),A(L14)
+     1           ,A(L09),A(L10),A(L11),A(L12),A(L25),A(L26),A(L01))
+      RETURN
+      END

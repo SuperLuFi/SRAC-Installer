@@ -1,0 +1,61 @@
+#!/bin/csh
+#
+##################################################################
+#
+#  I am a SRAC Installation Conductor.
+#  <<<<     Version 2001.01    >>>>  by Keisuke OKUMURA (JAERI)
+#
+   setenv SRAC_CODE `pwd`
+#
+##################################################################
+#
+alias echo echo
+set path = ( . $path)
+echo " "
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "Welcome to the SRAC code installation conductor. (by K.Okumura)"
+echo "Usual installation process ;                      "
+echo "(1) Read Help                       ==> Menu No.1 "
+echo "(2) Execute Pre-processor           ==> Menu No.2 "
+echo "(3) Install Utility Programs        ==> Menu No.3 "
+echo "(4) Install Bickley Function Table  ==> Menu No.3 "
+echo "(5) Install Load Module of SRAC     ==> Menu No.3 "
+set menu = " "
+while ($menu != "q")
+  echo " "
+  echo "+++++++++++++++++++++++< Main Menu >++++++++++++++++++++++++++++"
+  echo "+                                                              +"
+  echo "+  1 : Help & version No.                                      +"
+  echo "+  2 : Menu for pre-processor                                  +"
+  echo "+  3 : Menu for installation of SRAC (after pre-processor)     +"
+  echo "+  4 : Menu for uninstallation of SRAC                         +"
+  echo "+  5 : Menu for generation of source programs for the machines +"
+  echo "+      whose OS type is MSP (FACOM/M-,VP-,GS-series, etc)      +"
+  echo "+  q : bye-bye                                                 +"
+  echo "+                                                              +"
+  echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+  echo -n "Set number ==> "
+  set number = $<
+  switch ($number)
+    case 1: 
+          $SRAC_CODE/tool/install/menu/help.sh
+          breaksw
+    case 2:
+          $SRAC_CODE/tool/install/menu/prepro.sh
+          breaksw
+    case 3:
+          $SRAC_CODE/tool/install/menu/inst.sh
+          breaksw 
+    case 4:
+          $SRAC_CODE/tool/install/menu/rset.sh
+          breaksw
+    case 5:
+          $SRAC_CODE/tool/install/menu/msp.sh
+          breaksw 
+    case q:
+          set menu = "q"
+          breaksw
+    default:
+          echo "$number is invalid number."
+  endsw
+end

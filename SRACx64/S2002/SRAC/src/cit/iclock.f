@@ -1,0 +1,6 @@
+      FUNCTION ICLOCK(IX)
+CKSK  CALL CLOCKM(I)
+      CALL UCLCKM(I)
+      ICLOCK=I/10
+      RETURN
+      END

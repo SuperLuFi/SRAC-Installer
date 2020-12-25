@@ -1,0 +1,14 @@
+C     PARAMETER DEFINISION FOR SRAC PDS I/O ROUTINE
+C     THIS DEFINISION FILE NAME IS <<READPINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MAXMEM    MAXIMUM NUMBER OF MEMBERS IN IN-CORE          1 5000
+C     MXWORK    MAXIMUM MEMORY FOR PDS DATA STORAGE         300 0000
+C     LENWRK    MAXIMUM LENGTH FOR ONE MEMBER DATA           16 0000
+C     ------------------------------------------------------------------
+      PARAMETER ( MAXMEM = 15 0000  , MXWORK = 3000 0000 )
+      PARAMETER ( LENWRK = 16 0000  )
+C     ------------------------------------------------------------------

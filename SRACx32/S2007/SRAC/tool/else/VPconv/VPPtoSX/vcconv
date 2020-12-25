@@ -1,0 +1,10 @@
+#!/bin/csh
+#::::::::::::::
+#vcconv  vector control statment conversion   96/02/29
+# Usage :
+#    FACOM FORTARN77/EX     ==>      Monte-4(nec-sx) FORTRAN77/SX
+#    *VOCL *,*              ==>      *vdir *
+#    vcconv   file > ofile
+#
+#::::::::::::::
+   awk -f vc.awk $1

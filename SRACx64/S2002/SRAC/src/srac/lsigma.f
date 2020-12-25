@@ -1,0 +1,74 @@
+      SUBROUTINE LSIGMA(MTNAME,SIGMA ,BUFF  ,IBUFF ,IGMAX ,
+     1                  LBUFF ,NOUT1 ,MEMORY,LSIGMB,IRANG ,
+     2                  ICF   ,NGF   ,NGT                  )
+C
+C     READ MACRO CROSS-SECTION DATA
+C
+      COMMON /PDSPDS/ BUF(540),IFLSW,FILELB(3),ECODE,TEMPRY
+      DIMENSION MTNAME(2),SIGMA(2,IGMAX),MEMBER(2),BUFF(LBUFF),
+     1          IBUFF(LBUFF)
+      CHARACTER*4 MACR,O,OWRK,TWO,ICF,FILELB,BLANK,LETF,LETT,LETA
+      DATA MACR,O,OWRK,TWO,BLANK/'MACR','O   ','OWRK','0002','    '/
+      DATA LETF,LETT,LETA/'   F','   T','   A'/
+C
+      IFLSW=1
+      FILELB(1)=MACR
+      FILELB(2)=O
+      IF (ICF.EQ.TWO) FILELB(2)=OWRK
+      FILELB(3)=BLANK
+      MEMBER(1)=MTNAME(1)
+      MEMBER(2)=MTNAME(2)
+      IF (IRANG.EQ.0) CALL PACK(MEMBER(2),1,LETF)
+      IF (IRANG.EQ.1) CALL PACK(MEMBER(2),1,LETT)
+      IF (IRANG.EQ.2) CALL PACK(MEMBER(2),1,LETA)
+      CALL PACK(MEMBER(2),4,ICF)
+      CALL SEARCH(MEMBER,LTH,ISW)
+      IF (ISW .EQ. 0) THEN
+         IDO = 1
+         IGMAX1 = IGMAX
+         ELSE
+           IF (IRANG.EQ.0) THEN
+           WRITE(NOUT1,6010) MEMBER,FILELB(1),FILELB(2)
+           STOP
+           ELSE
+             IDO = 2
+             CALL PACK(MEMBER(2),1,LETF)
+             CALL GETLEN(MEMBER,LTH)
+             IGMAX1 = NGF
+           ENDIF
+      ENDIF
+      IBASE = 0
+      DO 110 II = 1,IDO
+      IF(LTH.GT.LBUFF) GO TO 1000
+      CALL READ(MEMBER,BUFF,LTH)
+      IBP=0
+      DO 100 I=1,IGMAX1
+          LSS=IBUFF(IBP+1)
+          LGV=IBUFF(IBP+2)
+          SIGMA(1,I+IBASE)=BUFF(IBP+4)
+          SIGMA(2,I+IBASE)=BUFF(IBP+10)-BUFF(IBP+4)
+          J1=I-LSS+1
+          J2=I+LGV-LSS
+          IBP=IBP+10
+          DO 10 J=J1,J2
+              IBP=IBP+1
+   10     CONTINUE
+  100 CONTINUE
+      IF (IDO.EQ.2) THEN
+         CALL PACK(MEMBER(2),1,LETT)
+         CALL GETLEN(MEMBER,LTH)
+         IBASE = NGF
+         IGMAX1 = NGT
+      ENDIF
+  110 CONTINUE
+      RETURN
+ 1000 CONTINUE
+      ISIZE  = LSIGMB + LTH - 1
+      WRITE(NOUT1,6000) MEMORY,ISIZE
+      STOP
+ 6000 FORMAT(1H0,'*REACTION DATA STEP* (LSIGMA)'/11X,
+     1           '/WORK/ LIMIT EXCEED'/11X,
+     2           'ALLOCATED',I6,' WORDS,BUT NEEDS',I6,' WORDS OR OVER')
+ 6010 FORMAT(1H0,'*** ERROR *** MACRO (',2A4,') IS NOT FOUND',
+     1       ' IN ',2A4,' FILE'                                       )
+      END

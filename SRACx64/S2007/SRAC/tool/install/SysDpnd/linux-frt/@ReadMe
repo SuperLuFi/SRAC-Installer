@@ -1,0 +1,13 @@
+###################### About options for Makefile #################
+#
+#   F77    = frt
+#   FFLAGS = -O
+#
+#------------------------------
+#
+# Machine structures on which operation check has been completed
+#  Hard     : Dell Precision 650 (CPU = Xeon 3.02GHz)
+#  OS       : Redhat Linux 8.0
+#  Compiler : Fujitsu frt version 4.0 (Jan 20, 2003)
+#
+###################################################################
