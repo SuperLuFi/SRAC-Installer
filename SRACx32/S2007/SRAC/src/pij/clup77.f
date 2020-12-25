@@ -1,0 +1,109 @@
+      SUBROUTINE CLUP77
+      COMMON / PIJ1C / NX,NY,NTPIN,NAPIN,NCELL,NM,NGR,NGD,NDPIN,
+     1                 IDIVP,BETM,NX1,NY1,I14,I15,IDUM(4),NDPIN1,
+     2                 NDR,NDA,LL,L0,RO1,DRO,FVOL,NA,NA1,RO,BETA,
+     3                 NNR,IAXIS,SINB,COSB,NMESH
+      COMMON / PIJ2C / IGT,NZ,NR,NRR,NXR,IBOUND,IDRECT,ICOUNT,IEDPIJ,
+     1              IFORM,NTTAB,NUTAB,SZ,IDUM14(26),
+     2              LCMMR,LCNREG,LCIRR,LCIXR,LCMAR,LCMAT,LCVOL,
+     3              LCVOLR,LCVOLX,LCVOLM,NO2,AA(950)
+      COMMON / PIJC / L00,L01,L02,L03,L04,L05,L06,L07,L08,L09,
+     1                L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,L20,L21,
+     2                L22,L23,L24,L25,L26,L27,L28,L29,L30,L31,L32,L33,
+     3                L34,L35,L36,L37,L38,L39,L40,L41,L42,L43,L44,L45,
+     4                DD(55)
+      COMMON / MAINC / DDM(63),NOUT1,NOUT2,DUM66(30),MXDIM,DUM97(4)
+     &                ,CASENM(2),TITLE(18),DUM(880)
+      COMMON /WORK/A(60000)
+C MERGE RPP INTO RX , REDEFINE NX, NX1 AND  DEFINE NPTX
+             IF(NAPIN.GT.0)
+     &       CALL MERGRX(A(L01),A(L04),A(L02),A(L08))
+C 1   RX  BY L01
+C 2   RPP BY L02
+C 3   RDP BY L03
+C 4   NPIN  BY L04
+C 5   THETA BY L05
+C 6   TY    BY L06
+C 8   D     BY L08
+C 9   IM    BY L09
+C 10  IP    BY L10
+C 11  II    BY L11
+C 12  X     BY L12
+C 14  S     BY L14
+C 25  XX          LENGTH NUTAB
+C 26  III         LENGTH NUTAB
+C     L27 = L26 + NUTAB
+C 27  VOLUME OF SUB-REGION  LENGTH NMESH
+              NNR = (NX*NX1) / 2
+              IF(IDIVP.LE.1) THEN
+              NMESH = NNR + NDPIN*NTPIN
+                             ELSE
+              NMESH = NNR + 4*NDPIN*NTPIN
+                             ENDIF
+      L28=L27 + NMESH
+C 28  MESHX       LENGTH NX1*NX1
+C
+      L29 = L28 + NX1*NX1
+C 29  MESHP       LENGTH
+      IF(IDIVP.LE.1) THEN
+      L30 = L29 + NX1*NX1*NDPIN
+                     ELSE
+      L30 = L29 + 4*NX1*NX1*NDPIN
+                     ENDIF
+C 30  DX          LENGTH 2 NX1
+      L31 = L30 + 2*NX1
+C 31  DY          LENGTH 2 NX1
+      L32 = L31 + 2*NX1
+C 32  IIJJ
+      IF(IDIVP.LE.1) THEN
+      L33  = L32
+                     ELSE
+      L33  = L32 + 4*NTPIN
+C 33  NSRPIN
+                     ENDIF
+      LAST = L33 + NTPIN+1
+C
+C     WRITE(NOUT1,990)           ' L01= ',L01,' L02= ',L02,' L03= ',L03,
+C    & ' L04= ',L04,' L05= ',L05,' L06= ',L06,' L08= ',L08,' L09= ',L09,
+C    & ' L10= ',L10,' L11= ',L11,' L12= ',L12,' L14= ',L14,' L25= ',L25,
+C    & ' L26= ',L26,' L27= ',L27,' L28= ',L28,' L29= ',L29,' L30= ',L30,
+C    & ' L31= ',L31,' L32= ',L32,' L33= ',L33,' LST= ',LAST
+C 990 FORMAT(10X,10(A,I5)/10X,10(A,I5)/10X,10(A,I5))
+      IF(LAST.LE.MXDIM) GO TO 100
+      LAST=LAST-MXDIM
+      WRITE(NOUT1,9000) LAST,MXDIM
+      STOP
+  100 CONTINUE
+      WRITE(NOUT1,9010) LAST,MXDIM
+ 9000 FORMAT(1H0,9X,'DIMENSION OVER',I7,' FROM ',I7,' IN CLUP77-STEP')
+ 9010 FORMAT(1H0,9X,'STORAGE USED ',I7,' WITHIN ',I7,' IN CLUP77-STEP')
+C
+C
+*     WRITE(NOUT1,*) 'RX OF PREX7=',(A(I),I=L01,L01+NX)
+      IF(IDIVP.LE.1) THEN
+      CALL PREX7(A(L01),A(L02),A(L03),A(L04),A(L27),
+     1           A(L28),A(L29),A(L33),
+     2           AA(LCNREG),AA(LCIRR),AA(LCIXR),AA(LCMMR))
+C     CALL PREX7(NX,A(L01),A(L03),A(L02),A(L27),A(L29),
+C    1           A(L30),A(L31),
+C    2           AA(LCNREG),AA(LCIRR),AA(LCIXR),AA(LCMMR))
+                     ELSE
+      CALL PREXX(A(L01),A(L03),A(L04),A(L27),
+     1           A(L28),A(L29),A(L32),A(L33),
+     2           AA(LCNREG),AA(LCIRR),AA(LCIXR),AA(LCMMR))
+                     ENDIF
+      CALL VOLPIJ (AA(LCNREG),AA(LCIRR)
+     1            ,AA(LCIXR),AA(LCMMR),A(L27),
+     2             AA(LCVOL),AA(LCVOLR),AA(LCVOLX),AA(LCVOLM))
+C
+*     WRITE(NOUT1,*) 'RX IN CLUP77=',(A(I),I=L01,L01+NX)
+      CALL MAKETX(AA(LCNREG),AA(LCIRR),AA(LCMMR),AA(LCVOL)
+     1 ,A(L01),A(L02),A(L03),A(L04),A(L04+NTPIN),A(L05),A(L06)
+     2 ,A(L08),A(L09),A(L10),A(L11),A(L12),A(L14),A(L25),A(L26)
+     3 ,A(L28),A(L29),A(L30),A(L31),A(L33))
+C     SUBROUTINE MAKETX(NZONE,IRR,MMR,VOL,
+C    &  A01,A02,A03,A041,A042,A05,A06,
+C    &  D  ,IM ,IP ,II ,XX ,S, X, III,
+C    &  A28,A29,A30,A31,A33)
+      RETURN
+      END

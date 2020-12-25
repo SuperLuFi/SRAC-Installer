@@ -1,0 +1,141 @@
+C     THIS ROUTINE IS USED ONLY IN SRAC-CITATION AND NOT USED IN COREBN
+C     PERTUARBATION MACRO READ AND SET
+C
+      SUBROUTINE PERTM(BUFF  ,IBUFF ,SAMPLE,SIG2  ,SCAC2 ,
+     1                 XI2   ,P     ,SAMPLO,
+     2                 KMAX  ,LBUF  ,IOUT  ,BKLE  ,IBKLGP,
+     3                 IDOPT ,MEMPET,IX104 ,IDOPTO,BKLEO   )
+C
+CDEL  INTEGER RGX , MSX , ZNEX , ZDX , WZX
+CDEL  PARAMETER ( RGX=100, MSX=211, ZDX=200, ZNEX=1000, WZX=100 )
+      INCLUDE  'CITPMINC'
+C
+      COMMON /MAINC/ III(500)
+      EQUIVALENCE (III(98),IRANGE),(III(99),ICF)
+C
+      COMMON /SRACIT/ ID2,IXKI,IDELAY,IXYZ(ZNEX)
+      COMMON /PDSPDS/ BUF(540),IFLSW,FILELB(3),ECODE,TEMPRY
+      DIMENSION BUFF(LBUF),IBUFF(LBUF),SAMPLE(2),SIG2(KMAX,12),SCAC2(KMA
+     &          X,KMAX),XI2(KMAX),RIDENT(2),RANGE(3),D(2),IXYZD(3,8),
+     &          P(MEMPET),SAMPLO(2)
+CKSK
+      CHARACTER*4 RANGE,ICF,FILELB
+C     DATA RANGE/'   F   T   A'/
+      DATA RANGE/'   F','   T','   A'/
+CKSK
+      DATA IXYZD/1,1,1,     2,2,2,     2,1,1,     1,2,1,
+     &           2,2,1,     1,1,2,     2,1,2,     1,2,2 /
+C
+      IFLSW = 1
+      FILELB(1) = 'MACR'
+      FILELB(2) = 'OWRK'
+      FILELB(3) = '    '
+      IF (ICF.EQ.'0000') FILELB(2) = 'O   '
+      RIDENT(1) = SAMPLE(1)
+      RIDENT(2) = SAMPLE(2)
+      CALL PACK(RIDENT(2),1,RANGE(IRANGE+1))
+      CALL PACK(RIDENT(2),4,ICF)
+      CALL SEARCH(RIDENT,LTH,ISW)
+      IF (ISW.EQ.0) GO TO 100
+      WRITE(IOUT,3000) RIDENT,(FILELB(I),I=1,2)
+      STOP
+  100 CONTINUE
+      IF (LTH.LE.LBUF) GO TO 110
+      WRITE(IOUT,3010) LBUF,LTH,RIDENT
+      STOP
+  110 CONTINUE
+      CALL READ(RIDENT,BUFF,LTH)
+      IBP = 0
+      CALL IVALUE(SCAC2,KMAX*KMAX,0.0)
+      SUMXI = 0.0
+      DO 130 K = 1,KMAX
+      LSS = IBUFF(IBP+1)
+      LGV = IBUFF(IBP+2)
+      D(1) = BUFF(IBP+8)
+      D(2) = BUFF(IBP+9)
+      SIG2(K,1 ) = D(IXYZD(1,IDOPT))
+      SIG2(K,11) = D(IXYZD(2,IDOPT))
+      SIG2(K,12) = D(IXYZD(3,IDOPT))
+      SIG2(K,3) = BUFF(IBP+10)
+      SIG2(K,4) = BUFF(IBP+5)
+      SIG2(K,6) = BKLE
+      SIG2(K,7) = 3.108E-11*BUFF(IBP+4)
+      XI2(K) = BUFF(IBP+7)
+      SUMXI = SUMXI + XI2(K)
+      IF (BKLE.LT.0) SIG2(K,6) = P(IBKLGP+K-1)
+      SIG2(K,2) = 0.0
+      J1 = K - LSS + 1
+      J2 = K + LGV - LSS
+      IBP = IBP + 10
+      DO 120 KK = J1,J2
+      IBP = IBP + 1
+      SCAC2(K,KK) = BUFF(IBP)
+      IF (K.EQ.KK) SCAC2(K,KK) = 0.0
+      SIG2(K,2) = SIG2(K,2) + SCAC2(K,KK)
+  120 CONTINUE
+  130 CONTINUE
+CI87/08/25 N2N ADJUST START
+      IF (ICF.EQ.'0000') CALL PACK(RIDENT(2),4,'   N')
+      IF (ICF.EQ.'0002') CALL PACK(RIDENT(2),4,'   M')
+      CALL SEARCH(RIDENT,LTHN,ISW)
+      IF (ISW.EQ.0) THEN
+         IF (LTHN.GT.LBUF) THEN
+            WRITE(IOUT,3010) LBUF,LTHN,RIDENT
+            STOP
+         ENDIF
+         CALL READ(RIDENT,BUFF,LTHN)
+         LOCN = 0
+         DO 132 K = 1,KMAX
+         IF (LOCN.GE.LTHN) GO TO 133
+         J2 = IBUFF(LOCN+2)
+         LOCN = LOCN + 10
+         DO 131 J = 1,J2
+         LOCN = LOCN + 1
+         SIG2(K,3) = SIG2(K,3) - BUFF(LOCN)
+  131    CONTINUE
+  132    CONTINUE
+  133    CONTINUE
+      ENDIF
+CI87/08/25 N2N ADJUST END
+      IF (IX104.EQ.0) RETURN
+      IF (SAMPLE(1).NE.SAMPLO(1).OR.SAMPLE(2).NE.SAMPLO(2)) GO TO 135
+      IF (IDOPT.NE.IDOPTO) GO TO 135
+      IF (BKLE.NE.BKLEO) GO TO 135
+      RETURN
+  135 CONTINUE
+      SAMPLO(1) = SAMPLE(1)
+      SAMPLO(2) = SAMPLE(2)
+      IDOPTO = IDOPT
+      BKLEO  = BKLE
+      WRITE(IOUT,1000) SAMPLE
+      DO 140 K = 1,KMAX
+      WRITE(IOUT,1010) K,SIG2(K,1),SIG2(K,11),SIG2(K,12),SIG2(K,2),
+     &                 (SIG2(K,J),J=3,4),SIG2(K,6),SIG2(K,7)
+  140 CONTINUE
+      WRITE(IOUT,1020)
+      DO 150 K = 1,KMAX
+      KK1 = (KMAX+9)/10
+      DO 145 KKK = 1,KK1
+      K11 = (KKK-1)*10 + 1
+      K22 = K11 + 9
+      IF (KKK.EQ.KK1) K22 = KMAX
+      IF(KKK.EQ.1) WRITE(IOUT,1030) K,(SCAC2(K,KK),KK=K11,K22)
+      IF(KKK.GT.1)WRITE(IOUT,1035)   (SCAC2(K,KK),KK=K11,K22)
+  145 CONTINUE
+  150 CONTINUE
+       IF (IXKI.NE.0) WRITE(IOUT,1040) (XI2(K),K=1,KMAX),SUMXI
+      RETURN
+ 1000 FORMAT(1H0,'MACROSCOPIC CROSS SECTIONS FOR ',2A4//
+     &       ' GRP    D(X)        D(Y)        D(Z)        SIGR    ',
+     &       '    SIGA       NUSIGF       BSQ      POWER/FLUX'/     )
+ 1010 FORMAT(I5,1P8E12.5                                            )
+ 1020 FORMAT(1H0,'SCATTERING MATRIX'/                               )
+ 1030 FORMAT(I5,1P10E12.5)
+ 1035 FORMAT(5X,1P10E12.5)
+ 1040 FORMAT(1H0,'FISSION SOURCE DISTRIBUTION AND SUM',10F9.5/(1X,14F9.5
+     &      ))
+ 3000 FORMAT('0***ERROR*** PERTURBED MACRO (',2A4,') IS NOT FOUND ON ',
+     &       2A4,' FILE'                                               )
+ 3010 FORMAT('0***ERROR*** MACRO READ BUFFER LENGTH OVER ALLOCATE =',I5,
+     &       ' NEED =',I5,' MEMBER = ',2A4                             )
+      END

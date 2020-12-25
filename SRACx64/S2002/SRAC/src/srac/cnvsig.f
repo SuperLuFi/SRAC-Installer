@@ -1,0 +1,77 @@
+      SUBROUTINE CNVSIG(FINAME,SIGMA ,NCOMPF,BUFF  ,IBUFF ,IGMAX ,
+     1                  LBUFF ,NOUT1 ,MEMORY,IRANG ,ICF   ,LSIGMB,
+     2                  MVX   )
+C
+CCNVSIG --- CONVERSION RETIO CALCULATION MACRO PREPARATION
+C
+C     READ MACRO CROSS-SECTION DATA
+C
+      CHARACTER*4  FILELB,ICF
+C
+      COMMON /PDSPDS/ BUF(540),IFLSW,FILELB(3),ECODE,TEMPRY
+C
+      CHARACTER*4  FINAME(2,MVX),MEMBER(2)
+      DIMENSION    SIGMA(5,IGMAX,MVX)
+      DIMENSION    BUFF(LBUFF),IBUFF(LBUFF)
+      DIMENSION    NCOMPF(MVX)
+C
+C *** START OF PROCESS
+C
+      IFLSW    = 1
+      FILELB(1)= 'MACR'
+      FILELB(2)= 'O   '
+      IF (ICF.EQ.'0002') FILELB(2)='OWRK'
+      FILELB(3)= '    '
+C
+C *** LOOP OF CASES
+C
+      DO 110 I = 1,MVX
+      DO 110 K = 1,IGMAX
+      DO 110 J = 1,5
+      SIGMA(J,K,I) = 0.000000
+  110 CONTINUE
+C
+      DO 140 J = 1 , MVX
+      IF(NCOMPF(J).EQ.0) GO TO 140
+      MEMBER(1)=FINAME(1,J)
+      MEMBER(2)=FINAME(2,J)
+      IF (IRANG.EQ.0) MEMBER(2) (1:1) = 'F'
+      IF (IRANG.EQ.2) MEMBER(2) (1:1) = 'A'
+      MEMBER(2)(4:4) = ICF(4:4)
+      CALL SEARCH(MEMBER,LTH,ISW)
+      IF (ISW .NE. 0) THEN
+                      WRITE(NOUT1,6010) MEMBER,FILELB(1),FILELB(2)
+                      STOP
+                      ENDIF
+      IF(LTH.GT.LBUFF) GO TO 1000
+C
+      CALL READ(MEMBER,BUFF,LTH)
+      IBP=0
+      DO 120 K=1,IGMAX
+          LGV=IBUFF(IBP+2)
+          SIGMA(1,K,J) = 1.000
+C ******* FISSION
+          SIGMA(2,K,J) = BUFF(IBP+4)
+C ******* CAPTURE
+          SIGMA(3,K,J) = BUFF(IBP+10) - BUFF(IBP+4)
+C ******* ABSORPTION
+          SIGMA(4,K,J) = BUFF(IBP+10)
+C ******* PRODUCTION
+          SIGMA(5,K,J) = BUFF(IBP+5)
+          IBP=IBP+10+LGV
+  120 CONTINUE
+  140 CONTINUE
+      RETURN
+C
+ 1000 CONTINUE
+      ISIZE  = LSIGMB + LTH - 1
+      WRITE(NOUT1,6000) MEMORY,ISIZE
+C
+ 6000 FORMAT(1H0,'*REACTION DATA STEP* (CNVSIG)'/11X,
+     1           '/WORK/ LIMIT EXCEED'/11X,
+     2           'ALLOCATED',I6,' WORDS,BUT NEEDS',I6,' WORDS OR OVER')
+ 6010 FORMAT(1H0,'*** ERROR *** MACRO (',2A4,') IS NOT FOUND',
+     1       ' IN ',2A4,' FILE'                                       )
+C
+      STOP
+      END

@@ -1,0 +1,215 @@
+      SUBROUTINE BURNUP(NMP,MATD,VOLZ)
+C
+C
+C
+      INCLUDE  'BURNPINC'
+      INCLUDE  'BMICRINC'
+C
+      CHARACTER*4   TITLE
+      CHARACTER*12  DDNAME
+      CHARACTER*4   CASEID
+      CHARACTER*4   FILENM
+C
+      COMMON /MAINC/ IOPT(20),JNFSTL(2),FNFSTL(2),JNTHEL(2),FNTHEL(2)
+     1    ,JNEFST(2),FNEFST(2),JNETHE(2),FNETHE(2),JNMACR(2),FNMACR(2)
+     2    ,JNMCRS(2),FNMCRS(2),JNEMIC(2),FNEMIC(2),JNFLUX(2),FNFLUX(2)
+     3   ,NEFL     ,NETL     ,NEF      ,NET      ,NERF     ,NERT
+     4   ,NMAT     ,NETL1    ,BSQ      ,NIN1     ,NIN2     ,NOUT1
+     5   ,NOUT2    ,IT0      ,NEFL1    ,NEFL2    ,NEFL3    ,NEF1
+     6   ,NEF2     ,NEF3     ,ISTP     ,NSOUC    ,NFIN     ,NFOUT
+     7   ,ITYPE    ,IMCEF    ,I79      ,I80
+     8   ,LCNEGF   ,LCNEGT   ,LCNECF   ,LCNECT   ,LCMTNM   ,LCNISO
+     9   ,LCTEMP   ,LCXL     ,LCXCDC   ,LCLISO   ,LCIDNT   ,LCDN
+     A   ,LCIRES   ,LCIXMC   ,NFTOT    ,MEMORY   ,IOPEN    ,IRANG
+     B   ,ICF      ,INITL
+     C   ,CASEID(2),TITLE(18)
+     D   ,II(880)
+C
+      COMMON /WORK  / A(500000)
+      COMMON /PDSPDS/ DDNAME(125),IST(15),IRW(15),IOS(35),NC(5,20),
+     &                IFLSW,FILENM(3),ECODE,TEMP
+C
+      COMMON /BURNC1/ IBC(20),NEP,NEP1,IBREST,IBCOLP,NGBN,NGTBN,
+     1                IMAXBN,LAPSBN,IBEND,EVTOJ,ABOGA,LASTFP,
+     2                IDU235,ST235,NTDEPZ,IBUNIT,IBEDIT,NTISO,
+     3                L1,L2,L3,L4,L5,L6,NTNUC,NTFISS,LNMAX,NPAR,
+     4                NFIS,NFER,INTSTP,IVOID,NCHA,LCHA
+C
+      DIMENSION    VOLZ(NMP),MATD(NMP)
+C
+      REWIND 52
+      READ(52)  IDUM,NXR,NRTOT
+      REWIND 52
+C
+      WRITE(NOUT2,*) ' ** NRTOT IMAXBN I79 (BURNUP) : ',NRTOT,IMAXBN,I79
+      IF(NRTOT.NE.IMAXBN) STOP 970
+C
+      LOC01    = 1
+C ----NISO
+      LOC02    = LOC01  +  NMAT
+C ----FLUXMF
+      LOC03    = LOC02  +  IMAXBN*NMAT
+C ----MATXRG
+      LOC04    = LOC03  +  NMAT
+C ----VOLM
+      LOC05    = LOC04  +  NMAT
+C ----VOLX
+      LOC06    = LOC05  +  NXR
+C ----FLUXXF
+      LOC07    = LOC06  +  IMAXBN*NXR
+C ----CC
+      LOC08    = LOC07  +  IMAXBN*MAXMT3*MXNUC*NMAT
+C ----CCB
+      LOC09    = LOC08  +  LAPSBN*MAXMT3*MXNUC*NMAT
+C ----FLUXMB
+      LOC10    = LOC09  +  LAPSBN*NMAT
+C ----FLUXXB
+      LOC11    = LOC10  +  LAPSBN*NXR
+C ----DNREST
+      LOC12    = LOC11  +  NEP1*NTNUC*NTDEPZ
+C ----FLUXM1
+      LOC13    = LOC12  +  NMAT
+C ----FLUXX1
+      LOC14    = LOC13  +  NXR
+C ----WTHVYM
+      LOC15    = LOC14  +  NMAT
+C ----POWMAT
+      LOC16    = LOC15  +  NMAT
+C ----SSC1G
+      LOC17    = LOC16  +  MXNUC*NMAT
+C ----SSF1G
+      LOC18    = LOC17  +  MXNUC*NMAT
+C ----SSA1G
+      LOC19    = LOC18  +  MXNUC*NMAT
+C ----S2N1G
+      LOC20    = LOC19  +  MXNUC*NMAT
+C ----SSP1G
+      LOC21    = LOC20  +  MXNUC*NMAT
+C ----SSC1B
+      LOC22    = LOC21  +  NTNUC*NTDEPZ
+C ----SSF1B
+      LOC23    = LOC22  +  NTNUC*NTDEPZ
+C ----SSA1B
+      LOC24    = LOC23  +  NTNUC*NTDEPZ
+C ----S2N1B
+      LOC25    = LOC24  +  NTNUC*NTDEPZ
+C ----SSP1B
+      LOC26    = LOC25  +  NTNUC*NTDEPZ
+C ----SIGF
+      LOC27    = LOC26  +  LAPSBN*NMAT
+C ----SIGA
+      LOC28    = LOC27  +  LAPSBN*NMAT
+C ----SIGC
+      LOC29    = LOC28  +  LAPSBN*NMAT
+C ----AFISSM
+      LOC30    = LOC29  +  LAPSBN*NMAT
+C ----CFERTM
+      LOC31    = LOC30  +  LAPSBN*NMAT
+C ----SSCXE5
+      LOC32    = LOC31  +  LAPSBN*NMAT
+C ----SSCI35
+      LOC33    = LOC32  +  LAPSBN*NMAT
+C ----SSCSM9
+      LOC34    = LOC33  +  LAPSBN*NMAT
+C ----SSCPM9
+      LOC35    = LOC34  +  LAPSBN*NMAT
+C ----NUCLP
+      LOC36    = LOC35  +  NPAR  *NTNUC
+C ----GAM
+      LOC37    = LOC36  +  NTFISS*NTNUC
+C ----GAMI
+      LOC38    = LOC37  +  NTFISS*NTNUC
+C ----NBIC
+      LOC39    = LOC38  +  NPAR  *NTNUC
+C ----PBIC
+      LOC40    = LOC39  +  NPAR  *NTNUC
+C ----KSTP
+      LOC41    = LOC40  +  NCHA  *NTNUC
+C ----LONG
+      LOC42    = LOC41  +  NCHA  *NTNUC
+C ----LL
+      LOC43    = LOC42  +  NCHA  *NTNUC
+C ----IP
+      LOC44    = LOC43  +  NCHA  *NTNUC * LCHA
+C ----KP
+      LOC45    = LOC44  +  NCHA  *NTNUC * LCHA
+C ----NPN
+      LOC46    = LOC45  +  NPAR  *NTNUC
+C ----PHAI
+      LOC47    = LOC46  +  NPAR  *NTNUC
+C ----DNOLD
+      LLAST    = LOC47  +  MXNUC *MXDEPL - 1
+CMOD  MXWORK   = MEMORY -  LLAST + 1
+      MXWORK   = MEMORY -  LOC06 + 1
+C
+      IF(IBEDIT.GE.2) THEN
+      WRITE(NOUT2,*) ' *** MEMORY LOACTION FOR BURNUP ROUTINE *** '
+      WRITE(NOUT2,*) ' ============================================== '
+      WRITE(NOUT2,7) LOC01,LOC02,LOC03,LOC04,LOC05,
+     1               LOC06,LOC07,LOC08,LOC09,LOC10,
+     2   LOC11,LOC12,LOC13,LOC14,LOC15,LOC16,LOC17,LOC18,LOC19,LOC20,
+     3   LOC21,LOC22,LOC23,LOC24,LOC25,LOC26,LOC27,LOC28,LOC29,LOC30,
+     4   LOC31,LOC32,LOC33,LOC34,LOC35,LOC36,LOC37,LOC38,LOC39,LOC40,
+     5   LOC41,LOC42,LOC43,LOC44,LOC45,LOC46,LOC47
+      WRITE(NOUT2,*) ' ============================================== '
+      WRITE(NOUT2,*) ' ** MEMORY LLAST MXWORK : ',MEMORY,LLAST,MXWORK
+                      ENDIF
+C
+    7 FORMAT(1H ,5X,10I10)
+C
+      LENEDT = 20 +  NTDEPZ*10 + NTDEPZ*NTNUC*2 + NTDEPZ*LAPSBN*6
+     1            +  NMAT      + NMAT*LAPSBN*3  + NTDEPZ*NTNUC + 10000
+      MAXWRK = MEMORY - LLAST
+C
+      IF(MAXWRK.LE.LENEDT) THEN
+         WRITE(NOUT1,*) ' ** ERROR STOP AT SUBROUTINE(BURNUP) ]]] '
+         WRITE(NOUT1,*) ' ** WORK DIMENSION IS INSUFFICIENT   ]]] '
+         WRITE(NOUT1,*) ' ** REQUESTED IS ',LLAST+LENEDT,' WORDS. '
+         WRITE(NOUT1,*) ' ** BUT RESERVED ',MEMORY,' WORDS. '
+         WRITE(NOUT2,*) ' ** ERROR STOP AT SUBROUTINE(BURNUP) ]]] '
+         WRITE(NOUT2,*) ' ** WORK DIMENSION IS INSUFFICIENT   ]]] '
+         WRITE(NOUT2,*) ' ** REQUESTED IS ',LLAST+LENEDT,' WORDS. '
+         WRITE(NOUT2,*) ' ** BUT RESERVED ',MEMORY,' WORDS. '
+         STOP 999
+         ENDIF
+C
+      CALL  CLEA ( A  , LLAST , 0.0 )
+C
+      IFLSW     = 1
+CKSK  FILENM(1) = 4HMACR
+      FILENM(1) = 'MACR'
+CKSK  FILENM(2) = 4HO
+      FILENM(2) = 'O   '
+      IF(IOPT(10).EQ.0) FILENM(2)='OWRK'
+      IF(IOPT(12).NE.0.AND.IOPT(2).EQ.0) THEN
+                   IF(IOPT(13).NE.0) FILENM(2)='O   '
+                   ENDIF
+C
+      NFILE     = 0
+      ECODE     = 0
+      CALL FILSRC(NFILE,FILENM)
+      IF(IOS(NFILE).EQ.0) THEN
+                    WRITE(6,*) ' *** FILE NOT OPENED DD=',DDNAME(NFILE)
+                    STOP
+                    ENDIF
+C
+      IF(IOS(NFILE).EQ.0) CALL OPNPDS(IRW(NFILE),IST(NFILE))
+C
+      LLAST1 = LLAST + 1
+C
+      CALL  BURNCT(NMP     ,NXR     ,VOLZ    ,MAXMT3  ,
+     1             A(LOC01),A(LOC02),A(LOC03),A(LOC04),A(LOC05),
+     2             A(LOC06),A(LOC07),A(LOC08),A(LOC09),A(LOC10),
+     3             A(LOC11),A(LOC12),A(LOC13),A(LOC14),A(LOC15),
+     4             A(LOC16),A(LOC17),A(LOC18),A(LOC19),A(LOC20),
+     5             A(LOC21),A(LOC22),A(LOC23),A(LOC24),A(LOC25),
+     6             A(LOC26),A(LOC27),A(LOC28),A(LOC29),A(LOC30),
+     7             A(LOC31),A(LOC32),A(LOC33),A(LOC34),A(LOC35),
+     8             A(LOC36),A(LOC37),A(LOC38),A(LOC39),A(LOC40),
+     9             A(LOC41),A(LOC42),A(LOC43),A(LOC44),A(LOC45),
+     A             A(LOC46),A(LOC47),A(LOC07),A(LOC06),A(LOC06),
+     B             A(LOC06),MXWORK  ,II(1)   ,II(LCMTNM)  ,
+     C             A(LLAST1)        ,A(LLAST1)        ,MAXWRK  )
+C
+      RETURN
+      END

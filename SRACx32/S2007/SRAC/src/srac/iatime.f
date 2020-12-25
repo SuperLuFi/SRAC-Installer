@@ -1,0 +1,8 @@
+C             IATIME              LEVEL=1        DATE=80.09.29
+CKSK  SUBROUTINE ITIME(N)
+      SUBROUTINE IATIME(N)
+CKSK  CALL CLOCKM(N)
+      CALL UCLCKM(N)
+       N=(N+500)/1000
+      RETURN
+      END

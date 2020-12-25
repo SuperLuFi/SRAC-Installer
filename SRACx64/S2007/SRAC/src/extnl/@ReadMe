@@ -1,0 +1,17 @@
+The sub-routines in this directory depends on systems.
+Replace all routines in this directory by the routines in the following
+directory corresponding to your system.
+ 
+1) facom-msp   :  FACOM M780, FACOM VP-2600, other IBM-compatible machines 
+2) facom-vpp   :  FACOM VPP-500 etc.
+3) nec-sx      :  NEC-SX3, SX4  etc.
+4) ews-sun     :  Sun (Ultra) Sparc (EWS) etc.
+5) ews-hp      :  HPi-9000 (EWS) etc.
+6) ews-ibm     :  IBM AIX/RS-6000 (EWS) etc.
+7) pc-unix     :  PC/AT (Linux or FreeBSD)
+8) hitachi-sr  :  HITACHI-SR8000 etc.
+ 
+For the systems other than obove systems, make the subroutines which
+have the same functions by yourself.
+
+                             K.OKUMURA (okumura@mike.tokai.jaeri.go.jp)

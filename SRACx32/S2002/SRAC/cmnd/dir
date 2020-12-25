@@ -1,0 +1,15 @@
+#!/bin/csh
+#
+#  dir : count number of files or directories in current directory.
+#  by K.OKUMURA
+#
+#
+alias ls ls
+ls -aF 
+set nf1 = `ls -a | wc -w`
+set nf2 = `ls    | wc -w`
+@ nf3 = $nf1 - $nf2
+echo ' '  
+echo 'number of visible files                  =' $nf2
+echo 'number of invisible files                =' $nf3
+echo 'number of total files including (./ ../) =' $nf1

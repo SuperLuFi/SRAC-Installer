@@ -1,0 +1,225 @@
+C             IRA                 LEVEL=1        DATE=85.07.25
+C
+C
+      SUBROUTINE  IRA
+C
+C
+      COMMON /MAINC/  IOPT(20),JNFSTL(2),FNFSTL(2),JNTHEL(2),FNTHEL(2)
+     &    ,JNEFST(2),FNEFST(2),JNETHE(2),FNETHE(2),JNMACR(2),FNMACR(2)
+     &    ,JNMCRS(2),FNMCRS(2),JNEMIC(2),FNEMIC(2),JNFLUX(2),FNFLUX(2)
+     &    ,NEFL     ,NETL     ,NEF      ,NET      ,NERF     ,NERT
+     &    ,NMAT     ,NETL1    ,BSQ      ,NIN1     ,NIN2     ,NOUT1
+     &    ,NOUT2    ,IT0      ,NBFL(3)  ,NBF(3)   ,DUMMY1(8)
+     &    ,LCNEGF   ,LCNEGT   ,LCNECF   ,LCNECT   ,LCMTNM   ,LCNISO
+     &    ,LCTEMP   ,LCXL     ,LCXCDC   ,LCLISO   ,LCIDNT   ,LCDN
+     &    ,LCIRES   ,LCIXMC   ,DUMMY2(6)
+     &    ,CASEID(2),TITLE(18)
+     &    ,AA(380)
+C
+      COMMON /PDSPDS/ BUFFER(540),IFLSW,NFILE(3),ECODE,TEMP
+C
+C
+C     IRA METHOD STRAT
+C
+C     THIS SUBROUTINE PREPARES VARAIBLE DIMENSION SUFFIX AND
+C     PICKS UP COMPOSITION DATA FROM LABELED COMMON /MAINC/
+C
+      COMMON /WORK/ A(1)
+      DIMENSION     NN(120),IA(380),NAMEP(2),ICC(4)
+      EQUIVALENCE  (IOPT(1),NN(1)),(AA(1),IA(1))
+C
+      DOUBLE PRECISION  JFASTL,FFASTL,JMACRO,FMACRO
+C
+      COMMON  /PIJ2C / LL(50) ,BB(950)
+C
+C
+C
+      COMMON  /IRACNL/ KOPT(20),JFASTL,FFASTL,JMACRO,FMACRO,IMAX,IGT,
+     &                 KNMAT,KNMAX,MXMTX,MXTEMP,MXSIG0,LNMAX,IDS,IMAX1,
+     &                 MXREAC,LOUT1,LOUT2
+      COMMON /IRADAT/ ISTART,NEFR,NEFB,NOMTF,NISOM,TCOR,S,NRES,
+     &                NPSE,VOLF,VOLM,KKNMAX,NMP,MATD(50)
+      COMMON  /IRASX1/  J1, J2, J3, J4, J5, J6, J7, J8, J9,J10,J11,J112,
+     &                 J12,J13,J14,J15,J16,J17,J18,J19,J20,J21,J22,J23,
+     &                 J24,J25,J26,J27,J28,J29,J30,J31,J32,J33,J34,J35,
+     &                 J36,J37,J38,J39,J40,J41,J42,J43,J44,J45,J46,J47,
+     &                 J48,J49,J50,J51,J52,J53,J54,J55,J56,J57,J58,J59,
+     &                 J60,J61,J62,J63,MAXX
+CADD SASAQ
+      CHARACTER*4 NFILE,NAMEP
+C
+C     INITIAL SET
+C
+      MEMORY = IOPT(96)
+      CALL  CLEA(A     ,MEMORY,0.0)
+      MXMTX  = 4
+      MXTEMP = 4
+      MXSIG0 = 8
+      LNMAX  = MAX0(MXTEMP,MXSIG0)
+      IGT    = LL(1)
+      IMAX   = NEF
+      KNMAT  = NMAT
+      IDS    = 0
+      IMAX1  = IMAX+1
+      MXREAC = 5
+      LOUT1  = NOUT1
+      LOUT2  = NOUT2
+C
+      KNMAX  = 0
+      DO 10 K= 1,KNMAT
+      ISW    = IA(LCNISO+K-1)
+      IF(ISW.GT.KNMAX)  KNMAX = ISW
+   10 CONTINUE
+      KKNMAX = KNMAX
+C
+C     ENCODE(8,11,JFASTL) NN(29),NN(30)
+      CALL ENCOD1(JFASTL, NN(29),NN(30))
+C     ENCODE(8,11,FFASTL) NN(31),NN(32)
+      CALL ENCOD1(FFASTL, NN(31),NN(32))
+C     ENCODE(8,11,JMACRO) NN(37),NN(38)
+      CALL ENCOD1(JMACRO, NN(37),NN(38))
+C     ENCODE(8,11,FMACRO) NN(39),NN(40)
+      CALL ENCOD1(FMACRO, NN(39),NN(40))
+   11 FORMAT(2A4)
+C
+      DO 20 I=1,20
+   20 KOPT(I)=NN(I)
+C
+      IFLSW   = 1
+      NFILE(1)= 'FAST'
+      NFILE(2)= 'U   '
+      NFILE(3)= '    '
+      NAMEP(1)= 'FAST'
+      NAMEP(2)= 'LIB '
+C
+      CALL READ(NAMEP(1),ICC,4)
+      NEFB    = ICC(4)
+      ISTART  = NEFB+1
+      NEFR    = NEF-NEFB
+      IF(ISTART.LE.NEF) GO TO 22
+      WRITE(NOUT1,21)
+      WRITE(NOUT2,21)
+      RETURN
+C
+   21 FORMAT(1H ,'WARNING -- NEF3  IS EQUAL TO NEF '
+     &      /1H ,'            IRA METHOD IS SKIPPED')
+C
+C     MEMORY LOCATION FOR VARIABLE DIMENSION
+C
+   22 CONTINUE
+      J1 = 1
+      J2 = J1 + KNMAT*2
+      J3 = J2 + KNMAT
+      J4 = J3 + KNMAT
+      J5 = J4 + KNMAT
+CJAIS  MODIFIED FOR NUCLIDE-WISE DANCOFF FACTOR  ****4/8/1985****
+C     J6 = J5 + KNMAT
+      J6 = J5 + KNMAT*KNMAX
+CJAIS END
+      J7 = J6 + KNMAT
+      J8 = J7 + KNMAT*KNMAX*2
+      J9 = J8 + KNMAT*KNMAX
+      J10= J9 + KNMAT*KNMAX
+      J11=J10 + KNMAT*KNMAX
+      J112=J11+ KNMAT
+      J12 =J112+IMAX*4
+      J13=J12 + MXTEMP
+      J14=J13 + MXSIG0
+      J15=J14 + MXTEMP
+      J16=J15 + MXSIG0
+      J17=J16 + LNMAX
+      J18=J17 + LNMAX
+      J19=J18 + LNMAX
+      J20=J19 + IMAX1
+      J21=J20 + IMAX*2
+      J22=J21 + MXSIG0*MXTEMP*IMAX
+      J23=J22 + IMAX
+      J24=J23 + IMAX
+      J25=J24 + IMAX
+      J26=J25 + IMAX
+      J27=J26 + IMAX
+      J28=J27 + IMAX
+      J29=J28 + IMAX*4
+      J30=J29 + MXMTX
+      J31=J30 + MXMTX
+      J32=J31 + MXMTX
+      J33=J32 + MXTEMP
+      J34=J33 + MXSIG0
+C
+      CALL IRACMP(A(J1),A(J2),A(J3),A(J4),A(J5),A(J6),A(J7),A(J8),
+     &            A(J9),A(J10),A(J11))
+C
+      J35=J34 + KNMAT*KNMAT
+      J36=J35 + KNMAX
+      J37=J36 + NEF
+      J38=J37 + KNMAX
+      J39=J38 + KNMAX
+      J40=J39 + NISOM
+      J41=J40 + NISOM
+      J42=J41 + NISOM
+      J43=J42 + NISOM
+      J44=J43 + KNMAX*NEFR
+      J45=J44 + NISOM*NEFR
+      J46=J45 + KNMAX*NEFR
+      J47=J46 + NISOM*NEFR
+      J48=J47 + KNMAX
+      J49=J48 + NISOM
+      J50=J49 + KNMAX
+      J51=J50 + NISOM
+      J52=J51 + KNMAX
+      J53=J52 + NISOM
+      J54=J53 + KNMAX
+      J55=J54 + NISOM
+      J56=J55 + KNMAX
+      J57=J56 + NISOM
+      J58=J57 + KNMAX
+C     MAXX=J58 + NISOM
+      J59=J58 + NISOM
+      J60=J59 + 12*NEF
+      J61=J60 + 1200
+      J62=J61 + MXSIG0*NEF
+      J63=J62 + NEF*2
+      MAXX=J63 + 600
+C
+C     MEMORY LOCATION END
+C
+      MAXY = MEMORY - MAXX
+      IOPT(80)=MAXX
+      IF(MAXY.GT.0) GO TO 800
+      WRITE(NOUT2,2)  MEMORY,MAXX,MAXY
+    2 FORMAT(///5X,'* DYNAMIC AREA INFORMATION. (IRA) *'
+     &     ///1H ,10X,'MEMORY LOCATIONS RESERVED FOR DATA STORAGE -- ',
+     &        I6,' WARDS.',
+     &       /1H ,10X,'MEMORY LOCATIONS USED FOR THIS PROBLEM ------ ',
+     &        I6,' WARDS.',
+     &       /1H ,10X,'MEMORY LOCATIONS NOT USED ------------------- ',
+     &        I6,' WARDS.')
+C
+      GO TO 999
+C
+  800 IF(IOPT(19).GT.1) CALL  IRASFX(NOUT2)
+C
+C     CALL  IRACAL --- IRA METHOD CALCULATION ROUTINE
+C
+      CALL IRACAL(A( J1),A( J2),A( J3),A( J4),A( J5),A( J6),A( J7),
+     &            A( J8),A( J9),A(J10),A(J11),A(J112),A(J12),A(J13),
+     &            A(J14),A(J15),A(J16),A(J17),A(J18),A(J19),A(J20),
+     &            A(J21),A(J22),A(J23),A(J24),A(J25),A(J26),A(J27),
+     &            A(J28),A(J29),A(J30),A(J31),A(J32),A(J33),A(J34),
+     &            A(J35),A(J36),A(J37),A(J38),A(J39),A(J40),A(J41),
+     &            A(J42),A(J43),A(J44),A(J45),A(J46),A(J47),A(J48),
+     &            A(J49),A(J50),A(J51),A(J52),A(J53),A(J54),A(J55),
+     &            A(J56),A(J57),A(J58),A(J59),A(J60),A(J61),A(J62),
+     &            A(J63) )
+      IOPT(80)=0
+C
+C     IRA METHOD END
+C
+      RETURN
+C
+  999 MAXY = MAXX - MEMORY
+      WRITE(NOUT1,1000) MAXY
+ 1000 FORMAT(//1H ,10X,' MEMORY SIZE IS ',I6,' WARDS OVER IN IRA-',
+     &'METHOD]] ')
+      STOP
+      END

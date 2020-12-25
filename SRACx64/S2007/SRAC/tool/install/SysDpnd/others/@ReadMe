@@ -1,0 +1,32 @@
+###################### About options for Makefile #################
+#
+#  As the pre-processor could not recognize your system identity.
+#  compile driver name and options are assumed like followings;
+#
+#             F77    = f77
+#             FFLAGS =
+#
+#  Change them if they are not appropriate for your system.
+#
+#  The functions of the following subroutines are suppressed.
+#     uclock.f  : get used CPU time
+#     udate.f   : get current date
+#     utime.f   : get current time
+#
+#  "udate.f" and "utime.f" are not essential for calculation, however,
+#  "uclock.f", which will always returen zero value, should be replaced
+#  if possible.
+#  Otherwise, calculation can not be stopped by limit of CPU time,
+#  and restart files can not be generated if job is killed.
+#
+#  Other assumptions
+#     ugetenv.f  : GETENV function is available (most of UNIX allows).
+#     usystm.f   : Enviroments for file initialization are similar
+#                  to Sun, IBM, Linux, ...
+#                  (e.g. device no. of standard error file = 0).
+#                  It should shoud be changed in HP series.
+#                  Memory addressing is programed assuming 32bit machines.
+#                  (maybe work well, but consume so much memory).
+#                  It should be changed in 64 bit machines.
+#
+###################################################################

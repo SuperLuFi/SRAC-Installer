@@ -1,0 +1,371 @@
+      SUBROUTINE VININI( P1,P2,P3,P4,COSMU,
+     1                   COSETA,AL1,AL2,A1,A2,A3,A4,IDDX,
+     2                   NMWK,IT,JT,MM,NN,
+     3                   B1,IDYA,YH,      IM,JM,
+     4                   IHX,IHY,         IK,JK,KM,KIM,KJM,NM,
+     5                   IPLI,PTEM1,PTEM2,PTEM3,PTEM4,
+     6                   IHXDD,IHYDD,AL1D,AL2D,
+     7                   B1D,YHD,COSMUD,A1D,COSETD,A3D,
+     8                   A2D,A4D,AL1D2,AL2D2,
+     9                   IFLSW1,IFLSW2,LONG,LSTA1,
+     A                   LEND1,LSTA2,LEND2,LSIG,LONGI,
+     B                   LSTAI1,LSIGI,LSTAI2,LONGJ,
+     C                   LSTAJ1,LSIGJ,LSTAJ2,LAF1,LAF2,
+     D                   KL,ML,JDLI,IDLI,
+     E                   IFLG1,IHYMAX,JFLG1)
+C
+      COMMON /TW1C/ DDD(1),LIM1,IA(210)
+      COMMON /WORK/ AAA(1),LIM2
+C
+      DIMENSION     D(212),A(132)
+C
+      EQUIVALENCE  (D(1),DDD(1)),(A(1),AAA(1))
+      EQUIVALENCE  (D(130),IPHAF),
+     1             (D(131),IPVAF),(A(5),J),(A(6),J1),(A(7),J2),
+     2             (D(132),LTHAF),(D(133),LTVAF),
+     3             (D(106),LASTEC),(A(52),LAST2)
+C
+      DIMENSION     NA(1)
+C
+C
+      DIMENSION IPLI (IK*JK*NM)
+      DIMENSION PTEM1(IK*JK*NM,KM),PTEM2(IK*JK*NM,KM)
+      DIMENSION PTEM3(IK*JK*NM,KM),PTEM4(IK*JK*NM,KM)
+C***** TEST DIM ****
+      DIMENSION IHX(IM),IHY(JM)
+      DIMENSION JDLI(JK),IDLI(IK)
+      DIMENSION IHXDD(KIM),IHYDD(KJM)
+      DIMENSION AL1(KM),AL2(KM)
+      DIMENSION B1(JK),YH(JK),COSMU(KM),A1(IK),COSETA(KM)
+      DIMENSION A3(IK),A2(IK),A4(IK+1)
+      DIMENSION IDDX(IK),IDYA(JK)
+      DIMENSION P1(NM,KM),P2(NM,KM)
+      DIMENSION P3(NM,KM),P4(NM,KM)
+C***** DIM SWEEP WORK ******
+      REAL*8 AL1D(KM),AL2D(KM)
+      REAL*8 B1D(JK),YHD(JK),COSMUD(KM),A1D(IK),COSETD(KM)
+      REAL*8 A3D(IK),A2D(IK),A4D(IK+1)
+      REAL*8 AL1D2(KM),AL2D2(KM)
+C***** TEST DIM END ********
+      DIMENSION IFLSW1(KM,JK,IK+JK+KM-2)
+      DIMENSION IFLSW2(KM,JK,IK+JK+KM-2)
+      DIMENSION LONG (IK+JK+KM-2)
+      DIMENSION LSTA1(IK+JK+KM-2),LEND1(IK+JK+KM-2)
+      DIMENSION LSTA2(IK+JK+KM-2),LEND2(IK+JK+KM-2)
+      DIMENSION LSIG (IK+JK+KM-2)
+      DIMENSION LONGI(IK+JK+KM-1),LSTAI1(IK+JK+KM-1)
+      DIMENSION LSIGI(IK+JK+KM-1),LSTAI2(IK+JK+KM-1)
+      DIMENSION LONGJ(IK+JK+KM-1),LSTAJ1(IK+JK+KM-1)
+      DIMENSION LSIGJ(IK+JK+KM-1),LSTAJ2(IK+JK+KM-1)
+      DIMENSION LAF1(IK*KM),LAF2(IK*KM)
+      DIMENSION KL  (JK*KM),ML  (JK*KM)
+C***** ADD NEW ******
+C
+C***** ADD EQ *******
+      EQUIVALENCE (D(1),NA(1))
+      EQUIVALENCE (IA(175),LDXC),(IA(176),LDYC)
+C
+      EQUIVALENCE (IA(7),IBL),(IA(8),IBR),(IA(9),IBB),(IA(10),IBT),
+     1(IA(17),IHS),(IA(21),IQB),(IA(26),IITL),(IA(31),IEDOPT),
+     2(IA(33),IQR),(IA(34),IQT),(IA(44),EPSI),(IA(74),ISCP),
+     3(IA(78),JTP),(A(68),LQR1),(A(69),LQR2),(A(70),LQT1),
+     4(A(71),LCT2),(A(93),LHA),(A(94),LGA),(A(111),LANF),(A(117),LQB1),
+     5(A(118),LQB2),(A(8),JCONV),(A(20),IITNO),(A(21),TS),(A(22),IG),
+     6(A(33),ZZ),(A(36),DD),(A(37),T),(A(38),QT)
+C
+      EQUIVALENCE (A(40),SUMMU),(A(41),SUMETA),
+     1(A(43),TI),(A(44),TJ),(A(45),TM),(A(47),ERR),(A(120),LBT3),
+     2(A(121),LBT4),(D(84),NLIMIT),(A(49),IFLAG)
+C
+C***** INITILIZATION FOR TWOTRAN INNER ITERATION
+C
+      DO 1200 JJN=1,JT
+        B1D(JJN)=B1(JJN)
+        YHD(JJN)=YH(JJN)
+ 1200 CONTINUE
+C
+      DO 1205 IIN=1,IT+1
+        A4D(IIN)=A4(IIN)
+ 1205 CONTINUE
+C
+      DO 1210 MMN=1,MM
+        COSMUD(MMN)=COSMU (MMN)
+        COSETD(MMN)=COSETA(MMN)
+        AL1D2 (MMN)=AL1   (MMN)
+        AL2D2 (MMN)=AL2   (MMN)
+ 1210 CONTINUE
+C
+      DO 1220 IIN=1,IT
+        A1D(IIN)=A1(IIN)
+        A2D(IIN)=A2(IIN)
+        A3D(IIN)=A3(IIN)
+ 1220 CONTINUE
+C
+      DO 1230 MK=1,MM*JT
+        K=INT((FLOAT(MK)-0.1)/MM)
+        M=MK-K*MM
+        KL(MK)=K
+        ML(MK)=M
+ 1230 CONTINUE
+C
+      IJN=1
+      DO 1390 JJN=1,JT
+        DO 1390 IIN=1,IT
+          DO 1390 NNO=1,NMWK
+            IPLI(IJN)=NNO
+            IJN=IJN+1
+ 1390 CONTINUE
+C****** NON TEST *****
+      DO 1400 IJNN=1,NMWK*IT*JT
+        DO 1400 MMN=1,MM
+          PTEM1(IJNN,MMN)=P1(IPLI(IJNN),MMN)
+          PTEM2(IJNN,MMN)=P2(IPLI(IJNN),MMN)
+          PTEM3(IJNN,MMN)=P3(IPLI(IJNN),MMN)
+          PTEM4(IJNN,MMN)=P4(IPLI(IJNN),MMN)
+ 1400 CONTINUE
+C
+      K=0
+      K2=1
+      DO 1410 KKN=1,NN
+        AL1D(K2)=0.0
+        AL2D(K2)=0.0
+        K2=K2+1
+        IF(K.EQ.0) GO TO 1420
+        DO 1430 KK=1,K
+          AL1D(K2)=AL1(K2)
+          AL2D(K2)=AL2(K2)
+          K2=K2+1
+ 1430   CONTINUE
+ 1420   K=K+1
+ 1410 CONTINUE
+C
+      IN1=1
+      DO 1500 JJN=1,JT-1
+        JJ1=IDYA(JJN)
+        JJ2=IDYA(JJN+1)
+        IF(JJ1.EQ.JJ2) GO TO 1500
+        JDLI(IN1)=JJN
+        IN1=IN1+1
+ 1500 CONTINUE
+C
+      JFLG1=IN1
+      JDLI(IN1)=0
+C
+      IN1=1
+      DO 1510 IIN=1,IT-1
+        II1=IDDX(IIN)
+        II2=IDDX(IIN+1)
+        IF(II1.EQ.II2) GO TO 1510
+        IDLI(IN1)=IIN
+        IN1=IN1+1
+ 1510 CONTINUE
+      IFLG1=IN1
+      IDLI(IN1)=0
+C
+      DO 550 LL=1,IT+JT+MM-2
+      DO 550 MMM=1,MM
+      DO 550 JJ=1,JT
+         IFLSW1(MMM,JJ,LL)=0
+         IFLSW2(MMM,JJ,LL)=0
+  550 CONTINUE
+C
+      IFL1=1
+      DO 610 NS=4,2,-1
+        DO 600 II=1,IT
+          DO 600 JJ=1,JT
+             IFLSW1(IFL1,JJ,II+JJ -1+MM-IFL1)=NS
+             IFLSW2(IFL1,JJ,II-JJ+JT+MM-IFL1)=NS
+  600   CONTINUE
+        IFL1=IFL1+1
+        IF(IFL1.GT.MM) GO TO 650
+  610 CONTINUE
+C
+      DO 615 II=1,IT
+        DO 615 JJ=1,JT
+           IFLSW1(IFL1,JJ,II+JJ -1+MM-IFL1)=3
+           IFLSW2(IFL1,JJ,II-JJ+JT+MM-IFL1)=3
+  615 CONTINUE
+C
+      DO 620 LV=1,NN-2
+        DO 625 LV2=1,LV
+          IFL1=IFL1+1
+        IF(IFL1.GT.MM) GO TO 650
+          DO 625 II=1,IT
+            DO 625 JJ=1,JT
+               IFLSW1(IFL1,JJ,II+JJ -1+MM-IFL1)=1
+               IFLSW2(IFL1,JJ,II-JJ+JT+MM-IFL1)=1
+  625   CONTINUE
+C
+        IFL1=IFL1+1
+        IF(IFL1.GT.MM) GO TO 650
+C
+        DO 630 II=1,IT
+          DO 630 JJ=1,JT
+             IFLSW1(IFL1,JJ,II+JJ -1+MM-IFL1)=2
+             IFLSW2(IFL1,JJ,II-JJ+JT+MM-IFL1)=2
+  630   CONTINUE
+        IF(IFL1.GE.MM) GO TO 650
+C
+        IFL1=IFL1+1
+        DO 635 II=1,IT
+          DO 635 JJ=1,JT
+             IFLSW1(IFL1,JJ,II+JJ -1+MM-IFL1)=3
+             IFLSW2(IFL1,JJ,II-JJ+JT+MM-IFL1)=3
+  635   CONTINUE
+  620 CONTINUE
+C
+  650 CONTINUE
+      LMAX=MIN(JT,IT+MM-1)
+      DO 1000 L1=1,LMAX
+        LONG(L1)=L1
+ 1000 CONTINUE
+C
+      LTEM1=IT+JT+MM-2
+      LTEM =IT+JT+MM-2-2*LMAX
+      DO 1010 L1=1,LTEM
+        LONG(L1+LMAX)=LMAX
+ 1010 CONTINUE
+C
+      DO 1020 L1=1,LMAX
+        LONG(LMAX+LTEM+L1)=LMAX-L1+1
+ 1020 CONTINUE
+C
+      LTEM2=IT+MM-1
+      DO 1030 L1=1,LTEM2
+        LSTA1(L1)=1
+ 1030 CONTINUE
+C
+      DO 1035 L1=1,JT
+        LSTA2(L1)=JT-L1+1
+ 1035 CONTINUE
+C
+      DO 1040 L1=1,JT-1
+        LSTA1(LTEM2+L1)=1+L1
+ 1040 CONTINUE
+C
+      DO 1045 L1=1,LTEM2-1
+        LSTA2(JT+L1)=1
+ 1045 CONTINUE
+C
+      DO 1050 L1=1,LTEM1
+        LEND1(L1)=LSTA1(L1)+LONG(L1)-1
+        LEND2(L1)=LSTA2(L1)+LONG(L1)-1
+ 1050 CONTINUE
+C
+      LSIG(1)=0
+      DO 1060 L1=2,LTEM1
+        LSIG(L1)=LONG(L1-1)*MM+LSIG(L1-1)
+ 1060 CONTINUE
+C
+      LEMAX=MIN(JT,IT+MM)
+      DO 1001 L1=1,LEMAX
+        LONGI(L1)=L1
+ 1001 CONTINUE
+C
+      LTEM1E=IT+JT+MM-1
+      LTEME =IT+JT+MM-1-2*LEMAX
+      DO 1011 L1=1,LTEME
+        LONGI(L1+LEMAX)=LEMAX
+ 1011 CONTINUE
+C
+      DO 1021 L1=1,LEMAX
+        LONGI(LEMAX+LTEME+L1)=LEMAX-L1+1
+ 1021 CONTINUE
+C
+      LTEM2E=IT+MM
+      DO 1031 L1=1,LTEM2E
+        LSTAI1(L1)=1
+ 1031 CONTINUE
+C
+      DO 1036 L1=1,JT
+        LSTAI2(L1)=JT-L1+1
+ 1036 CONTINUE
+C
+      DO 1041 L1=1,JT-1
+        LSTAI1(LTEM2E+L1)=1+L1
+ 1041 CONTINUE
+C
+      DO 1046 L1=1,LTEM2E-1
+        LSTAI2(JT+L1)=1
+ 1046 CONTINUE
+C
+      LSIGI(1)=0
+      DO 1061 L1=2,LTEM1E
+        LSIGI(L1)=LONGI(L1-1)*MM+LSIGI(L1-1)
+ 1061 CONTINUE
+C
+      LFMAX=MIN(JT+1,IT+MM-1)
+      DO 1002 L1=1,LFMAX
+        LONGJ(L1)=L1
+ 1002 CONTINUE
+C
+      LTEM1F=IT+JT+MM-1
+      LTEMF =IT+JT+MM-1-2*LFMAX
+      DO 1012 L1=1,LTEMF
+        LONGJ(L1+LFMAX)=LFMAX
+ 1012 CONTINUE
+C
+      DO 1022 L1=1,LFMAX
+        LONGJ(LFMAX+LTEMF+L1)=LFMAX-L1+1
+ 1022 CONTINUE
+C
+      LTEM2F=IT+MM-1
+      DO 1032 L1=1,LTEM2F
+        LSTAJ1(L1)=1
+ 1032 CONTINUE
+C
+      DO 1037 L1=1,JT+1
+        LSTAJ2(L1)=JT-L1+2
+ 1037 CONTINUE
+C
+      DO 1042 L1=1,JT
+        LSTAJ1(LTEM2F+L1)=1+L1
+ 1042 CONTINUE
+C
+      DO 1047 L1=1,LTEM2F-1
+        LSTAJ2(JT+1+L1)=1
+ 1047 CONTINUE
+C
+      LSIGJ(1)=0
+      DO 1062 L1=2,LTEM1F
+        LSIGJ(L1)=LONGJ(L1-1)*MM+LSIGJ(L1-1)
+ 1062 CONTINUE
+C
+      IHXMAX=0
+      DO 91110 IC=1,IM
+        IHXMAX=MAX0(IHXMAX,IHX(IC))
+        IF(IC.EQ.1) THEN
+           IHXDD(IC)=0
+        ELSE
+           IHXDD(IC)=IHXDD(IC-1)+IHX(IC-1)
+        ENDIF
+91110 CONTINUE
+C
+      IHYMAX=0
+      DO 91111 JC=1,JM
+        IHYMAX=MAX0(IHYMAX,IHY(JC))
+        IF(JC.EQ.1) THEN
+           IHYDD(JC)=0
+        ELSE
+           IHYDD(JC)=IHYDD(JC-1)+IHY(JC-1)
+        ENDIF
+91111 CONTINUE
+C
+      K0=1
+      K1=1
+      K2=1
+C
+      DO 91440 MMN=1,MM
+       K1=K1+1
+       DO 91450 IIN=1,IT
+         LAF1(K2)=K1
+         LAF2(K2)=K0
+         K0=K0+1
+         K1=K1+1
+         K2=K2+1
+91450  CONTINUE
+       K0=K0+1
+91440 CONTINUE
+C********* PRE 1 THRU END *********
+      RETURN
+      END

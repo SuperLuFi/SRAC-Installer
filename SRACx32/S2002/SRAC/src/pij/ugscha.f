@@ -1,0 +1,32 @@
+C**************************************************************
+C*   ORIGINAL GSCHAR ROUTINE WAS REPLACED BY UGSCHA WHITCH IS
+C*   WRITTEN BY SYMBOL IN PIFLIB LIBRARY
+C*   TO EXPORT SRAC TO OTHER ORGANIZATION 
+C**************************************************************
+      SUBROUTINE UGSCHA(X,Y,ISIZE,ICHAR,IC,N)
+C
+      DIMENSION ICHAR(18)
+C
+      CALL NEWPEN(1)
+      FACT = 0.5
+      IF (ISIZE.EQ.1) THEN
+        HEIGHT = 16.0*0.1058*FACT
+      ELSEIF (ISIZE.EQ.2) THEN
+        HEIGHT = 24.0*0.1058*FACT
+      ELSEIF (ISIZE.EQ.3) THEN
+        HEIGHT = 30.0*0.1058*FACT
+      ELSEIF (ISIZE.EQ.4) THEN
+        HEIGHT = 40.0*0.1058*FACT
+      ELSEIF (ISIZE.EQ.5) THEN
+        HEIGHT = 64.0*0.1058*FACT
+      ELSEIF (ISIZE.EQ.6) THEN
+        HEIGHT = 128.0*0.1058*FACT
+      ELSE
+        HEIGHT = 16*0.1058*FACT
+      ENDIF
+C
+      ANGLE = 0.0
+      NCHAR = N
+      CALL SYMBOL(X,Y,HEIGHT,ICHAR,ANGLE,NCHAR)
+      RETURN
+      END

@@ -1,0 +1,18 @@
+      SUBROUTINE LNMEMB( MEMBER , LENMEM )
+C
+      CHARACTER*1 MEMBER(8)
+C *** LENGHT OF MEMBER IS 8 OR 7 FOR MANY CASES IN SRAC LIBRARY ****
+      LENMEM = 8
+      IF(MEMBER(8).NE.' ') RETURN
+      LENMEM = 7
+      IF(MEMBER(7).NE.' ') RETURN
+C
+      DO 100 I = 6 , 1 , -1
+      LENMEM   = I
+      IF(MEMBER(I).NE.' ') GO TO 110
+  100 CONTINUE
+      LENMEM  = 0
+  110 CONTINUE
+C
+      RETURN
+      END

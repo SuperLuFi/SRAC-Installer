@@ -1,0 +1,4 @@
+#!/bin/csh -f
+# command Atoa : chnage all large characters in file to small characters
+# Sample Usage : Atoa < file-in > file-out
+tr '[A-Z]' '[a-z]'

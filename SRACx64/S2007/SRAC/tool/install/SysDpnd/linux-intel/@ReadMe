@@ -1,0 +1,21 @@
+###################### About options for Makefile #################
+#
+#   F77    = ifort
+#   FFLAGS = -O -tpp2 -save -zero
+#
+#------------------------------
+#
+#   -O      : optimization
+#   -tpp2   : 
+#   -save   : save local variables
+#   -zero   : automatic initialization (zero clea)
+#   
+#   It is assumed that system-dependent service routines (time/date/etc)
+#   of SUN-EWS are available.
+#
+# Machines structures on which operation check has been completed
+#  1) SGI Altix3900
+#     OS: SGI Advanced Linux Enviroment (64bit)
+#     Fortran: Intel Fortran compiler for Linux
+#
+###################################################################

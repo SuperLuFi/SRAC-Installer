@@ -1,0 +1,33 @@
+      SUBROUTINE  MAFLTM( AMTX  ,IIMX  ,JJMX  ,IDEL  ,NC    ,
+     1                    IDS   ,NEF   ,IOUT  )
+C
+C     AMTX(IDS,NEF)    MATRIX  ELEMENT
+C     IIMX    MAX INITIAL GROUP
+C     JJMX    MAX EXIT GROUP
+C     IDS     MAX. JJMX
+C     NEF     NO. OF ENERGY GROUPS
+C     IOUT    LOGICAL UNIT NO. OF PRINT-OUT
+C
+      DIMENSION  AMTX(IDS,NEF)
+C
+      I1  = 1  + IDEL*(NC-1)
+      I2  = I1 + IDEL-1
+      IF(I2.GT.IIMX)   I2 = IIMX
+      WRITE(IOUT,10)  (I,I=1,JJMX)
+C
+      WRITE(IOUT,50)
+      DO  100  I = I1,I2
+      WRITE(IOUT,60)  I,(AMTX(J,I),J=1,JJMX)
+  100 CONTINUE
+      WRITE(IOUT,50)
+      IF(I2.NE.IIMX)  WRITE(IOUT,40)
+C
+   10 FORMAT(1H ,5X,'GROUP',5X,' EXIT  GROUP  ** KK **   KK = I + J - 1'
+     1    / 1H ,5X,'  I    J=',2X,I2,4X , 9(4X,I4,4X),  /,
+     2    (1H ,10X,10(4X,I4,4X) )  )
+   40 FORMAT(1H0,100X,' TO BE CONTINUED ')
+   50 FORMAT(1H ,5X,25(5H-----))
+   60 FORMAT(1H ,5X,I3,2X,1P10E12.5,/,(1H ,10X,1P10E12.5))
+C
+      RETURN
+      END

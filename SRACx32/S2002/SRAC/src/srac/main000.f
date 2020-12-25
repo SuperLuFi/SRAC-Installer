@@ -1,0 +1,44 @@
+C
+C*********** SRAC MAIN PROGRAM *********************************
+C
+CDEL  PARAMETER  ( MXSIZE = 120 0000 )
+CDEL  PARAMETER  ( MXTW1C =     9998 , MXSN1C = 4998 )
+CDEL  PARAMETER  ( MXCT1C =     9981 )
+      INCLUDE  'MAINSINC'
+C
+      COMMON /MAINC/ IOPT(36)
+     1    ,IUPSCT   ,IBSPCT   ,ISCT     ,IFIXS    ,ICTOT    ,ICOND
+     2    ,IP1C     ,IFF1     ,LCXIWT   ,IBKSCH   ,MXINP2   ,IDUM45(5)
+     3    ,NEFL     ,NETL     ,NEF      ,NET      ,NERF     ,NERT
+     4    ,NMAT     ,NEFF     ,BSQ      ,NIN1     ,NIN2     ,NOUT1
+     5    ,NOUT2    ,IT0      ,NEFL1    ,NEFL2    ,NEFL3    ,NEF1
+     6    ,NEF2     ,NEF3     ,ISTEP    ,NSOUC    ,NFIN     ,NFOUT
+     7    ,ITYPE    ,IMCEF    ,IBNSTP   ,MEMFST
+     8    ,LCNEGF   ,LCNEGT   ,LCNECF   ,LCNECT   ,LCMTNM   ,LCNISO
+     9    ,LCTEMP   ,LCXL     ,LCXCDC   ,LCLISO   ,LCIDNT   ,LCDN
+     A    ,LCIRES   ,LCIXMC   ,NFTOT    ,MEMORY   ,IOPEN    ,IRANG
+     B    ,ICF      ,INITL
+     C    ,CASEID(2),TITLE(18)
+     &    ,II(880)
+C
+C**********AND SET THE VARIABLE 'MEMORY' TO THIS VALUE
+C
+      COMMON /WORK / A(MXSIZE)
+      COMMON /TW1C / CC(1),LIM1,IAA(MXTW1C)
+      COMMON /SN1C / BB(1),LIM2,IBB(MXSN1C)
+      COMMON /CIT1C/ DD(8),LIM3,IDD2(10),IDD(MXCT1C)
+C
+      LIM1   =  MXTW1C
+      LIM2   =  MXSN1C
+      LIM3   =  MXCT1C
+C
+      CALL UIOSET
+      CALL ICLEA(IOPT,  20,0)
+      MEMORY =  MXSIZE
+C --- INITIALIZATION OF COMMON DATA FOR PDS INCORE MANAGEMENT
+      CALL PDSZRO
+C --- CALL SRAC CONTROL ROUTINE
+      CALL SRAC
+C
+      STOP
+      END

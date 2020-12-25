@@ -1,0 +1,20 @@
+###################### About options for Makefile #################
+#
+#   F77    = gfortran
+#   FFLAGS = -fno-automatic -O2 -funroll-loops
+#   CC     = gcc
+#   CFLAGS = -DPOSIX_C
+#   LDFLAGS  =
+#
+#  gfortran gives error when -finit-local-zero option is used.
+#  it was used for g77 compiler.
+#
+# Other alternatives
+#
+# FFLAGS = -fno-automatic -O0 -funroll-loops -g
+#
+#  ... in some case, static linkage may be required.
+# LDFLAGS = -static
+# e.g.  g77 -o Test.out  $(FFLAGS) $(OBJ) $(LDFLAGS)
+#
+###################################################################

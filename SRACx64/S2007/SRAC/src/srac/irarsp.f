@@ -1,0 +1,72 @@
+      SUBROUTINE  IRARSP(IDENT,NRS,EHIGH,ELOW)
+C
+      COMMON /IRAPRM/ ENGAM(300),GT(300),GN(300),GG(300),GF(300),PP(300)
+     &               ,SIGOP(300),BETINF(300),ZETINF(300),RINT(300)
+C
+      COMMON /IRAWRK/ A(17000),NAMEP(2),LOCAM(11),LOCAF(6)
+      COMMON /IRACNL/ IOPT(39),NOUT1,NOUT2
+      COMMON /PDSPDS/ BUFFER(540),IFLSW,NFILE(3),ECODE,TEMP
+C
+      DIMENSION  IDENT(2),IDPQ(3)
+      DIMENSION  IA(17000)
+      EQUIVALENCE  (IA(1),A(1))
+C
+CMSASA
+      CHARACTER*4 IDPQ,NFILE
+      DATA  IDPQ/ '   0','   R','   P'/
+C
+      IFLSW=1
+      NFILE(1)='FAST'
+      NFILE(2)='U   '
+      NFILE(3)='    '
+      NAMEP(1)=IDENT(1)
+      NAMEP(2)=IDENT(2)
+      CALL  PACK(NAMEP(1),1,IDPQ(2))
+      CALL  PACK(NAMEP(2),1,IDPQ(1))
+      CALL  PACK(NAMEP(2),4,IDPQ(1))
+C
+      EHIGH=0.0
+      ELOW =0.0
+      NRS  =0
+      CALL  SEARCH(NAMEP(1),LENG,ISW)
+      IF(ISW.EQ.1)  GO TO 101
+      CALL  READ(NAMEP(1),A,LENG)
+      EHIGH=A(6)
+      ELOW =A(5)
+C
+      CALL PACK(NAMEP(1),1,IDPQ(3))
+C
+      CALL CLEA(A  ,17000,0.0)
+      CALL CLEA(ENGAM,3000,0.0)
+C
+      CALL SEARCH(NAMEP(1),LENG,ISW)
+      IF(ISW.EQ.1)  GO TO  101
+C
+      CALL READ(NAMEP(1),A,LENG)
+      NRS=IA(2)
+      IF(NRS.LE.0)  GO TO 101
+C
+      ISW=2
+      DO 100 I=1,NRS
+      ENGAM(I) =A(ISW+1)
+      GT   (I) =A(ISW+3)
+      GN   (I) =A(ISW+4)
+      GG   (I) =A(ISW+5)
+      GF   (I) =A(ISW+6)
+      PP   (I) =A(ISW+7)
+      SIGOP(I) =A(ISW+8)
+      BETINF(I)=A(ISW+9)*A(ISW+9)
+      ZETINF(I)=A(ISW+10)
+      RINT  (I)=A(ISW+11)
+      ISW=ISW+15
+  100 CONTINUE
+C
+      RETURN
+C
+  101 CONTINUE
+      WRITE(NOUT2,111) NAMEP(1),NAMEP(2)
+      RETURN
+  111 FORMAT(//1H ,10X,'CAUTION --- N0 RESONANCE PARAMETER GIVEN ]]',
+     &        /1H ,10X,'        --- MEMBER NAME (',2A4,')'//)
+C
+      END

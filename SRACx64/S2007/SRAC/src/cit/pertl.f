@@ -1,0 +1,379 @@
+C     THIS ROUTINE IS USED ONLY IN SRAC-CITATION AND NOT USED IN COREBN
+C     LEAKAGE TERM CALCULATION
+C
+      SUBROUTINE PERTL(TERM  ,NRGNE ,NCOMP ,P1E   ,P2E   ,
+     1                 SIG   ,SIG2  ,PVOL  ,BND   ,BBND  ,
+     2                 JVX   ,IVX   ,KBVX  ,KVX   ,LVX   ,
+     3                 JVXP1 ,IVXP1 ,KBVXP1,JIVX  ,MVX   ,
+     4                 J     ,I     ,KB    ,K              )
+C
+CDEL  INTEGER RGX , MSX , ZNEX , ZDX , WZX
+CDEL  PARAMETER ( RGX=100, MSX=211, ZDX=200, ZNEX=1000, WZX=100 )
+      INCLUDE  'CITPMINC'
+C
+      REAL * 8 TERM
+C
+      COMMON/ALSUB/BLSUB(30),TITL1(18),TITL2(18),IMAX,JMAX,KBMAX,KMAX,
+     & LMAX,MMAX, NMAX,IMXP1,JMXP1,KBMXP1,NSETMX,NTO,MM1VX,KM1VX,IOIN,
+     & IOUT,IOSIG,IOFLX,IO1,IO2,IO3,IO4,IO7,NER(100), IX(200),INNO(100),
+     &  NGC(24),IEDG(24),ITMX(24),TIMX(6), GLIM(6),NDPL(24),IEDP1(24),
+     & IEDP2(24),IEDP3(24), DPLH(6),NUAC(24),EPI(6),XMIS(6),NSRH(24),
+     & XSRH1(6), XTR1(WZX),XTR2(WZX),NXTR1(WZX),NXTR2(WZX),SPARE(200),
+     & IXPUT(200),XPUT(200)
+      COMMON/AMESH/BMESH(30),NREGI,NREGJ,NREGKB,XSHI(RGX),XSHJ(RGX),
+     & XSHKB(RGX), MSHI(RGX),MSHJ(RGX),MSHKB(RGX),Y(MSX),YY(MSX), X(MSX)
+     &  ,XX(MSX),Z(MSX),ZZ(MSX), ZONVOL(ZNEX),AVZPD(ZNEX),PDI(MSX),
+     & PDJ(MSX) , PDK(MSX)
+C
+      DIMENSION TERM(10,KVX),NRGNE(JVX,IVX,KBVX),NCOMP(LVX),
+     &          P1E(JIVX ,KBVX) ,P2E(JIVX ,KBVX,KVX), SIG(KVX, MVX,12),
+     &          SIG2(KVX,12),PVOL(LVX)
+      DIMENSION BND(6,KVX),BBND(KVX)
+C
+CCCCC ********* SUBSCRIPT DEFINITIONS (PURT F-152) ********* CCCCC
+C    NEW         OLD            NEW         OLD
+C     N1         J,I             N6       J-1,I+1
+C     N2         J,I-1           N7       J+1,I-1
+C     N3         J,I+1           N8 *       J,I
+C     N4       J-1,I             N9 *       J,I+1
+C     N5       J+1,I             N10 *    J+1,I
+C     N11        1,I             N12     JMAX,I
+C     N13        I,IVX           N14      JVX,IVXP1-I
+C     N15      JVX,J
+C
+C
+C     INRB = 1  ORDINARY
+C     INRB = 2  PERIODIC(REPEATING)
+C     INRB = 3  90 DEGREE ROTATIONAL
+C     INRB = 4  180 DEGREE ROTATIONAL
+C
+      NU812 = 0
+      IF ((NUAC(5).EQ.8).OR.(NUAC(5).EQ.12)) NU812 = 1
+      INRB = IX(72) + 1
+      NUAC5 = NUAC(5)
+      L = NRGNE(J,I,KB)
+      M = NCOMP(L)
+      IF (M.NE.NUAC(17)) GO TO 100
+      IF (XMIS(2).GE.0) GO TO 169
+      IF (BBND(K).NE.0) GO TO 169
+  100 CONTINUE
+      IXH = 0
+      IF ((NUAC(5).EQ.9).OR.(NUAC(5).EQ.13)) IXH = 1
+      NN1 = (I-1)*JVX
+      N1 = NN1 + J
+      N2= N1 - JVX
+      N3= N1 + JVX
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) GO TO 101
+      N2 = N2+1
+      N3 = N3-1
+  101 CONTINUE
+      N4= N1 - 1
+      N5= N1 + 1
+      N6= N1 + JVX - 1
+      N7= N1 - JVX + 1
+      N8= (I-1)*JVXP1 + J
+      N9= N8 + JVXP1
+      N10= N8 + 1
+      N11 = NN1 + 1
+      N12 = NN1 + JMAX
+      MTOP = 0
+      MBOT = 0
+      MLFT = 0
+      MRIT = 0
+      MFNT = 0
+      MBAK = 0
+      MH1 = 0
+      MH2 = 0
+      PTOP = 0.0
+      PBOT = 0.0
+      PLFT = 0.0
+      PRIT = 0.0
+      PFNT = 0.0
+      PBAK = 0.0
+      PHEX1 = 0.0
+      PHEX2 = 0.0
+      TTOP = 0.0
+      TBOT = 0.0
+      TLFT = 0.0
+      TRIT = 0.0
+      TFNT = 0.0
+      TBAK = 0.0
+      THEX1 = 0.0
+      THEX2 = 0.0
+      TER1 = 0.0
+      TER2 = 0.0
+      TER3 = 0.0
+      TER4 = 0.0
+      TER5 = 0.0
+      TER6 = 0.0
+      TER7 = 0.0
+      TER8 = 0.0
+      T1 = 0.0
+  102 CONTINUE
+      CALL PERTL1(X        ,XX       ,Y        ,YY       ,Z        ,
+     1            ZZ       ,PDI      ,NRGNE    ,PVOL     ,
+     2            J        ,I        ,KB       ,JMAX     ,IMAX     ,
+     3            KBMAX    ,JVX      ,IVX      ,KBVX     ,JVXP1    ,
+     4            IVXP1    ,KBVXP1   ,NUAC5    ,INRB     ,DELL     ,
+     5            DELLL    ,TAL      ,DELR     ,DELRR    ,TAR      ,
+     6            DELT     ,DELTT    ,TAT      ,DELB     ,DELBB    ,
+     7            TAB      ,DELF     ,DELFR    ,TAF      ,DELK     ,
+     8            DELBK    ,TABK     ,DELHT    ,DELHB    ,TAH      ,
+     9            LVX      ,IOUT                                    )
+      NOE = J-(J/2)*2
+      IF (J.EQ.1) GO TO 103
+      LLFT = NRGNE(J-1,I,KB)
+      MLFT = NCOMP(LLFT)
+      PLFT = P1E(N4 ,KB)
+C     PLFT = P1E(J-1,I,KB)
+      GO TO 104
+  103 IF (INRB.NE.2) GO TO 104
+      LLFT = NRGNE(JMAX,I,KB)
+      MLFT = NCOMP(LLFT)
+      PLFT = P1E(N12 ,KB)
+C     PLFT = P1E(JMAX,I,KB)
+  104 IF (J.EQ.JMAX) GO TO 105
+      LRIT = NRGNE(J+1,I,KB)
+      MRIT = NCOMP(LRIT)
+      PRIT = P1E(N5 ,KB)
+C     PRIT = P1E(J+1,I,KB)
+      GO TO 109
+  105 GO TO (109,106,107,108),INRB
+  106 CONTINUE
+      LRIT = NRGNE(1,I,KB)
+      MRIT = NCOMP(LRIT)
+      PRIT = P1E(N11,KB)
+C     PRIT = P1E(1,I,KB)
+      GO TO 109
+  107 CONTINUE
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) THEN
+      LRIT = NRGNE(I,IVX,KB)
+      MRIT = NCOMP(LRIT)
+      N13 = (IVX-1)*JVX + I
+C     J13 = I
+      PRIT = P1E(N13,KB)
+C     PRIT = P1E(J13,IVX,KB)
+      ELSE
+      LRIT = NRGNE(2*I,IVX,KB)
+      MRIT = NCOMP(LRIT)
+      N13 = (IVX-1)*JVX+2*I
+C     J13 = 2*I
+      PRIT = P1E(N13,KB)
+C     PRIT = P1E(J13,IVX,KB)
+      ENDIF
+      GO TO 109
+  108 CONTINUE
+      LRIT = NRGNE(JVX,IVXP1-I,KB)
+      MRIT = NCOMP(LRIT)
+      N14 = (IVX-I)*JVX + JVX
+      PRIT = P1E(N14,KB)
+C     PRIT = P1E(JVX,IVXP1-I,KB)
+  109 IF (IX(25).EQ.1) GO TO 119
+      IF (I.EQ.1) GO TO 111
+      LTOP = NRGNE(J,I-1,KB)
+      J2 = J
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) GO TO 110
+      IF (J.EQ.JMAX) GO TO 111
+      J2 = J+1
+      LTOP = NRGNE(J+1,I-1,KB)
+  110 CONTINUE
+      MTOP = NCOMP(LTOP)
+      PTOP = P1E(N2 ,KB)
+C     PTOP = P1E(J2,I-1,KB)
+  111 IF (I.EQ.IMAX) GO TO 113
+      LBOT = NRGNE(J,I+1,KB)
+      J3 = J
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) GO TO 112
+      IF (J.EQ.1) GO TO 114
+      LBOT = NRGNE(J-1,I+1,KB)
+      J3 = J-1
+  112 CONTINUE
+      MBOT = NCOMP(LBOT)
+      PBOT = P1E(N3 ,KB)
+C     PBOT = P1E(J3,I+1,KB)
+      GO TO 114
+  113 IF (INRB.NE.3) GO TO 114
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) THEN
+      LBOT = NRGNE(JVX,J,KB)
+      MBOT = NCOMP(LBOT)
+      N15 = J*JVX
+C     I15 = J
+      PBOT = P1E(N15,KB)
+C     PBOT = P1E(JVX,J,KB)
+      ELSE
+      IF (NOE.NE.0) GO TO 114
+      LBOT = NRGNE(JVX,J/2,KB)
+      MBOT = NCOMP(LBOT)
+      N15 = J*JVX/2
+C     I15 = J/2
+      PBOT = P1E(N15,KB)
+C     PBOT = P1E(JVX,J/2,KB)
+      ENDIF
+  114 IF (IX(25).EQ.2) GO TO 116
+      IF (KB.EQ.1) GO TO 115
+      LFNT = NRGNE(J,I,KB-1)
+      MFNT = NCOMP(LFNT)
+      PFNT = P1E(N1 ,KB-1)
+C     PFNT = P1E(J,I,KB-1)
+  115 IF (KB.EQ.KBMAX) GO TO 116
+      LBAK = NRGNE(J,I,KB+1)
+      MBAK = NCOMP(LBAK)
+      PBAK = P1E(N1 ,KB+1)
+C     PBAK = P1E(J,I,KB+1)
+  116 IF (IXH.EQ.0) GO TO 119
+      IF ((J.EQ.1).OR.(I.EQ.IMAX)) GO TO 117
+      NH1 = NRGNE(J-1,I+1,KB)
+      MH1 = NCOMP(NH1)
+      PHEX1 = P1E(N6 ,KB)
+C     PHEX1 = P1E(J-1,I+1,KB)
+  117 IF ((I.EQ.1).OR.(J.EQ.JMAX)) GO TO 118
+      NH2 = NRGNE(J+1,I-1,KB)
+      MH2 = NCOMP(NH2)
+      PHEX2 = P1E(N7 ,KB)
+C     PHEX2 = P1E(J+1,I-1,KB)
+  118 CONTINUE
+  119 CONTINUE
+      PSMID = P2E(N1 ,KB,K)
+C     PSMID = P2E(J,I,KB,K)
+      PMID = P1E(N1 ,KB)
+C     PMID = P1E(J,I,KB)
+      IF (J.GT.1) GO TO 124
+      IF (INRB.NE.2) GO TO 127
+  124 IF (PLFT.EQ.0.0) GO TO 128
+      IF (J.EQ.1) GO TO 125
+      PSLFT = P2E(N4 ,KB,K)
+C     PSLFT = P2E(J-1,I,KB,K)
+      GO TO 126
+  125 CONTINUE
+      PSLFT = P2E(N12 ,KB,K)
+C     PSLFT = P2E(JMAX,I,KB,K)
+  126 T1 = SIG(K,M,1)*DELLL/(SIG(K,MLFT,1)*DELL)
+      TER3 = TAL/DELL*(1.0/(1.0+T1))**2*(PSMID-PSLFT)*(PMID-PLFT)
+      GO TO 130
+  127 TER3 = TAL/DELL*BND(1,K)/(BND(1,K)+SIG(K,M,1)/DELL)*PSMID*PMID
+      GO TO 130
+  128 TER3 = TAL/DELL*BBND(K)/(BBND(K)+SIG(K,M,1)/DELL)*PSMID*PMID
+  130 CONTINUE
+      IF (J.LT.JMAX) GO TO 131
+      IF (INRB.LE.1) GO TO 137
+  131 IF (PRIT.EQ.0.0) GO TO 138
+      IF (J.EQ.JMAX) GO TO 132
+      PSRIT = P2E(N5 ,KB,K)
+C     PSRIT = P2E(J+1,I,KB,K)
+      GO TO 136
+  132 GO TO (137,133,134,135),INRB
+  133 CONTINUE
+      PSRIT = P2E(N11,KB,K)
+C     PSRIT = P2E(1,I,KB,K)
+      GO TO 136
+  134 CONTINUE
+      PSRIT = P2E(N13,KB,K)
+C     PSRIT = P2E(J13,IVX,KB,K)
+      GO TO 136
+  135 CONTINUE
+      PSRIT = P2E(N14,KB,K)
+C     PSRIT = P2E(JVX,IVXP1-I,KB,K)
+  136 CONTINUE
+      T1 = SIG(K,M,1)*DELRR/(SIG(K,MRIT,1)*DELR)
+      TER4 = TAR/DELR*(1.0/(1.0+T1))**2*(PSMID-PSRIT)*(PMID-PRIT)
+      GO TO 140
+  137 TER4 = TAR/DELR*BND(3,K)/(BND(3,K)+SIG(K,M,1)/DELR)*PSMID*PMID
+      GO TO 140
+  138 TER4 = TAR/DELR*BBND(K)/(BBND(K)+SIG(K,M,1)/DELR)*PSMID*PMID
+  140 CONTINUE
+      IF (IX(25).EQ.1) GO TO 167
+      IF (I.EQ.1) GO TO 142
+      IF (PTOP.EQ.0.0) GO TO 143
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) GO TO 141
+      IF (NOE.EQ.0) GO TO 145
+  141 CONTINUE
+      T1 = SIG(K,M,11)*DELTT/(SIG(K,MTOP,11)*DELT)
+      TER1 = TAT/DELT*(1.0/(1.0+T1))**2*(PSMID-P2E(N2,KB,K))*(PMID-PTOP)
+C     PSTOP = P2E(J2,I-1,KB,K)
+C     TER1 = TAT/DELT*(1.0/(1.0+T1))**2*(PSMID-PSTOP)*(PMID-PTOP)
+      GO TO 145
+  142 TER1 = TAT/DELT*BND(2,K)/(BND(2,K)+SIG(K,M,11)/DELT)*PSMID*PMID
+      GO TO 145
+  143 TER1 = TAT/DELT*BBND(K)/(BBND(K)+SIG(K,M,11)/DELT)*PSMID*PMID
+  145 CONTINUE
+      IF ((NUAC5.NE.10).AND.(NUAC5.NE.14)) GO TO 146
+      IF (NOE.NE.0) GO TO 153
+  146 CONTINUE
+      IF (I.LT.IMAX) GO TO 147
+      IF (INRB.NE.3) GO TO 150
+  147 IF (PBOT.EQ.0.0) GO TO 151
+      IF (I.EQ.IMAX) GO TO 148
+      PSBOT = P2E(N3,KB,K)
+C     PSBOT = P2E(J3,I+1,KB,K)
+      GO TO 149
+  148 CONTINUE
+      PSBOT = P2E(N15,KB,K)
+C     PSBOT = P2E(JVX,I15,KB,K)
+  149 T1 = SIG(K,M,11)*DELB/(SIG(K,MBOT,11)*DELB)
+      TER2 = TAB/DELB*(1.0/(1.0+T1))**2*(PSMID-PSBOT)*(PMID-PBOT)
+      GO TO 153
+  150 TER2 = TAB/DELB*BND(4,K)/(BND(4,K)+SIG(K,M,11)/DELB)*PSMID*PMID
+      GO TO 153
+  151 TER2 = TAB/DELB*BBND(K)/(BBND(K)+SIG(K,M,11)/DELB)*PSMID*PMID
+  153 CONTINUE
+      IF (IX(25).EQ.2) GO TO 162
+      IF (KB.EQ.1) GO TO 154
+      IF (PFNT.EQ.0.0) GO TO 155
+      T1 = SIG(K,M,12)*DELFR/(SIG(K,MFNT,12)*DELF)
+      TER5 = TAF/DELF*(1.0/(1.0+T1))**2*(PSMID-P2E(N1,KB-1,K))*(PMID-PFN
+     &     T)
+C     PSFNT = P2E(J,I,KB-1,K)
+C     TER5 = TAF/DELF*(1.0/(1.0+T1))**2*(PSMID-PSFNT)*(PMID-PFNT)
+      GO TO 157
+  154 TER5 = TAF/DELF*BND(5,K)/(BND(5,K)+SIG(K,M,12)/DELF)*PSMID*PMID
+      GO TO 157
+  155 TER5 = TAF/DELF*BBND(K)/(BBND(K)+SIG(K,M,12)/DELF)*PSMID*PMID
+  157 CONTINUE
+      IF (KB.EQ.KBMAX) GO TO 158
+      IF (PBAK.EQ.0.0) GO TO 159
+      T1 = SIG(K,M,12)*DELBK/(SIG(K,MBAK,12)*DELK)
+      TER6 = TABK/DELK*(1.0/(1.0+T1))**2*(PSMID-P2E(N1,KB+1,K))*(PMID-
+     &       PBAK)
+C     PSBAK = P2E(J,I,KB+1,K)
+C     TER6 = TABK/DELK*(1.0/(1.0+T1))**2*(PSMID-PSBAK)*(PMID-PBAK)
+      GO TO 161
+  158 TER6 = TABK/DELK*BND(6,K)/(BND(6,K)+SIG(K,M,12)/DELK)*PSMID*PMID
+      GO TO 161
+  159 TER6 = TABK/DELK*BBND(K)/(BBND(K)+SIG(K,M,12)/DELK)*PSMID*PMID
+  161 CONTINUE
+  162 IF (IXH.EQ.0) GO TO 166
+      IF ((J.EQ.1).OR.(I.EQ.IMAX)) GO TO 164
+      IF (PHEX1.EQ.0.0) GO TO 163
+      T1 = SIG(K,M,1)/SIG(K,MH1,1)
+      TER7 = TAH/DELHT*(1.0/(1.0+T1))**2*(PSMID-P2E(N6,KB,K))
+     **      (PMID-PHEX1)
+C     PSHEX1 = P2E(J-1,I+1,KB,K)
+C     TER7 = TAH/DELHT*(1.0/(1.0+T1))**2*(PSMID-PSHEX1)*(PMID-PHEX1)
+      GO TO 164
+  163 CONTINUE
+      TER7 = TAH/DELHT*BBND(K)/(BBND(K)+SIG(K,M,1)/DELHT)*PSMID*PMID
+  164 CONTINUE
+      IF ((I.EQ.1).OR.(J.EQ.JMAX)) GO TO 166
+      IF (PHEX2.EQ.0.0) GO TO 165
+      T1 = SIG(K,M,1)/SIG(K,MH2,1)
+      TER8 = TAH/DELHB*(1.0/(1.0+T1))**2*(PSMID-P2E(N7,KB,K))
+     **      (PMID-PHEX2)
+C     PSHEX2 = P2E(J+1,I-1,KB,K)
+C     TER8 = TAH/DELHB*(1.0/(1.0+T1))**2*(PSMID-PSHEX2)*(PMID-PHEX2)
+      GO TO 166
+  165 CONTINUE
+      TER8 = TAH/DELHB*BBND(K)/(BBND(K)+SIG(K,M,1)/DELHB)*PMID*PSMID
+  166 CONTINUE
+  167 CONTINUE
+      DSIGX = SIG2(K,1)-SIG(K,M,1)
+      DSIGY = SIG2(K,11)-SIG(K,M,11)
+      DSIGZ = SIG2(K,12)-SIG(K,M,12)
+      TERM(5,K) = TERM(5,K)+DSIGX*(TER3+TER7)
+      TERM(6,K) = TERM(6,K)+DSIGX*(TER4+TER8)
+      TERM(7,K) = TERM(7,K)+DSIGY*TER1
+      TERM(8,K) = TERM(8,K)+DSIGY*TER2
+      TERM(9,K) = TERM(9,K)+DSIGZ*TER5
+      TERM(10,K) = TERM(10,K)+DSIGZ*TER6
+  169 CONTINUE
+      RETURN
+      END

@@ -1,0 +1,6 @@
+      FUNCTION ITTIME(IX)
+CKSK  CALL TIME(I)
+      CALL UTIME(I)
+      ITTIME=I/10
+      RETURN
+      END

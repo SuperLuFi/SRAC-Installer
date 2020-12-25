@@ -1,0 +1,83 @@
+#
+#  Makefile to produce load module for txttopds(pds convert program)
+#
+SRAC_DIR = $(SRAC_CODE)
+#
+#  Note : If this is not executed by @PunchMe, set the full path name         
+#         of the SRAC code file in the following statement, and use it instead
+#         of the above statement.                                             
+#
+#SRAC_DIR = $(HOME)/SRAC
+#------------------------------------------------------------------------------
+F77   = Fortran-Driver
+OPT   = Scalar_Option
+DIR   = $(SRAC_DIR)/util/pdscnvt
+SRC   = $(DIR)/src/txttopds
+LMD   = $(DIR)/bin
+
+EXT   = $(SRAC_DIR)/src/extnl
+
+#------------------------------------------------------------------------------
+ 
+LM    = $(LMD)/txttopds.out
+OBJ   = $(SRC)/main000.o  \
+$(SRC)/pdsin.o  $(SRC)/pdsnm.o   $(SRC)/pdsrd.o   $(SRC)/pdssr.o     \
+$(SRC)/pdswt.o  $(SRC)/cnvint.o  $(SRC)/setda1.o  $(SRC)/setda2.o    \
+$(SRC)/setda3.o $(SRC)/setdat.o  $(SRC)/setmem.o  $(SRC)/txtchk.o    \
+$(SRC)/txtlin.o $(SRC)/uioset.o  $(SRC)/uioint.o  $(SRC)/ugtenv.o
+
+$(LM):			$(OBJ)
+			$(F77) -o $(LM) $(OPT) $(OBJ)
+
+#---------------------- source ------------------------------------------------
+
+$(SRC)/main000.o:	$(SRC)/main000.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/main000.f
+
+$(SRC)/cnvint.o:	$(SRC)/cnvint.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/cnvint.f
+
+$(SRC)/setda1.o:	$(SRC)/setda1.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setda1.f
+
+$(SRC)/setda2.o:	$(SRC)/setda2.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setda2.f
+
+$(SRC)/setda3.o:	$(SRC)/setda3.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setda3.f
+
+$(SRC)/setdat.o:	$(SRC)/setdat.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setdat.f
+
+$(SRC)/setmem.o:	$(SRC)/setmem.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/setmem.f
+
+$(SRC)/txtchk.o:	$(SRC)/txtchk.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/txtchk.f
+
+$(SRC)/txtlin.o:	$(SRC)/txtlin.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/txtlin.f
+
+$(SRC)/pdsin.o:		$(SRC)/pdsin.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdsin.f
+
+$(SRC)/pdsnm.o:		$(SRC)/pdsnm.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdsnm.f
+
+$(SRC)/pdsrd.o:		$(SRC)/pdsrd.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdsrd.f
+
+$(SRC)/pdssr.o:		$(SRC)/pdssr.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdssr.f
+
+$(SRC)/pdswt.o:		$(SRC)/pdswt.f
+			cd $(SRC); $(F77) -c $(OPT) $(SRC)/pdswt.f
+
+$(SRC)/uioset.o:	$(EXT)/uioset.f
+			cd $(SRC); $(F77) -c $(OPT) $(EXT)/uioset.f
+
+$(SRC)/uioint.o:	$(EXT)/uioint.f
+			cd $(SRC); $(F77) -c $(OPT) $(EXT)/uioint.f
+
+$(SRC)/ugtenv.o:	$(EXT)/ugtenv.f
+			cd $(SRC); $(F77) -c $(OPT) $(EXT)/ugtenv.f

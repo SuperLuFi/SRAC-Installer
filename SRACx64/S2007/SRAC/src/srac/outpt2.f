@@ -1,0 +1,156 @@
+      SUBROUTINE OUTPT2(NRMAX,    NMMAX,    NGMAX,    NNMAX,
+     &                  NNMAX1,   NNMAXR,   NK,       MTR,      RK,
+     &                  RN,       TAU,      VK,       LOC,      LSS,
+     &                  LGV,      XEC,      RRK,      RE,       RRN,
+     &                  H,        FLUX,     EX,       S         )
+C
+C * * * PRINT FINAL RESULT * * *
+C
+      DIMENSION     NK(9),    MTR(9),   RK(9),    RN(9),
+     &              TAU(NNMAX1,8),LOC(NGMAX,NMMAX),   LSS(NGMAX,NMMAX),
+     &              LGV(NGMAX,NMMAX),   XEC(9),       VK(9),
+     &              RRK(9),   RE(9),    RRN(9),       H(NNMAXR,NGMAX),
+     &              FLUX(NNMAX1,NGMAX), EX(9) ,       S(NNMAXR,NGMAX)
+C
+      COMMON /TUD1C/ DUMMY(6),IG,IBOUND,
+     &               IGUESS,ID,ITMAX,ITMOUT,ITBG,LCMX,ITDM,IPT,
+     &               EPS,EPS0,EPSG,RELC,OVERX,FACTOR,XLAMD,BSQ1,
+     &               IPTXEC,ITFLUX,IPTS,IDOPT,NXR,LCIK,LCNK,LCXR,
+     &               LCRK,LCNN1,LCVOLR,LCMTM,LCMTR,DUMT(13),II(500)
+C
+      COMMON /MAINC/ IOPT(20),JNFSTL(2),FNFSTL(2),JNTHEL(2),FNTHEL(2)
+     &    ,JNEFST(2),FNEFST(2),JNETHE(2),FNETHE(2),JNMACR(2),FNMACR(2)
+     &    ,JNMCRS(2),FNMCRS(2),JNEMIC(2),FNEMIC(2),JNFLUX(2),FNFLUX(2)
+     &   ,NEFL     ,NETL     ,NEF      ,NET      ,NERF     ,NERT
+     &   ,NMAT     ,NETL1    ,BSQQ      ,NIN1     ,NIN2     ,NOUT1
+     &   ,NOUT2,IT0,NEFL1    ,NEFL2    ,NEFL3    ,NEF1     ,NEF2
+     &   ,NEF3     ,ISTEP    ,NSOUC    ,IFIN     ,IFOUT    ,DUMMY1(4)
+     &   ,LCNEGF   ,LCNEGT   ,LCNECF   ,LCNECT   ,LCMTNM   ,LCNISO
+     &   ,LCTEMP   ,LCXL     ,LCXCDC   ,LCLISO   ,LCIDNT   ,LCDN
+     &   ,LCIRES   ,LCIXMC   ,DUMMY2(3),IRANG,ICF,DUM100
+     &   ,IDCASE(2),TITLE(18)
+     &   ,III(380)
+C
+      COMMON /PDSPDS/ BUF(540),IFLSW,FILENM(3),ECODE,TEMPRY
+C
+      COMMON /TMPSET/ STND(35),NUMB(61),NTDUMY
+C
+      DIMENSION LETR(3)
+      DIMENSION REACT(2,6)
+      DIMENSION NOM(2)
+CADD SASAQ
+      CHARACTER*4 LETR,REACT ,FILENM,NOM,IDCASE
+      DATA LETR/'FAST','THER','ALL '/
+      DATA REACT/'OUT ','SCAT','ABSO','RPTN','ACTI','VATN'
+     &          ,'FISS','ION ','NU*F','ISSN','REMO','VAL '/
+C
+C **  START OF PROCESS
+C
+      ITPF   =  ITFLUX/4
+      ICDF   = (ITFLUX-4*ITPF)/2
+      IPTFLX =  ITFLUX-4*ITPF-2*ICDF
+      IF(ITPF.EQ.0) GO TO 60
+C
+      WRITE(NOUT2,410) IDCASE,TITLE,LETR(IRANG+1)
+      REWIND IFOUT
+      WRITE(IFOUT) ((FLUX(I,J),I=1,NNMAX1),J=1,NGMAX)
+      REWIND IFOUT
+C
+   60 IF(IPTFLX.EQ.0) GO TO 490
+C
+      WRITE(NOUT2,100)
+      IF(IG.EQ.2) WRITE(NOUT2,110)
+      DO150  NG  = 1,NGMAX
+  150 WRITE(NOUT2,200) NG,(NN,FLUX(NN,NG),NN=1,NNMAX1)
+C
+C *** PRINT REACTION RATE
+C     H          = XEC*FLUX
+C
+      DO 400 IR  = 1,6
+      DO 310 NNR = 1,NNMAXR
+      RRN(NNR)   = 0.0
+  310 CONTINUE
+      DO 320 NG  = 1,NGMAX
+      RE(NG)     = 0.0
+  320 CONTINUE
+      DO 330 NR  = 1,NRMAX
+      RRK(NR)    = 0.0
+  330 CONTINUE
+C
+      DO 340 NG = 1,NGMAX
+      NN1       = 1
+      NNR       = 0
+      DO 340 NR = 1,NRMAX
+      NC        = NK(NR) + 1
+      MAT       = MTR(NR)
+      NN1       = NN1    - 1
+      L         = LOC(NG,MAT) + IR - 1
+      DO 340 NN = 1,NC
+      NN1       =NN1     + 1
+      NNR       = NNR    + 1
+      H(NNR,NG) = XEC(L)*FLUX(NN1,NG)
+      RRN(NNR)  = RRN(NNR) + H(NNR,NG)
+      RE(NG)    = RE(NG)   + H(NNR,NG)
+  340 CONTINUE
+      CALL VINT(NRMAX,NK,RRK,TAU,RRN,A,NNMAX1)
+      WRITE(NOUT2,420)  REACT(1,IR),REACT(2,IR)
+      WRITE(NOUT2,430) (RRN(NNR),NNR=1,NNMAXR)
+      WRITE(NOUT2,440) (RRK(NR),NR=1,NRMAX)
+      WRITE(NOUT2,450) (RE(NG),NG=1,NGMAX)
+      WRITE(NOUT2,460)  A
+  400 CONTINUE
+C
+  410 FORMAT(1H1,'          *** TUD STEP FOR *** ',2A4,'***',18A4,'***'
+     & /10X,' IN ',A4,' ENERGY RANGE ')
+  100 FORMAT(10X,'::: FINAL FLUX MAP :::')
+  110 FORMAT(1H0,15X,' FLUX(I,NG)*RADII(I) ')
+  200 FORMAT(10X,'NG = ',I2  /
+     &(I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,
+     & I4,E12.5))
+C
+  420 FORMAT(1H0,9X,'***',2A4,' REACTION ***')
+  430 FORMAT(1H0,9X,'  SPATIAL DISTRIBUTION '/(10X,10E12.5))
+  440 FORMAT(1H0,9X,'  REGION INTEGRAL '/(10X,10E12.5))
+  450 FORMAT(1H0,9X,'  ENERGY GROUP DISTRIBUTION'/(10X,10E12.5))
+  460 FORMAT(1H0,9X,'  SPACE ENERGY INTEGRATED '/ 10X,E12.5)
+C
+C * * FLUX PRINT * *
+C
+  490 CONTINUE
+      FILENM(1) = 'FLUX'
+      FILENM(2) = '    '
+CM    FILENM(3) = '    '
+      NOM(1)    = IDCASE(1)
+      NOM(2)    = 'X00X'
+      CALL PACKX (NOM(2),1,LETR(IRANG+1),1)
+      IF(IOPT(79).GT.0)   CALL PACK(NOM(2),2,NUMB(IOPT(79)))
+      CALL PACK  (NOM(2),4,ICF)
+      CALL SEARCH(NOM,LTH,ISW)
+      IF(ISW.EQ.0) CALL DELETE(NOM)
+C
+      L         = 0
+      DO 520 NG = 1,NGMAX
+      CALL FINT(NRMAX,NK,RRK,TAU,FLUX(1,NG),ANS,NNMAX1)
+      DO 515 NR = 1,NRMAX
+      L         = L + 1
+      XEC(L)    = RRK(NR)
+  515 H(NR,NG)  = RRK(NR)
+  520 CONTINUE
+      CALL WRITE(NOM,XEC,NRMAX*NGMAX)
+      IF(IPTFLX.EQ.0) RETURN
+C
+      WRITE(NOUT2,530) IDCASE,TITLE
+      WRITE(NOUT2,540)
+      DO 550 NR=1,NRMAX
+  550 WRITE(NOUT2,560) NR,( NG,H(NR,NG),NG=1,NGMAX)
+C
+  530 FORMAT(1H1, 9X, 2A4,18A4 //)
+  540 FORMAT(10X,'*** NEUTRON SPECTRUM MULTIPLIED BY ENERGY WIDTH***')
+  560 FORMAT(10X,'NR = ',I2  /
+     &(I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,I4,E12.5,
+     & I4,E12.5))
+C
+C **  END OF PROCESS
+C
+  500 RETURN
+      END

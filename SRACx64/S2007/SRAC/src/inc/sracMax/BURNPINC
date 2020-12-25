@@ -1,0 +1,29 @@
+C     PARAMETER DEFINISION FOR SRAC BURNUP ROUTINE
+C     THIS DEFINISION FILE NAME IS <<BURNPINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXSTEP    MAXIMUM BURNUP STEP (<=61)                   35
+C     MXNUC     MAXIMUM NUCLIDE IN A MATERIAL               120
+C               FOR BURNUP CAL. SET MXNUC > (NON-DEPLETING
+C               NUCLEI+DEPLETING NUCLEI IN THE BURNUP CHAIN)
+C               MXNUC MUST BE THE SAME VALUE TO THE MXNISO
+C               IN <<BMICRINC>>  (MXNUC=MXNISO) 
+C     MXZONE    MAXIMUM MATERIALS IN PRESENT GROMETRY        20
+C     MXFISS    MAXIMUM FISSIONABLE NUCLIDE                  35
+C     MXDEPL    MAXIMUM DEPLETING ZONES IN BURNUP CAL.       15
+C     NGMAX     MAXIMUM ENERGY GROUPS                       107
+C     MXREPL    MAXIMUM DEPLETING ZONES OF WHICH NUMBER      15
+C               DENSITY ARE REPLACED BY INPUT DATA
+C     ------------------------------------------------------------------
+CKSK  PARAMETER ( MXSTEP = 61 , MXNUC  = 120 )
+CKSK  PARAMETER ( MXZONE = 20 , MXFISS =  35 )
+CKSK  PARAMETER ( MXDEPL = 15 , NGMAX  = 107 )
+CKSK  PARAMETER ( MXREPL = 15 )
+C     ------------------------------------------------------------------
+      PARAMETER ( MXSTEP = 61 , MXNUC  = 300 )
+      PARAMETER ( MXZONE = 50 , MXFISS =  35 )
+      PARAMETER ( MXDEPL = 50 , NGMAX  = 107 )
+      PARAMETER ( MXREPL = 15 )

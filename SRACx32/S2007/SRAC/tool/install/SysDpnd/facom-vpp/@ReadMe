@@ -1,0 +1,21 @@
+###################### About options for Makefile #################
+#
+#   F77    = frt               ! own compiler
+#   FFLAGS = -Oe -sc           ! scalar compile option
+#   FFLAGV = -Oe               ! vector compile option
+#   LIB    =
+#
+# Other alternatives
+#
+#   F77    = frtpx             ! cross compiler
+#   FFLAGS = -Ob -Wv,-sc
+#   FFLAGV = -Oe -Wv,-te
+#
+#------------------------------
+#
+# Machine structures on which operation check has been completed
+#  Hard     : FACOM VPP500/64 (JAERI)
+#  OS       : SunOS vppf 5.8 Generic_117350-05 sun4us sparc FJSV,GPUSK
+#  Compiler : FACOM frt/frtpx
+#
+###################################################################

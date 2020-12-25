@@ -1,0 +1,13 @@
+C     PARAMETER DEFINISION FOR SRAC MATERIAL INPUT DATA
+C     THIS DEFINISION FILE NAME IS <<MATDTINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MAXMAT    MAXIMUM NUMBER OF MATERIALS TO BE CONSIDERED     30
+C     MXLISO    MAXIMUM TOTAL NUCLIDE IN MATERIAL INPUT DATA   2000
+C               TOTAL NUCLIDE IS SUM OF NISO(M)  (M=1,NMAT)
+C     ------------------------------------------------------------------
+      PARAMETER ( MAXMAT =      30  , MXLISO =      2000 )
+C     ------------------------------------------------------------------

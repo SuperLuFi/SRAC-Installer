@@ -1,0 +1,15 @@
+###################### About options for Makefile #################
+#
+#   F77    = f77sx
+#   FFLAGS = -Nv               ! scaler compile option
+#   FFLAGV = -v                ! vector compile option
+#   LIB    =
+#
+# Other alternatives
+#
+#   FFLAGS = -Nv -O nomove
+#   FFLAGS = -pvctl loopcnt=100000
+#   loopcnt : upper limit of DO repeatation (DO 100 I=1,n), default=5000
+#   loopcnt is depending on problem, change it if necessary.
+#
+###################################################################

@@ -1,0 +1,166 @@
+      SUBROUTINE  PCOMCR(NCODEL,IRCONT,SIGE,SIGF  ,SIGC,FEMESH,
+     +                   X     ,X1    ,Y1  ,IMAX  ,IMAX3)
+C
+      CHARACTER*4     TIL,ID,IBURN,NFILE,IDTMP
+      REAL*8          EBOUND,UIGP,UFGP,UBGP
+      REAL*8          ESAVE,DELU
+      CHARACTER*8     IDENT
+C
+      COMMON /MAINC / IOPT(100)
+      COMMON /PDSPDS/ BUFFER(540),IFLSW,NFILE(3),ECODE,TEMPPP
+C
+      COMMON /PCOWK1/ TIL(18),ID(2)
+      COMMON /PCOWK2/ KCOMP,KCOMPF,DELBEF,KSREG,KMAT,KNMAX,KRES,NPROB,
+     1                NDOUBL,NOUT1,NOUT2,NBB,NBH,MAXN,MAXP,KDAN,
+     2                KPIJ1,KPIJ2,ESCAPA,ESCAPF,GUZAI,IPLOT,MAIN(2)
+C
+      COMMON /UMC001/ LIBTYP,NEF,ISTART,NG,NOMESH,KFGP,NGMAX,MAXINT,NSET
+      COMMON /UMC002/ ENERGY(75),EE(47),NI(46),INTNO(46),
+     +                NXG(10),NFI(10),NOIG(10),MST(46),MEND(46)
+      COMMON /UMC003/ EBOUND(11),UIGP(10),UFGP(10),UBGP(46)
+      COMMON /UMC004/ INTBL(2000),ENGD(2000)
+      COMMON /UMCTMP/ NTEMP,TMPSET(40),IDTMP(40)
+C
+      DIMENSION       IRCONT(6,KRES)
+      CHARACTER*8     NCODEL(KMAT)
+      DIMENSION       SIGE(IMAX),SIGF(IMAX),SIGC(IMAX),X(IMAX)
+      DIMENSION       FEMESH(IMAX),X1(IMAX3),Y1(IMAX3)
+      DIMENSION       IA(10)
+C
+C     INITIAL SET
+C
+CKSK  NFILE(1)=4HUMCR
+      NFILE(1)='UMCR'
+CKSK  NFILE(2)=4HOSS
+      NFILE(2)='OSS '
+C
+      IF(IPLOT.GT.0) THEN
+                     LOP2       = 0
+                     CALL CLEA( FEMESH , IMAX , 0.0 )
+                     DO 200 LOP = 1 , NOMESH
+                     ESAVE      = EBOUND(LOP)
+                     DELU       = UFGP(LOP)
+                     LOP1       = LOP2 + 1
+                     LOP2       = NXG(LOP)*KFGP
+                     DO 100 J   = LOP1 , LOP2
+                     ESAVE      = ESAVE*DEXP(-DELU)
+                     FEMESH(J)  = ESAVE
+  100                CONTINUE
+  200                CONTINUE
+                     NP         = LOP2
+                     ENDIF
+C
+C     LOOP OF RESONANT NUCLIDE
+C
+      DO 1000 K=1,KRES
+C-----ZERO CLEAR CROSS SECTION STRAGE ARRAY
+      CALL  CLEA( SIGE , IMAX , 0.0 )
+      CALL  CLEA( SIGF , IMAX , 0.0 )
+      CALL  CLEA( SIGC , IMAX , 0.0 )
+C-----SET MEMBER NAME
+      IDENT       = NCODEL(K)
+      IDENT (1:1) = 'C'
+      IDENT (5:5) = '0'
+      IDENT (6:7) = ID(1) (3:4)
+      IPOS        = IRCONT(6,K)
+      IDENT (8:8) = IDTMP(IPOS) (1:1)
+C
+      IF(IOPT(20).NE.0) THEN
+CKSK                    IBURN = 4H0
+                        IBURN = '0   '
+                        IF(IOPT(79).GT.0)  IBURN = IDTMP(IOPT(79))
+                        IDENT (7:7) = IBURN (1:1)
+                        ENDIF
+C-----READ EFFECTIVE RESONANCE CROSS SECTION FROM FT32F001
+      REWIND 32
+      DO 300 LOP = 1 , NSET
+      READ(32) IST1,IST2
+      WRITE(NOUT1,'(1H ,14H LOP ST1 ST2= ,3I6)') LOP,IST1,IST2
+      DO 300 KK  = 1,KRES
+      IF(KK.EQ.K) THEN
+                  READ(32) (SIGC(I),I=IST1,IST2),(SIGF(I),I=IST1,IST2),
+     +                     (SIGE(I),I=IST1,IST2)
+                  ELSE
+                  READ(32)
+                  ENDIF
+  300 CONTINUE
+      REWIND 32
+C-----OUTPUT CZMM0IDN MEMBER (CONTENT MEMBER) TO UMCROSS LIBRARY
+      CALL  ICLEA(IA,10,0)
+C
+      IA(1) = IRCONT(1,K)
+      IA(2) = IRCONT(2,K)
+      IA(3) = IRCONT(3,K)
+      IA(4) = IRCONT(4,K)
+      IA(5) = 0
+      IFISS = IA(4)
+      TEMP  = TMPSET(IPOS)
+C
+      WRITE(NOUT2,1001) IDENT,(IA(I),I=1,5),TEMP,EE(1),EE(NG+1)
+C
+      LENG       = 5
+      CALL  WRITE(IDENT,IA,LENG)
+C-----OUTPUT ELASTIC RESONACE CROSS SECTION TO UMCORSS LIBARARY
+      IDENT(1:1) = 'E'
+      DO 400 LOP = 1 ,NSET
+      LENG       = (MEND(LOP)-MST(LOP)+1)*KFGP
+      IST        = (MST(LOP)-1)*KFGP + 1
+      IDENT(5:5) = IDTMP(LOP) (1:1)
+      WRITE(NOUT1,1002) LOP,MST(LOP),MEND(LOP),IST,LENG,IDENT
+      CALL  WRITE( IDENT ,SIGE(IST), LENG )
+  400 CONTINUE
+C-----OUTPUT CAPTURE RESONACE CROSS SECTION TO UMCORSS LIBARARY
+      IDENT(1:1) = 'C'
+      DO 500 LOP = 1 ,NSET
+      LENG       = (MEND(LOP)-MST(LOP)+1)*KFGP
+      IST        = (MST(LOP)-1)*KFGP + 1
+      IDENT(5:5) = IDTMP(LOP) (1:1)
+      WRITE(NOUT1,1002) LOP,MST(LOP),MEND(LOP),IST,LENG,IDENT
+      CALL  WRITE( IDENT ,SIGC(IST), LENG )
+  500 CONTINUE
+C-----OUTPUT CAPTURE FISSION CROSS SECTION TO UMCORSS LIBARARY
+      IF(IFISS.EQ.0) GO TO 601
+      IDENT(1:1) = 'F'
+      DO 600 LOP = 1 ,NSET
+      LENG       = (MEND(LOP)-MST(LOP)+1)*KFGP
+      IST        = (MST(LOP)-1)*KFGP + 1
+      IDENT(5:5) = IDTMP(LOP) (1:1)
+      WRITE(NOUT1,1002) LOP,MST(LOP),MEND(LOP),IST,LENG,IDENT
+      CALL  WRITE( IDENT ,SIGF(IST), LENG )
+  600 CONTINUE
+C
+  601 CONTINUE
+      IF(IPLOT.LE.0) GO TO 1000
+C     PLOT ELASTIC RESONANCE CRSOSS SECTION
+      DO 700 I = 1 , IMAX
+      X(I)     = FEMESH(I)
+  700 CONTINUE
+      CALL UMCPLT(IDENT,X,SIGE,NP,IMAX,X1,Y1,LENG3,TEMP,  2)
+C     PLOT CAPTURE RESONANCE CRSOSS SECTION
+      DO 800 I = 1 , IMAX
+      X(I)     = FEMESH(I)
+  800 CONTINUE
+      CALL UMCPLT(IDENT,X,SIGC,NP,IMAX,X1,Y1,LENG3,TEMP,102)
+C     PLOT IFISSIN RESONANCE CRSOSS SECTION
+      IF(IFISS.EQ.0) GO TO 1000
+      DO 900 I = 1 , IMAX
+      X(I)     = FEMESH(I)
+  900 CONTINUE
+      CALL UMCPLT(IDENT,X,SIGF,NP,IMAX,X1,Y1,LENG3,TEMP, 18)
+ 1000 CONTINUE
+C
+C     END OF PROCESS
+C
+      RETURN
+ 1001 FORMAT(///1H ,30X,'LIST OF ',A8,'.CONT',' ---- FROM PCOMCR'
+     2///1H ,10X,'ITAPE : ENDF TAPE NUMBER --------------------- ',I7
+     4/1H ,10X,'MATNO : MATERIAL NUMBER IN ENDF -------------- ',I7
+     6/1H ,10X,'IZA   : (Z,A) DESIGNATION FOR THIS NUCLIDE --- ',I7
+     6/1H ,10X,'IFISS : FISSION DATA SPECIFICATION ----------- ',I7
+     6/1H ,10X,'IENDUN: ENERGY POSITION OF LOWER UNRESOLVED -- ',I7
+     A/1H ,10X,'TEMP  : TEMPERATURE -------------------------- ',F7.2
+     C/1H ,10X,'EHIGH : UPPER ENERGY (EV) -------------------- ',F7.3
+     D/1H ,10X,'ELOW  : LOWER ENERGY (EV) -------------------- ',F7.3/)
+ 1002 FORMAT(1H ,' ## LOP MST MEND IST LENG IDENT ## ',5I6,2X,A8)
+C
+      END

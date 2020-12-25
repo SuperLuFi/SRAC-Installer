@@ -1,0 +1,13 @@
+C     PARAMETER DEFINISION FOR SRAC BURNUP ROUTINE
+C     THIS DEFINISION FILE NAME IS <<BURNDINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MAXDIR    MAXIMUM NO OF DATA WHICH IS STORED            30
+C               IN LOCAL 1-D STORE ARRAY AT SUB(BURNRW)
+C     MAXDIM    LENGHT OF 1-D ARRAY ==> STORE(MAXDIM)    30 0000
+C     ------------------------------------------------------------------
+      PARAMETER ( MAXDIR =  300 , MAXDIM =   30 0000 )
+C     ------------------------------------------------------------------

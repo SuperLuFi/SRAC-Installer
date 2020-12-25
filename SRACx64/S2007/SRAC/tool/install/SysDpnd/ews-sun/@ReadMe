@@ -1,0 +1,20 @@
+###################### About options for Makefile #################
+#
+#   F77    = f77
+#   FFLAGS = -O2 -dalign
+#
+# Other alternatives
+#
+#   FFLAGS = -fast
+#
+#   This option may be faster than -O2
+#   Change it at your own risk, if you like.
+#
+#------------------------------
+#
+# Machine structures on which operation check has been completed
+#  Hard     : PRIMEPOWER 1000 (JAERI)
+#  OS       : SunOS 5.8 Generic_117350-05 sun4us sparc FJSV,GPUSK
+#  Compiler : f77 : Sun WorkShop(TM) 6 Fortran 77
+#
+###################################################################

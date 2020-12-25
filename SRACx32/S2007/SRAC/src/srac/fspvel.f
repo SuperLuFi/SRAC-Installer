@@ -1,0 +1,93 @@
+C             FSPVEL              LEVEL=10       DATE=87.04.25
+      SUBROUTINE FSPVEL(B,IB,XKI,VE,IGM,MTNAME,NM,IMX,NOU,
+     *                  LIMB,NMP          )
+C ***** FSPVEL LOADS FISSION SPECTRUM   VELOCITY FROM MACRO FILE
+      COMMON /PDSPDS/ BUF(540),IFLSW,FILENM(3),ECOOD,TEMPRY
+      COMMON /MAINC /III(1000)
+C
+      EQUIVALENCE (III(64),NOUT1),(III(98),IRANG),(III(99),ICF)
+      DIMENSION XKI(IGM),VE (IGM),MTNAME(2,1),IRANGE(3),IMX(1),
+     *          B(LIMB),IB(LIMB),IIDENT(2)
+C
+      CHARACTER*4  FILENM,MTNAME,IRANGE,IIDENT,ICF
+      DATA IRANGE/'FAST','THER','ALL '/
+CJ    SYN MACRO = MANNO.FILENM.'MACR'
+C
+C     WRITE(NOU,6000) MANNO,FILENM,ERANG,IGM,FSMAT
+C
+CJ    READ(MACRO.ERANG) NGR,(W,I=1,NGR),(B(I+NGR+1),I=1,NGR),W
+C
+C********************************** PDS FILE ***************************
+      FILENM(1)='MACR'
+      FILENM(2)='O   '
+      IF(ICF.EQ.'0002') FILENM(2)='OWRK'
+      IIDENT(1)='CONT'
+      IIDENT(2)='X00X'
+      CALL PACKX(IIDENT(2),1,IRANGE(IRANG+1),1)
+      CALL PACK(IIDENT(2),4,ICF)
+      CALL GETLEN(IIDENT,LENGTH)
+      CALL READ(IIDENT,B,LENGTH)
+C********************************** PDS FILE ***************************
+      NGR = IB(1)
+      IF(NGR.LE.IGM) GO TO 100
+      WRITE(NOUT1,7000) IGM,NGR
+      STOP 7
+  100 CONTINUE
+      DO 110 I=1,IGM
+      VE(I)=SQRT(0.5*(B(I+NGR+1)+B(I+NGR+2)))
+  110 CONTINUE
+      DO 130 M=1,NMP
+      MM=IABS(IMX(M))
+      IF(MM.GT.NM) THEN
+      WRITE(NOU,6040) MM,NM
+      STOP
+                   ENDIF
+      IIDENT(1)=MTNAME(1,MM)
+      IIDENT(2)=MTNAME(2,MM)
+      CALL PACKX(IIDENT(2),1,IRANGE(IRANG+1),1)
+      CALL PACK(IIDENT(2),4,ICF)
+C     WRITE(NOUT1,6030) M,MM,IIDENT
+C6030 FORMAT(10X,'MATERIAL NO. - ',I3,' MATERIAL REGION -',I3,
+C    1       ' MATERIAL NAME - ',2A4)
+C
+CJ    READ(MACRO.FSMAT.ERANG.#0) IDENT,IP,LTH,(B(I),I=1,LTH)
+C********************************** PDS FILE ***************************
+      CALL SEARCH(IIDENT,LENGTH,ISW)
+      IF(ISW.EQ.1.AND.ICF.EQ.'0002')  THEN
+      IIDENT(2)(4:4)='4'
+      CALL SEARCH(IIDENT,LENGTH,ISW)
+      IF(ISW.EQ.1) THEN
+      IIDENT(2)(4:4)='2'
+                   ENDIF
+                                      ENDIF
+      CALL READ(IIDENT,B,LENGTH)
+      LTH = LENGTH - 1
+C********************************** PDS FILE ***************************
+      IF(LTH.LE.LIMB) GO TO 115
+      WRITE(NOUT1,7010) LIMB,LTH
+      STOP 7
+  115 CONTINUE
+      IBP = 0
+      DO 120 I=1,IGM
+       XKI(I) = B(IBP+7)
+       IBP = IBP + IB(IBP+2) + 10
+  120 CONTINUE
+       IF(XKI(1).NE.0.) GO TO 135
+  130 CONTINUE
+  135 CONTINUE
+      WRITE(NOU,6010) VE
+      WRITE(NOU,6020) XKI
+      RETURN
+ 6000 FORMAT('0  FISSION SPECTRUM   VELOCITY LOADS START FROM MACRO ',
+     1       'FILE ( ',A4,A1,'.',2A4,'.MACR.',2A4,' )'/6X,
+     2       'NUMBER OF GROUPS',20X,I8          /6X,
+     3       'FISSION SPECTRUM USED MATERIAL NAME ',2A4              )
+ 6010 FORMAT('0 *VELOCITIES*'/(1P10E12.5)  )
+ 6020 FORMAT('0 *FISSION SPECTRUM*'/(1P10E12.5)  )
+ 6030 FORMAT('0 *MEMBER ',2A4,' NOT FOUND IN FILE ',2A4)
+ 6040 FORMAT('0 *ILLEGAL MAT NUMBER ENCOUNTERED ',I3,' OUT OF',I3)
+ 7000 FORMAT('0**** ERROR NUMBER OF GROUPS IS UNMACHED ( IGM,NGR ) ',
+     *        2I10          )
+ 7010 FORMAT('0**** ERROR ALOCATED ARRAY ( B ) ',I10,' REQUIRED LENGTH',
+     *        ' OF MATRIX',I10 )
+      END

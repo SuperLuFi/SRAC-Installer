@@ -1,0 +1,169 @@
+C     THIS ROUTINE IS USED ONLY IN SRAC-CITATION AND NOT USED IN COREBN
+C     PERTURBATION INPUT CHECK
+C
+      SUBROUTINE PERTCK(SAMPLE,IOPT  ,IXYZ  ,XYZ   ,XX    ,
+     1                  YY    ,ZZ    ,NRGNE ,NCOMP ,
+     2                  ICASE ,JVXP1 ,IVXP1 ,KBVXP1,MMAX  ,
+     3                  IOUT  ,JMAX  ,IMAX  ,KBMAX ,NGEOM ,
+     4                  LMAX                                )
+C
+      DIMENSION SAMPLE(2,ICASE),IOPT(ICASE),IXYZ(2,3,ICASE),XYZ(2,3,
+     1          ICASE),XX(JVXP1),YY(IVXP1),ZZ(KBVXP1),NRGNE(JMAX,IMAX,
+     2          KBMAX),NCOMP(LMAX)
+      DIMENSION JIKMAX(3)
+C
+      IERR = 0
+      DO 500 IC = 1,ICASE
+      IF (IOPT(IC).GT.0) GO TO 100
+      IF (IOPT(IC).GE.-MMAX) GO TO 500
+      WRITE(IOUT,3000) IC,(SAMPLE(J,IC),J=1,2)
+      IERR = IERR + 1
+      GO TO 500
+  100 CONTINUE
+      IF (IOPT(IC).NE.1) GO TO 220
+      JIKMAX(1) = JMAX
+      JIKMAX(2) = IMAX
+      JIKMAX(3) = KBMAX
+      DO 110 I = 1,NGEOM
+CM    IF (IXYZ(1,I,IC).LT.1 .OR. IXYZ(1,I,IC).GT.IMAX) GO TO 160
+CM    IF (IXYZ(2,I,IC).LT.1 .OR. IXYZ(2,I,IC).GT.IMAX) GO TO 160
+      IF (IXYZ(1,I,IC).LT.1 .OR. IXYZ(1,I,IC).GT.JIKMAX(I)) GO TO 160
+      IF (IXYZ(2,I,IC).LT.1 .OR. IXYZ(2,I,IC).GT.JIKMAX(I)) GO TO 160
+      IF (IXYZ(1,I,IC).GT.IXYZ(2,I,IC)) GO TO 160
+  110 CONTINUE
+      IF (NGEOM.GT.2) GO TO 170
+      DO 130 I = NGEOM+1,3
+      DO 120 J = 1,2
+      IXYZ(J,I,IC) = 1
+  120 CONTINUE
+  130 CONTINUE
+      GO TO 170
+  160 CONTINUE
+      WRITE(IOUT,3010) IC,(SAMPLE(J,IC),J=1,2)
+      IERR = IERR + 1
+      GO TO 500
+  170 CONTINUE
+      II = 0
+      DO 210 KB = IXYZ(1,3,IC),IXYZ(2,3,IC)
+      DO 200  I = IXYZ(1,2,IC),IXYZ(2,2,IC)
+      DO 190  J = IXYZ(1,1,IC),IXYZ(2,1,IC)
+      II = II + 1
+      L = NRGNE(J,I,KB)
+      M = NCOMP(L)
+      IF (II.EQ.1) GO TO 180
+      IF (M.EQ.M1) GO TO 190
+      IERR = IERR + 1
+      WRITE(IOUT,3020) IC,(SAMPLE(JJ,IC),JJ=1,2)
+      GO TO 500
+  180 CONTINUE
+      M1 = M
+  190 CONTINUE
+  200 CONTINUE
+  210 CONTINUE
+      GO TO 500
+  220 CONTINUE
+      IX1 = 1
+      IX2 = 1
+      KX1 = 1
+      KX2 = 1
+      IF (XYZ(1,1,IC).GE.0.0) GO TO 225
+      J = -XYZ(1,1,IC)+0.01
+      XYZ(1,1,IC) = XX(J)
+  225 CONTINUE
+      IF (XYZ(2,1,IC).GE.0.0) GO TO 226
+      J = -XYZ(2,1,IC)+1.01
+      XYZ(2,1,IC) = XX(J)
+  226 CONTINUE
+      IF (XYZ(1,1,IC).LT.XX(1).OR.XYZ(2,1,IC).LT.XX(1)) GO TO 350
+      IF (XYZ(1,1,IC).GE.XYZ(2,1,IC)) GO TO 350
+      DO 230 J = 2,JVXP1
+      IF (XYZ(1,1,IC).LT.XX(J)) GO TO 240
+  230 CONTINUE
+      J = JVXP1
+  240 CONTINUE
+      JX1 = J-1
+      DO 250 J = 2,JVXP1
+      IF (XYZ(2,1,IC).LE.XX(J)) GO TO 260
+  250 CONTINUE
+      GO TO 350
+  260 CONTINUE
+      JX2 = J-1
+      IF (NGEOM.EQ.1) GO TO 360
+      IF (XYZ(1,2,IC).GE.0.0) GO TO 265
+      I = -XYZ(1,2,IC)+0.01
+      XYZ(1,2,IC) = YY(I)
+  265 CONTINUE
+      IF (XYZ(2,2,IC).GE.0.0) GO TO 266
+      I = -XYZ(2,2,IC)+1.01
+      XYZ(2,2,IC) = YY(I)
+  266 CONTINUE
+      IF (XYZ(1,2,IC).LT.YY(1).OR.XYZ(2,2,IC).LT.YY(1)) GO TO 350
+      IF (XYZ(1,2,IC).GE.XYZ(2,2,IC)) GO TO 350
+      DO 270 I = 2,IVXP1
+      IF (XYZ(1,2,IC).LT.YY(I)) GO TO 280
+  270 CONTINUE
+      I = IVXP1
+  280 CONTINUE
+      IX1 = I-1
+      DO 290 I = 2,IVXP1
+      IF (XYZ(2,2,IC).LE.YY(I)) GO TO 300
+  290 CONTINUE
+      GO TO 350
+  300 CONTINUE
+      IX2 = I-1
+      IF (NGEOM.EQ.2) GO TO 360
+      IF (XYZ(1,3,IC).GE.0.0) GO TO 305
+      KB = -XYZ(1,3,IC)+0.01
+      XYZ(1,3,IC) = ZZ(KB)
+  305 CONTINUE
+      IF (XYZ(2,3,KB).GE.0.0) GO TO 306
+      KB = -XYZ(2,3,IC)+1.01
+      XYZ(2,3,IC) = ZZ(KB)
+  306 CONTINUE
+      IF (XYZ(1,3,IC).LT.ZZ(1).OR.XYZ(2,3,IC).LT.ZZ(1)) GO TO 350
+      IF (XYZ(1,3,IC).GE.XYZ(2,3,IC)) GO TO 350
+      DO 310 KB = 2,KBVXP1
+      IF (XYZ(1,3,IC).LT.ZZ(KB)) GO TO 320
+  310 CONTINUE
+      KB = KBVXP1
+  320 CONTINUE
+      KX1 = KB-1
+      DO 330 KB = 2,KBVXP1
+      IF (XYZ(2,3,IC).LE.ZZ(KB)) GO TO 340
+  330 CONTINUE
+      GO TO 350
+  340 CONTINUE
+      KX2 = KB-1
+      GO TO 360
+  350 CONTINUE
+      WRITE(IOUT,3010) IC,(SAMPLE(J,IC),J=1,2)
+      IERR = IERR + 1
+      GO TO 500
+  360 CONTINUE
+      II = 0
+      DO 400 KB = KX1,KX2
+      DO 390  I = IX1,IX2
+      DO 380  J = JX1,JX2
+      II = II + 1
+      L = NRGNE(J,I,KB)
+      M = NCOMP(L)
+      IF (II.EQ.1) GO TO 370
+      IF (M.EQ.M1) GO TO 380
+      IERR = IERR + 1
+      WRITE(IOUT,3020) IC,(SAMPLE(JJ,IC),JJ=1,2)
+      GO TO 500
+  370 CONTINUE
+      M1 = M
+  380 CONTINUE
+  390 CONTINUE
+  400 CONTINUE
+  500 CONTINUE
+      IF (IERR.GT.0) STOP
+      RETURN
+ 3000 FORMAT('0***ERROR*** PERTURBED ZONE WAS SPECIFIED BUT ZONE NO. I',
+     *       'S GREATER THAN MAXIMUM ZONE NUMBER (',I3,1X,2A4,')'      )
+ 3010 FORMAT('0***ERROR*** PERTURBED MESH POINTS WERE SPECIFIED,BUT ME',
+     *       'SH POINTS ARE OUT OF RANGE (',I3,1X,2A4,')'              )
+ 3020 FORMAT('0***ERROR*** PERTURBED MESH POINTS WERE SPECIFIED,BUT TH',
+     *       'IS REGION IS NOT UNITARY ZONE NO. (',I3,1X,2A4,')'       )
+      END

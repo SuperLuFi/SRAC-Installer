@@ -1,0 +1,13 @@
+C     PARAMETER DEFINISION FOR PIJ ROUTINE
+C     THIS DEFINISION FILE NAME IS <<PIJPMINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MEMPIJ    MAXIMUM MEMORY OF AA ARRAY IN /PIJ2C/        10000
+C     MXMESH    MAXIMUM T-REGIONS                              200
+C     MXNTAB    MAXIMUM LENGTH OF PATH TABEL FOR A UNIT CELL  2000
+C     ------------------------------------------------------------------
+      PARAMETER ( MEMPIJ = 1 0000 , MXMESH = 200  , MXNTAB = 2000 )
+C     ------------------------------------------------------------------

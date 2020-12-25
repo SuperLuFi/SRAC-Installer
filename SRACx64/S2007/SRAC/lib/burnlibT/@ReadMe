@@ -1,0 +1,54 @@
+
+For Thermal Reactors ===========================================================
+
+1) u4cm6fp50bp16T
+     - Heavy nuclides   : 21 nuclides from U-234 to Cm-246
+     - Fission products : 49 explicit FPs and 1 pseudo one
+     - Burnable poisons : 16 isotopes of B, Cd, In, Er, Hf
+                          (Ag and Gd are included in FP chain)
+     Standard chain model for nuclear analyses of U-235 or Pu fueled 
+     thermal reactors. Some nuclides for PIE and burnup indicators are
+     included. This chain model is validated by comparison with results of no
+     pseudo burnup calculation upto 70GWd/t and cooling after burnup 
+     from one year to 1000 years.
+
+2) th2cm6fp50bp16T
+     - Heavy nuclides   : 28 nuclides from Th-232 to Cm-246
+     - Fission products : 49 explicit FPs and 1 pseudo one
+     - Burnable poisons : 16 isotopes of B, Cd, In, Er, Hf
+                             (Ag and Gd are included in FP chain)
+     Standard chain model for nuclear analyses of U-233/Th fueled thermal
+     reactors. The chain model for FP and BP nuclides is the same to that of
+     u4cm6fp50bp16T.
+
+3) u4cm6fp104bp12T
+     - Heavy nuclides   : 21 nuclides from U-234 to Cm-246
+     - Fission products : 103 explicit FPs and 1 pseudo one
+     - Burnable poisons : 12 isotopes of B, Er, Hf
+                          (Ag, In, Cd and Gd are included in FP chain)
+     Detailed chain model for all-purpose: e.g. PIE analyses, estimations of
+     Activity ratio for burnup indicators, decay heat and radioactivity
+     (after 1-year cooling), and so on.
+
+4) admin/th2cm6fp193bp6T
+     - Heavy nuclides   : 28 nuclides from Th-232 to Cm-246
+     - Fission products : 193 explicit FPs (No pseudo FP)
+     - Burnable Poisons : 6 isotopes of B-10 and Hf(5 isotopes)
+     Most detailed chain model for thermal reactors.
+     This chain model is for developpers to make cross section of pseudo 
+     fission product for other chain models.
+
+
+For Fast Reactors =============================================================
+
+1) u4cm6fp50bp16F
+     Production paths of burnable nuclides are the same to thoes of the 
+     chain model u4cm6fp50bp16F, however, all data is based on fast fission
+     for a) energy per fission, b) Isomeric ratio, c) Fission yield.
+
+2) admin/th2cm6fp193bp6F
+     Production paths of burnable nuclides are the same to thoes of the
+     chain model th2cm6fp193bp6F, however, all data is based on fast fission
+     for a) energy per fission, b) Isomeric ratio, c) Fission yield.
+
+------------------------------------------------------------------ 26, Apr, 2003

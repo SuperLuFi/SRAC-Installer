@@ -1,0 +1,67 @@
+C    THIS ROUTINE IS USED ONLY IN SRAC-CITATION AND NOT USED IN COREBN
+C    MESH SEARCH FOR PERTURBATION
+C
+      SUBROUTINE PERTC1(XYZ   ,XX    ,XX1   ,YY    ,YY1   ,ZZ    ,
+     1                  ZZ1   ,
+     2                  JVXP1 ,IVXP1 ,KBVXP1,NDIM  ,JX1   ,JX2   ,
+     3                  IX1   ,IX2   ,KX1   ,KX2                  )
+      DIMENSION XX(JVXP1),XX1(JVXP1),XYZ(2,3),YY(IVXP1),YY1(IVXP1),
+     1          ZZ(KBVXP1),ZZ1(KBVXP1)
+C
+      CALL PERC11(XX,XX1,JVXP1)
+      CALL PERC11(YY,YY1,IVXP1)
+      CALL PERC11(ZZ,ZZ1,KBVXP1)
+      IF (NDIM.EQ.3) GO TO 110
+      DO 100 II = NDIM+1,3
+      XYZ(1,II) = 0.0
+      XYZ(2,II) = 1.0
+  100 CONTINUE
+  110 CONTINUE
+      DO 120 J = 2,JVXP1
+      IF (XYZ(1,1).LT.XX1(J)) GO TO 130
+  120 CONTINUE
+      J = JVXP1
+  130 CONTINUE
+      JX1 = J-1
+      DO 140 J = 2,JVXP1
+      IF (XYZ(2,1).LE.XX1(J)) GO TO 150
+  140 CONTINUE
+      J = JVXP1
+  150 CONTINUE
+      JX2 = J - 1
+C
+      XX(JX1) = XYZ(1,1)
+      XX(JX2+1) = XYZ(2,1)
+C
+      DO 220 I = 2,IVXP1
+      IF (XYZ(1,2).LT.YY1(I)) GO TO 230
+  220 CONTINUE
+      I = IVXP1
+  230 CONTINUE
+      IX1 = I-1
+      DO 240 I = 2,IVXP1
+      IF (XYZ(2,2).LE.YY1(I)) GO TO 250
+  240 CONTINUE
+      I = IVXP1
+  250 CONTINUE
+      IX2 = I-1
+C
+      YY(IX1) = XYZ(1,2)
+      YY(IX2+1) = XYZ(2,2)
+      DO 320 KB = 2,KBVXP1
+      IF (XYZ(1,3).LT.ZZ1(KB)) GO TO 330
+  320 CONTINUE
+      KB = KBVXP1
+  330 CONTINUE
+      KX1 = KB-1
+      DO 340 KB = 2,KBVXP1
+      IF (XYZ(2,3).LE.ZZ1(KB)) GO TO 350
+  340 CONTINUE
+      KB = KBVXP1
+  350 CONTINUE
+      KX2 = KB-1
+C
+      ZZ(KX1) = XYZ(1,3)
+      ZZ(KX2+1) = XYZ(2,3)
+      RETURN
+      END

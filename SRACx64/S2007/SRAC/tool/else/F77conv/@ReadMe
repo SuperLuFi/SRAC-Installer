@@ -1,0 +1,32 @@
+###################### About options for Makefile #################
+#
+#   F77    = g77
+#   FFLAGS = -fno-automatic -finit-local-zero -O2 -funroll-loops
+#   CC     = gcc
+#   CFLAGS = -DPOSIX_C
+#   LDFLAGS  =
+#
+#  Other alternatives
+#
+#   LDFLAGS  = -static    ! required for g77 in linking ?
+#
+#   F77 = fort77 (fort77 script of Linux)
+#   F77 = f77    (f77 script of FreeBSD)
+#   F77 = ksk77  (My fortran script in SRAC/cmnd/)
+#
+#   F77 = pgi77  (Production compiler of PGI, http://www.pgi.com/)
+#   CC  = pgicc
+#
+#   <<< about the ksk77 script >>>
+#
+# The ksk77 script invokes the f2c (free Fortran-to-C translator in GNU)
+# and gcc (free C compiler in GNU) successively. Therefore, it can be used
+# as real Fortran compiler (e.g. ksk77 -o sample.out *.f).
+#
+# The ksk77 script is my hand-made commnad written by c-shell.
+# It may not be so excelent and its functions may be limitted as compared
+# with real compilers, however, it will work successfully at least for the
+# installation of this code (I hope).
+# You can use ksk77 (My first name is KeiSuKe) freely at your own risk.
+#
+###################################################################

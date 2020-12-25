@@ -1,0 +1,4 @@
+ {
+  s/C-Driver/tmp1/
+  s/C_Option/"tmp2"/
+ }

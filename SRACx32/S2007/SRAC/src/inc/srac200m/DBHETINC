@@ -1,0 +1,15 @@
+C     PARAMETER DEFINISION FOR DOUBLE HETEROGENEOUS CALCULATION BY PIJ
+C     THIS DEFINISION FILE NAME IS <<DBHETINC>>
+C
+C     ------------------------------------------------------------------
+C     PARAMETER MEANING                                  RECOMMENDED
+C     NAME      MEANING                                  DEFAULT VALUE
+C     ------------------------------------------------------------------
+C     MXDBHT    MAXIMUM LENGTH OF WORK AREA IN /DOUBLE/        450
+C               FOR DOUBLE HETEROGENEOUS CELL CALCULATION
+C               DEPENDING ON NUMBERS OF T-REGION, R-REGION,..
+C               NOTE: SET VALUE LARGER THAN MXMESH(MAXIMUM T-REGIONS)
+C               IN INCLUDE PIJPMINC
+C     ------------------------------------------------------------------
+      PARAMETER ( MXDBHT =   1000 )
+C     ------------------------------------------------------------------

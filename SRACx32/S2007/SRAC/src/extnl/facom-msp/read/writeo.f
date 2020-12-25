@@ -1,0 +1,55 @@
+      SUBROUTINE WRITEO(MEMBER,RAREA,N,IPOS,NFILE)
+C
+*INCLUDE READPINC
+C
+      CHARACTER*8     CZMEMB,SCMEMB,FLMODE,DATAKP,MEMBER
+      CHARACTER*12    DDNAME,FILENM
+      CHARACTER*68    PATHNM
+      INTEGER*4       ECODE,TEMP,PATH
+C
+      COMMON /PDSPDS/ DDNAME(125),IST(15),IRW(15),IOS(35),NC(5,20),
+     &                IFLSW,FILENM,ECODE,TEMP
+C
+      COMMON /PDSWK3/ PATHNM(15),FLMODE(15),DATAKP(15),CZMEMB(MAXMEM),
+     1                SCMEMB(MAXMEM)
+      COMMON /PDSWK2/ IZWRIT,IZMXDT,IZWCNT,IZDWTL,ICNTMX,
+     1                LENPAT(15),INCORE(15),ICNTSC,
+     2                IZDTLN(MAXMEM),IZDTTL(MAXMEM),IDUMZ,
+     3                IPOSDD(MAXMEM),IPOSSC(MAXMEM),
+     4                RZDATA(MXWORK)
+C
+      DIMENSION       RAREA(1)
+C
+C * OVERWRITE
+C
+      PATH  = 5
+      ECODE = 0
+C
+          NOW              = IZDTTL(IPOS)
+          IZDTLN(IPOS  )   = N
+          CALL COPYDT( RAREA , RZDATA(NOW+1) , N )
+C
+          IF(IST(NFILE).EQ.3) THEN
+                         WRITE(6,11) MEMBER,N,DDNAME(NFILE)(1:8)
+                         NC(5,NFILE)=NC(5,NFILE)+1
+                         RETURN
+                         ENDIF
+CFACOMS
+      CALL PDSWRT(DDNAME(NFILE),MEMBER,RAREA,4*N,ECODE)
+CFACOME
+CUNIXS
+CM    CALL PDSWRT(PATHNM(NFILE),LENPAT(NFILE),MEMBER,RAREA,4*N,ECODE )
+CUNIXE
+C
+      IF(ECODE.EQ.0) THEN
+                     WRITE(6,11) MEMBER,N,DDNAME(NFILE)(1:8)
+                     NC(5,NFILE)=NC(5,NFILE)+1
+                     ELSE
+                     CALL PDSERR(ECODE,MEMBER,PATH,DDNAME(NFILE))
+                     ENDIF
+C
+   11 FORMAT(10X,'MEMBER ',A8,' OF LENGTH ',I5,' IS STORED IN '
+     * ,A8,' FILE')
+C
+      RETURN
+      END

@@ -1,0 +1,14 @@
+C             DATE1               LEVEL=1        DATE=81.11.14
+      SUBROUTINE DATE1 ( PDATE )
+C
+C     DATE IN MM/DD/YY FORM REPLACEMENT ROUTINE
+C
+C
+      REAL*8 PDATE
+C
+C     DATA XDATE / 8 H05/01/73 /
+C
+CKSK  CALL DATE( PDATE )
+      CALL UDATE( PDATE )
+      RETURN
+      END

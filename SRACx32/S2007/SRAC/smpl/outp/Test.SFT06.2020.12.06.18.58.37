@@ -1,0 +1,91 @@
+
+                            *********************
+                            *  INPUT DATA LIST  *     PAGE-0001
+                            *********************
+
+        ....*....1....*....2....*....3....*....4....*....5....*....6....*....7....*....8
+     1: TEST : Case name (A4)
+     2: UO2 pin cell problem in LWR next generation fuel benchmark (No burn-up)
+     3: ************************************************************************
+     4: *  Benchmark Reference :
+     5: *  A.Yamamoto, T.Ikehara, T.Ito, and E.Saji : "Benchmark Problem for
+     6: *  Reactor Physics Study of LWR Next Generation Fuels",
+     7: *  J. Nucl. Sci. Technol., Vol.39, No.8, pp.900-912, (2002).
+     8: ************************************************************************
+     9: 1 1 1 1 2   1 4 3 -2 1   0 0 0 0 1   2 1 0 0 0 / SRAC CONTROL
+    10: 1.000E-20 / Geometrical buckling for P1/B1 calculation
+    11: *- PDS files ------2---------3---------4---------5---------6---------7--
+    12: * Note : All input line must be written in 72 columns except comments
+    13: *        even when environmental variables are expanded.
+    14: ~/SRACLIB-JDL33/pds/pfast   Old  File
+    15: ~/SRACLIB-JDL33/pds/pthml   O    F
+    16: ~/SRACLIB-JDL33/pds/pmcrs   O    F
+    17: /home/lab/SRAC/tmp/Test/UFAST      Scratch  Core
+    18: /home/lab/SRAC/tmp/Test/UTHERMAL   S        C
+    19: /home/lab/SRAC/tmp/Test/UMCROSS    S        C
+    20: /home/lab/SRAC/tmp/Test/MACROWRK   S        C
+    21: /home/lab/SRAC/tmp/Test/MACRO      S        C
+    22: /home/lab/SRAC/tmp/Test/FLUX       S        C
+    23: /home/lab/SRAC/tmp/Test/MICREF     S        C
+    24: ************************************************************************
+    25: 62 45  8 8 /  107 group => 16 group
+    26: 62(1)      /  Energy group structure suggested for LWR analyses
+    27: 45(1)      /
+    28: 8 11  9  9  9  9  4  3  / Fast 8 group
+    29: 3  3  3  6  3 10  9  8  / Thermal 8 group
+    30: ***** Enter one blank line after input for energy group structure
+    31:  
+    32: ***** Input for PIJ (Collision Probability Method)
+    33: 4 7 7 3 1   1 7 0 0 0   5 0 6 15 0   0 45 0         / Pij Control
+    34: 0 50 50 5 5 5 -1  0.0001 0.00001 0.001 1.0 10. 0.5  /
+    35: 1 1 1 2 3 3 3  /  R-S
+    36: 3(1)           /  X-R
+    37: 1 2 3          /  M-R
+    38: 0.0  0.238  0.336  0.412  0.476  0.528  0.580  0.6325    / RX
+    39: ****** Input for material specification
+    40: 3 / NMAT
+    41: FUELX01X  0 3  900.0  0.824    0.0  / 1 : UO2 fuel
+    42: XU050000  2 0  1.5122E-03      /1
+    43: XU080000  2 0  2.1477E-02      /2
+    44: XO060000  0 0  4.5945E-02      /3
+    45: CLADX02X  0 1  600.0  0.128    0.0  / 2 : cladding
+    46: XZRN0000  2 0  4.3107E-02      /1
+    47: MODEX03X  0 2  600.0  1.0      0.0  / 3 : moderator
+    48: XH01H000  0 0  4.4148E-02      /1
+    49: XO060000  0 0  2.2074E-02      /2
+    50: ****** Input for cell burn-up calculation (when IC20=1)
+        ....*....1....*....2....*....3....*....4....*....5....*....6....*....7....*....8
+                              *** CONTINUE ***
+
+                            *********************
+                            *  INPUT DATA LIST  *     PAGE-0002
+                            *********************
+
+        ....*....1....*....2....*....3....*....4....*....5....*....6....*....7....*....8
+    51: *  31 1 1 0 0  0 0 0 0 0  10(0)   / IBC
+    52: *  31(1.790E-04)   / Power level  (MWt/cm)
+    53: *  0.10E+03  1.00E+03  2.50E+03  5.00E+03  7.50E+03  1.00E+04
+    54: *  1.25E+04  1.50E+04  1.75E+04  2.00E+04  2.25E+04  2.50E+04
+    55: *  2.75E+04  3.00E+04  3.25E+04  3.50E+04  3.75E+04  4.00E+04
+    56: *  4.25E+04  4.50E+04  4.75E+04  5.00E+04  5.25E+04  5.50E+04
+    57: *  5.75E+04  6.00E+04  6.25E+04  6.50E+04  6.75E+04  7.00E+04
+    58: *  7.25E+04  /  keff calculation is not done at the last step
+    59: ****** Input for PEACO option
+    60: 0    / no plot
+    61: ****** Enter one blank line to terminate repeatation on calculation cases
+    62:  
+
+
+                            *********************
+                            *  INPUT DATA END   *
+                            *********************
+
+0     *** === SRAC CODE SYSTEM RUN    DATE : 20-12- 6 START TIME=18:58:37:
+              (SRAC:Ver.2005.00, LAST MODIFIED 2005.01.28)
+0*** ENTRANCE STEP  1**INPUT 1 **         0 SEC ELAPSED AFTER STEP 0**
+0     **** CASE ID === TEST : C *** TITLE === UO2 pin cell problem in LWR next generation fuel benchmark (No burn-up)  ***
+
+
+          FILE DD=FASTP    OPENED BY MODE 1 AS  OLD FILE     
+  *** MEMBER NOT FOUND/EXIST ***ENCOUNTERED ON FUNCTION READ MEMBER     
+  FOR MEMBER=FASTLIB  DD= FASTP    ECODE= 4
