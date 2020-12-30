@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#Mengatur izin
+chmod -R u+x *
+clear
+
+#Uji Koneksi
+echo "Memeriksa koneksi internet..."
+echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "Koneksi Stabil. Instalasi segera dilaksaknakan"
+    echo
+    echo "Apakah anda ingin menginstall SRAC"
+    echo "dan seluruh aplikasi yang diperlukan?"
+    echo
+    echo "Tekan CTRL+C untuk keluar"
+    read -p "Tekan Enter untuk lanjutkan"
+    
+    #Menjalankan Program Persiapan
+    ./Persiapan.sh
+    
+    #Menjalankan Installer SRAC
+    ./InstallerSRAC.sh
+
+else
+    echo
+    echo "Maaf, instalasi membutuhkan koneksi internet"
+    echo "Silahkan hubungkan linux dengan wifi atau android usb thetering"
+    echo
+    echo "Installer credit by Syaiful Bahri Al Haq"
+    echo "Contact me on http://we/me/08999814144"
+fi
+
+#makeself --gzip --current . SRACx32.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./.SRACx32/install.sh
+#makeself --gzip --current . SRACx32.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./install.sh 
+#export variabel agar variabel dapat di gunakan di program lain
+#tag=$( tail -n 1 history.txt )
+#zenity --list   --title="Choose script" --column="Script" --column="Description" " 1." "Install SRAC 2005" " 2." "Install SRAC 2007"
+#zenity --info --text='andi belum\nmakan'
