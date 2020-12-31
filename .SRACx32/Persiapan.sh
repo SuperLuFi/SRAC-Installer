@@ -18,5 +18,8 @@
     echo "Instalasi offline dependecies ..."
     cd Preinstall_pack_32bit && ./install.sh
     cd ..
+	cd g77_pack_32bit && ./install.sh
+	cd ..
+	sudo apt-get -f install -y
     clear
     echo "Persiapan selesai"
