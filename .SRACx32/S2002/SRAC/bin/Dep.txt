@@ -1,0 +1,26 @@
+	linux-gate.so.1 (0xf7f59000)
+	libg2c.so.0 => not found
+	libm.so.6 => /lib/i386-linux-gnu/libm.so.6 (0xf7e29000)
+	libgcc_s.so.1 => /lib/i386-linux-gnu/libgcc_s.so.1 (0xf7e0a000)
+	libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xf7c21000)
+	/lib/ld-linux.so.2 (0xf7f5b000)
+
+	Version information:
+	./SRACsc.30m:
+		libc.so.6 (GLIBC_2.0) => /lib/i386-linux-gnu/libc.so.6
+		libc.so.6 (GLIBC_2.1.3) => /lib/i386-linux-gnu/libc.so.6
+		libm.so.6 (GLIBC_2.0) => /lib/i386-linux-gnu/libm.so.6
+	/lib/i386-linux-gnu/libm.so.6:
+		ld-linux.so.2 (GLIBC_PRIVATE) => /lib/ld-linux.so.2
+		libc.so.6 (GLIBC_2.1.3) => /lib/i386-linux-gnu/libc.so.6
+		libc.so.6 (GLIBC_2.4) => /lib/i386-linux-gnu/libc.so.6
+		libc.so.6 (GLIBC_2.0) => /lib/i386-linux-gnu/libc.so.6
+		libc.so.6 (GLIBC_PRIVATE) => /lib/i386-linux-gnu/libc.so.6
+	/lib/i386-linux-gnu/libgcc_s.so.1:
+		libc.so.6 (GLIBC_2.2.4) => /lib/i386-linux-gnu/libc.so.6
+		libc.so.6 (GLIBC_2.1.3) => /lib/i386-linux-gnu/libc.so.6
+		libc.so.6 (GLIBC_2.0) => /lib/i386-linux-gnu/libc.so.6
+	/lib/i386-linux-gnu/libc.so.6:
+		ld-linux.so.2 (GLIBC_2.3) => /lib/ld-linux.so.2
+		ld-linux.so.2 (GLIBC_PRIVATE) => /lib/ld-linux.so.2
+		ld-linux.so.2 (GLIBC_2.1) => /lib/ld-linux.so.2
