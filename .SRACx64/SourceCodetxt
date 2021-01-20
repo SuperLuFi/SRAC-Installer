@@ -29,7 +29,7 @@ else
     echo "Silahkan hubungkan linux dengan wifi atau android usb thetering"
     echo
     echo "Installer credit by Syaiful Bahri Al Haq"
-    echo "Contact me on http://we/me/08999814144"
+    echo "Contact me on telegram https://t.me/mango_yakult"
 fi
 
 #makeself --gzip --current . SRACx64.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./.SRACx64/install.sh

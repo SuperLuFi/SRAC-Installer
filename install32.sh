@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd .SRACx64
+cd .SRACx32
 chmod u+x *
 bash ./SourceCodetxt
 cd ..
-rm -rf .SRACx64
-rm -rf install.sh
+rm -rf .SRACx32
+rm -rf install32.sh

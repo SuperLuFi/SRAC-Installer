@@ -14,7 +14,7 @@
         echo "Instalasi selesai"
         echo
         echo "Installer credit by Syaiful Bahri Al Haq"
-        echo "Contact me on http://we/me/08999814144"
+        echo "Contact me on telegram https://t.me/mango_yakult"
         
         #Pengambilan sample output S2002
         echo
@@ -48,7 +48,7 @@
         echo "Instalasi selesai"
         echo
         echo "Installer credit by Syaiful Bahri Al Haq"
-        echo "Contact me on http://we/me/08999814144"
+        echo "Contact me on https://t.me/mango_yakult"
                     
         #Pengambilan sample output S2007
         echo
