@@ -21,3 +21,7 @@ Installer inti yang melakukan proses instalasi SRAC berdasarkan versi yang dipil
 # SourceCodetxt
 
 Merupakan file installer yang menyatukan semua tools untuk digunakan sebagai installer yang sebenarnya.
+
+## Instalasi
+
+Silahkan buka homepage dari SRAC-Installer http://superlufi.github.io/#srac-installer. Untuk terjemahan bahasa inggris, kunjungi https://superlufi-github-io.translate.goog/?_x_tr_sl=id&_x_tr_tl=en&_x_tr_hl=id&_x_tr_pto=wapp#srac-installer 
