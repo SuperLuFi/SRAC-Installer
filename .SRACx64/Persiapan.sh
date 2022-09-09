@@ -14,8 +14,8 @@
     sudo apt-get install fort77 f2c -y &&
     echo "Instalasi code editor"
     sudo apt-get install csh -y &&
-    echo "Instalasi GUI Tools"
-    sudo apt-get install zenity dialog -y
+    #echo "Instalasi GUI Tools"
+    #sudo apt-get install zenity dialog -y
     clear
     echo "Instalasi offline dependecies ..."
     cd Preinstall_pack_64bit && ./install.sh

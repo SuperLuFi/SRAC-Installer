@@ -1,8 +1,15 @@
     kembali=1
     while [ $kembali == '1' ]; #Kembali 1 untuk memilih ulang versi SRAC
     do
-      echo "Saya telah menyediakan 2 versi SRAC, silahkan pilih:"
-      Versi=$(zenity --list --title="Silahkan pilih Versi SRAC yang akan di install" --column=" No." --column="Versi SRAC " "1" "SRAC Versi 2002" "2" "SRAC Versi 2007")
+      echo "Saya telah menyediakan 2 versi SRAC"
+      echo
+      echo "Silahkan pilih Versi SRAC yang akan diinstall:"
+      echo "1. SRAC Versi 2002"
+      echo "2. SRAC Versi 2007"
+      echo
+      echo "Masukan angka 1 atau 2"
+      read Versi
+      #Versi=$(zenity --list --title="Silahkan pilih Versi SRAC yang akan di install" --column=" No." --column="Versi SRAC " "1" "SRAC Versi 2002" "2" "SRAC Versi 2007")
       export Versi
       if [ $Versi == 1 ]; then # SRAC 2002
         echo "Anda memilih SRAC 2002"
@@ -48,7 +55,7 @@
         echo "Instalasi selesai"
         echo
         echo "Installer credit by Syaiful Bahri Al Haq"
-        echo "Contact me on https://t.me/mango_yakult"
+        echo "Contact me on telegram https://t.me/mango_yakult"
                     
         #Pengambilan sample output S2007
         echo
