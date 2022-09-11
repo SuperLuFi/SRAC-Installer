@@ -12,7 +12,7 @@ echo Sistem anda berbasis amd64.
 echo Mengunduh installer untuk amd64...
 echo
 sleep 3s #Jeda 3 detik
-wget https://github.com/SuperLuFi/SRAC-Installer/releases/latest/download/SRACx32_DebianUbuntu.run
+wget https://github.com/SuperLuFi/SRAC-Installer/releases/latest/download/SRACx64_DebianUbuntu.run
 chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi _DebianUbuntu.run
 ./*_DebianUbuntu.run #Menjalankan file
 
@@ -29,3 +29,5 @@ chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi
 ./*_DebianUbuntu.run #Menjalankan file
 fi
 fi
+
+wget -O - https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/blob/main/downloader | bash
