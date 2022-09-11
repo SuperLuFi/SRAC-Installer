@@ -19,20 +19,20 @@ case $opsi in
 		"x32 atau x86")
 		cp -r ../.SRACx32 ./
 		cp ../install32.sh ./
-		makeself --gzip --current . SRACx32.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./install32.sh
+		makeself --gzip --current . SRACx32_DebianUbuntu.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./install32.sh
 		rm -rf .SRACx32
 		rm -f install32.sh
-		#mv -f ./*.run ../Run
+		mv -f ./*.run ../Bin
 		exit 0
 		;;
 
 		x64)
 		cp -r ../.SRACx64 ./
 		cp ../install64.sh ./
-		makeself --gzip --current . SRACx64.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./install64.sh
+		makeself --gzip --current . SRACx64_DebianUbuntu.run "SRAC Installer untuk Debian/Ubuntu Linux | Fisika UIN Bandung" ./install64.sh
 		rm -rf .SRACx64
 		rm -f install64.sh
-		#mv -f ./*.run ../Run
+		mv -f ./*.run ../Bin
 		exit 0
 		;;
 
@@ -46,16 +46,6 @@ case $opsi in
 	done
 	cd ..
 	;;
-
-	#"Menjalankan Installer")
-	#echo Menjalankan installer ...
-	#echo Memindahkan file.run
-	#cd Lab && mv *.run ../Run  #Masuk folder Lab dan move file.run ke folder Run
-	#echo File.run sudah dipindahkan
-	#echo Memulai file.run
-	#cd ../Run && ./*.run       #Masuk folder Run dan eksekusi file.run
-	#cd ..
-	#;;
 
 	"Tool")
 	echo Instalasi Tool
