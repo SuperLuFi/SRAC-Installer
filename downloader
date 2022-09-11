@@ -1,33 +1,29 @@
 #!/bin/bash
 
 echo Memeriksa jenis prosesor
-prosesor=$(dpkg --print-architecture) 
-prosesor=${prosesor: -2}
-if [ "$prosesor" == "64" ]
-then
-rm *_DebianUbuntu.run #Menghapus Installer lain
-echo
-echo
-echo Sistem anda berbasis amd64.
-echo Mengunduh installer untuk amd64...
-echo
-sleep 3s #Jeda 3 detik
-wget https://github.com/SuperLuFi/SRAC-Installer/releases/latest/download/SRACx64_DebianUbuntu.run
-chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi _DebianUbuntu.run
-./*_DebianUbuntu.run #Menjalankan file
 
-if [ "$prosesor" == "86" ]
+if [ `getconf LONG_BIT` = "64" ]
 then
-rm *_DebianUbuntu.run #Menghapus Installer lain
-echo
-echo Sistem anda berbasis amd64.
-echo Mengunduh installer untuk amd64...
-echo
-sleep 3s #Jeda 3 detik
-wget https://github.com/SuperLuFi/SRAC-Installer/releases/latest/download/SRACx32_DebianUbuntu.run
-chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi _DebianUbuntu.run
-./*_DebianUbuntu.run #Menjalankan file
-fi
+    rm *_DebianUbuntu.run #Menghapus Installer lain
+    echo
+    echo
+    echo Sistem anda berbasis amd64.
+    echo Mengunduh installer untuk amd64...
+    echo
+    sleep 3s #Jeda 3 detik
+    wget https://github.com/SuperLuFi/SRAC-Installer/releases/latest/download/SRACx64_DebianUbuntu.run
+    chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi _DebianUbuntu.run
+    ./*_DebianUbuntu.run #Menjalankan file
+else
+    rm *_DebianUbuntu.run #Menghapus Installer lain
+    echo
+    echo Sistem anda berbasis i386.
+    echo Mengunduh installer untuk i386...
+    echo
+    sleep 3s #Jeda 3 detik
+    wget https://github.com/SuperLuFi/SRAC-Installer/releases/latest/download/SRACx32_DebianUbuntu.run
+    chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi _DebianUbuntu.run
+    ./*_DebianUbuntu.run #Menjalankan file
 fi
 
-wget -O - https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/blob/main/downloader | bash
+#wget -O - https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/blob/main/downloader | bash
