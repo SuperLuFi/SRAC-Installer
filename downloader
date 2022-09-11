@@ -2,8 +2,8 @@
 
 echo Memeriksa jenis prosesor
 
-if [ `getconf LONG_BIT` = "64" ]
-then
+prosesor=`uname -m`
+if [ ${prosesor} == 'x86_64' ]; then
     rm *_DebianUbuntu.run #Menghapus Installer lain
     echo
     echo
@@ -17,6 +17,7 @@ then
 else
     rm *_DebianUbuntu.run #Menghapus Installer lain
     echo
+    echo
     echo Sistem anda berbasis i386.
     echo Mengunduh installer untuk i386...
     echo
@@ -25,5 +26,6 @@ else
     chmod +x *_DebianUbuntu.run #Meminta izin akses untuk semua file dengan ekstensi _DebianUbuntu.run
     ./*_DebianUbuntu.run #Menjalankan file
 fi
+
 
 #wget -O - https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/blob/main/downloader | bash
