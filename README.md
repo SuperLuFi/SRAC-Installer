@@ -24,4 +24,7 @@ Merupakan file installer yang menyatukan semua tools untuk digunakan sebagai ins
 
 ## Instalasi
 
-Silahkan buka homepage dari SRAC-Installer http://superlufi.github.io/#srac-installer. If you are looking for english translation, go to this page https://superlufi-github-io.translate.goog/?_x_tr_sl=id&_x_tr_tl=en&_x_tr_hl=id&_x_tr_pto=wapp#srac-installer 
+Silahkan jalankan program di bawah ini.
+```console
+curl -fsSL https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/main/downloader | sudo -E bash -
+```
