@@ -27,5 +27,5 @@ else
     ./*_DebianUbuntu.run #Menjalankan file
 fi
 
-
+#curl -fsSL https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/main/downloader | sudo -E bash -
 #wget -O - https://raw.githubusercontent.com/SuperLuFi/SRAC-Installer/blob/main/downloader | bash
